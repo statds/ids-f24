@@ -96,15 +96,17 @@ Markdown.
 
 The topic presentation order is set up in class.
 ```{python}
-# with open('rosters/3255.txt', 'r') as file:
-#     ug = [line.strip() for line in file]
-# with open('rosters/5255.txt', 'r') as file:
-#     gr = [line.strip() for line in file]
-# presenters = ug + gr
+#| eval: false
 
-# import random
-# random.seed(4737 + 8852 + 3196 + 2344 + 47) # jointly set by the class on 01/24/2024
-# random.sample(presenters, len(presenters))
+with open('rosters/3255.txt', 'r') as file:
+    ug = [line.strip() for line in file]
+with open('rosters/5255.txt', 'r') as file:
+    gr = [line.strip() for line in file]
+presenters = ug + gr
+
+import random
+random.seed(4737 + 8852 + 3196 + 2344 + 47) # jointly set by the class on 01/24/2024
+random.sample(presenters, len(presenters))
 ## random.shuffle(presenters) # This would shuffle the list in place
 ```
 
