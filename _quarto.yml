@@ -13,6 +13,9 @@ book:
   
   chapters:
     - index.qmd
+    - intro.qmd
+    - git.qmd
+    - quarto.qmd
     - references.qmd
 
 bibliography: references.bib
