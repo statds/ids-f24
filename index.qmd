@@ -1,0 +1,224 @@
+# Preliminaries {.unnumbered}
+
+The notes were developed with Quarto; for details about Quarto, visit
+<https://quarto.org/docs/books>.
+
+
+## Sources at GitHub
+These lecture notes for STAT 3255/5255 in Fall 2024 represent a
+collaborative effort between Professor Jun Yan and the students
+enrolled in the course. This cooperative approach to education was
+facilitated through the use of GitHub, a platform that encourages
+collaborative coding and content development. To view
+these contributions and the lecture notes in their entirety, please
+visit our Spring 2024 repository at <https://github.com/statds/ids-f24>.
+
+
+Students contributed to the lecture notes by submitting pull requests
+to our dedicated GitHub repository. This method not only enriched the
+course material but also provided students with practical experience
+in collaborative software development and version control. 
+
+
+For those interested in exploring the lecture notes from the previous
+years, the
+[Spring 2024](https://statds.github.io/ids-s24),
+[Spring 2023](https://statds.github.io/ids-s23) and
+[Spring 2022](https://statds.github.io/ids-s22/)
+are both publicly accessible. These archives offer
+valuable insights into the evolution of the course content and the
+different perspectives brought by successive student cohorts.
+
+## Midterm Project
+
+TBA
+
+## Final Project
+
+Students are encouraged to start designing their final projects from
+the beginning of the semester. There are many open data that can be
+used. Here is a list of data challenges that you may find useful:
+
++ [ASA Data Challenge Expo](https://community.amstat.org/dataexpo/home)
++ [Kaggle](https://www.kaggle.com)
++ [DrivenData](https://www.drivendata.org)
++ [Top 10 Data Science Competitions in
+  2024](https://www.knowledgehut.com/blog/data-science/data-science-competitions)
+
+If you work on sports analytics, you are welcome to submit a
+poster to [UConn Sports Analytics Symposium
+(UCSAS) 2024](https://statds.org/events/ucsas2024/).
+
+
+## Adapting to Rapid Skill Acquisition
+
+In this course, students are expected to rapidly acquire new skills, a
+critical aspect of data science. To emphasize this, consider this
+insightful quote from @vanderplas2016python:
+
+> When a technologically-minded person is asked to help a friend, family member,
+> or colleague with a computer problem, most of the time it's less a matter of
+> knowing the answer as much as knowing how to quickly find an unknown
+> answer. In data science it's the same: searchable web resources such as online
+> documentation, mailing-list threads, and StackOverflow answers contain a
+> wealth of information, even (especially?) if it is a topic you've found
+> yourself searching before. Being an effective practitioner of data science is
+> less about memorizing the tool or command you should use for every possible
+> situation, and more about learning to effectively find the information you
+> don't know, whether through a web search engine or another means.
+
+This quote captures the essence of what we aim to develop in our
+students: the ability to swiftly navigate and utilize the vast
+resources available to solve complex problems in data science.
+
+## Wishlist
+
+This is a wish list from all members of the class (alphabetical
+order, last name first, comma, then first name). Here is an example.
+
+
++ Yan, Jun
+    - Make data science more accessible to undergraduates
+    - Co-develop a Quarto book in collaboration with the students
+    - Train students to participate real data science competitions
+
+
+Add yours through a pull request; note the syntax of nested list in
+Markdown. 
+
++ Last, First
+    - item 1
+    - item 2
+
+
+
+## Presentation Orders
+
+The topic presentation order is set up in class.
+```{python}
+# with open('rosters/3255.txt', 'r') as file:
+#     ug = [line.strip() for line in file]
+# with open('rosters/5255.txt', 'r') as file:
+#     gr = [line.strip() for line in file]
+# presenters = ug + gr
+
+# import random
+# random.seed(4737 + 8852 + 3196 + 2344 + 47) # jointly set by the class on 01/24/2024
+# random.sample(presenters, len(presenters))
+## random.shuffle(presenters) # This would shuffle the list in place
+```
+
+Switching slots is allowed as long as you find someone who
+is willing to switch with you. In this case, make a pull request
+to switch the order and let me know.
+
+
+You are welcome to choose a topic that you are interested the 
+most, subject to some order restrictions. For example, decision
+tree should be presented before random forest or extreme gradient
+boosting. This justifies certain requests for switching slots.
+
+
+## Course Logistics
+
+### Presentation Task Board
+
+Here are some example tasks:
+
++ Data science ethics
++ Data science communication skills
++ Import/Export data
++ Arrow as a cross-platform data format
++ Database operation with Structured query language (SQL)
++ Grammer of graphics
++ Handling spatial data
++ Visualize spatial data in a Google map
++ Animation
++ Classification and regression trees
++ Support vector machine
++ Random forest
++ Naive Bayes
++ Bagging vs boosting
++ Neural networks
++ Deep learning
++ TensorFlow
++ Autoencoders
++ Reinforcement learning
++ Calling C/C++ from Python
++ Calling R from Python and vice versa
++ Developing a Python package
+
+
+Please use this [Google Sheet]() to sign up.
+
+   Date  | Presenter              | Topic
+  ------ | ---------------------- | ------
+         |                        |
+
+### Final Project Presentation Schedule
+
+We use the same order as the topic presentation for undergraduate
+final presentation.
+
+   Date  | Presenter
+  ------ | ---------------------- 
+
+
+
+
+### Contributing to the Class Notes
+
+Contribution to the class notes is through a `pull request'.
+
++ Start a new branch and switch to the new branch.
++ On the new branch, add a `qmd` file for your presentation
++ If using Python, create and activate a virtual environment with `requirements.txt` 
++ Edit `_quarto.yml` add a line for your qmd file to include it in the notes.
++ Work on your qmd file, test with `quarto render`.
++ When satisfied, commit and make a pull request with your quarto files and an updated `requirements.txt`.
+
+I have added a template file `mysection.qmd` and a new line to `_quarto.yml`
+as an example.
+
+For more detailed style guidance, please see my notes on [statistical
+writing](https://statds.github.io/stat-writing/using-the-right-tools-for-writing.html#latex-for-typesetting).
+
+
+Plagiarism is to be prevented. Remember that these class notes are publicly
+available online with your names attached.  Here are some resources on []how to
+avoid plagiarism](https://usingsources.fas.harvard.edu/how-avoid-plagiarism). 
+In particular, in our course, one convenient way to avoid plagiarism is to use
+our own data (e.g., NYC Open Data). Combined with your own explanation of the
+code chunks, it would be hard to plagiarize.
+
+
+### Homework Requirements
+
++ Use the repo from Git Classroom to submit your work. See Section @sec-git.
+    - Keep the repo clean (no tracking generated files).
+	- Never "Upload" your files; use the git command lines.
+	- Make commit message informative (think about the readers).
++ Use `quarto` source only. See @sec-quarto.
++ For the convenience of grading, add your html output to a release in your
+  repo.
+
+
+## Practical Tips
+
+### Data analysis
+
++ Use an IDE so you can play with the data interactively
++ Collect codes that have tested out into a script for batch processing
++ During data cleaning, keep in mind how each variable will be used later
++ No keeping large data files in a repo; assume a reasonable location with your collaborators
+
+### Presentation
+
++ Don't forget to introduce yourself if there is no moderator.
++ Highlight your research questions and results, not code.
++ Give an outline, carry it out, and summarize.
++ Use your own examples to reduce the risk of plagiarism.
+
+
+<!-- Topic presentation template -->
+<!-- {{< include _mysection.qmd >}} -->
