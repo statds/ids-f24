@@ -109,7 +109,7 @@ def approximate_pi_vectorized(num_points):
 """
 
 ## poor style
-time_original = timeit.timeit("approximate_pi(10000)",               setup=setup_code, number=100)
+time_original = timeit.timeit("approximate_pi(10000)",     setup=setup_code,   number=100)
 
 ## good style; watch the pdf output
 time_vectorized = timeit.timeit("approximate_pi_vectorized(10000)",
