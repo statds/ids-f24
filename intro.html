@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – Introduction to Data Science</title>
+<title>1&nbsp; Introduction – Introduction to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,7 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./quarto.html" rel="prev">
+<link href="./git.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -87,6 +69,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -99,7 +110,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -135,7 +146,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
@@ -153,7 +164,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -162,15 +173,27 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-data-science" id="toc-what-is-data-science" class="nav-link active" data-scroll-target="#what-is-data-science"><span class="header-section-number">1.1</span> What Is Data Science?</a></li>
+  <li><a href="#expectations-from-this-course" id="toc-expectations-from-this-course" class="nav-link" data-scroll-target="#expectations-from-this-course"><span class="header-section-number">1.2</span> Expectations from This Course</a></li>
+  <li><a href="#computing-environment" id="toc-computing-environment" class="nav-link" data-scroll-target="#computing-environment"><span class="header-section-number">1.3</span> Computing Environment</a>
+  <ul class="collapse">
+  <li><a href="#command-line-interface" id="toc-command-line-interface" class="nav-link" data-scroll-target="#command-line-interface"><span class="header-section-number">1.3.1</span> Command Line Interface</a></li>
+  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python"><span class="header-section-number">1.3.2</span> Python</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
 </div>
 
 
@@ -187,15 +210,70 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-vanderplas2016python" class="csl-entry" role="listitem">
-VanderPlas, Jake. 2016. <em>Python Data Science Handbook:
-<span>E</span>ssential Tools for Working with Data</em>. O’Reilly Media,
-Inc.
-</div>
-</div>
+<section id="what-is-data-science" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-data-science"><span class="header-section-number">1.1</span> What Is Data Science?</h2>
+<p>Data science is a multifaceted field, often conceptualized as resting on three fundamental pillars: mathematics/statistics, computer science, and domain-specific knowledge. This framework helps to underscore the interdisciplinary nature of data science, where expertise in one area is often complemented by foundational knowledge in the others.</p>
+<p>A compelling definition was offered by Prof.&nbsp;Bin Yu in her 2014 Presidential Address to the Institute of Mathematical Statistics. She defines <span class="math display">\[\begin{equation*}
+\mbox{Data Science} =
+\mbox{S}\mbox{D}\mbox{C}^3,
+\end{equation*}\]</span> where</p>
+<ul>
+<li>‘S’ represents Statistics, signifying the crucial role of statistical methods in understanding and interpreting data;</li>
+<li>‘D’ stands for domain or science knowledge, indicating the importance of specialized expertise in a particular field of study;</li>
+<li>the three ’C’s denotes computing, collaboration/teamwork, and communication to outsiders.</li>
+</ul>
+<p>Computing underscores the need for proficiency in programming and algorithmic thinking, collaboration/teamwork reflects the inherently collaborative nature of data science projects, often requiring teams with diverse skill sets, and communication to outsiders emphasizes the importance of translating complex data insights into understandable and actionable information for non-experts.</p>
+<p>This definition neatly captures the essence of data science, emphasizing a balance between technical skills, teamwork, and the ability to communicate effectively.</p>
+</section>
+<section id="expectations-from-this-course" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="expectations-from-this-course"><span class="header-section-number">1.2</span> Expectations from This Course</h2>
+<p>In this course, students will be expected to achieve the following outcomes:</p>
+<ul>
+<li><p><strong>Proficiency in Project Management with Git</strong>: Develop a solid understanding of Git for efficient and effective project management. This involves mastering version control, branching, and collaboration through this powerful tool.</p></li>
+<li><p><strong>Proficiency in Project Reporting with Quarto</strong>: Gain expertise in using Quarto for professional-grade project reporting. This encompasses creating comprehensive and visually appealing reports that effectively communicate your findings.</p></li>
+<li><p><strong>Hands-On Experience with Real-World Data Science Projects</strong>: Engage in practical data science projects that reflect real-world scenarios. This hands-on approach is designed to provide you with direct experience in tackling actual data science challenges.</p></li>
+<li><p><strong>Competency in Using Python and Its Extensions for Data Science</strong>: Build strong skills in Python, focusing on its extensions relevant to data science. This includes libraries like Pandas, NumPy, and Matplotlib, among others, which are critical for data analysis and visualization.</p></li>
+<li><p><strong>Full Grasp of the Meaning of Results from Data Science Algorithms</strong>: Learn to not only apply data science algorithms but also to deeply understand the implications and meanings of their results. This is crucial for making informed decisions based on these outcomes.</p></li>
+<li><p><strong>Basic Understanding of the Principles of Data Science Methods</strong>: Acquire a foundational knowledge of the underlying principles of various data science methods. This understanding is key to effectively applying these methods in practice.</p></li>
+<li><p><strong>Commitment to the Ethics of Data Science</strong>: Emphasize the importance of ethical considerations in data science. This includes understanding data privacy, bias in data and algorithms, and the broader social implications of data science work.</p></li>
+</ul>
+</section>
+<section id="computing-environment" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="computing-environment"><span class="header-section-number">1.3</span> Computing Environment</h2>
+<p>All setups are operating system dependent. As soon as possible, stay away from Windows. Otherwise, good luck (you will need it).</p>
+<section id="command-line-interface" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="command-line-interface"><span class="header-section-number">1.3.1</span> Command Line Interface</h3>
+<p>On Linux or MacOS, simply open a terminal.</p>
+<p>On Windows, several options can be considered.</p>
+<ul>
+<li>Windows Subsystem Linux (WSL): <a href="https://learn.microsoft.com/en-us/windows/wsl/" class="uri">https://learn.microsoft.com/en-us/windows/wsl/</a></li>
+<li>Cygwin (with X): <a href="https://x.cygwin.com" class="uri">https://x.cygwin.com</a></li>
+<li>Git Bash: <a href="https://www.gitkraken.com/blog/what-is-git-bash" class="uri">https://www.gitkraken.com/blog/what-is-git-bash</a></li>
+</ul>
+<p>To jump start, here is a tutorial: <a href="https://ubuntu.com/tutorials/command-line-for-beginners">Ubunto Linux for beginners</a>.</p>
+<p>At least, you need to know how to handle files and traverse across directories. The tab completion and introspection supports are very useful.</p>
+</section>
+<section id="python" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="python"><span class="header-section-number">1.3.2</span> Python</h3>
+<p>Set up Python on your computer:</p>
+<ul>
+<li>Python 3.</li>
+<li>Python package manager <strong>miniconda</strong> or <strong>pip</strong>.</li>
+<li>Integrated Development Environment (IDE) (Jupyter Notebook; RStudio; VS Code; Emacs; etc.)</li>
+</ul>
+<p>I will be using IPython and Jupyter Notebook in class.</p>
+<p>Readability is important! Check your Python coding styles against the recommended styles: <a href="https://peps.python.org/pep-0008/" class="uri">https://peps.python.org/pep-0008/</a>. A good place to start is the Section on “Code Lay-out”.</p>
+<p>Online books on Python for data science:</p>
+<ul>
+<li><a href="https://jakevdp.github.io/PythonDataScienceHandbook/">“Python Data Science Handbook: Essential Tools for Working with Data,” First Edition</a>, by Jake VanderPlas, O’Reilly Media, 2016.</li>
+</ul>
+<ol start="2" type="1">
+<li><a href="https://wesmckinney.com/book/">“Python for Data Analysis: Data Wrangling with Pan- das, NumPy, and IPython.” Third Edition</a>, by Wes McK- inney, O’Reilly Media, 2022.</li>
+</ol>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -620,11 +698,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./quarto.html" class="pagination-link" aria-label="Reproducibile Data Science">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducibile Data Science</span></span>
+      <a href="./index.html" class="pagination-link" aria-label="Preliminaries">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preliminaries</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./git.html" class="pagination-link" aria-label="Project Management">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Project Management</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

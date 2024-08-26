@@ -64,7 +64,7 @@
     "href": "index.html#presentation-orders",
     "title": "Introduction to Data Science",
     "section": "Presentation Orders",
-    "text": "Presentation Orders\nThe topic presentation order is set up in class.\n\n# with open('rosters/3255.txt', 'r') as file:\n#     ug = [line.strip() for line in file]\n# with open('rosters/5255.txt', 'r') as file:\n#     gr = [line.strip() for line in file]\n# presenters = ug + gr\n\n# import random\n# random.seed(4737 + 8852 + 3196 + 2344 + 47) # jointly set by the class on 01/24/2024\n# random.sample(presenters, len(presenters))\n## random.shuffle(presenters) # This would shuffle the list in place\n\nSwitching slots is allowed as long as you find someone who is willing to switch with you. In this case, make a pull request to switch the order and let me know.\nYou are welcome to choose a topic that you are interested the most, subject to some order restrictions. For example, decision tree should be presented before random forest or extreme gradient boosting. This justifies certain requests for switching slots.",
+    "text": "Presentation Orders\nThe topic presentation order is set up in class.\n\nwith open('rosters/3255.txt', 'r') as file:\n    ug = [line.strip() for line in file]\nwith open('rosters/5255.txt', 'r') as file:\n    gr = [line.strip() for line in file]\npresenters = ug + gr\n\nimport random\nrandom.seed(4737 + 8852 + 3196 + 2344 + 47) # jointly set by the class on 01/24/2024\nrandom.sample(presenters, len(presenters))\n## random.shuffle(presenters) # This would shuffle the list in place\n\nSwitching slots is allowed as long as you find someone who is willing to switch with you. In this case, make a pull request to switch the order and let me know.\nYou are welcome to choose a topic that you are interested the most, subject to some order restrictions. For example, decision tree should be presented before random forest or extreme gradient boosting. This justifies certain requests for switching slots.",
     "crumbs": [
       "Preliminaries"
     ]
@@ -74,7 +74,7 @@
     "href": "index.html#course-logistics",
     "title": "Introduction to Data Science",
     "section": "Course Logistics",
-    "text": "Course Logistics\n\nPresentation Task Board\nHere are some example tasks:\n\nData science ethics\nData science communication skills\nImport/Export data\nArrow as a cross-platform data format\nDatabase operation with Structured query language (SQL)\nGrammer of graphics\nHandling spatial data\nVisualize spatial data in a Google map\nAnimation\nClassification and regression trees\nSupport vector machine\nRandom forest\nNaive Bayes\nBagging vs boosting\nNeural networks\nDeep learning\nTensorFlow\nAutoencoders\nReinforcement learning\nCalling C/C++ from Python\nCalling R from Python and vice versa\nDeveloping a Python package\n\nPlease use this Google Sheet to sign up.\n\n\n\nDate\nPresenter\nTopic\n\n\n\n\n\n\n\n\n\n\n\n\nFinal Project Presentation Schedule\nWe use the same order as the topic presentation for undergraduate final presentation.\n\n\n\nDate\nPresenter\n\n\n\n\n\n\n\nContributing to the Class Notes\nContribution to the class notes is through a `pull request’.\n\nStart a new branch and switch to the new branch.\nOn the new branch, add a qmd file for your presentation\nIf using Python, create and activate a virtual environment with requirements.txt\nEdit _quarto.yml add a line for your qmd file to include it in the notes.\nWork on your qmd file, test with quarto render.\nWhen satisfied, commit and make a pull request with your quarto files and an updated requirements.txt.\n\nI have added a template file mysection.qmd and a new line to _quarto.yml as an example.\nFor more detailed style guidance, please see my notes on statistical writing.\nPlagiarism is to be prevented. Remember that these class notes are publicly available online with your names attached. Here are some resources on []how to avoid plagiarism](https://usingsources.fas.harvard.edu/how-avoid-plagiarism). In particular, in our course, one convenient way to avoid plagiarism is to use our own data (e.g., NYC Open Data). Combined with your own explanation of the code chunks, it would be hard to plagiarize.\n\n\nHomework Requirements\n\nUse the repo from Git Classroom to submit your work. See Section ?sec-git.\n\nKeep the repo clean (no tracking generated files).\nNever “Upload” your files; use the git command lines.\nMake commit message informative (think about the readers).\n\nUse quarto source only. See ?sec-quarto.\nFor the convenience of grading, add your html output to a release in your repo.",
+    "text": "Course Logistics\n\nPresentation Task Board\nHere are some example tasks:\n\nData science ethics\nData science communication skills\nImport/Export data\nArrow as a cross-platform data format\nDatabase operation with Structured query language (SQL)\nGrammer of graphics\nHandling spatial data\nVisualize spatial data in a Google map\nAnimation\nClassification and regression trees\nSupport vector machine\nRandom forest\nNaive Bayes\nBagging vs boosting\nNeural networks\nDeep learning\nTensorFlow\nAutoencoders\nReinforcement learning\nCalling C/C++ from Python\nCalling R from Python and vice versa\nDeveloping a Python package\n\nPlease use this Google Sheet to sign up.\n\n\n\nDate\nPresenter\nTopic\n\n\n\n\n\n\n\n\n\n\n\n\nFinal Project Presentation Schedule\nWe use the same order as the topic presentation for undergraduate final presentation.\n\n\n\nDate\nPresenter\n\n\n\n\n\n\n\nContributing to the Class Notes\nContribution to the class notes is through a `pull request’.\n\nStart a new branch and switch to the new branch.\nOn the new branch, add a qmd file for your presentation\nIf using Python, create and activate a virtual environment with requirements.txt\nEdit _quarto.yml add a line for your qmd file to include it in the notes.\nWork on your qmd file, test with quarto render.\nWhen satisfied, commit and make a pull request with your quarto files and an updated requirements.txt.\n\nI have added a template file mysection.qmd and a new line to _quarto.yml as an example.\nFor more detailed style guidance, please see my notes on statistical writing.\nPlagiarism is to be prevented. Remember that these class notes are publicly available online with your names attached. Here are some resources on []how to avoid plagiarism](https://usingsources.fas.harvard.edu/how-avoid-plagiarism). In particular, in our course, one convenient way to avoid plagiarism is to use our own data (e.g., NYC Open Data). Combined with your own explanation of the code chunks, it would be hard to plagiarize.\n\n\nHomework Requirements\n\nUse the repo from Git Classroom to submit your work. See Section 2  Project Management.\n\nKeep the repo clean (no tracking generated files).\nNever “Upload” your files; use the git command lines.\nMake commit message informative (think about the readers).\n\nUse quarto source only. See 3  Reproducibile Data Science.\nFor the convenience of grading, add your html output to a release in your repo.",
     "crumbs": [
       "Preliminaries"
     ]
@@ -84,9 +84,119 @@
     "href": "index.html#practical-tips",
     "title": "Introduction to Data Science",
     "section": "Practical Tips",
-    "text": "Practical Tips\n\nData analysis\n\nUse an IDE so you can play with the data interactively\nCollect codes that have tested out into a script for batch processing\nDuring data cleaning, keep in mind how each variable will be used later\nNo keeping large data files in a repo; assume a reasonable location with your collaborators\n\n\n\nPresentation\n\nDon’t forget to introduce yourself if there is no moderator.\nHighlight your research questions and results, not code.\nGive an outline, carry it out, and summarize.\nUse your own examples to reduce the risk of plagiarism.\n\n\n\n\n\n\n\nVanderPlas, Jake. 2016. Python Data Science Handbook: Essential Tools for Working with Data. O’Reilly Media, Inc.",
+    "text": "Practical Tips\n\nData analysis\n\nUse an IDE so you can play with the data interactively\nCollect codes that have tested out into a script for batch processing\nDuring data cleaning, keep in mind how each variable will be used later\nNo keeping large data files in a repo; assume a reasonable location with your collaborators\n\n\n\nPresentation\n\nDon’t forget to introduce yourself if there is no moderator.\nHighlight your research questions and results, not code.\nGive an outline, carry it out, and summarize.\nUse your own examples to reduce the risk of plagiarism.",
     "crumbs": [
       "Preliminaries"
+    ]
+  },
+  {
+    "objectID": "index.html#my-presentation-topic-template",
+    "href": "index.html#my-presentation-topic-template",
+    "title": "Introduction to Data Science",
+    "section": "My Presentation Topic (Template)",
+    "text": "My Presentation Topic (Template)\n\nIntroduction\nPut an overview here. Use Markdown syntax.\n\n\nSub Topic 1\nPut materials on topic 1 here\nPython examples can be put into python code chunks:\n\nimport pandas as pd\n\n# do something\n\n\n\nSub Topic 2\nPut materials on topic 2 here.\n\n\nSub Topic 3\nPut matreials on topic 3 here.\n\n\nConclusion\nPut sumaries here.\n\n\n\n\nVanderPlas, Jake. 2016. Python Data Science Handbook: Essential Tools for Working with Data. O’Reilly Media, Inc.",
+    "crumbs": [
+      "Preliminaries"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "1.1 What Is Data Science?\nData science is a multifaceted field, often conceptualized as resting on three fundamental pillars: mathematics/statistics, computer science, and domain-specific knowledge. This framework helps to underscore the interdisciplinary nature of data science, where expertise in one area is often complemented by foundational knowledge in the others.\nA compelling definition was offered by Prof. Bin Yu in her 2014 Presidential Address to the Institute of Mathematical Statistics. She defines \\[\\begin{equation*}\n\\mbox{Data Science} =\n\\mbox{S}\\mbox{D}\\mbox{C}^3,\n\\end{equation*}\\] where\nComputing underscores the need for proficiency in programming and algorithmic thinking, collaboration/teamwork reflects the inherently collaborative nature of data science projects, often requiring teams with diverse skill sets, and communication to outsiders emphasizes the importance of translating complex data insights into understandable and actionable information for non-experts.\nThis definition neatly captures the essence of data science, emphasizing a balance between technical skills, teamwork, and the ability to communicate effectively.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#what-is-data-science",
+    "href": "intro.html#what-is-data-science",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "‘S’ represents Statistics, signifying the crucial role of statistical methods in understanding and interpreting data;\n‘D’ stands for domain or science knowledge, indicating the importance of specialized expertise in a particular field of study;\nthe three ’C’s denotes computing, collaboration/teamwork, and communication to outsiders.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#expectations-from-this-course",
+    "href": "intro.html#expectations-from-this-course",
+    "title": "1  Introduction",
+    "section": "1.2 Expectations from This Course",
+    "text": "1.2 Expectations from This Course\nIn this course, students will be expected to achieve the following outcomes:\n\nProficiency in Project Management with Git: Develop a solid understanding of Git for efficient and effective project management. This involves mastering version control, branching, and collaboration through this powerful tool.\nProficiency in Project Reporting with Quarto: Gain expertise in using Quarto for professional-grade project reporting. This encompasses creating comprehensive and visually appealing reports that effectively communicate your findings.\nHands-On Experience with Real-World Data Science Projects: Engage in practical data science projects that reflect real-world scenarios. This hands-on approach is designed to provide you with direct experience in tackling actual data science challenges.\nCompetency in Using Python and Its Extensions for Data Science: Build strong skills in Python, focusing on its extensions relevant to data science. This includes libraries like Pandas, NumPy, and Matplotlib, among others, which are critical for data analysis and visualization.\nFull Grasp of the Meaning of Results from Data Science Algorithms: Learn to not only apply data science algorithms but also to deeply understand the implications and meanings of their results. This is crucial for making informed decisions based on these outcomes.\nBasic Understanding of the Principles of Data Science Methods: Acquire a foundational knowledge of the underlying principles of various data science methods. This understanding is key to effectively applying these methods in practice.\nCommitment to the Ethics of Data Science: Emphasize the importance of ethical considerations in data science. This includes understanding data privacy, bias in data and algorithms, and the broader social implications of data science work.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#computing-environment",
+    "href": "intro.html#computing-environment",
+    "title": "1  Introduction",
+    "section": "1.3 Computing Environment",
+    "text": "1.3 Computing Environment\nAll setups are operating system dependent. As soon as possible, stay away from Windows. Otherwise, good luck (you will need it).\n\n1.3.1 Command Line Interface\nOn Linux or MacOS, simply open a terminal.\nOn Windows, several options can be considered.\n\nWindows Subsystem Linux (WSL): https://learn.microsoft.com/en-us/windows/wsl/\nCygwin (with X): https://x.cygwin.com\nGit Bash: https://www.gitkraken.com/blog/what-is-git-bash\n\nTo jump start, here is a tutorial: Ubunto Linux for beginners.\nAt least, you need to know how to handle files and traverse across directories. The tab completion and introspection supports are very useful.\n\n\n1.3.2 Python\nSet up Python on your computer:\n\nPython 3.\nPython package manager miniconda or pip.\nIntegrated Development Environment (IDE) (Jupyter Notebook; RStudio; VS Code; Emacs; etc.)\n\nI will be using IPython and Jupyter Notebook in class.\nReadability is important! Check your Python coding styles against the recommended styles: https://peps.python.org/pep-0008/. A good place to start is the Section on “Code Lay-out”.\nOnline books on Python for data science:\n\n“Python Data Science Handbook: Essential Tools for Working with Data,” First Edition, by Jake VanderPlas, O’Reilly Media, 2016.\n\n\n“Python for Data Analysis: Data Wrangling with Pan- das, NumPy, and IPython.” Third Edition, by Wes McK- inney, O’Reilly Media, 2022.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "git.html",
+    "href": "git.html",
+    "title": "2  Project Management",
+    "section": "",
+    "text": "2.1 Set Up\nTo set up GitHub (other services like Bitbucket or GitLab are similar), you need to",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project Management</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#set-up",
+    "href": "git.html#set-up",
+    "title": "2  Project Management",
+    "section": "",
+    "text": "Generate an SSH key if you don’t have one already.\nSign up an GitHub account.\nAdd the SSH key to your GitHub account",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project Management</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#most-frequently-used-git-commands",
+    "href": "git.html#most-frequently-used-git-commands",
+    "title": "2  Project Management",
+    "section": "2.2 Most Frequently Used Git Commands",
+    "text": "2.2 Most Frequently Used Git Commands\n\ngit clone\ngit pull\ngit status\ngit add\ngit remove\ngit commit\ngit push",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project Management</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#tips-on-using-git",
+    "href": "git.html#tips-on-using-git",
+    "title": "2  Project Management",
+    "section": "2.3 Tips on using Git:",
+    "text": "2.3 Tips on using Git:\n\nUse the command line interface instead of the web interface (e.g., upload on GitHub)\nMake frequent small commits instead of rare large commits.\nMake commit messages informative and meaningful.\nName your files/folders by some reasonable convention.\n\nLower cases are better than upper cases.\nNo blanks in file/folder names.\n\nKeep the repo clean by not tracking generated files.\nCreat a .gitignore file for better output from git status.\nKeep the linewidth of sources to under 80 for better git diff view.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project Management</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#pull-request",
+    "href": "git.html#pull-request",
+    "title": "2  Project Management",
+    "section": "2.4 Pull Request",
+    "text": "2.4 Pull Request\nTo contribute to an open source project (e.g., our classnotes), use pull requests. Pull requests “let you tell others about changes you’ve pushed to a branch in a repository on GitHub. Once a pull request is opened, you can discuss and review the potential changes with collaborators and add follow-up commits before your changes are merged into the base branch.”\nWatch this YouTube video: GitHub pull requests in 100 seconds.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project Management</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html",
+    "href": "quarto.html",
+    "title": "3  Reproducibile Data Science",
+    "section": "",
+    "text": "Data science projects should be reproducible to be trustworthy. Dynamic documents facilitate reproducibility. Quarto is an open-source dynamic document preparation system, ideal for scientific and technical publishing. From the official websites, Quarto can be used to:\n\nCreate dynamic content with Python, R, Julia, and Observable.\nAuthor documents as plain text markdown or Jupyter notebooks.\nPublish high-quality articles, reports, presentations, websites, blogs, and books in HTML, PDF, MS Word, ePub, and more.\nAuthor with scientific markdown, including equations, citations, crossrefs, figure panels, callouts, advanced layout, and more.\n\nOf course, Quarto can be used to write homework, exams, and reports in this course.\nTo get started, see documentation at Quarto.\nA template for homework is in this repo: hwtemp.qmd.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reproducibile Data Science</span>"
     ]
   },
   {
