@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jun Yan and Students in Fall 2024">
-<meta name="dcterms.date" content="2024-08-26">
+<meta name="dcterms.date" content="2024-08-28">
 
 <title>Introduction to Data Science</title>
 <style>
@@ -151,7 +151,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/ids-s24.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/ids-f24.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Introduction to Data Science</a> 
@@ -265,7 +265,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 26, 2024</p>
+      <p class="date">August 28, 2024</p>
     </div>
   </div>
   
@@ -307,7 +307,7 @@ div.csl-indent {
 <blockquote class="blockquote">
 <p>When a technologically-minded person is asked to help a friend, family member, or colleague with a computer problem, most of the time it’s less a matter of knowing the answer as much as knowing how to quickly find an unknown answer. In data science it’s the same: searchable web resources such as online documentation, mailing-list threads, and StackOverflow answers contain a wealth of information, even (especially?) if it is a topic you’ve found yourself searching before. Being an effective practitioner of data science is less about memorizing the tool or command you should use for every possible situation, and more about learning to effectively find the information you don’t know, whether through a web search engine or another means.</p>
 </blockquote>
-<p>This quote captures the essence of what we aim to develop in our students: the ability to swiftly navigate and utilize the vast resources available to solve complex problems in data science.</p>
+<p>This quote captures the essence of what we aim to develop in our students: the ability to swiftly navigate and utilize the vast resources available to solve complex problems in data science. Examples tasks are: install needed software (or even hardware); search and find solutions to encountered problems.</p>
 </section>
 <section id="wishlist" class="level2">
 <h2 class="anchored" data-anchor-id="wishlist">Wishlist</h2>
@@ -332,7 +332,7 @@ div.csl-indent {
 <section id="presentation-orders" class="level2">
 <h2 class="anchored" data-anchor-id="presentation-orders">Presentation Orders</h2>
 <p>The topic presentation order is set up in class.</p>
-<div id="caf6fe07" class="cell" data-execution_count="1">
+<div id="f3b9cf82" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'rosters/3255.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    ug <span class="op">=</span> [line.strip() <span class="cf">for</span> line <span class="kw">in</span> <span class="bu">file</span>]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'rosters/5255.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
@@ -340,9 +340,10 @@ div.csl-indent {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>presenters <span class="op">=</span> ug <span class="op">+</span> gr</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">4737</span> <span class="op">+</span> <span class="dv">8852</span> <span class="op">+</span> <span class="dv">3196</span> <span class="op">+</span> <span class="dv">2344</span> <span class="op">+</span> <span class="dv">47</span>) <span class="co"># jointly set by the class on 01/24/2024</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>random.sample(presenters, <span class="bu">len</span>(presenters))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">## random.shuffle(presenters) # This would shuffle the list in place</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">## seed jointly set by the class</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">4737</span> <span class="op">+</span> <span class="dv">8852</span> <span class="op">+</span> <span class="dv">3196</span> <span class="op">+</span> <span class="dv">2344</span> <span class="op">+</span> <span class="dv">47</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>random.sample(presenters, <span class="bu">len</span>(presenters))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">## random.shuffle(presenters) # This would shuffle the list in place</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Switching slots is allowed as long as you find someone who is willing to switch with you. In this case, make a pull request to switch the order and let me know.</p>
 <p>You are welcome to choose a topic that you are interested the most, subject to some order restrictions. For example, decision tree should be presented before random forest or extreme gradient boosting. This justifies certain requests for switching slots.</p>
@@ -353,6 +354,7 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="presentation-task-board">Presentation Task Board</h3>
 <p>Here are some example tasks:</p>
 <ul>
+<li>Making presentations with Quarto</li>
 <li>Data science ethics</li>
 <li>Data science communication skills</li>
 <li>Import/Export data</li>
@@ -415,7 +417,7 @@ div.csl-indent {
 <li>Start a new branch and switch to the new branch.</li>
 <li>On the new branch, add a <code>qmd</code> file for your presentation</li>
 <li>If using Python, create and activate a virtual environment with <code>requirements.txt</code></li>
-<li>Edit <code>_quarto.yml</code> add a line for your qmd file to include it in the notes.</li>
+<li>Edit <code>_quarto.yml</code> add a line for your <code>qmd</code> file to include it in the notes.</li>
 <li>Work on your qmd file, test with <code>quarto render</code>.</li>
 <li>When satisfied, commit and make a pull request with your quarto files and an updated <code>requirements.txt</code>.</li>
 </ul>
@@ -434,6 +436,7 @@ div.csl-indent {
 </ul></li>
 <li>Use <code>quarto</code> source only. See <a href="quarto.html" class="quarto-xref"><span>3&nbsp; Reproducibile Data Science</span></a>.</li>
 <li>For the convenience of grading, add your html output to a release in your repo.</li>
+<li>For standalone pdf output, you will need to have <a href="https://www.latex-project.org/get/">LaTeX</a> installed.</li>
 </ul>
 </section>
 </section>
@@ -469,7 +472,7 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="sub-topic-1">Sub Topic 1</h3>
 <p>Put materials on topic 1 here</p>
 <p>Python examples can be put into <code>python</code> code chunks:</p>
-<div id="abcb8ba1" class="cell" data-execution_count="2">
+<div id="bbd03f1b" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># do something</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

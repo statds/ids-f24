@@ -96,7 +96,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/ids-s24.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/ids-f24.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Introduction to Data Science</a> 
@@ -150,8 +150,20 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction-to-quarto" id="toc-introduction-to-quarto" class="nav-link active" data-scroll-target="#introduction-to-quarto"><span class="header-section-number">3.1</span> Introduction to Quarto</a></li>
+  <li><a href="#compiling-the-classnotes" id="toc-compiling-the-classnotes" class="nav-link" data-scroll-target="#compiling-the-classnotes"><span class="header-section-number">3.2</span> Compiling the Classnotes</a>
+  <ul class="collapse">
+  <li><a href="#clone-the-repository" id="toc-clone-the-repository" class="nav-link" data-scroll-target="#clone-the-repository"><span class="header-section-number">3.2.1</span> Clone the Repository</a></li>
+  <li><a href="#set-up-your-python-virtural-environment" id="toc-set-up-your-python-virtural-environment" class="nav-link" data-scroll-target="#set-up-your-python-virtural-environment"><span class="header-section-number">3.2.2</span> Set up your Python Virtural Environment</a></li>
+  <li><a href="#render-the-classnotes" id="toc-render-the-classnotes" class="nav-link" data-scroll-target="#render-the-classnotes"><span class="header-section-number">3.2.3</span> Render the Classnotes</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -182,11 +194,45 @@ ul.task-list li input[type="checkbox"] {
 <li>Publish high-quality articles, reports, presentations, websites, blogs, and books in HTML, PDF, MS Word, ePub, and more.</li>
 <li>Author with scientific markdown, including equations, citations, crossrefs, figure panels, callouts, advanced layout, and more.</li>
 </ul>
-<p>Of course, Quarto can be used to write homework, exams, and reports in this course.</p>
-<p>To get started, see documentation at <a href="https://quarto.org/docs/get-started/">Quarto</a>.</p>
-<p>A template for homework is in this repo: <code>hwtemp.qmd</code>.</p>
+<section id="introduction-to-quarto" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="introduction-to-quarto"><span class="header-section-number">3.1</span> Introduction to Quarto</h2>
+<p>To get started with Quarto, see documentation at <a href="https://quarto.org/docs/get-started/">Quarto</a>.</p>
+<p>For a clean style, I suggest that you use <code>VS Code</code> as your IDE. The <code>ipynb</code> files have extra formats in plain texts, which are not as clean as <code>qmd</code> files.</p>
+<p>We will use Quarto for homework assignments, classnotes, and presentations. You will see them in action through in-class demonstrations. The following sections in the <a href="https://quarto.org/docs/guide/">Quarto Guide</a> are immediately useful.</p>
+<ul>
+<li><a href="https://quarto.org/docs/authoring/markdown-basics.html">Markdown basics</a></li>
+<li><a href="https://quarto.org/docs/computations/python.html">Using Python</a></li>
+<li><a href="https://quarto.org/docs/presentations/">Presentations</a></li>
+</ul>
+<p>A template for homework is in this repo (<code>hwtemp.qmd</code>) to get you started with homework assignments.</p>
+</section>
+<section id="compiling-the-classnotes" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="compiling-the-classnotes"><span class="header-section-number">3.2</span> Compiling the Classnotes</h2>
+<p>The sources of the classnotes are at <a href="https://github.com/statds/ids-f24" class="uri">https://github.com/statds/ids-f24</a>. This also the source tree that you will contributed to this semester. I expect that you close the repository to your own computer, update frequently, and compile the latest version on your computer (reproducibility).</p>
+<p>To compile the classnotes, you need the following tools: Git, Quarto, and Python.</p>
+<section id="clone-the-repository" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="clone-the-repository"><span class="header-section-number">3.2.1</span> Clone the Repository</h3>
+<p>Clone the repository to your own computer. In a terminal (command line), go to an appropriate directory (floder), and clone the repo. For example, if you use <code>ssh</code> for authentication:</p>
+<p><code>git clone git@github.com:statds/stat-writing.git</code></p>
+</section>
+<section id="set-up-your-python-virtural-environment" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="set-up-your-python-virtural-environment"><span class="header-section-number">3.2.2</span> Set up your Python Virtural Environment</h3>
+<p>I suggest that a virtual environment for the classnotes be set up in the current directory.</p>
+<p><code>python3 -m venv myenv</code></p>
+<p>Here <code>myenv</code> is the name of the virtual environment to be created. Choose an informative name.</p>
+<p>To exit the virtual environment, simply type <code>deactivate</code> in your command line. This will return you to your system’s global Python environment.</p>
+<p>Install all the packages with the right versions as specified in <code>requirements.txt</code>:</p>
+<p><code>pip install -r requirements.txt</code></p>
+</section>
+<section id="render-the-classnotes" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="render-the-classnotes"><span class="header-section-number">3.2.3</span> Render the Classnotes</h3>
+<p>Assuming <code>quarto</code> has been set up, we render the classnotes:</p>
+<p><code>quarto render</code></p>
+<p>If there are error messages, search and find solutions to clear them. Otherwise, the html verion of the notes will be available under <code>_book/index.html</code>, which is default location of the output.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
