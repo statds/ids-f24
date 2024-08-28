@@ -144,7 +144,7 @@
     "href": "git.html",
     "title": "2  Project Management",
     "section": "",
-    "text": "2.1 Set Up Git/GitHub\nTo set up GitHub (other services like Bitbucket or GitLab are similar), you need to",
+    "text": "2.1 Set Up Git/GitHub\nDownload Git if you don’t have it already.\nTo set up GitHub (other services like Bitbucket or GitLab are similar), you need to\nSee how to get started with GitHub account.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project Management</span>"
     ]
