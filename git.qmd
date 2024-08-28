@@ -12,7 +12,7 @@ Here is a collection of [online Git exersices](https://gitexercises.fracz.com)
 that I used for Git training in other courses that I taught.
 
 
-## Set Up
+## Set Up Git/GitHub
 
 To set up GitHub (other services like Bitbucket or GitLab are similar), you need to
 

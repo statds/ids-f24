@@ -12,11 +12,80 @@ technical publishing. From the official websites, Quarto can be used to:
 + Author with scientific markdown, including equations, citations, crossrefs,
   figure panels, callouts, advanced layout, and more.
   
-Of course, Quarto can be used to write homework, exams, and reports in this
-course.
 
+## Introduction to Quarto
 
-To get started, see documentation at
+To get started with Quarto, see documentation at
 [Quarto](https://quarto.org/docs/get-started/).
 
-A template for homework is in this repo: `hwtemp.qmd`.
+
+For a clean style, I suggest that you use
+`VS Code` as your IDE. The `ipynb` files have extra
+formats in plain texts, which are not as clean as
+`qmd` files.
+
+
+We will use Quarto for homework assignments, classnotes, and presentations.
+You will see them in action through in-class demonstrations.
+The following sections in the [Quarto Guide](https://quarto.org/docs/guide/)
+are immediately useful.
+
++ [Markdown basics](https://quarto.org/docs/authoring/markdown-basics.html)
++ [Using Python](https://quarto.org/docs/computations/python.html)
++ [Presentations](https://quarto.org/docs/presentations/)
+
+
+A template for homework is in this repo (`hwtemp.qmd`) to get you
+started with homework assignments.
+
+
+
+
+## Compiling the Classnotes
+
+The sources of the classnotes are at <https://github.com/statds/ids-f24>.
+This also the source tree that you will contributed to this semester.
+I expect that you close the repository to your own computer, update
+frequently, and compile the latest version on your computer (reproducibility).
+
+
+To compile the classnotes, you need the following tools:
+Git, Quarto, and Python.
+
+### Clone the Repository
+
+Clone the repository to your own computer. In a terminal (command line),
+go to an appropriate directory (floder), and clone the repo. For example,
+if you use `ssh` for authentication: 
+
+`git clone git@github.com:statds/stat-writing.git`
+
+### Set up your Python Virtural Environment
+
+I suggest that a virtual environment for the classnotes
+be set up in the current directory.
+
+`python3 -m venv myenv`
+
+Here `myenv` is the name of the virtual environment 
+to be created. Choose an informative name.
+
+To exit the virtual environment, simply type `deactivate`
+in your command line. This will return you to your system’s
+global Python environment.
+
+Install all the packages with the right versions
+as specified in `requirements.txt`:
+
+`pip install -r requirements.txt`
+
+### Render the Classnotes
+
+Assuming `quarto` has been set up, we render 
+the classnotes:
+
+`quarto render`
+
+If there are error messages, search and find solutions to clear
+them. Otherwise, the html verion of the notes will be available under
+`_book/index.html`, which is default location of the output.

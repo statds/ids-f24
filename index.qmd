@@ -70,6 +70,8 @@ insightful quote from @vanderplas2016python:
 This quote captures the essence of what we aim to develop in our
 students: the ability to swiftly navigate and utilize the vast
 resources available to solve complex problems in data science.
+Examples tasks are: install needed software (or even hardware);
+search and find solutions to encountered problems. 
 
 ## Wishlist
 
@@ -105,7 +107,8 @@ with open('rosters/5255.txt', 'r') as file:
 presenters = ug + gr
 
 import random
-random.seed(4737 + 8852 + 3196 + 2344 + 47) # jointly set by the class on 01/24/2024
+## seed jointly set by the class
+random.seed(4737 + 8852 + 3196 + 2344 + 47)
 random.sample(presenters, len(presenters))
 ## random.shuffle(presenters) # This would shuffle the list in place
 ```
@@ -127,6 +130,7 @@ boosting. This justifies certain requests for switching slots.
 
 Here are some example tasks:
 
++ Making presentations with Quarto
 + Data science ethics
 + Data science communication skills
 + Import/Export data
@@ -175,7 +179,7 @@ Contribution to the class notes is through a `pull request'.
 + Start a new branch and switch to the new branch.
 + On the new branch, add a `qmd` file for your presentation
 + If using Python, create and activate a virtual environment with `requirements.txt` 
-+ Edit `_quarto.yml` add a line for your qmd file to include it in the notes.
++ Edit `_quarto.yml` add a line for your `qmd` file to include it in the notes.
 + Work on your qmd file, test with `quarto render`.
 + When satisfied, commit and make a pull request with your quarto files and an updated `requirements.txt`.
 
@@ -203,6 +207,7 @@ code chunks, it would be hard to plagiarize.
 + Use `quarto` source only. See @sec-quarto.
 + For the convenience of grading, add your html output to a release in your
   repo.
++ For standalone pdf output, you will need to have [LaTeX](https://www.latex-project.org/get/) installed.
 
 
 ## Practical Tips
