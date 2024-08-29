@@ -3,7 +3,7 @@
 1. **Quarto and Git setup**
   Quarto and Git are two important tools for data science. Get
   familiar with them through the following tasks. Please use
-  the `hwtemp.qmd` template.
+  the `templates/hw.qmd` template.
     1. Install Quarto onto your computer following the instructions
     of [Get Started](https://quarto.org/docs/get-started/). Document
     the obstacles you encountered and how you overcame them.
@@ -11,7 +11,8 @@
     Emacs, etc.), follow the instructions to reproduce the example
     of line plot on polar axis.
     1. Render the homework into a pdf file and put the file into
-    a release in your GitHub repo.
+    a release in your GitHub repo. Document any obstacles you have
+    and how you overcome them.
     
 
 1. **Git basics and GitHub setup**
