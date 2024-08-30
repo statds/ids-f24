@@ -37,14 +37,21 @@
   line; use `git diff` to see the difference from the last commit;
   commit.
     1. Play with other git operations and commit.
-  
 
 1. **Contributing to the Class Notes**
+  To contribute to the classnotes, you need to have a working
+  copy of the sources on your computer. Document the following
+  steps in a `qmd` file as if you are explaining them to someone
+  who want to contribute too.
     1. Create a fork of the notes repo into your own GitHub account.
-    1. Clone it to your local computer. 
-    1. Make a new branch to experiment with your changes.
-    1. Checkout your branch and add your wishes to the wish list; push
-    to your GitHub account.
+    1. Clone it to an appropriate folder on your computer.
+    1. Render the classnotes on your computer; document the obstacles
+    and solutions.
+    1. Make a new branch (and name it appropriately) to experiment
+    with your changes.
+    1. Checkout your branch and add your wishes to the wish list; 
+    commit with an informative message; and
+    push the changes to your GitHub account.
     1. Make a pull request to class notes repo from your fork at
     GitHub. Make sure you have clear messages to document the changes.
 

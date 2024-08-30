@@ -88,11 +88,29 @@ order, last name first, comma, then first name). Here is an example.
 Add yours through a pull request; note the syntax of nested list in
 Markdown. 
 
-+ Last, First
-    - item 1
-    - item 2
-
-
++ Akach, Suha
++ Astle, Jaden
++ Babiec, Owen
++ Baptista, Stef
++ Bienvenue, Jack
++ Blanchard, Zachary
++ Borowski, Emily
++ Clokey, Sara
++ Desroches, Melanie
++ Fang, Zetong
++ Febles, Xavier
++ Freed, Brent
++ Jha, Aansh
++ Johnson, Dorothea
++ Kashalapov, Olivia
++ Klinowski, Amalia
++ Lee, Seunghyeon
++ Manna, Rahul
++ Mazzola, Julia
++ Paricharak, Aditya
++ Parvez, Mohammad Shahriyar
++ Tan, Qianruo
++ Xu, Deyu
 
 ## Presentation Orders
 
@@ -202,12 +220,13 @@ code chunks, it would be hard to plagiarize.
 
 + Use the repo from Git Classroom to submit your work. See Section @sec-git.
     - Keep the repo clean (no tracking generated files).
-	- Never "Upload" your files; use the git command lines.
-	- Make commit message informative (think about the readers).
+        - Never "Upload" your files; use the git command lines.
+        - Make commit message informative (think about the readers).
 + Use `quarto` source only. See @sec-quarto.
 + For the convenience of grading, add your html output to a release in your
   repo.
-+ For standalone pdf output, you will need to have [LaTeX](https://www.latex-project.org/get/) installed.
++ For standalone pdf output, you will need to have
+  [LaTeX](https://www.latex-project.org/get/) installed.
 
 
 ## Practical Tips
