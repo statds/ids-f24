@@ -228,4 +228,4 @@ code chunks, it would be hard to plagiarize.
 
 
 <!-- Topic presentation template -->
-{{< include _mysection.qmd >}}
+{{< include templates/_mysection.qmd >}}

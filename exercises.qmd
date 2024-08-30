@@ -3,7 +3,8 @@
 1. **Quarto and Git setup**
   Quarto and Git are two important tools for data science. Get
   familiar with them through the following tasks. Please use
-  the `templates/hw.qmd` template.
+  the [`templates/hw.qmd`](https://github.com/statds/ids-f24/blob/main/templates/hw.qmd)
+  template.
     1. Install Quarto onto your computer following the instructions
     of [Get Started](https://quarto.org/docs/get-started/). Document
     the obstacles you encountered and how you overcame them.

@@ -12,7 +12,7 @@ format:
     geometry: 
       - top=30mm
       - left=20mm
-##  docx: default
+##  docx: Never, unless to accommodate a collaborator
 ---
 
 # Approximating $\pi$
