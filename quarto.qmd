@@ -26,9 +26,10 @@ formats in plain texts, which are not as clean as
 the two representations of a notebook. For example:
 
 
-`quarto convert hello.ipynb # converts to qmd`
-
-`quarto convert hello.qmd   # converts to ipynb`
+```
+quarto convert hello.ipynb # converts to qmd
+quarto convert hello.qmd   # converts to ipynb
+```
 
 
 We will use Quarto for homework assignments, classnotes, and presentations.
@@ -45,12 +46,10 @@ A template for homework is in this repo (`hwtemp.qmd`) to get you
 started with homework assignments.
 
 
-
-
 ## Compiling the Classnotes
 
 The sources of the classnotes are at <https://github.com/statds/ids-f24>.
-This also the source tree that you will contributed to this semester.
+This is also the source tree that you will contributed to this semester.
 I expect that you clone the repository to your own computer, update it
 frequently, and compile the latest version on your computer (reproducibility).
 
@@ -58,13 +57,6 @@ frequently, and compile the latest version on your computer (reproducibility).
 To compile the classnotes, you need the following tools:
 Git, Quarto, and Python.
 
-### Clone the Repository
-
-Clone the repository to your own computer. In a terminal (command line),
-go to an appropriate directory (floder), and clone the repo. For example,
-if you use `ssh` for authentication: 
-
-`git clone git@github.com:statds/ids-f24.git`
 
 ### Set up your Python Virtual Environment
 
@@ -77,8 +69,9 @@ allows us to isolate our Python development projects from our system
 installed Python and other Python environments.
 
 To create a Python virtual environment for our classnotes:
-
-`python3 -m venv .ids-f24-venv`
+```
+python3 -m venv .ids-f24-venv
+```
 
 Here `.ids-f24-venv` is the name of the virtual environment 
 to be created. Choose an informative name. This only needs to
@@ -87,7 +80,9 @@ be set up once.
 
 To activate this virtual environment:
 
-`. .ids-f24-venv/bin/activate`
+```
+. .ids-f24-venv/bin/activate
+```
 
 After activating the virtual environment, you will see
 `(.ids-f24-venv)` at the beginning of your shell prompt.
@@ -102,7 +97,9 @@ the classnotes, we have a `requirements.txt` file that specifies
 the packages and their versions. They can be installed
 easily with:
 
-`pip install -r requirements.txt`
+```
+pip install -r requirements.txt
+```
 
 If you are interested in learning how to create the
 `requirements.txt` file, just put your question into a Google search.
@@ -113,12 +110,25 @@ in your command line. This will return you to your system’s
 global Python environment.
 
 
+### Clone the Repository
+
+Clone the repository to your own computer. In a terminal (command line),
+go to an appropriate directory (floder), and clone the repo. For example,
+if you use `ssh` for authentication: 
+
+```
+git clone git@github.com:statds/ids-f24.git
+```
+
 ### Render the Classnotes
 
 Assuming `quarto` has been set up, we render 
-the classnotes:
+the classnotes in the cloned repository
 
-`quarto render`
+```
+cd ids-f24
+quarto render
+```
 
 If there are error messages, search and find solutions to clear
 them. Otherwise, the html version of the notes will be available under
