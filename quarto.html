@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./exercises.html" rel="next">
+<link href="./python.html" rel="next">
 <link href="./git.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -135,8 +135,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Python Refreshment</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -158,8 +164,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#introduction-to-quarto" id="toc-introduction-to-quarto" class="nav-link active" data-scroll-target="#introduction-to-quarto"><span class="header-section-number">3.1</span> Introduction to Quarto</a></li>
   <li><a href="#compiling-the-classnotes" id="toc-compiling-the-classnotes" class="nav-link" data-scroll-target="#compiling-the-classnotes"><span class="header-section-number">3.2</span> Compiling the Classnotes</a>
   <ul class="collapse">
-  <li><a href="#clone-the-repository" id="toc-clone-the-repository" class="nav-link" data-scroll-target="#clone-the-repository"><span class="header-section-number">3.2.1</span> Clone the Repository</a></li>
-  <li><a href="#set-up-your-python-virtual-environment" id="toc-set-up-your-python-virtual-environment" class="nav-link" data-scroll-target="#set-up-your-python-virtual-environment"><span class="header-section-number">3.2.2</span> Set up your Python Virtual Environment</a></li>
+  <li><a href="#set-up-your-python-virtual-environment" id="toc-set-up-your-python-virtual-environment" class="nav-link" data-scroll-target="#set-up-your-python-virtual-environment"><span class="header-section-number">3.2.1</span> Set up your Python Virtual Environment</a></li>
+  <li><a href="#clone-the-repository" id="toc-clone-the-repository" class="nav-link" data-scroll-target="#clone-the-repository"><span class="header-section-number">3.2.2</span> Clone the Repository</a></li>
   <li><a href="#render-the-classnotes" id="toc-render-the-classnotes" class="nav-link" data-scroll-target="#render-the-classnotes"><span class="header-section-number">3.2.3</span> Render the Classnotes</a></li>
   </ul></li>
   </ul>
@@ -198,8 +204,8 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="3.1" class="anchored" data-anchor-id="introduction-to-quarto"><span class="header-section-number">3.1</span> Introduction to Quarto</h2>
 <p>To get started with Quarto, see documentation at <a href="https://quarto.org/docs/get-started/">Quarto</a>.</p>
 <p>For a clean style, I suggest that you use <code>VS Code</code> as your IDE. The <code>ipynb</code> files have extra formats in plain texts, which are not as clean as <code>qmd</code> files. There are, of course, tools to convert between the two representations of a notebook. For example:</p>
-<p><code>quarto convert hello.ipynb # converts to qmd</code></p>
-<p><code>quarto convert hello.qmd   # converts to ipynb</code></p>
+<pre><code>quarto convert hello.ipynb # converts to qmd
+quarto convert hello.qmd   # converts to ipynb</code></pre>
 <p>We will use Quarto for homework assignments, classnotes, and presentations. You will see them in action through in-class demonstrations. The following sections in the <a href="https://quarto.org/docs/guide/">Quarto Guide</a> are immediately useful.</p>
 <ul>
 <li><a href="https://quarto.org/docs/authoring/markdown-basics.html">Markdown basics</a></li>
@@ -210,31 +216,32 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="compiling-the-classnotes" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="compiling-the-classnotes"><span class="header-section-number">3.2</span> Compiling the Classnotes</h2>
-<p>The sources of the classnotes are at <a href="https://github.com/statds/ids-f24" class="uri">https://github.com/statds/ids-f24</a>. This also the source tree that you will contributed to this semester. I expect that you clone the repository to your own computer, update it frequently, and compile the latest version on your computer (reproducibility).</p>
+<p>The sources of the classnotes are at <a href="https://github.com/statds/ids-f24" class="uri">https://github.com/statds/ids-f24</a>. This is also the source tree that you will contributed to this semester. I expect that you clone the repository to your own computer, update it frequently, and compile the latest version on your computer (reproducibility).</p>
 <p>To compile the classnotes, you need the following tools: Git, Quarto, and Python.</p>
-<section id="clone-the-repository" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="clone-the-repository"><span class="header-section-number">3.2.1</span> Clone the Repository</h3>
-<p>Clone the repository to your own computer. In a terminal (command line), go to an appropriate directory (floder), and clone the repo. For example, if you use <code>ssh</code> for authentication:</p>
-<p><code>git clone git@github.com:statds/ids-f24.git</code></p>
-</section>
-<section id="set-up-your-python-virtual-environment" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="set-up-your-python-virtual-environment"><span class="header-section-number">3.2.2</span> Set up your Python Virtual Environment</h3>
+<section id="set-up-your-python-virtual-environment" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="set-up-your-python-virtual-environment"><span class="header-section-number">3.2.1</span> Set up your Python Virtual Environment</h3>
 <p>I suggest that a Python virtual environment for the classnotes be set up in the current directory for reproducibility. A Python virtual environment is simply a directory with a particular file structure, which contains a specific Python interpreter and software libraries and binaries needed to support a project. It allows us to isolate our Python development projects from our system installed Python and other Python environments.</p>
 <p>To create a Python virtual environment for our classnotes:</p>
-<p><code>python3 -m venv .ids-f24-venv</code></p>
+<pre><code>python3 -m venv .ids-f24-venv</code></pre>
 <p>Here <code>.ids-f24-venv</code> is the name of the virtual environment to be created. Choose an informative name. This only needs to be set up once.</p>
 <p>To activate this virtual environment:</p>
-<p><code>. .ids-f24-venv/bin/activate</code></p>
+<pre><code>. .ids-f24-venv/bin/activate</code></pre>
 <p>After activating the virtual environment, you will see <code>(.ids-f24-venv)</code> at the beginning of your shell prompt. Then, the Python interpreter and packages needed will be the local versions in this virtual environment without interfering your system-wide installation or other virtual environments.</p>
 <p>To install the Python packages that are needed to compile the classnotes, we have a <code>requirements.txt</code> file that specifies the packages and their versions. They can be installed easily with:</p>
-<p><code>pip install -r requirements.txt</code></p>
+<pre><code>pip install -r requirements.txt</code></pre>
 <p>If you are interested in learning how to create the <code>requirements.txt</code> file, just put your question into a Google search.</p>
 <p>To exit the virtual environment, simply type <code>deactivate</code> in your command line. This will return you to your system’s global Python environment.</p>
 </section>
+<section id="clone-the-repository" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="clone-the-repository"><span class="header-section-number">3.2.2</span> Clone the Repository</h3>
+<p>Clone the repository to your own computer. In a terminal (command line), go to an appropriate directory (floder), and clone the repo. For example, if you use <code>ssh</code> for authentication:</p>
+<pre><code>git clone git@github.com:statds/ids-f24.git</code></pre>
+</section>
 <section id="render-the-classnotes" class="level3" data-number="3.2.3">
 <h3 data-number="3.2.3" class="anchored" data-anchor-id="render-the-classnotes"><span class="header-section-number">3.2.3</span> Render the Classnotes</h3>
-<p>Assuming <code>quarto</code> has been set up, we render the classnotes:</p>
-<p><code>quarto render</code></p>
+<p>Assuming <code>quarto</code> has been set up, we render the classnotes in the cloned repository</p>
+<pre><code>cd ids-f24
+quarto render</code></pre>
 <p>If there are error messages, search and find solutions to clear them. Otherwise, the html version of the notes will be available under <code>_book/index.html</code>, which is default location of the output.</p>
 
 
@@ -669,8 +676,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./exercises.html" class="pagination-link" aria-label="Exercises">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exercises</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./python.html" class="pagination-link" aria-label="Python Refreshment">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Python Refreshment</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
