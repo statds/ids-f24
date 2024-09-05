@@ -141,4 +141,10 @@ Online books on Python for data science:
 +  [“Python Data Science Handbook: Essential Tools for Working with Data,” First Edition](https://jakevdp.github.io/PythonDataScienceHandbook/), by Jake VanderPlas, O’Reilly Media, 2016. 
 2. [“Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython.” Third Edition](https://wesmckinney.com/book/), by Wes McK- inney, O’Reilly Media, 2022. 
 
+#### Deyu's wishes
+1. be proficient for Python
+2. be familiar with datascience
+3. use Git and Github with the help of quarto to administrate my codes better
+4. cultivate the ability of dealing with the data from the real world
+
 
