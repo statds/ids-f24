@@ -1,0 +1,6 @@
+# wish for ids
+
+1. be proficient for Python
+2. be familiar with datascience
+3. use Git and Github with the help of VsCode to administrate my codes better
+
