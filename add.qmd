@@ -3,3 +3,7 @@ Hello, this is a Quarto Markdown file I created using the command:
 I then opened it with "%code add.qmd" after enabling the code command in Quarto.
 I am adding lines of text to this file.
 Enjoy!
+
+Now, following deletion, and reviving the file here we are! For the paragraph I am copying a passage from Wikipedia about my favorite perennial plant to grow: "Asclepias tuberosa, commonly known as butterfly weed, is a species of milkweed native to eastern and southwestern North America. It is commonly known as butterfly weed because of the butterflies that are attracted to the plant by its color and its copious production of nectar. The plant looks similar to the lanceolate milkweed (Asclepias lanceolata), but is uniquely identified by the larger number of flowers, and the hairy stems that are not milky when broken. It is most commonly found in fields with dry soil."
+
+Here is my fairly short line.
