@@ -1,0 +1,21 @@
+---
+title: "Wishlist Additions"
+author: "Julia Mazzola"
+date: "9-5-2024"
+format: pdf
+---
+
+Difficulties 
+
+* Working with directories and ensuring your virtual enviroment was correct
+* Downloading the requirements.txt doc. Was able to overcome by ensuring I was in the correct directory when downloading it.
+* For the render quarto, I did not have all the packages and the correct MikTex downloaded so had to make sure all of those were installed into my computer. 
+* Working with git and learning how to contribute to the classnotes in a way that can be seen. I remained patient in trying to understand the commands I was doing and not just going through the motions. 
+
+
+Julia Mazzola
+
+* Become proficient in Git and Github.
+* Have a better understanding of data science best practices and techniques.
+* Deepen my knowledge of Python programming concepts and libraries.
+
