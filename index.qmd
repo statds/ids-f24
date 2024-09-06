@@ -89,6 +89,9 @@ Add yours through a pull request; note the syntax of nested list in
 Markdown. 
 
 + Akach, Suha
+    - Challenge and push myself to be better at python and its libraries
+    - Be confident in my abilties of programming and making statistical infrences
+    - Be able to create my own personal project in class
 + Astle, Jaden
 + Babiec, Owen
 + Baptista, Stef
