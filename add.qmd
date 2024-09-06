@@ -1,1 +1,0 @@
-This is a new qmd file where I am trying to see how I can add new files to the git.
