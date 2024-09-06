@@ -106,6 +106,8 @@ Markdown.
 + Klinowski, Amalia
 + Lee, Seunghyeon
 + Manna, Rahul
+    - Use knowledge gained and skills developed in class to study real-world problems such as climate change.
+    - Obtain a basic understanding of machine learning
 + Mazzola, Julia
 + Paricharak, Aditya
 + Parvez, Mohammad Shahriyar
