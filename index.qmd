@@ -109,6 +109,10 @@ Markdown.
 + Mazzola, Julia
 + Paricharak, Aditya
 + Parvez, Mohammad Shahriyar
+  - Familiarizing myself with GitHub to effectively track and manage the entire data analysis process.
+  - Adopting Quarto for improved documentation of my data workflows.
+  - Exploring advanced techniques for data analysis and visualization.
+  - Developing my personal Git repository and publishing data projects as a professional website.
 + Tan, Qianruo
 + Xu, Deyu
 
