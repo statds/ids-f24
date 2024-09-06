@@ -97,6 +97,9 @@ Markdown.
 + Borowski, Emily
 + Clokey, Sara
 + Desroches, Melanie
+    - Explore the field of data science as a possible future career
+    - Develope data science and machine learning skills
+    - Become better at programming with Python and using Git/GitHub
 + Fang, Zetong
 + Febles, Xavier
 + Freed, Brent
