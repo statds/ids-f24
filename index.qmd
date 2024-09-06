@@ -96,6 +96,8 @@ Markdown.
 + Blanchard, Zachary
 + Borowski, Emily
 + Clokey, Sara
+    - Become more familiar with GitHub and Quarto
+    - Learn how to execute a data science project from start to finish
 + Desroches, Melanie
 + Fang, Zetong
 + Febles, Xavier
