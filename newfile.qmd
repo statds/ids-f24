@@ -1,1 +1,6 @@
 Adding a first line to my new file.
+
+Let's add a code chunk:
+```{python}
+print('hello world!')
+```
