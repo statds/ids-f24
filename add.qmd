@@ -1,0 +1,5 @@
+Hello, this is a Quarto Markdown file I created using the command:
+"%touch add.qmd".
+I then opened it with "%code add.qmd" after enabling the code command in Quarto.
+I am adding lines of text to this file.
+Enjoy!
