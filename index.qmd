@@ -92,7 +92,6 @@ Markdown.
 + Astle, Jaden
 + Babiec, Owen
 + Baptista, Stef
-+ Bienvenue, Jack
 + Jack Bienvenue
     - Learn about geospatial data visualization in Python
     - Familiarize myself with Git and become quick in Git operations
