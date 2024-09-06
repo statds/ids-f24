@@ -93,6 +93,12 @@ Markdown.
 + Babiec, Owen
 + Baptista, Stef
 + Bienvenue, Jack
++ Jack Bienvenue
+    - Learn about geospatial data visualization in Python
+    - Familiarize myself with Git and become quick in Git operations
+    - Create example workflows for myself for standard data science procedures like data cleaning
+    - Learn how to use VSCode
+    - Learn what information to include (and exclude) in data science communication
 + Blanchard, Zachary
 + Borowski, Emily
 + Clokey, Sara
