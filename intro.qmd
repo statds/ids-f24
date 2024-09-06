@@ -142,3 +142,7 @@ Online books on Python for data science:
 2. [“Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython.” Third Edition](https://wesmckinney.com/book/), by Wes McK- inney, O’Reilly Media, 2022. 
 
 
+#### Wishlist:
++ Learn more about GitHub, and create my own page in the future
++ Get a good grade on this class
++ Learn more about processing data
