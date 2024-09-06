@@ -1,4 +1,4 @@
 created my add.qmd file
 this is a part of the excersize
-this is my long paragraph as instructed by the excersize. I think this is how i need to do it. ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-this is my shorter line.
+this is my longer paragraph as instructed by the excersizes. I think this is how i need to do it idk. ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+this is my shorter line yay.
