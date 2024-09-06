@@ -14,5 +14,4 @@ format:
       - left=20mm
 ---
 
-- Organization
-- Clear durections/steps
+- Recomendations of better ways to get through step (eg. using git bash) 
