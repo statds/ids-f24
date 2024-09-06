@@ -102,6 +102,10 @@ Markdown.
 + Freed, Brent
 + Jha, Aansh
 + Johnson, Dorothea
+    -Become comfortable using Github
+    -Enter data science competitions
+    -Become fluent in Python
+    
 + Kashalapov, Olivia
 + Klinowski, Amalia
 + Lee, Seunghyeon
