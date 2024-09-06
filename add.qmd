@@ -1,3 +1,14 @@
 Removing a file was easy, but recovering it was hard. I had to try several methods to get it done. It was a hard task. However, I could finnaly pull it off. Git is fun when you know it pretty well. I am having a hard time learning the commands. I hope I will get the vibe soon and I also will enjoy working with git.
 
 I think I will get better at git. 
+
+
+
+git operations I have used so far:
+    - cd 
+    - pwd
+    - git status
+    - git log
+    - git different
+    - git commit -m
+    - git checkout <> -- file.ex
