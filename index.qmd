@@ -107,6 +107,9 @@ Markdown.
 + Lee, Seunghyeon
 + Manna, Rahul
 + Mazzola, Julia
+- Become proficient in Git and Github.
+- Have a better understanding of data science best practices and techniques.
+- Deepen my knowledge of Python programming concepts and libraries.
 + Paricharak, Aditya
 + Parvez, Mohammad Shahriyar
 + Tan, Qianruo
