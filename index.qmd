@@ -90,6 +90,9 @@ Markdown.
 
 + Akach, Suha
 + Astle, Jaden
+    - I've used Git before,  but I'd like to become more comfortable using it and get more used to different issues that arise.
+    - I'd like to learn more effective ways to "tell the story" of data analysis and show empowering visualizations.
+    - I'd like to explore more methods that professional data scientists use in their model trainings to share with the Data Science Club
 + Babiec, Owen
 + Baptista, Stef
 + Bienvenue, Jack
