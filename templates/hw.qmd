@@ -119,11 +119,14 @@ time_original, time_vectorized
 ```
 
 
-# Problme 2
+# Problem 2
 
-Here is your text desctiption.
+Here is your text description.
 
-You can add some code chunks.
+```{python}
+
+
+```
 
 Explain your code.  Here is a list:
 
