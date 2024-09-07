@@ -84,6 +84,10 @@ order, last name first, comma, then first name). Here is an example.
     - Co-develop a Quarto book in collaboration with the students
     - Train students to participate real data science competitions
 
++ Baptista, Stef
+    - Learn and practice with different Python packages
+    - Practice skills and real world application
+
 
 Add yours through a pull request; note the syntax of nested list in
 Markdown. 
