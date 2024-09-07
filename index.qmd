@@ -103,6 +103,9 @@ Markdown.
 + Jha, Aansh
 + Johnson, Dorothea
 + Kashalapov, Olivia
+    - Better understand neural networks
+    - Machine learning utilizing Python
+    - Creating and analyzing predictive models for informed decision making
 + Klinowski, Amalia
 + Lee, Seunghyeon
 + Manna, Rahul
