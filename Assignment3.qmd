@@ -74,5 +74,4 @@ for a in range(1, 10):
                 dev = [a, b, c, d]
                 if Game_24(dev) == True:
                     print(dev)
-
 ```
