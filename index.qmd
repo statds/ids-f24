@@ -108,6 +108,9 @@ Markdown.
 + Manna, Rahul
 + Mazzola, Julia
 + Paricharak, Aditya
+    - Master Commandline Interface
+    - Apply my statistical knowladge and skills to course work
+    - Understand how to work with datasets
 + Parvez, Mohammad Shahriyar
 + Tan, Qianruo
 + Xu, Deyu
