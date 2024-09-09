@@ -1,0 +1,78 @@
+---
+title: The solutions of Exercise4 and Exercise7
+format: pdf
+author: Deyu Xu
+---
+# the Function of solving Monty Hall
+```{python}
+import random
+def Monty(ndoors, ntrials):
+    no_switch_number = 0
+    switch_number = 0
+    # simulation starts
+    for i in range(1, ntrials):
+        # we set up the number of doors
+        doors = []
+        for k in range(1, ndoors + 1):
+            doors.append(0) # 0 means there is nothing behind the door
+        # we put the car behind one of the doors randomly
+        doors[random.randint(0, ndoors - 1)] = 1
+        # the audience chooses one door
+        open_audience = random.randint(0, ndoors - 1)
+        # the monty chooses another door
+        open_monty = random.randint(0, ndoors - 1)
+        while open_audience == open_monty or doors[open_monty] == 1:
+            open_monty = random.randint(0, 2)
+        if doors[open_audience] == 1:
+            no_switch_number += 1
+        else:
+            switch_number += 1
+    print("the rate of no switch" + str(no_switch_number / (no_switch_number + switch_number)), "the rate of switch" + str(switch_number / (no_switch_number + switch_number)))
+
+print("3 doors and 1000trials:")
+print(Monty(3, 1000))
+print("5 doors and 1000 trials:")
+print(Monty(5, 1000))
+```
+# the Function of Solving Game24
+```{python}
+def Game_24(numbers: list[int]) -> bool:
+    def helper(numbers):
+        if not numbers:
+            return False
+        if len(numbers) == 1:
+            return abs(numbers[0] - 24) < 0.000001 # the result can be divisible by 24
+        for i in range(len(numbers)):
+            for j in range(len(numbers)):
+                # we cannot choose the same number
+                if i == j:
+                    continue
+                status = False
+
+                x = numbers[i]
+                y = numbers[j]
+                # choose 2 numbers such as i and j, the other numbers are loaded in a new group for the subsequent calcualtion
+                new_numbers = [numbers[k] for k in range(len(numbers)) if (k !=i and k != j)]
+                # add / multiply
+                if i < j:
+                    status = status or helper(new_numbers + [x + y])
+                    status = status or helper(new_numbers + [x * y])
+                # minus
+                status = status or helper(new_numbers + [x - y])
+                # divide
+                if abs(y) > 0.000001: 
+                    status = status or helper(new_numbers + [x / y])
+                if status:
+                    return True
+        return False
+    return helper(numbers)
+
+for a in range(1, 10):
+    for b in range(1, 10):
+        for c in range(1, 10):
+            for d in range(1, 10):
+                dev = [a, b, c, d]
+                if Game_24(dev) == True:
+                    print(dev)
+
+```
