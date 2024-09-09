@@ -95,6 +95,9 @@ Markdown.
 + Bienvenue, Jack
 + Blanchard, Zachary
 + Borowski, Emily
+    - Gain a greater understanding of Quarto and GitHub
+    - Become more comfortable with my coding abilities
+    - Acquire a deeper understanding of data science
 + Clokey, Sara
 + Desroches, Melanie
     - Explore the field of data science as a possible future career
