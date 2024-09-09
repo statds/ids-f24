@@ -97,6 +97,9 @@ Markdown.
 + Borowski, Emily
 + Clokey, Sara
 + Desroches, Melanie
+    - Explore the field of data science as a possible future career
+    - Develope data science and machine learning skills
+    - Become better at programming with Python and using Git/GitHub
 + Fang, Zetong
 + Febles, Xavier
 + Freed, Brent
@@ -127,6 +130,8 @@ with open('rosters/3255.txt', 'r') as file:
 with open('rosters/5255.txt', 'r') as file:
     gr = [line.strip() for line in file]
 presenters = ug + gr
+target = "Blanchard"  # pre-arranged 1st presenter
+presenters = [name for name in presenters if target not in name]
 
 import random
 ## seed jointly set by the class
