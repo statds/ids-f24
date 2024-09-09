@@ -111,6 +111,10 @@ Markdown.
 + Parvez, Mohammad Shahriyar
 + Tan, Qianruo
 + Xu, Deyu
+1. be proficient for Python
+2. be familiar with datascience
+3. use Git and Github with the help of quarto to administrate my codes better
+4. cultivate the ability of dealing with the data from the real world
 
 ## Presentation Orders
 
