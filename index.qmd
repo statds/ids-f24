@@ -94,6 +94,9 @@ Markdown.
 + Baptista, Stef
 + Bienvenue, Jack
 + Blanchard, Zachary
+    - Gain experience working and collaborating on projects in Git
+    - Improve computer programming skills and familiarity with Python
+    - Teach other students about creating presentations using Quarto
 + Borowski, Emily
 + Clokey, Sara
 + Desroches, Melanie
