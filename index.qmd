@@ -111,6 +111,10 @@ Markdown.
 + Parvez, Mohammad Shahriyar
 + Tan, Qianruo
 + Xu, Deyu
++ 1. Become proficient in using Quarto, Git and Github to better manage my code
++ 2. Proficient in using Python to solve practical problems
++ 3. Have a preliminary understanding of data science and be proficient in handling various data
++ 4. Learn to process real data and make it generate corresponding value
 
 ## Presentation Orders
 
