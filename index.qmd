@@ -101,6 +101,9 @@ Markdown.
     - Improve computer programming skills and familiarity with Python
     - Teach other students about creating presentations using Quarto
 + Borowski, Emily
+    - Gain a greater understanding of Quarto and GitHub
+    - Become more comfortable with my coding abilities
+    - Acquire a deeper understanding of data science
 + Clokey, Sara
     - Become more familiar with GitHub and Quarto
     - Execute a data science project from start to finish
