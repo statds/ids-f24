@@ -94,6 +94,9 @@ Markdown.
     - Be able to create my own personal project in class on time.
 + Astle, Jaden
 + Babiec, Owen
+    - Become more comfortable with Git and Github and their applications
+    - Better understand the Data Science pipeline and workflow
+    - Learn how to show my skills I have learned in this class during interviews
 + Baptista, Stef
 + Bienvenue, Jack
 + Blanchard, Zachary
