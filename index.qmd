@@ -105,9 +105,9 @@ Markdown.
 + Freed, Brent
 + Jha, Aansh
 + Johnson, Dorothea
-    -Enter data science contests
-    -Familiarize myself with using Python for data Science
-    -Develop a proficiency in Github
+    - Enter data science contests
+    - Familiarize myself with using Python for data Science
+    - Develop a proficiency in Github
 + Kashalapov, Olivia
 + Klinowski, Amalia
 + Lee, Seunghyeon
