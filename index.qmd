@@ -89,13 +89,30 @@ Add yours through a pull request; note the syntax of nested list in
 Markdown. 
 
 + Akach, Suha
+    - Challenge and push myself to be better at python and all its libraries.
+    - Be confident in my abilities of programming and making statistical inferences that are correct.
+    - Be able to create my own personal project in class on time.
 + Astle, Jaden
+    - I've used Git before,  but I'd like to become more comfortable using it and get more used to different issues that arise.
+    - I'd like to learn more effective ways to "tell the story" of data analysis and show empowering visualizations.
+    - I'd like to explore more methods that professional data scientists use in their model trainings to share with UConn's Data Science Club.
 + Babiec, Owen
+    - Become more comfortable with Git and Github and their applications
+    - Better understand the Data Science pipeline and workflow
+    - Learn how to show my skills I have learned in this class during interviews
 + Baptista, Stef
 + Bienvenue, Jack
 + Blanchard, Zachary
+    - Gain experience working and collaborating on projects in Git
+    - Improve computer programming skills and familiarity with Python
+    - Teach other students about creating presentations using Quarto
 + Borowski, Emily
+    - Gain a greater understanding of Quarto and GitHub
+    - Become more comfortable with my coding abilities
+    - Acquire a deeper understanding of data science
 + Clokey, Sara
+    - Become more familiar with GitHub and Quarto
+    - Execute a data science project from start to finish
 + Desroches, Melanie
     - Explore the field of data science as a possible future career
     - Develope data science and machine learning skills
@@ -109,11 +126,22 @@ Markdown.
     - Familiarize myself with using Python for data Science
     - Develop a proficiency in Github
 + Kashalapov, Olivia
+    - Better understand neural networks
+    - Machine learning utilizing Python
+    - Creating and analyzing predictive models for informed decision making
 + Klinowski, Amalia
 + Lee, Seunghyeon
 + Manna, Rahul
+    - Use knowledge gained and skills developed in class to study real-world problems such as climate change.
+    - Obtain a basic understanding of machine learning
 + Mazzola, Julia
+  - Become proficient in Git and Github.
+  - Have a better understanding of data science best practices and techniques.
+  - Deepen my knowledge of Python programming concepts and libraries.
 + Paricharak, Aditya
+    - Master Commandline Interface
+    - Apply my statistical knowladge and skills to course work
+    - Understand how to work with datasets
 + Parvez, Mohammad Shahriyar
 + Tan, Qianruo
 + Xu, Deyu
@@ -122,7 +150,7 @@ Markdown.
 
 The topic presentation order is set up in class.
 ```{python}
-#| eval: false
+#| eval: true
 
 with open('rosters/3255.txt', 'r') as file:
     ug = [line.strip() for line in file]
@@ -134,7 +162,7 @@ presenters = [name for name in presenters if target not in name]
 
 import random
 ## seed jointly set by the class
-random.seed(4737 + 8852 + 3196 + 2344 + 47)
+random.seed(5347 + 2896 + 9050 + 1687 + 63)
 random.sample(presenters, len(presenters))
 ## random.shuffle(presenters) # This would shuffle the list in place
 ```
