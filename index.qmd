@@ -128,6 +128,9 @@ Markdown.
   - Have a better understanding of data science best practices and techniques.
   - Deepen my knowledge of Python programming concepts and libraries.
 + Paricharak, Aditya
+    - Master Commandline Interface
+    - Apply my statistical knowladge and skills to course work
+    - Understand how to work with datasets
 + Parvez, Mohammad Shahriyar
 + Tan, Qianruo
 + Xu, Deyu
