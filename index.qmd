@@ -93,6 +93,9 @@ Markdown.
     - Be confident in my abilities of programming and making statistical inferences that are correct.
     - Be able to create my own personal project in class on time.
 + Astle, Jaden
+    - I've used Git before,  but I'd like to become more comfortable using it and get more used to different issues that arise.
+    - I'd like to learn more effective ways to "tell the story" of data analysis and show empowering visualizations.
+    - I'd like to explore more methods that professional data scientists use in their model trainings to share with UConn's Data Science Club.
 + Babiec, Owen
     - Become more comfortable with Git and Github and their applications
     - Better understand the Data Science pipeline and workflow
