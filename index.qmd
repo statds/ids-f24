@@ -80,7 +80,7 @@ order, last name first, comma, then first name). Here is an example.
 
 
 + Yan, Jun
-    - Make data science more accessible to undergraduates
+    - Make practical data science tools accessible to undergraduates
     - Co-develop a Quarto book in collaboration with the students
     - Train students to participate real data science competitions
 
@@ -178,6 +178,8 @@ tree should be presented before random forest or extreme gradient
 boosting. This justifies certain requests for switching slots.
 
 
+
+
 ## Course Logistics
 
 ### Presentation Task Board
@@ -209,11 +211,32 @@ Here are some example tasks:
 + Developing a Python package
 
 
-Please use this [Google Sheet]() to sign up.
+Please use the following table sign up.
 
    Date  | Presenter              | Topic
   ------ | ---------------------- | ------
-         |                        |
+   09/11 | Zachary Blanchard      | Making presentation with Quarto
+   09/16 | Deyu Xu                | Import/Export data
+   09/18 | Sara Clokey            | Communications in data science
+   09/23 | Dorathea Johnson       | Database with SQL
+   09/25 | Xaver Febles           |
+   09/30 | Jack Bienvenue         |
+   10/02 | Julia Mazzola          |
+   10/07 | Suha Akach             |
+   10/09 | Rahul Manna            |
+   10/14 | Kaitlyn Anderson       | Career readiness in data science
+   10/16 | TBA                    |
+   10/21 | Jaden Astle            |
+   10/23 | Olivia Kashalapov      |
+   10/28 | Emily Borowsky         |
+   10/30 | Qianruo Tan            |
+   11/04 | Melanie Desroches      |
+   11/06 | Aditya Paricharak      |
+   11/11 | Aansh Jha              |
+   11/11 | Owen Babiec            |
+   11/13 | Stef Baptista          |
+   11/13 | Mohammad Parvez        |
+
 
 ### Final Project Presentation Schedule
 
@@ -222,8 +245,10 @@ final presentation.
 
    Date  | Presenter
   ------ | ---------------------- 
-
-
+   11/18 | Sara Clokey; Dorothea Johnson; Xavier Febles; Jack Bienvenue
+   11/20 | Julia Mazzola; Suha Akach; Rahul Manna; Jaden Astle
+   12/02 | Olivia Kashalapov; Emily Borowski；Qianruo Tan; Melanie Desroches
+   12/04 | Aditya Paricharak; Aansh Jha; Owen Babiec; Stef Baptista
 
 
 ### Contributing to the Class Notes
