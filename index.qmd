@@ -110,6 +110,9 @@ Markdown.
 + Paricharak, Aditya
 + Parvez, Mohammad Shahriyar
 + Tan, Qianruo
+  + Learn how to use GitHub, and create my own page 
+  + Get a good grade on this class
+  + Learn more about how to processing data
 + Xu, Deyu
 
 ## Presentation Orders
