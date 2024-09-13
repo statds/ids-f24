@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Reproducibile Data Science – Introduction to Data Science</title>
+<title>5&nbsp; Communication – Introduction to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./python.html" rel="next">
-<link href="./git.html" rel="prev">
+<link href="./exercises.html" rel="next">
+<link href="./python.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducibile Data Science</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./communication.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Communication</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -129,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto.html" class="sidebar-item-text sidebar-link active">
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducibile Data Science</span></span></a>
   </div>
 </li>
@@ -141,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./communication.html" class="sidebar-item-text sidebar-link">
+  <a href="./communication.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Communication</span></span></a>
   </div>
 </li>
@@ -167,13 +167,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction-to-quarto" id="toc-introduction-to-quarto" class="nav-link active" data-scroll-target="#introduction-to-quarto"><span class="header-section-number">3.1</span> Introduction to Quarto</a></li>
-  <li><a href="#compiling-the-classnotes" id="toc-compiling-the-classnotes" class="nav-link" data-scroll-target="#compiling-the-classnotes"><span class="header-section-number">3.2</span> Compiling the Classnotes</a>
-  <ul class="collapse">
-  <li><a href="#set-up-your-python-virtual-environment" id="toc-set-up-your-python-virtual-environment" class="nav-link" data-scroll-target="#set-up-your-python-virtual-environment"><span class="header-section-number">3.2.1</span> Set up your Python Virtual Environment</a></li>
-  <li><a href="#clone-the-repository" id="toc-clone-the-repository" class="nav-link" data-scroll-target="#clone-the-repository"><span class="header-section-number">3.2.2</span> Clone the Repository</a></li>
-  <li><a href="#render-the-classnotes" id="toc-render-the-classnotes" class="nav-link" data-scroll-target="#render-the-classnotes"><span class="header-section-number">3.2.3</span> Render the Classnotes</a></li>
-  </ul></li>
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro"><span class="header-section-number">5.1</span> Intro</a></li>
+  <li><a href="#something" id="toc-something" class="nav-link" data-scroll-target="#something"><span class="header-section-number">5.2</span> Something</a></li>
+  <li><a href="#something-else" id="toc-something-else" class="nav-link" data-scroll-target="#something-else"><span class="header-section-number">5.3</span> Something else</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">5.4</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -182,7 +179,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-quarto" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducibile Data Science</span></span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Communication</span></h1>
 </div>
 
 
@@ -199,59 +196,21 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Data science projects should be reproducible to be trustworthy. Dynamic documents facilitate reproducibility. <a href="https://quarto.org">Quarto</a> is an open-source dynamic document preparation system, ideal for scientific and technical publishing. From the official websites, Quarto can be used to:</p>
-<ul>
-<li>Create dynamic content with Python, R, Julia, and Observable.</li>
-<li>Author documents as plain text markdown or Jupyter notebooks.</li>
-<li>Publish high-quality articles, reports, presentations, websites, blogs, and books in HTML, PDF, MS Word, ePub, and more.</li>
-<li>Author with scientific markdown, including equations, citations, cross references, figure panels, callouts, advanced layout, and more.</li>
-</ul>
-<section id="introduction-to-quarto" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="introduction-to-quarto"><span class="header-section-number">3.1</span> Introduction to Quarto</h2>
-<p>To get started with Quarto, see documentation at <a href="https://quarto.org/docs/get-started/">Quarto</a>.</p>
-<p>For a clean style, I suggest that you use <code>VS Code</code> as your IDE. The <code>ipynb</code> files have extra formats in plain texts, which are not as clean as <code>qmd</code> files. There are, of course, tools to convert between the two representations of a notebook. For example:</p>
-<pre><code>quarto convert hello.ipynb # converts to qmd
-quarto convert hello.qmd   # converts to ipynb</code></pre>
-<p>We will use Quarto for homework assignments, classnotes, and presentations. You will see them in action through in-class demonstrations. The following sections in the <a href="https://quarto.org/docs/guide/">Quarto Guide</a> are immediately useful.</p>
-<ul>
-<li><a href="https://quarto.org/docs/authoring/markdown-basics.html">Markdown basics</a></li>
-<li><a href="https://quarto.org/docs/computations/python.html">Using Python</a></li>
-<li><a href="https://quarto.org/docs/presentations/">Presentations</a></li>
-</ul>
-<p>A template for homework is in this repo (<code>hwtemp.qmd</code>) to get you started with homework assignments.</p>
+<p>This chapter is written by Sara.</p>
+<section id="intro" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="intro"><span class="header-section-number">5.1</span> Intro</h2>
+<p>My name is Sara and I major in Statistics and Communication.</p>
 </section>
-<section id="compiling-the-classnotes" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="compiling-the-classnotes"><span class="header-section-number">3.2</span> Compiling the Classnotes</h2>
-<p>The sources of the classnotes are at <a href="https://github.com/statds/ids-f24" class="uri">https://github.com/statds/ids-f24</a>. This is also the source tree that you will contributed to this semester. I expect that you clone the repository to your own computer, update it frequently, and compile the latest version on your computer (reproducibility).</p>
-<p>To compile the classnotes, you need the following tools: Git, Quarto, and Python.</p>
-<section id="set-up-your-python-virtual-environment" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="set-up-your-python-virtual-environment"><span class="header-section-number">3.2.1</span> Set up your Python Virtual Environment</h3>
-<p>I suggest that a Python virtual environment for the classnotes be set up in the current directory for reproducibility. A Python virtual environment is simply a directory with a particular file structure, which contains a specific Python interpreter and software libraries and binaries needed to support a project. It allows us to isolate our Python development projects from our system installed Python and other Python environments.</p>
-<p>To create a Python virtual environment for our classnotes:</p>
-<pre><code>python3 -m venv .ids-f24-venv</code></pre>
-<p>Here <code>.ids-f24-venv</code> is the name of the virtual environment to be created. Choose an informative name. This only needs to be set up once.</p>
-<p>To activate this virtual environment:</p>
-<pre><code>. .ids-f24-venv/bin/activate</code></pre>
-<p>After activating the virtual environment, you will see <code>(.ids-f24-venv)</code> at the beginning of your shell prompt. Then, the Python interpreter and packages needed will be the local versions in this virtual environment without interfering your system-wide installation or other virtual environments.</p>
-<p>To install the Python packages that are needed to compile the classnotes, we have a <code>requirements.txt</code> file that specifies the packages and their versions. They can be installed easily with:</p>
-<pre><code>pip install -r requirements.txt</code></pre>
-<p>If you are interested in learning how to create the <code>requirements.txt</code> file, just put your question into a Google search.</p>
-<p>To exit the virtual environment, simply type <code>deactivate</code> in your command line. This will return you to your system’s global Python environment.</p>
+<section id="something" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="something"><span class="header-section-number">5.2</span> Something</h2>
 </section>
-<section id="clone-the-repository" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="clone-the-repository"><span class="header-section-number">3.2.2</span> Clone the Repository</h3>
-<p>Clone the repository to your own computer. In a terminal (command line), go to an appropriate directory (floder), and clone the repo. For example, if you use <code>ssh</code> for authentication:</p>
-<pre><code>git clone git@github.com:statds/ids-f24.git</code></pre>
+<section id="something-else" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="something-else"><span class="header-section-number">5.3</span> Something else</h2>
 </section>
-<section id="render-the-classnotes" class="level3" data-number="3.2.3">
-<h3 data-number="3.2.3" class="anchored" data-anchor-id="render-the-classnotes"><span class="header-section-number">3.2.3</span> Render the Classnotes</h3>
-<p>Assuming <code>quarto</code> has been set up, we render the classnotes in the cloned repository</p>
-<pre><code>cd ids-f24
-quarto render</code></pre>
-<p>If there are error messages, search and find solutions to clear them. Otherwise, the html version of the notes will be available under <code>_book/index.html</code>, which is default location of the output.</p>
+<section id="references" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="references"><span class="header-section-number">5.4</span> References</h2>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -677,13 +636,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./git.html" class="pagination-link" aria-label="Project Management">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Project Management</span></span>
+      <a href="./python.html" class="pagination-link" aria-label="Python Refreshment">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Python Refreshment</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./python.html" class="pagination-link" aria-label="Python Refreshment">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Python Refreshment</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./exercises.html" class="pagination-link" aria-label="Exercises">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Exercises</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

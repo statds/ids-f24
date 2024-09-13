@@ -141,8 +141,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./communication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Communication</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -210,13 +216,39 @@ ul.task-list li input[type="checkbox"] {
 <section id="most-frequently-used-git-commands" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="most-frequently-used-git-commands"><span class="header-section-number">2.2</span> Most Frequently Used Git Commands</h2>
 <ul>
-<li><code>git clone</code></li>
-<li><code>git pull</code></li>
-<li><code>git status</code></li>
-<li><code>git add</code></li>
-<li><code>git remove</code></li>
-<li><code>git commit</code></li>
-<li><code>git push</code></li>
+<li><code>git clone</code>:
+<ul>
+<li>Used to clone a repository to a local folder.</li>
+<li>Requires either HTTPS link or SSH key to authenticate.</li>
+</ul></li>
+<li><code>git pull</code>:
+<ul>
+<li>Downloads any updates made to the remote repository and automatically updates the local repository.</li>
+</ul></li>
+<li><code>git status</code>:
+<ul>
+<li>Returns the state of the working directory.</li>
+<li>Lists the files that have been modified, and are yet to be or have been staged and/or committed.</li>
+<li>Shows if the local repository is begind or ahead a remote branch.</li>
+</ul></li>
+<li><code>git add</code>:
+<ul>
+<li>Adds new or modified files to the Git staging area.</li>
+<li>Gives the option to select which files are to be sent to the remote repository</li>
+</ul></li>
+<li><code>git rm</code>:
+<ul>
+<li>Used to remove files from the staging index or the local repository.</li>
+</ul></li>
+<li><code>git commit</code>:
+<ul>
+<li>Commits changes made to the local repository and saves it like a snapshot.</li>
+<li>A message is recommended with every commit to keep track of changes made.</li>
+</ul></li>
+<li><code>git push</code>:
+<ul>
+<li>Used to send commits made on local repository to the remote repository.</li>
+</ul></li>
 </ul>
 </section>
 <section id="tips-on-using-git" class="level2" data-number="2.3">
