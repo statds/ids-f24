@@ -152,6 +152,9 @@ Markdown.
     - Developing my personal Git repository and publishing data projects as a professional website.
 
 + Tan, Qianruo
+  + Learn how to use GitHub, and create my own page 
+  + Get a good grade on this class
+  + Learn more about how to processing data
 + Xu, Deyu
 
 ## Presentation Orders
