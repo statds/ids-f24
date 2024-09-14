@@ -121,6 +121,9 @@ Markdown.
 + Febles, Xavier
 + Freed, Brent
 + Jha, Aansh
+    - Be a better student of the data science field
+    - Hone git to work in colabarative workspaces
+    - Learn better methods in data visualization
 + Johnson, Dorothea
     - Enter data science contests
     - Familiarize myself with using Python for data Science
