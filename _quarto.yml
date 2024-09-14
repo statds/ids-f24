@@ -18,6 +18,7 @@ book:
     - quarto.qmd
     - python.qmd
     - communication.qmd
+    - manipulation.qmd
     - exercises.qmd
     - references.qmd
 
