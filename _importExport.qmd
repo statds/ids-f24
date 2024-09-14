@@ -1,12 +1,286 @@
-## Import/Export Data
+---
+title: Import/Export Data
+subtitle: import and export data in common formats
+author: Deyu Xu
+format: 
+    revealjs: 
+        theme: default
+        incremental: true
+---
+## Pandas package
+```python
+pip install pandas
+pip install --upgrade pandas
+```
 
-This section was written by Deyu Xu, a MS student in Statistics
-at the time.
+## csv files
+```python
+import pandas as pd
+df_csv = pd.read_csv("~/Downloads/311_Service_request.csv", encoding = "utf-8")
+print(dfcsv.head(5))
+```
+```{python}
+import pandas as pd
+df_csv = pd.read_csv("~/Downloads/311_Service_request.csv")
+print(df_csv.head(5))
+```
+## Excel files
+```python
+import pandas as pd
+df_excel = pd.read_excel("~/Downloads/311_Service_request.xlsx", engine = "openpyxl")
+print(df_excel.head(2))
+```
+```{python}
+import pandas as pd
+df_excel = pd.read_excel("~/Downloads/311_Service_request.xlsx", engine = "openpyxl")
+print(df_excel.head(2))
+```
 
-### Subsection 1
+older versions of pandas
+```python
+df_excel = pd.read_excel("~/Downloads/311_Service_request.xlsx", engine = "openpyxl", encoding = "utf-8")
+```
 
-### Subsection 2
+## txt files
+```python
+import pandas as pd
+df_txt = pd.read_table("~/Downloads/311_Service_request.txt", encoding = "utf-8")
+print(df_txt.head())
+```
+```{python}
+import pandas as pd
+df_txt = pd.read_table("/Users/xudeyu/Downloads/311_Service_request.txt", encoding = "utf-16")
+print(df_txt.head())
+```
+## txt files
+How to determine the correct encoding of a file
+```python
+import chardet
+with open("/Users/xudeyu/Downloads/311_Service_request.txt", "rb") as f:
+    raw_data = f.read()
+    result = chardet.detect(raw_data)
+    encoding = result["encoding"]
+    print(str(encoding))
+```
+```{python}
+import chardet
+with open("/Users/xudeyu/Downloads/311_Service_request.txt", "rb") as f:
+    raw_data = f.read()
+    result = chardet.detect(raw_data)
+    encoding = result["encoding"]
+    print(str(encoding))
+```
+## The data from other softwares
+sas7bdat files
+```python
+import sas7bdat
+from sas7bdat import SAS7BDAT
+dv_sas = SAS7BDAT(" ")
+```
+rdata files
+```python
+import pyreadr as pr
+df_r = pr.read_r(" ")
+```
+stata data(the suffix is.dta)
+```python
+df_dta = pd.read_stata(" ")
+```
+## The data from other softwares
+spss data(the suffix is .sav)
+```python
+# variables are numeric values
+import pandas as pd
+df_spss_num = pd.read_spss(" ")
+# variables are text
+import pyreadstat as prstat
+df_spss_text = prstat.read_sav(" ")
+```
+Matlab files
+```python
+import spicy.io
+df_mat = spicy.io.loadmat(" ")
+```
+HDF5 files
+```python
+import h5py
+df_h5py = h5py.File(" ", "r")
+```
+## Structured Query Language (SQL)
++ Structured Query Language (SQL) is a standard language for accessing and manipulating databases. It is used within relational database management systems such as MS SQL Server, MySQL, Oracle, etc… to perform CRUD operations
++ DDL: Data Definition Language (Keywords: CREATE, DROP, ALTER, TRUNCATE)
++ DML: Data Manipulation Language (Keywords: INSERT, UPDATE, DELETE, CALL)
++ DQL: Data Query Language (Keywords: SELECT)
++ DCL: Data Control Language (Keywords: GRANT, REVOKE)
+## use sqlite3 in python to deal with database
+```python
+import pandas as pd
+import sqlite3
+conn = sqlite3.connect("presentation.db")
+data = pd.read_csv("/Users/xudeyu/Downloads/data/Cannabis.csv")
+data.to_sql("Cannabis", conn, if_exists = "replace", index = False)
+cursor = conn.cursor()
+cursor.execute(""" 
+                 SELECT *
+                 FROM Cannabis
+                 LIMIT 5
+               """)
+rows = cursor.fetchall()
+columns = [description[0] for description in cursor.description]
+pd.DataFrame(rows, columns = columns)
+```
+```{python}
+import pandas as pd
+import sqlite3
+conn = sqlite3.connect("presentation.db")
+data = pd.read_csv("/Users/xudeyu/Downloads/data/Cannabis.csv")
+data.to_sql("Cannabis", conn, if_exists = "replace", index = False)
+cursor = conn.cursor()
+cursor.execute(""" 
+                 SELECT *
+                 FROM Cannabis
+                 LIMIT 5
+               """)
+rows = cursor.fetchall()
+columns = [description[0] for description in cursor.description]
+pd.DataFrame(rows, columns = columns)
+```
 
-### Extended Reading
-
-Give some references here.
+## Read multiple files and merge them into a new file
+```python
+import glob 
+import pandas as pd
+# Set the file path
+path = "/Users/xudeyu/Downloads/data"
+# Merge multiple arrays
+all_files = glob.glob(path+"/*.csv")
+all_data = []
+for filename in all_files:
+    df = pd.read_csv(filename, index_col=None, header=0)
+    all_data.append(df)
+data_merge = pd.concat(all_data, axis=0, ignore_index=True)
+print(data_merge.head(2))
+```
+```{python}
+import glob
+import pandas as pd
+# Set the file path
+path = "/Users/xudeyu/Downloads/data"
+# Merge multiple arrays
+all_files = glob.glob(path+"/*.csv")
+all_data = []
+for filename in all_files:
+    df = pd.read_csv(filename, index_col=None, header=0)
+    all_data.append(df)
+data_merge = pd.concat(all_data, axis=0, ignore_index=True)
+print(data_merge.head(2))
+```
+## View data information
+View data size/dimension
+```python
+df_csv.shape
+```
+```{python}
+df_csv.shape
+```
+check the data type of each variable
+```python
+df_csv.dtypes
+```
+```{python}
+df_csv.dtypes
+```
+## View overall data information
+View overall data information
+```python
+df_csv.info()
+```
+```{python}
+df_csv.info()
+```
+## View overall data information
+View data description
+```python
+df_csv.describe
+```
+```{python}
+df_csv.describe()
+```
+## View overall data information
+View names of colums
+```python
+df_csv.columns
+```
+```{python}
+df_csv.columns
+```
+## View overall data information
+View the last 2 lines
+```python
+df_csv.tail(n = 2)
+```
+```{python}
+df_csv.tail(n = 2)
+```
+## View overall data information
+Get unique values ​​of a column of data
+```python
+df_csv["Unique Key"].unique()
+```
+```{python}
+df_csv["Unique Key"].unique()
+```
+Get the value of a column(without deduplication)
+```python
+df_csv["Unique Key"].values
+```
+```{python}
+df_csv["Unique Key"].values
+```
+## Find Null Values
+Determine whether there are missing values ​​in the data column
+```python
+df_csv.isnull().any(axis = 0)
+```
+```{python}
+df_csv.isnull().any(axis = 0) 
+```
+## Find Null Values
+Determine whether there are missing values ​​in the data row
+```python
+df_csv.isnull().any(axis = 1)
+```
+```{python}
+df_csv.isnull().any(axis = 1)
+```
+## Find Null Values
+Locate the rows with missing values
+```python
+df_csv.loc[df_csv.isnull().any(axis = 1)]
+```
+```{python}
+df_csv.loc[df_csv.isnull().any(axis = 1)]
+```
+## Find Null Values
+The number of missing values ​​in each variable
+```python
+df_csv.isnull().sum(axis = 0)
+df_csv.isnull().sum(axis = 1)
+```
+```{python}
+df_csv.isnull().sum(axis = 0)
+```
+## Export data
+```python
+df_csv.to_csv("/Users/xudeyu/Downloads/data/311.csv")
+```
+```{python}
+df_csv.to_csv("/Users/xudeyu/Downloads/data/311.csv")
+```
+## Sources
++ data source:
++ 311_Serviec_request: https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9/about_data
++ Cannabis: https://data.ct.gov/Government/Cannabis-Applications/bqby-dyzr/about_data
++ reference:
++ https://statds.github.io/ids-s24/
++ https://www.w3schools.com/sql/
