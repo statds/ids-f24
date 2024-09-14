@@ -1,6 +1,5 @@
 ---
 title: Import/Export Data
-subtitle: import and export data in common formats
 author: Deyu Xu
 format: 
     revealjs: 
