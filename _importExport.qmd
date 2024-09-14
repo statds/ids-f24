@@ -1,11 +1,15 @@
 ---
 title: Import/Export Data
+subtitle: import various kinds of data and export data as csv file
 author: Deyu Xu
 format: 
     revealjs: 
         theme: default
         incremental: true
 ---
+## Import/Expoer data
+This section was written by Deyu Xu, a MS student in Statistics
+at the time.
 ## Pandas package
 ```python
 pip install pandas
