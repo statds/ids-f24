@@ -86,8 +86,69 @@ Written Communication Tips
 
 ## Communication in Data Science
 
+Oftentimes as data scientists, you will be charged with communicating "technical
+conclusions to non-technical members"; this may be colleagues in other
+departments, like marketing, or supervisors at the managerial level. Here are some
+tips for effectively communicating project results specifically in the field of
+data science.
+
+### Identify your Audience
+Who are you sharing information with? Is it a room of data scientists like this
+one? Is it full of students who want to learn about data science? Is it a group
+of executives looking to make a funding decision?
+        - Consider the context and prior knowledge (technical jargon)
+        - Consider the motivation for listening
+
+### Utilize Data Visualization
+One of the most effective methods of communicating results in data science,
+especially to those without technical coding knowledge,
+is data visualization techniques. Python uses the package matplotlib to produce
+these visualizations, including:
+        - line plots
+        - bar plots
+        - box plots
+        - histograms
+        - heat maps
+        - pie charts
+
+These visualizations allow for complex statistical projects to be simplified 
+into a single graphic, which centers the focus on project results and implications
+rather than methodology. As with verbal communication, ensure that data 
+visualization techniques are free of technical jargon and clearly label all 
+aspects of the visual.
+
+### Focus on  Data Communication Skills
+The following skill sets highlight more technical data communication that will
+be more common within projects and shared with other data scientists to communicate
+about your data.
+        - Coding communication: Python, R, Julia, JavaScript, SQL
+        - Analysis communication: creating a storyline, descriptive versus 
+        diagnostic versus predictive analytics, problem identification
+        - Data management: collection, cleaning/transformation, storage
+        - Data visualization
+
+### Give Space for Questions and Feedback
+Within professional spaces, it is essential for data scientists to provide time 
+for their clients, supervisors, and colleagues to ask questions about their
+work and subsequent findings. 
+        - Pause and give room for questions throughout the presentation
+        - Offer contact information for continued collaboration
+        - Schedule follow-ups if necessary
+
+Teamwork is often at the heart of data science projects within industries, and 
+open communication makes this teamwork run much more smoothly.
 
 ## Further Learning
 
 
 ## References
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8274472/#CR112
+https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3128115 
+https://assessment.ucmerced.edu/node/57 
+https://www.iiad.edu.in/the-circle/principles-of-visual-communication/ 
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6813169/
+https://colinjamesmethod.com/the-4-types-of-communication/ 
+https://www.indeed.com/career-advice/career-development/written-communication 
+https://guides.library.yale.edu/datavisualization/types
+https://www.analytics8.com/blog/data-and-analytics-terminology/ 
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8371066/
