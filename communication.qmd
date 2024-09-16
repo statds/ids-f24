@@ -25,6 +25,8 @@ fields that offer data science positions include:
         - Transportation
         - Construction
 
+![Data Science Industries](photos/Industries.jpg){width=300}
+
 Because data science is applicable in so many industries, it is essential that
 data scientists have the skills and experience to communicate their work with
 others who do not have the same technical education. Job listings within the 
@@ -51,6 +53,8 @@ Verbal Communication Tips
         - Practice beforehand
         - Give room for questions
 
+![Verbal Communication](photos/verbal-communication.png){width=300}
+
 ### Non-Verbal Communication Skills
 
 Non-Verbal Communication: "aspects of communication other than spoken or 
@@ -62,6 +66,8 @@ Non-Verbal Communication Tips
         - Avoid distracting hand and body movement
         - Make eye contact
         - Pay attention to proxemics
+
+![Non-Verbal Communication](photos/nonverbal.png){width=300}
 
 ### Visual Communication Skills
 
@@ -102,6 +108,8 @@ of executives looking to make a funding decision?
         - Consider the context and prior knowledge (technical jargon)
         - Consider the motivation for listening
 
+![Audience](photos/audience.jpg){width=300}
+
 ### Utilize Data Visualization
 One of the most effective methods of communicating results in data science,
 especially to those without technical coding knowledge,
@@ -114,11 +122,18 @@ these visualizations, including:
         - heat maps
         - pie charts
 
+![Data Visualization Techniques](photos/graphs.jpg){width=300}
+
 These visualizations allow for complex statistical projects to be simplified 
 into a single graphic, which centers the focus on project results and implications
 rather than methodology. As with verbal communication, ensure that data 
 visualization techniques are free of technical jargon and clearly label all 
 aspects of the visual.
+
+![Data Visualization](photos/Visualization.png){width=300}
+
+What is wrong with the bar plot on the left? How is it fixed in the plot
+on the left?
 
 ### Focus on  Data Communication Skills
 The following skill sets highlight more technical data communication that will
@@ -130,16 +145,21 @@ about your data.
         - Data management: collection, cleaning/transformation, storage
         - Data visualization
 
+![Data Management](photos/management.png){width=300}
+
 ### Give Space for Questions and Feedback
 Within professional spaces, it is essential for data scientists to provide time 
 for their clients, supervisors, and colleagues to ask questions about their
 work and subsequent findings. 
         - Pause and give room for questions throughout the presentation
         - Offer contact information for continued collaboration
+        - Provide structure for anonymous feedback
         - Schedule follow-ups if necessary
 
 Teamwork is often at the heart of data science projects within industries, and 
 open communication makes this teamwork run much more smoothly.
+
+![Questions](photos/questions.jpg){width=300}
 
 ## Further Learning
 While pursuing degrees in the data science field, consider taking Communication
@@ -159,7 +179,6 @@ these skills while earning your degree:
         - Explore internship opportunities that involve collaboration with
         other departments
 
-
 ## References
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8274472/#CR112
 https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3128115 
@@ -171,3 +190,4 @@ https://www.indeed.com/career-advice/career-development/written-communication
 https://guides.library.yale.edu/datavisualization/types
 https://www.analytics8.com/blog/data-and-analytics-terminology/ 
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8371066/
+https://flowingdata.com/2017/02/09/how-to-spot-visualization-lies/
