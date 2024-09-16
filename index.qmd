@@ -102,6 +102,9 @@ Markdown.
     - Learn how to show my skills I have learned in this class during interviews
 + Baptista, Stef
 + Bienvenue, Jack
+    - Learn professional visualization techniques, particularly for geospatial data
+    - Foster a high level of working knowledge of Git
+    - Create a small portfolio of examples and projects for later reference
 + Blanchard, Zachary
     - Gain experience working and collaborating on projects in Git
     - Improve computer programming skills and familiarity with Python
