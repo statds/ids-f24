@@ -27,7 +27,10 @@ fields that offer data science positions include:
 
 Because data science is applicable in so many industries, it is essential that
 data scientists have the skills and experience to communicate their work with
-others who do not have the same technical education. 
+others who do not have the same technical education. Job listings within the 
+field of data science often include qualifications like "strong interpersonal
+skills" and "demonstrated presentation and communication ability," highlighting
+the pervasive need for this skill set.
 
 Within these industries, collaboration and teammwork are oftan at the forefront.
 Inexperience with data should not prevent your colleagues from being able to
@@ -139,6 +142,22 @@ Teamwork is often at the heart of data science projects within industries, and
 open communication makes this teamwork run much more smoothly.
 
 ## Further Learning
+While pursuing degrees in the data science field, consider taking Communication
+courses at UConn that can bolster your understanding and skill set.
+Some applicable communication courses include:
+        - COMM 2100: Professional Communication
+        - COMM 3110: Organizational Communication
+        - COMM 3430: Science Communication
+        - COMM 5655: Human Computer Interaction
+        - COMM 5900: Professional Communication
+
+Effective communication also requires practice. Here are some ways to practice 
+these skills while earning your degree:
+        - Fully participate in group projects
+        - Seek presentation opportunities (class, conferences, etc.)
+        - Explain data science coursework to peers outside of your program
+        - Explore internship opportunities that involve collaboration with
+        other departments
 
 
 ## References
