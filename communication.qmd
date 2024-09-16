@@ -26,6 +26,48 @@ Within these industries, collaboration and teammwork are oftan at the forefront.
 
 ## General Communication Skills
 
+### Verbal Communication Skills
+
+Verbal Communication: "the use of sounds and language to
+relay a message" (Fer, 2018)
+
+Verbal Communication Tips
+        - Make a good first impression
+        - Use appropriate language (jargon, metaphors)
+        - Prioritize brevity
+        - Practice beforehand
+        - Give room for questions
+
+### Non-Verbal Communication Skills
+
+Non-Verbal Communication: "aspects of communication other than spoken or written words, including elements such as tone, pitch, and body language, which significantly influence how messages are perceived" (James, 2024)
+
+Non-Verbal Communication Tips
+        - Utilize vocal variety (pitch, rate, volume)
+        - Avoid distracting hand and body movement
+        - Make eye contact
+        - Pay attention to proxemics
+
+### Visual Communication Skills
+
+Visual Communication: "any communication that employs one’s sense of sight to deliver a message without the usage of any verbal cues" (Fayaz, 2022)
+
+Visual Communication Tips
+        - Center clarity above all else - can you get the main idea without any assistance?
+        - Ensure proper labeling and scaling
+        - Create visual contrast (colors, shape, font)
+        - Choose the most appropriate visual
+
+### Written Communication Skills
+
+Written Communication: "the exchange of ideas and information through written words, a structured and permanent form of communication, often used in formal and professional settings" (James, 2024)
+
+Written Communication Tips
+        - Clearly state goal with thesis statement
+        - Prioritize professionalism (contractions, slang)
+        - Proofread and utilize peer editing
+        - Follow specific structure
+        - Balance concision with analysis
 
 ## Communication in Data Science
 
