@@ -261,16 +261,20 @@ window.Quarto = {
 <li>How many possibly ways are there to check for a solution?</li>
 <li>Write a function to solve the problem in a brutal force way. The inputs of the function are four numbers. The function returns a list of solutions. Some of the solutions will be equivalent, but let us not worry about that for now.</li>
 </ol></li>
-<li><p>The NYC motor vehicle collisions data with documentation is available from <a href="https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95">NYC Open Data</a>. The raw data needs some cleaning. (JY: Add variable name cleaning next year.)</p>
+<li><p>The NYC motor vehicle collisions data with documentation is available from <a href="https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95">NYC Open Data</a>. The raw data needs some cleaning.</p>
 <ol type="1">
-<li>Use the filter from the website to download the crash data of January 2023; save it under a directory <code>data</code> with an informative name (e.g., <code>nyc_crashes_202301.csv</code>).</li>
-<li>Get basic summaries of each variable: missing percentage; descriptive statistics for continuous variables; frequency tables for discrete variables.</li>
-<li>Are the <code>LATITUDE</code> and <code>LONGITIDE</code> values all look legitimate? If not (e.g., zeroes), code them as missing values.</li>
-<li>If <code>OFF STREET NAME</code> is not missing, are there any missing <code>LATITUDE</code> and <code>LONGITUDE</code>? If so, geocode the addresses.</li>
-<li>(Optional) Are the missing patterns of <code>ON STREET NAME</code> and <code>LATITUDE</code> the same? Summarize the missing patterns by a cross table. If <code>ON STREET NAME</code> and <code>CROSS STREET NAME</code> are available, use geocoding by intersection to fill the <code>LATITUDE</code> and <code>LONGITUDE</code>.</li>
-<li>Are <code>ZIP CODE</code> and <code>BOROUGH</code> always missing together? If <code>LATITUDE</code> and <code>LONGITUDE</code> are available, use reverse geocoding to fill the <code>ZIP CODE</code> and <code>BOROUGH</code>.</li>
-<li>Print the whole frequency table of <code>CONTRIBUTING FACTOR VEHICLE 1</code>. Convert lower cases to uppercases and check the frequencies again.</li>
-<li>Provided an opportunity to meet the data provider, what suggestions do you have to make the data better based on your data exploration experience?</li>
+<li>Use the filter from the website to download the crash data of the week of June 30, 2024 in CSV format; save it under a directory <code>data</code> with an informative name (e.g., <code>nyccrashes_2024w0630_by20240916.csv</code>); read the data into a Panda data frame with careful handling of the date time variables.</li>
+<li>Clean up the variable names. Use lower cases and replace spaces with underscores.</li>
+<li>Get the basic summaries of each variables: missing percentage; descriptive statistics for continuous variables; frequency tables for discrete variables.</li>
+<li>Are their invalid <code>longitude</code> and <code>latitude</code> in the data? If so, replace them with <code>NA</code>.</li>
+<li>Are there <code>zip_code</code> values that are not legit NYC zip codes? If so, replace them with <code>NA</code>.</li>
+<li>Are there missing in <code>zip_code</code> and <code>borough</code>? Do they always co-occur?</li>
+<li>Are there cases where <code>zip_code</code> and <code>borough</code> are missing but the geo codes are not missing? If so, fill in <code>zip_code</code> and <code>borough</code> using the geo codes.</li>
+<li>Is it redundant to keep both <code>location</code> and the <code>longitude</code>/<code>latitude</code> at the NYC Open Data server?</li>
+<li>Check the frequency of <code>crash_time</code> by hour. Is there a matter of bad luck at exactly midnight? How would you interpret this?</li>
+<li>Are the number of persons killed/injured the summation of the numbers of pedestrians, cyclist, and motorists killed/injured? If so, is it redundant to keep these two columns at the NYC Open Data server?</li>
+<li>Print the whole frequency table of <code>contributing_factor_vehicle_1</code>. Convert lower cases to uppercases and check the frequencies again.</li>
+<li>Provided an opportunity to meet the data provider, what suggestions would you make based on your data exploration experience?</li>
 </ol></li>
 <li><p>Except the first problem, use the cleaned data set with missing geocode imputed (<code>data/nyc_crashes_202301_cleaned.csv</code>).</p>
 <ol type="1">
