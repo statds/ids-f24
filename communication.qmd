@@ -1,14 +1,36 @@
-# Communication
+# Communication in Data Science
 
-This chapter is written by Sara.
+This chapter was written by Sara Clokey.
 
-## Intro
+## Introduction
 
-My name is Sara and I major in Statistics and Communication.
+My name is Sara, and I am a junior double majoring in Applied Data Analysis and Communication. The topic of my presentation today, Communication in Data Science, combines my academic and professional interests while underscoring the importance of 'soft skills' like public speaking, for example, within STEM fields like data science.
 
-## Something
+## Importance & Application of Communication
+Data science as an career path has exploded witihn the last decade. Some fields that offer data science positions include:
+        - Finance
+        - Healthcare
+        - Media production
+        - Sports
+        - Banking
+        - Insurance
+        - E-Commerce
+        - Energy
+        - Manufacturing
+        - Transportation
+        - Construction
 
-## Something else
+Because data science is applicable in so many industries, it is essential that data scientists have the skills and experience to communicate their work with others who do not have the same technical education. 
+
+Within these industries, collaboration and teammwork are oftan at the forefront. Inexperience with data should not prevent your colleagues from being able to contribute to shared projects, and strong communication skills can mitigate this possibility!
+
+## General Communication Skills
+
+
+## Communication in Data Science
+
+
+## Further Learning
 
 
 ## References
