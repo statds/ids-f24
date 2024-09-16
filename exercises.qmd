@@ -100,30 +100,41 @@
 1. The NYC motor vehicle collisions data with documentation is available from
    [NYC Open
    Data](https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95).
-   The raw data needs some cleaning. (JY: Add variable name cleaning next year.)
-    1. Use the filter from the website to download the crash data of January
-       2023; save it under a directory `data` with an informative name
-	   (e.g., `nyc_crashes_202301.csv`).
-	1. Get basic summaries of each variable: missing percentage; descriptive
-       statistics for continuous variables; frequency tables for discrete
-       variables.
-	1. Are the `LATITUDE` and `LONGITIDE` values all look legitimate? If not
-       (e.g., zeroes), code them as missing values.
-	1. If `OFF STREET NAME` is not missing, are there any missing `LATITUDE` and
-	   `LONGITUDE`? If so, geocode the addresses.
-	1. (Optional) Are the missing patterns of `ON STREET NAME` and `LATITUDE` the same?
-       Summarize the missing patterns by a cross table. If `ON STREET NAME` and
-       `CROSS STREET NAME` are available, use geocoding by intersection to fill
-	   the `LATITUDE` and `LONGITUDE`.
-	1. Are `ZIP CODE` and `BOROUGH` always missing together? If `LATITUDE` and
-       `LONGITUDE` are available, use reverse geocoding to fill the `ZIP CODE`
-       and `BOROUGH`.
-	1. Print the whole frequency table of
-		`CONTRIBUTING FACTOR VEHICLE 1`. 
-	   Convert lower cases to uppercases and check the frequencies again.
-	1. Provided an opportunity to meet the data provider, what suggestions do
-       you have to make the data better based on your data exploration
-       experience?
+   The raw data needs some cleaning.
+    1. Use the filter from the website to download the crash
+    data of the week of June 30, 2024 in CSV format;
+    save it under a directory `data` with an informative
+    name (e.g., `nyccrashes_2024w0630_by20240916.csv`);
+    read the data into a Panda data frame with careful
+    handling of the date time variables.
+    1. Clean up the variable names. Use lower cases and replace
+    spaces with underscores.
+    1. Get the basic summaries of each variables:
+    missing percentage; descriptive statistics for continuous variables;
+    frequency tables for discrete variables.
+    1. Are their invalid `longitude` and `latitude` in the data?
+    If so, replace them with `NA`.
+    1. Are there `zip_code` values that are not legit NYC zip codes?
+    If so, replace them with `NA`.
+    1. Are there missing in `zip_code` and `borough`? Do they
+    always co-occur?
+    1. Are there cases where `zip_code` and `borough` are missing
+    but the geo codes are not missing? If so, fill in `zip_code`
+    and `borough` using the geo codes.
+    1. Is it redundant to keep both `location` and the
+    `longitude`/`latitude` at the NYC Open Data server?
+    1. Check the frequency of `crash_time` by hour. Is there a matter
+    of bad luck at exactly midnight? How would you interpret this?
+    1. Are the number of persons killed/injured the summation of
+    the numbers of pedestrians, cyclist, and motorists killed/injured?
+    If so, is it redundant to keep these two columns at the NYC
+    Open Data server?
+    1. Print the whole frequency table of
+    `contributing_factor_vehicle_1`. 
+    Convert lower cases to uppercases and check the frequencies again.
+    1. Provided an opportunity to meet the data provider, what
+    suggestions would you make based on your data exploration
+    experience?
 
 1. Except the first problem, use the cleaned data set with missing geocode
    imputed (`data/nyc_crashes_202301_cleaned.csv`).
