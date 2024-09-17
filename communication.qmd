@@ -48,11 +48,12 @@ Verbal Communication: "the use of sounds and language to
 relay a message" (Fer, 2018)
 
 Verbal Communication Tips
-        - Make a good first impression
-        - Use appropriate language (jargon, metaphors)
-        - Prioritize brevity
-        - Practice beforehand
-        - Give room for questions
+
++ Make a good first impression
++ Use appropriate language (jargon, metaphors)
++ Prioritize brevity
++ Practice beforehand
++ Give room for questions
 
 ![Verbal Communication](photos/verbal-communication.png){width=300}
 
@@ -63,10 +64,11 @@ written words, including elements such as tone, pitch, and body language,
 which significantly influence how messages are perceived" (James, 2024)
 
 Non-Verbal Communication Tips
-        - Utilize vocal variety (pitch, rate, volume)
-        - Avoid distracting hand and body movement
-        - Make eye contact
-        - Pay attention to proxemics
+
++ Utilize vocal variety (pitch, rate, volume)
++ Avoid distracting hand and body movement
++ Make eye contact
++ Pay attention to proxemics
 
 ![Non-Verbal Communication](photos/nonverbal.png){width=300}
 
@@ -76,10 +78,11 @@ Visual Communication: "any communication that employs one’s sense of
 sight to deliver a message without the usage of any verbal cues" (Fayaz, 2022)
 
 Visual Communication Tips
-        - Center clarity above all else
-        - Ensure proper labeling and scaling
-        - Create visual contrast (colors, shape, font)
-        - Choose the most appropriate visual
+
++ Center clarity above all else
++ Ensure proper labeling and scaling
++ Create visual contrast (colors, shape, font)
++ Choose the most appropriate visual
 
 ### Written Communication Skills
 
@@ -88,11 +91,12 @@ words, a structured and permanent form of communication, often used in formal
 and professional settings" (James, 2024)
 
 Written Communication Tips
-        - Clearly state goal with thesis statement
-        - Prioritize professionalism (contractions, slang)
-        - Proofread and utilize peer editing
-        - Follow specific structure
-        - Balance concision with analysis
+
++ Clearly state goal with thesis statement
++ Prioritize professionalism (contractions, slang)
++ Proofread and utilize peer editing
++ Follow specific structure
++ Balance concision with analysis
 
 ## Communication in Data Science
 
@@ -106,8 +110,9 @@ data science.
 Who are you sharing information with? Is it a room of data scientists like this
 one? Is it full of students who want to learn about data science? Is it a group
 of executives looking to make a funding decision?
-        - Consider the context and prior knowledge (technical jargon)
-        - Consider the motivation for listening
+
++ Consider the context and prior knowledge (technical jargon)
++ Consider the motivation for listening
 
 ![Audience](photos/audience.jpg){width=300}
 
@@ -116,12 +121,13 @@ One of the most effective methods of communicating results in data science,
 especially to those without technical coding knowledge,
 is data visualization techniques. Python uses the package matplotlib to produce
 these visualizations, including:
-        - line plots
-        - bar plots
-        - box plots
-        - histograms
-        - heat maps
-        - pie charts
+
++ line plots
++ bar plots
++ box plots
++ histograms
++ heat maps
++ pie charts
 
 ![Data Visualization Techniques](photos/graphs.jpg){width=300}
 
@@ -140,11 +146,12 @@ on the left?
 The following skill sets highlight more technical data communication that will
 be more common within projects and shared with other data scientists to communicate
 about your data.
-        - Coding communication: Python, R, Julia, JavaScript, SQL
-        - Analysis communication: creating a storyline, descriptive versus 
-        diagnostic versus predictive analytics, problem identification
-        - Data management: collection, cleaning/transformation, storage
-        - Data visualization
+
++ Coding communication: Python, R, Julia, JavaScript, SQL
++ Analysis communication: creating a storyline, descriptive versus 
+diagnostic versus predictive analytics, problem identification
++ Data management: collection, cleaning/transformation, storage
++ Data visualization
 
 ![Data Management](photos/management.png){width=300}
 
@@ -152,10 +159,11 @@ about your data.
 Within professional spaces, it is essential for data scientists to provide time 
 for their clients, supervisors, and colleagues to ask questions about their
 work and subsequent findings. 
-        - Pause and give room for questions throughout the presentation
-        - Offer contact information for continued collaboration
-        - Provide structure for anonymous feedback
-        - Schedule follow-ups if necessary
+
++ Pause and give room for questions throughout the presentation
++ Offer contact information for continued collaboration
++ Provide structure for anonymous feedback
++ Schedule follow-ups if necessary
 
 Teamwork is often at the heart of data science projects within industries, and 
 open communication makes this teamwork run much more smoothly.
@@ -166,19 +174,21 @@ open communication makes this teamwork run much more smoothly.
 While pursuing degrees in the data science field, consider taking Communication
 courses at UConn that can bolster your understanding and skill set.
 Some applicable communication courses include:
-        - COMM 2100: Professional Communication
-        - COMM 3110: Organizational Communication
-        - COMM 3430: Science Communication
-        - COMM 5655: Human Computer Interaction
-        - COMM 5900: Professional Communication
+
++ COMM 2100: Professional Communication
++ COMM 3110: Organizational Communication
++ COMM 3430: Science Communication
++ COMM 5655: Human Computer Interaction
++ COMM 5900: Professional Communication
 
 Effective communication also requires practice. Here are some ways to practice 
 these skills while earning your degree:
-        - Fully participate in group projects
-        - Seek presentation opportunities (class, conferences, etc.)
-        - Explain data science coursework to peers outside of your program
-        - Explore internship opportunities that involve collaboration with
-        other departments
+
++ Fully participate in group projects
++ Seek presentation opportunities (class, conferences, etc.)
++ Explain data science coursework to peers outside of your program
++ Explore internship opportunities that involve collaboration with
+other departments
 
 ## References
 
