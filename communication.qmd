@@ -26,7 +26,7 @@ fields that offer data science positions include:
 + Transportation
 + Construction
 
-![Data Science Industries](photos/Industries.jpg){width=450}
+![Data Science Industries](photos/Industries.jpg){width=375}
 
 Because data science is applicable in so many industries, it is essential that
 data scientists have the skills and experience to communicate their work with
@@ -69,7 +69,7 @@ Non-Verbal Communication Tips:
 + Make eye contact
 + Pay attention to proxemics
 
-![Non-Verbal Communication](photos/nonverbal.png){width=450}
+![Non-Verbal Communication](photos/nonverbal.png){width=400}
 
 ### Visual Communication Skills
 
@@ -115,7 +115,7 @@ of executives looking to make a funding decision?
 + Consider the context and prior knowledge (technical jargon)
 + Consider the motivation for listening
 
-![Audience](photos/audience.jpg){width=450}
+![Audience](photos/audience.jpg){width=350}
 
 ### Utilize Data Visualization
 One of the most effective methods of communicating results in data science,
@@ -153,7 +153,7 @@ diagnostic versus predictive analytics, problem identification
 + Data management: collection, cleaning/transformation, storage
 + Data visualization
 
-![Data Management](photos/management.png){width=450}
+![Data Management](photos/management.png){width=375}
 
 ### Give Space for Questions and Feedback
 Within professional spaces, it is essential for data scientists to provide time 
@@ -168,7 +168,7 @@ work and subsequent findings.
 Teamwork is often at the heart of data science projects within industries, and 
 open communication makes this teamwork run much more smoothly.
 
-![Questions](photos/questions.jpg){width=450}
+![Questions](photos/questions.jpg){width=400}
 
 ## Further Learning
 While pursuing degrees in the data science field, consider taking Communication
