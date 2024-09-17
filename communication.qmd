@@ -13,16 +13,27 @@ speaking, for example, within STEM fields like data science.
 ## Importance & Application of Communication
 Data science as an career path has exploded witihn the last decade. Some 
 fields that offer data science positions include:
+
 + Finance
+
 + Healthcare
+
 + Media production
+
 + Sports
+
 + Banking
+
 + Insurance
+
 + E-Commerce
+
 + Energy
+
 + Manufacturing
+
 + Transportation
+
 + Construction
 
 ![Data Science Industries](photos/Industries.jpg){width=300}
