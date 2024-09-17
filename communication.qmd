@@ -47,7 +47,7 @@ this possibility!
 Verbal Communication: "the use of sounds and language to
 relay a message" (Fer, 2018)
 
-Verbal Communication Tips
+Verbal Communication Tips:
 
 + Make a good first impression
 + Use appropriate language (jargon, metaphors)
@@ -63,7 +63,7 @@ Non-Verbal Communication: "aspects of communication other than spoken or
 written words, including elements such as tone, pitch, and body language, 
 which significantly influence how messages are perceived" (James, 2024)
 
-Non-Verbal Communication Tips
+Non-Verbal Communication Tips:
 
 + Utilize vocal variety (pitch, rate, volume)
 + Avoid distracting hand and body movement
@@ -77,7 +77,7 @@ Non-Verbal Communication Tips
 Visual Communication: "any communication that employs one’s sense of 
 sight to deliver a message without the usage of any verbal cues" (Fayaz, 2022)
 
-Visual Communication Tips
+Visual Communication Tips:
 
 + Center clarity above all else
 + Ensure proper labeling and scaling
@@ -90,7 +90,7 @@ Written Communication: "the exchange of ideas and information through written
 words, a structured and permanent form of communication, often used in formal
 and professional settings" (James, 2024)
 
-Written Communication Tips
+Written Communication Tips:
 
 + Clearly state goal with thesis statement
 + Prioritize professionalism (contractions, slang)
@@ -137,7 +137,7 @@ rather than methodology. As with verbal communication, ensure that data
 visualization techniques are free of technical jargon and clearly label all 
 aspects of the visual.
 
-![Data Visualization](photos/Visualization.png){width=300}
+![Data Visualization](photos/Visualization.png){width=600}
 
 What is wrong with the bar plot on the left? How is it fixed in the plot
 on the left?
