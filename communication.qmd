@@ -191,12 +191,3 @@ other departments
 
 ## References
 
-@article(zinovy2018skills,
-  title =	 {Skills Requirements of Business Data Analytics 
-                  and Data Science Jobs: A Comparative Analysis},
-  author =	 {Z. Radovilsky and V. Hegde and A. Acharya and U. Uma},
-  journal =	 {Journal of Supply Chain and Operations Management},
-  volume =	 16,
-  pages =	 {82--101},
-  year =	 2018
-)
