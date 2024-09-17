@@ -80,7 +80,7 @@ order, last name first, comma, then first name). Here is an example.
 
 
 + Yan, Jun
-    - Make data science more accessible to undergraduates
+    - Make practical data science tools accessible to undergraduates
     - Co-develop a Quarto book in collaboration with the students
     - Train students to participate real data science competitions
 
@@ -89,8 +89,17 @@ Add yours through a pull request; note the syntax of nested list in
 Markdown. 
 
 + Akach, Suha
+    - Challenge and push myself to be better at python and all its libraries.
+    - Be confident in my abilities of programming and making statistical inferences that are correct.
+    - Be able to create my own personal project in class on time.
 + Astle, Jaden
+    - I've used Git before,  but I'd like to become more comfortable using it and get more used to different issues that arise.
+    - I'd like to learn more effective ways to "tell the story" of data analysis and show empowering visualizations.
+    - I'd like to explore more methods that professional data scientists use in their model trainings to share with UConn's Data Science Club.
 + Babiec, Owen
+    - Become more comfortable with Git and Github and their applications
+    - Better understand the Data Science pipeline and workflow
+    - Learn how to show my skills I have learned in this class during interviews
 + Baptista, Stef
 + Bienvenue, Jack
 + Blanchard, Zachary
@@ -98,7 +107,12 @@ Markdown.
     - Improve computer programming skills and familiarity with Python
     - Teach other students about creating presentations using Quarto
 + Borowski, Emily
+    - Gain a greater understanding of Quarto and GitHub
+    - Become more comfortable with my coding abilities
+    - Acquire a deeper understanding of data science
 + Clokey, Sara
+    - Become more familiar with GitHub and Quarto
+    - Execute a data science project from start to finish
 + Desroches, Melanie
     - Explore the field of data science as a possible future career
     - Develope data science and machine learning skills
@@ -107,15 +121,40 @@ Markdown.
 + Febles, Xavier
 + Freed, Brent
 + Jha, Aansh
+    - Be a better student of the data science field
+    - Hone git to work in colabarative workspaces
+    - Learn better methods in data visualization
 + Johnson, Dorothea
+    - Enter data science contests
+    - Familiarize myself with using Python for data Science
+    - Develop a proficiency in Github
 + Kashalapov, Olivia
+    - Better understand neural networks
+    - Machine learning utilizing Python
+    - Creating and analyzing predictive models for informed decision making
 + Klinowski, Amalia
 + Lee, Seunghyeon
 + Manna, Rahul
+    - Use knowledge gained and skills developed in class to study real-world problems such as climate change.
+    - Obtain a basic understanding of machine learning
 + Mazzola, Julia
+  - Become proficient in Git and Github.
+  - Have a better understanding of data science best practices and techniques.
+  - Deepen my knowledge of Python programming concepts and libraries.
 + Paricharak, Aditya
+    - Master Commandline Interface
+    - Apply my statistical knowladge and skills to course work
+    - Understand how to work with datasets
 + Parvez, Mohammad Shahriyar
+    - Familiarizing myself with GitHub to effectively track and manage the entire data analysis process.
+    - Adopting Quarto for improved documentation of my data workflows.
+    - Exploring advanced techniques for data analysis and visualization.
+    - Developing my personal Git repository and publishing data projects as a professional website.
+
 + Tan, Qianruo
+  + Learn how to use GitHub, and create my own page 
+  + Get a good grade on this class
+  + Learn more about how to processing data
 + Xu, Deyu
 
 ## Presentation Orders
@@ -150,6 +189,8 @@ tree should be presented before random forest or extreme gradient
 boosting. This justifies certain requests for switching slots.
 
 
+
+
 ## Course Logistics
 
 ### Presentation Task Board
@@ -181,11 +222,32 @@ Here are some example tasks:
 + Developing a Python package
 
 
-Please use this [Google Sheet]() to sign up.
+Please use the following table sign up.
 
    Date  | Presenter              | Topic
   ------ | ---------------------- | ------
-         |                        |
+   09/11 | Zachary Blanchard      | Making presentation with Quarto
+   09/16 | Deyu Xu                | Import/Export data
+   09/18 | Sara Clokey            | Communications in data science
+   09/23 | Dorathea Johnson       | Database with SQL
+   09/25 | Xaver Febles           |
+   09/30 | Jack Bienvenue         |
+   10/02 | Julia Mazzola          |
+   10/07 | Suha Akach             |
+   10/09 | Rahul Manna            |
+   10/14 | Kaitlyn Anderson       | Career readiness in data science
+   10/16 | TBA                    |
+   10/21 | Jaden Astle            |
+   10/23 | Olivia Kashalapov      |
+   10/28 | Emily Borowsky         |
+   10/30 | Qianruo Tan            |
+   11/04 | Melanie Desroches      |
+   11/06 | Aditya Paricharak      |
+   11/11 | Aansh Jha              |
+   11/11 | Owen Babiec            |
+   11/13 | Stef Baptista          |
+   11/13 | Mohammad Parvez        |
+
 
 ### Final Project Presentation Schedule
 
@@ -194,8 +256,10 @@ final presentation.
 
    Date  | Presenter
   ------ | ---------------------- 
-
-
+   11/18 | Sara Clokey; Dorothea Johnson; Xavier Febles; Jack Bienvenue
+   11/20 | Julia Mazzola; Suha Akach; Rahul Manna; Jaden Astle
+   12/02 | Olivia Kashalapov; Emily Borowski；Qianruo Tan; Melanie Desroches
+   12/04 | Aditya Paricharak; Aansh Jha; Owen Babiec; Stef Baptista
 
 
 ### Contributing to the Class Notes
