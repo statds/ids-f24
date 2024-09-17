@@ -30,10 +30,10 @@ fields that offer data science positions include:
 
 Because data science is applicable in so many industries, it is essential that
 data scientists have the skills and experience to communicate their work with
-others who do not have the same technical education. Job listings within the 
-field of data science often include qualifications like "strong interpersonal
-skills" and "demonstrated presentation and communication ability" @zinovy2018skills,
-highlighting the pervasive need for this skill set.
+others who do not have the same technical education. As analyzed by 
+@zinovy2018skills, Job listings within the field of data science often include
+qualifications like "strong interpersonal skills" and "demonstrated presentation
+and communication ability", highlighting the pervasive need for this skill set.
 
 Within these industries, collaboration and teammwork are oftan at the forefront.
 Inexperience with data should not prevent your colleagues from being able to
@@ -45,7 +45,7 @@ this challenge!
 ### Verbal Communication Skills
 
 Verbal Communication: "the use of sounds and language to relay a message"
-(Fer, 2018)
+(@fer2018verbal)
 
 Verbal Communication Tips:
 
@@ -59,9 +59,8 @@ Verbal Communication Tips:
 
 ### Non-Verbal Communication Skills
 
-Non-Verbal Communication: "aspects of communication other than spoken or 
-written words, including elements such as tone, pitch, and body language, 
-which significantly influence how messages are perceived" (James, 2024)
+Non-Verbal Communication: "information, emotion, a movement that is expressed
+without words and without the help of language" (@grillo2022nonverbal)
 
 Non-Verbal Communication Tips:
 
@@ -75,7 +74,8 @@ Non-Verbal Communication Tips:
 ### Visual Communication Skills
 
 Visual Communication: "any communication that employs one’s sense of 
-sight to deliver a message without the usage of any verbal cues" (Fayaz, 2022)
+sight to deliver a message without the usage of any verbal cues" 
+(@fayaz2022visual)
 
 Visual Communication Tips:
 
@@ -86,9 +86,10 @@ Visual Communication Tips:
 
 ### Written Communication Skills
 
-Written Communication: "the exchange of ideas and information through written
-words, a structured and permanent form of communication, often used in formal
-and professional settings" (James, 2024)
+Written Communication: "Any form of
+communication which is written and documented from
+the sender to the receiver is known as written
+communication" (@prabavathi2018written)
 
 Written Communication Tips:
 
@@ -101,7 +102,7 @@ Written Communication Tips:
 ## Communication in Data Science
 
 Oftentimes as data scientists, you will be tasked with communicating "technical
-conclusions to non-technical members"; this may be colleagues in other
+conclusions to non-technical members" (@pragmatic2024communication); this may be colleagues in other
 departments, like marketing, or supervisors at the managerial level. Here are some
 tips for effectively communicating project results specifically in the field of
 data science.
@@ -188,6 +189,3 @@ these skills while earning your degree:
 + Explain data science coursework to peers outside of your program
 + Explore internship opportunities that involve collaboration with
 other departments
-
-## References
-
