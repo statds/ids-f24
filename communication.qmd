@@ -33,7 +33,7 @@ data scientists have the skills and experience to communicate their work with
 others who do not have the same technical education. As analyzed by 
 @zinovy2018skills, Job listings within the field of data science often include
 qualifications like "strong interpersonal skills" and "demonstrated presentation
-and communication ability", highlighting the pervasive need for this skill set.
+and communication ability," highlighting the pervasive need for this skill set.
 
 Within these industries, collaboration and teamwork are often at the forefront.
 Inexperience with data should not prevent your colleagues from being able to
@@ -143,7 +143,7 @@ on the left?
 
 ### Focus on  Data Communication Skills
 The following skill sets highlight technical data communication that will
-be more common within projects with other data scientists to communicate
+be more common in projects with other data scientists to communicate
 about your data.
 
 + Coding communication: Python, R, Julia, JavaScript, SQL, etc.
@@ -159,7 +159,7 @@ Within professional spaces, data scientists should provide time
 for their clients, supervisors, and colleagues to ask questions about their
 work and subsequent findings. 
 
-+ Pause and allow room for questions throughout the presentation
++ Pause for questions throughout the presentation
 + Offer contact information for continued collaboration
 + Provide a structure for anonymous feedback
 + Schedule follow-ups if necessary
