@@ -139,7 +139,7 @@ technical jargon and clearly label all visual aspects.
 ![Data Visualization](photos/Visualization.png){width=600}
 
 What is wrong with the bar plot on the left? How is it fixed in the plot
-on the left?
+on the right?
 
 ### Focus on  Data Communication Skills
 The following skill sets highlight technical data communication that will
