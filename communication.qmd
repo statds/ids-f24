@@ -11,7 +11,7 @@ interests while underscoring the importance of 'soft skills' like public
 speaking, for example, within STEM fields like data science.
 
 ## Importance & Application of Communication
-Data science as an career path has exploded witihn the last decade. Some 
+Data science as a career path has exploded within the last decade. Some 
 fields that offer data science positions include:
 
 + Finance
@@ -35,7 +35,7 @@ others who do not have the same technical education. As analyzed by
 qualifications like "strong interpersonal skills" and "demonstrated presentation
 and communication ability", highlighting the pervasive need for this skill set.
 
-Within these industries, collaboration and teammwork are oftan at the forefront.
+Within these industries, collaboration and teamwork are often at the forefront.
 Inexperience with data should not prevent your colleagues from being able to
 contribute to shared projects, and strong communication skills can mitigate 
 this challenge!
@@ -44,7 +44,7 @@ this challenge!
 
 ### Verbal Communication Skills
 
-Verbal Communication: "the use of sounds and language to relay a message"
+Verbal Communication: "The use of sounds and language to relay a message"
 (@fer2018verbal)
 
 Verbal Communication Tips:
@@ -59,7 +59,7 @@ Verbal Communication Tips:
 
 ### Non-Verbal Communication Skills
 
-Non-Verbal Communication: "information, emotion, a movement that is expressed
+Non-Verbal Communication: "Information, emotion, a movement that is expressed
 without words and without the help of language" (@grillo2022nonverbal)
 
 Non-Verbal Communication Tips:
@@ -73,7 +73,7 @@ Non-Verbal Communication Tips:
 
 ### Visual Communication Skills
 
-Visual Communication: "any communication that employs one’s sense of 
+Visual Communication: "Any communication that employs one’s sense of 
 sight to deliver a message without the usage of any verbal cues" 
 (@fayaz2022visual)
 
@@ -88,12 +88,11 @@ Visual Communication Tips:
 
 Written Communication: "Any form of
 communication which is written and documented from
-the sender to the receiver is known as written
-communication" (@prabavathi2018written)
+the sender to the receiver" (@prabavathi2018written)
 
 Written Communication Tips:
 
-+ Clearly state your goal with thesis statement
++ Clearly state your goal with a thesis statement
 + Maintain professionalism (contractions, slang)
 + Proofread and utilize peer editing
 + Follow a specific structure
@@ -101,7 +100,7 @@ Written Communication Tips:
 
 ## Communication in Data Science
 
-Oftentimes as data scientists, you will be tasked with communicating "technical
+Often, data scientists must communicate "technical
 conclusions to non-technical members" (@pragmatic2024communication); this may be colleagues in other
 departments, like marketing, or supervisors at the managerial level. Here are some
 tips for effectively communicating project results specifically in the field of
@@ -132,10 +131,10 @@ including:
 
 ![Data Visualization Techniques](photos/graphs.jpg){width=450}
 
-These visualizations allow for complex statistical projects to be simplified 
-into a single graphic, which centers the focus on project results and implications
+These visualizations allow complex statistical projects to be simplified 
+into a single graphic, focusing on project results and implications
 rather than methodology. Ensure that data visualization techniques are free of
-technical jargon and clearly label all aspects of the visual.
+technical jargon and clearly label all visual aspects.
 
 ![Data Visualization](photos/Visualization.png){width=600}
 
@@ -156,7 +155,7 @@ diagnostic versus predictive analytics, problem identification
 ![Data Management](photos/management.png){width=375}
 
 ### Give Space for Questions and Feedback
-Within professional spaces, it is essential for data scientists to provide time 
+Within professional spaces, data scientists should provide time 
 for their clients, supervisors, and colleagues to ask questions about their
 work and subsequent findings. 
 
