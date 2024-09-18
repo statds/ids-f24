@@ -26,8 +26,6 @@ fields that offer data science positions include:
 + Transportation
 + Construction
 
-![Data Science Industries](photos/Industries.jpg){width=375}
-
 Because data science is applicable in so many industries, it is essential that
 data scientists have the skills and experience to communicate their work with
 others who do not have the same technical education. As analyzed by 
@@ -55,8 +53,6 @@ Verbal Communication Tips:
 + Practice beforehand
 + Allow room for questions
 
-![Verbal Communication](photos/verbal-communication.png){width=450}
-
 ### Non-Verbal Communication Skills
 
 Non-Verbal Communication: "Information, emotion, a movement that is expressed
@@ -68,8 +64,6 @@ Non-Verbal Communication Tips:
 + Avoid distracting hand and body movements
 + Make eye contact
 + Pay attention to proxemics
-
-![Non-Verbal Communication](photos/nonverbal.png){width=400}
 
 ### Visual Communication Skills
 
@@ -101,10 +95,9 @@ Written Communication Tips:
 ## Communication in Data Science
 
 Often, data scientists must communicate "technical
-conclusions to non-technical members" (@pragmatic2024communication); this may be colleagues in other
-departments, like marketing, or supervisors at the managerial level. Here are some
-tips for effectively communicating project results specifically in the field of
-data science.
+conclusions to non-technical members" (@pragmatic2024communication); this may be colleagues
+in other departments, like marketing, or supervisors at the managerial level. Here are some
+tips for effectively communicating project results specifically in the field of data science.
 
 ### Identify your Audience
 Who are you sharing information with? Is it a room of data scientists like this
@@ -114,13 +107,11 @@ of executives looking to make a funding decision?
 + Consider the context and prior knowledge (technical jargon)
 + Consider the motivation for listening
 
-![Audience](photos/audience.jpg){width=350}
-
 ### Utilize Data Visualization
 One of the most effective methods of communicating results in data science,
 especially to those without technical coding knowledge, is data visualization
-techniques. Python uses the package 'matplotlib' to produce these visualizations, 
-including:
+techniques (@vandemeulebroecke2019quantitative). Python uses the package 'matplotlib' to
+produce these visualizations, including:
 
 + line plots
 + bar plots
@@ -129,17 +120,10 @@ including:
 + heat maps
 + pie charts
 
-![Data Visualization Techniques](photos/graphs.jpg){width=450}
-
 These visualizations allow complex statistical projects to be simplified 
 into a single graphic, focusing on project results and implications
 rather than methodology. Ensure that data visualization techniques are free of
 technical jargon and clearly label all visual aspects.
-
-![Data Visualization](photos/Visualization.png){width=600}
-
-What is wrong with the bar plot on the left? How is it fixed in the plot
-on the right?
 
 ### Focus on  Data Communication Skills
 The following skill sets highlight technical data communication that will
@@ -151,8 +135,6 @@ about your data.
 diagnostic versus predictive analytics, problem identification
 + Data management: collection, cleaning/transformation, storage
 + Data visualization
-
-![Data Management](photos/management.png){width=375}
 
 ### Give Space for Questions and Feedback
 Within professional spaces, data scientists should provide time 
@@ -166,8 +148,6 @@ work and subsequent findings.
 
 Teamwork is often at the heart of data science projects within industries, and 
 open communication makes this teamwork run much more smoothly.
-
-![Questions](photos/questions.jpg){width=400}
 
 ## Further Learning
 While pursuing degrees in the data science field, consider taking Communication
