@@ -29,3 +29,5 @@ By the end of this chapter, you will learn to:
 
 {{< include _importExport.qmd >}}
 
+{{< include _sqlite.qmd >}}
+
