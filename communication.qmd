@@ -31,7 +31,7 @@ fields that offer data science positions include:
 Because data science is applicable in so many industries, it is essential that
 data scientists have the skills and experience to communicate their work with
 others who do not have the same technical education. As analyzed by 
-@zinovy2018skills, Job listings within the field of data science often include
+@zinovy2018skills, job listings within the field of data science often include
 qualifications like "strong interpersonal skills" and "demonstrated presentation
 and communication ability," highlighting the pervasive need for this skill set.
 
