@@ -235,7 +235,7 @@ Please use the following table sign up.
    09/23 | Dorathea Johnson       | Database with SQL
    09/25 | Xaver Febles           |
    09/30 | Jack Bienvenue         | Visualizing spatial data in a Google Map
-   10/02 | Julia Mazzola          |
+   10/02 | Julia Mazzola          | Data Visualization with Plotnine
    10/07 | Suha Akach             |
    10/09 | Rahul Manna            |
    10/14 | Kaitlyn Anderson       | Career readiness in data science
