@@ -5,7 +5,8 @@ book:
   title: "Introduction to Data Science"
   subtitle: "STAT 3255/5255 @ UConn, Fall 2024"
   author:
-    - name: "Jun Yan and Students in Fall 2024"
+    - name: "Jun Yan and Students in Fall 2024:"
+    - name: Zachary Blanchard, Sara Clokey
   date: today
 
   sidebar:
