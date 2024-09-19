@@ -1,14 +1,170 @@
-# Communication
+# Communication in Data Science
 
-This chapter is written by Sara.
+This chapter was written by Sara Clokey.
 
-## Intro
+## Introduction
 
-My name is Sara and I major in Statistics and Communication.
+Hi! My name is Sara, and I am a junior double majoring in Applied Data 
+Analysis and Communication. The topic of my presentation today, 
+Communication in Data Science, combines my academic and professional
+interests while underscoring the importance of 'soft skills' like public
+speaking, for example, within STEM fields like data science.
 
-## Something
+## Importance & Application of Communication
+Data science as a career path has exploded within the last decade. Some 
+fields that offer data science positions include:
 
-## Something else
++ Finance
++ Healthcare
++ Media production
++ Sports
++ Banking
++ Insurance
++ E-Commerce
++ Energy
++ Manufacturing
++ Transportation
++ Construction
 
+Because data science is applicable in so many industries, it is essential that
+data scientists have the skills and experience to communicate their work with
+others who do not have the same technical education. As analyzed by 
+@zinovy2018skills, job listings within the field of data science often include
+qualifications like "strong interpersonal skills" and "demonstrated presentation
+and communication ability," highlighting the pervasive need for this skill set.
 
-## References
+Within these industries, collaboration and teamwork are often at the forefront.
+Inexperience with data should not prevent your colleagues from being able to
+contribute to shared projects, and strong communication skills can mitigate 
+this challenge!
+
+## General Communication Skills
+
+### Verbal Communication Skills
+
+Verbal Communication: "The use of sounds and language to relay a message"
+(@fer2018verbal)
+
+Verbal Communication Tips:
+
++ Make a good first impression
++ Use appropriate language (jargon, metaphors)
++ Prioritize brevity
++ Practice beforehand
++ Allow room for questions
+
+### Non-Verbal Communication Skills
+
+Non-Verbal Communication: "Information, emotion, a movement that is expressed
+without words and without the help of language" (@grillo2022nonverbal)
+
+Non-Verbal Communication Tips:
+
++ Utilize vocal variety (pitch, rate, volume)
++ Avoid distracting hand and body movements
++ Make eye contact
++ Pay attention to proxemics
+
+### Visual Communication Skills
+
+Visual Communication: "Any communication that employs one’s sense of 
+sight to deliver a message without the usage of any verbal cues" 
+(@fayaz2022visual)
+
+Visual Communication Tips:
+
++ Prioritize clarity
++ Use proper labeling and scaling
++ Create visual contrast (colors, shapes, fonts)
++ Choose the most appropriate visual representation
+
+### Written Communication Skills
+
+Written Communication: "Any form of
+communication which is written and documented from
+the sender to the receiver" (@prabavathi2018written)
+
+Written Communication Tips:
+
++ Clearly state your goal with a thesis statement
++ Maintain professionalism (contractions, slang)
++ Proofread and utilize peer editing
++ Follow a specific structure
++ Balance concision with analysis
+
+## Communication in Data Science
+
+Often, data scientists must communicate "technical
+conclusions to non-technical members" (@pragmatic2024communication); this may be colleagues
+in other departments, like marketing, or supervisors at the managerial level. Here are some
+tips for effectively communicating project results specifically in the field of data science.
+
+### Identify your Audience
+Who are you sharing information with? Is it a room of data scientists like this
+one? Is it full of students who want to learn about data science? Is it a group
+of executives looking to make a funding decision?
+
++ Consider the context and prior knowledge (technical jargon)
++ Consider the motivation for listening
+
+### Utilize Data Visualization
+One of the most effective methods of communicating results in data science,
+especially to those without technical coding knowledge, is data visualization
+techniques (@vandemeulebroecke2019quantitative). Python uses the package 'matplotlib' to
+produce these visualizations, including:
+
++ line plots
++ bar plots
++ box plots
++ histograms
++ heat maps
++ pie charts
+
+These visualizations allow complex statistical projects to be simplified 
+into a single graphic, focusing on project results and implications
+rather than methodology. Ensure that data visualization techniques are free of
+technical jargon and clearly label all visual aspects.
+
+### Focus on  Data Communication Skills
+The following skill sets highlight technical data communication that will
+be more common in projects with other data scientists to communicate
+about your data.
+
++ Coding communication: Python, R, Julia, JavaScript, SQL, etc.
++ Analysis communication: creating a storyline, descriptive versus 
+diagnostic versus predictive analytics, problem identification
++ Data management: collection, cleaning/transformation, storage
++ Data visualization
+
+### Give Space for Questions and Feedback
+Within professional spaces, data scientists should provide time 
+for their clients, supervisors, and colleagues to ask questions about their
+work and subsequent findings. 
+
++ Pause for questions throughout the presentation
++ Offer contact information for continued collaboration
++ Provide a structure for anonymous feedback
++ Schedule follow-ups if necessary
+
+Teamwork is often at the heart of data science projects within industries, and 
+open communication makes this teamwork run much more smoothly.
+
+## Further Learning
+While pursuing degrees in the data science field, consider taking Communication
+courses at UConn that can bolster your understanding and skill set. Some applicable
+communication courses include:
+
++ COMM 2100: Professional Communication
++ COMM 3110: Organizational Communication
++ COMM 3430: Science Communication
++ COMM 5655: Human-Computer Interaction
++ COMM 5900: Professional Communication
+
+Effective communication also requires practice. Here are some ways to practice 
+these skills while earning your degree:
+
++ Fully participate in group projects
++ Seek presentation opportunities (class, conferences, etc.)
++ Explain data science coursework to peers outside of your program
++ Explore internship opportunities that involve collaboration with
+other departments
