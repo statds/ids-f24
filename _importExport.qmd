@@ -1,0 +1,232 @@
+## Import/Export Data
+
+This section was written by Deyu Xu, a MS student in Statistics
+at the time.
+
+### Frame
++ import files in common formats: CSV/Excel/TXT
++ import data from other sowtware
++ view data information
++ find null values
++ export data as CSV file
+
+### Package Pandas
+#### Import data based on Package Pandas
++ install the common version of Package Pandas
+```python
+# install the common version of pandas
+pip install pandas
+```
++ install the latest version of Package Pandas
+```python
+# install the latest version of pandas
+pip install --upgrade pandas
+```
++ The different versions of Pandas will influence the specific code when we are importing Excel files.
+
+### import files in common formats: CSV/Excel/TXT
+#### CSV files
++ We can use the following code to import the CSV file
+```{python}
+# use package pandas
+import pandas as pd
+# choose the function "read_csv"
+df_csv = pd.read_csv("311_Service_request.csv")
+# show the top 5 rows of data
+print(df_csv.head(5))
+```
+
+#### Excel files
++ We can use the following code to import the CSV file if you have installed the latest version of Pandas
+```{python}
+import pandas as pd
+# choose the function "read_excel"
+df_excel = pd.read_excel("311_Service_request.xlsx", engine = "openpyxl")
+# print top 2 rows of the data
+print(df_excel.head(2))
+```
+
+#### Excel files
++ The following code is for the common(older) versions of Pandas
+```python
+df_excel = pd.read_excel("311_Service_request.xlsx", engine = "openpyxl", encoding = "utf-8")
+```
++ The key is adding the correct encoding
+
+#### txt files
++ The fisrt step is to determine the correct encoding of the file and the following code will help us get the correct encoding
+```{python}
+import chardet
+# keyword, with: Excute "open" first and the executed file object is assigned to variable"f"
+with open("311_Service_request.txt", "rb") as f:
+    raw_data = f.read()
+    result = chardet.detect(raw_data) # Accepts one argument，a non-unicode string and returns a dictionary containing the automatically detected character encoding and a confidence level from 0 to 1.
+    encoding = result["encoding"]
+    print(str(encoding))
+```
+
+#### txt file
++ The next step is to import the txt file with its correct encoding and the code is following
+```{python}
+import pandas as pd
+# choose the function "read_table"
+df_txt = pd.read_table("311_Service_request.txt", encoding = "utf-16")
+# test the default of the fuchtion "head" 
+print(df_txt.head())
+```
+
+
+### Import the data from other software
+#### sas7bdat files
++ Package: sas7bdat, Function: SAS7BDAT
+```python
+import sas7bdat
+from sas7bdat import SAS7BDAT
+```
+#### rdata files(the suffix of this file is .RData)
++ Package: pyreadr, Function: read_r
+```python
+import pyreadr as pr
+from pyreadr import read_r
+```
+#### stata data(the suffix of this file is .dta)
++ Package: pandas, Function: read_stata
+```python
+from pandas import read_stata
+```
+### Import the data from other software
+#### spss data(the suffix of this file is .sav)
++ It is necessary for us to get the clear understanding before importing spss data because different kinds of the data need us to use different packages and different functions
+
+##### numeric variables
++ Package: pandas, Function: read_spss
+```python
+# variables are numeric values
+import pandas 
+from pandas import read_spss
+```
+
+##### text variables
++ Package: pyreadstat, Function: read_sav
+```python
+# variables are text
+import pyreadstat 
+from pyreadstat import read_sav
+```
+
+#### Matlab files
++ Package: spicy.io, Function: loadmat
+```python
+import spicy.io
+from spicy.io import loadmat
+```
+
+#### HDF5 files
++ Package: h5py, Function: File
+```python
+import h5py
+from h5py import File
+```
+
+#### Import multiple files and merge them into a new file
++ The following cold helps us to import multiple files at the same time and produce a merged file
+```{python}
+# use the package globe and the package pandas
+import glob 
+import pandas as pd
+# Set the file path
+path = "/Users/xudeyu/Downloads/data"
+# Merge multiple arrays
+all_files = glob.glob(path+"/*.csv")
+# create a list to store the data
+all_data = []
+# use the cycle to import all of the csv files
+for filename in all_files:
+    df = pd.read_csv(filename, index_col=None, header=0)
+    all_data.append(df)
+# Combine multiple pandas objects into one along a fixed axis using some merging method
+data_merge = pd.concat(all_data, axis=0, ignore_index=True)
+print(data_merge.head(2))
+```
+
+### View data information
++ View data size/dimension
+```{python}
+df_csv.shape
+```
+
++ check the data type of each variable
+```{python}
+df_csv.dtypes
+```
+
+### View overall data information
++ View overall data information
+```{python}
+df_csv.info()
+```
+
+### View overall data information
++ View data description
+```{python}
+df_csv.describe()
+```
+
+### View overall data information
++ View names of columns
+```{python}
+df_csv.columns
+```
+
+### View overall data information
++ View the last 2 rows
+```{python}
+df_csv.tail(n = 2)
+```
+
+### View overall data information
++ Get unique values ​​of a column of data
+```{python}
+df_csv["Unique Key"].unique()
+```
+
++ Get the value of a column(without deduplication)
+```{python}
+df_csv["Unique Key"].values
+```
+
+### Find Null Values
++ Determine whether there are missing values ​​in the data columns
+```{python}
+df_csv.isnull().any(axis = 0) 
+```
+
+### Find Null Values
++ Determine whether there are missing values ​​in the data rows
+```{python}
+df_csv.isnull().any(axis = 1)
+```
+
+### Find Null Values
++ Locate the rows with missing values
+```{python}
+df_csv.loc[df_csv.isnull().any(axis = 1)]
+```
+
+### Find Null Values
++ The number of missing values ​​in each variable
+```{python}
+df_csv.isnull().sum(axis = 0)
+```
+
+### Export data as CSV file
++ Function: to_csv
++ Add the correct address where you prefer to store the data
+```{python}
+df_csv.to_csv("/Users/xudeyu/Downloads/data/311.csv")
+```
+### Sources
++ data sources:
++ [311_Service_request](https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9/about_data)
++ references:
++ [ids 24 spring](https://statds.github.io/ids-s24/)

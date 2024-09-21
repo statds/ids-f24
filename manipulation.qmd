@@ -1,0 +1,31 @@
+# Data Manipulation
+
+## Introduction
+
+Data manipulation is crucial for transforming raw data into a
+more analyzable format, essential for uncovering patterns and
+ensuring accurate analysis. This chapter introduces the core
+techniques for data manipulation in Python, utilizing the Pandas
+library, a cornerstone for data handling within Python's data
+science toolkit.
+
+
+Python's ecosystem is rich with libraries that facilitate not
+just data manipulation but comprehensive data analysis. Pandas,
+in particular, provides extensive functionality for data
+manipulation tasks including reading, cleaning, transforming,
+and summarizing data. Using real-world datasets, we will explore
+how to leverage Python for practical data manipulation tasks.
+
+
+By the end of this chapter, you will learn to:
+
+- Import/export data from/to diverse sources.
+- Clean and preprocess data efficiently.
+- Transform and aggregate data to derive insights.
+- Merge and concatenate datasets from various origins.
+- Analyze real-world datasets using these techniques.
+
+
+{{< include _importExport.qmd >}}
+
