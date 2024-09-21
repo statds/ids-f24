@@ -1,0 +1,292 @@
+---
+title: Homework4
+author: Deyu Xu
+format: pdf
+---
+# 8.1
+## read the data into a Pandas data frame
+```{python}
+# import the data
+import pandas as pd
+df = pd.read_csv("nyccrashes_2024w0630_by20240919.csv")
+```
+## Make sure that there are no null values in the "CRASH TIME" column
+```{python}
+df.isnull().any(axis = 0) 
+```
+
++ There are no null values in the "CRASH TIME" column
+
+## Make sure "CRASH TIME" column has been standardized to the "HH:MM" 24-hour format
+```{python}
+# Convert the "CRASH TIME" column to the "HH:MM" 24-hour format
+df["CRASH TIME"] = pd.to_datetime(df["CRASH TIME"], format="%H:%M", errors="coerce")
+df["CRASH TIME"].head()
+```
++ Standarlize the format of the "CRASH TIME" successfully
+
+# 8.2
++ Clean up the variabl names: convert to lower cases and replace spaces with underscores
+```{python}
+df.columns = df.columns.str.lower().str.replace(" ", "_")
+```
+
++ Check the results and beautify charts
+```{python}
+pd.set_option("display.max_columns", None)
+pd.set_option("display.width", 1000)
+first10 = df.head(10)
+# define the number of columns to display in each segment
+columns_each = 3
+# get the total number 
+total_num = len(first10.columns)
+# calculate the number of segments needed
+need_num = (total_num + columns_each -1) // columns_each
+#display
+segments = []
+for i in range(need_num):
+    start_col = i * columns_each
+    end_col = min(start_col + columns_each, total_num)
+    # select the subset of solumns for segment
+    subset_data = first10.iloc[:, start_col:end_col]
+    segments.append(subset_data)
+segments
+# the reference of the above code is from chatGPT
+```
+
++ it's obvious that the variable names have been cleaned 
+
+# 8.3
+## get the basic summary of missing percentage
+```{python}
+# calculate the precentage of missing values of each column
+missing_percentage = df.isnull().mean() * 100
+# store the column names and corresponding percentages
+missing_summary = pd.DataFrame({"column_name": df.columns, "missing_percentage": missing_percentage})
+# sort the summary by missing percentage in descending order
+missing_summary = missing_summary.sort_values(by="missing_percentage",ascending=False)
+print(missing_summary)
+```
+
+## get the basic summary of descriptive statistics for continuous variables
++ generate the descriptive statistics for continuous variables
+```{python}
+descriptive_stat = df.describe()
+```
+
++ print the result
+```{python}
+columns_each = 3
+total_num = len(descriptive_stat.columns)
+need_num = (total_num + columns_each -1) // columns_each
+segments = []
+for i in range(need_num):
+    start_col = i * columns_each
+    end_col = min(start_col + columns_each, total_num)
+    subset_data = descriptive_stat.iloc[:, start_col:end_col]
+    segments.append(subset_data)
+segments
+```
+
+## get the basic summary of frequency tables for discrete variables
++ create a basic summary of frequency tables for discrete variables
+```{python}
+# select discrete vairables
+discrete_variables = df.select_dtypes(include=["object", "category"])
+# generate requency table
+frequency_table = {col: discrete_variables[col].value_counts() for col in discrete_variables.columns}
+# create a summary of frequency table
+frequency_summary = pd.DataFrame({col: freq_table for col, freq_table in frequency_table.items()})
+```
+
++ print the result
+```{python}
+columns_each = 3
+total_num = len(frequency_summary.columns)
+need_num = (total_num + columns_each -1) // columns_each
+segments = []
+for i in range(need_num):
+    start_col = i * columns_each
+    end_col = min(start_col + columns_each, total_num)
+    subset_data = frequency_summary.iloc[:, start_col:end_col]
+    segments.append(subset_data)
+segments
+```
+
+# 8.4
+## Replace the invalid latitude and longitude with NA
+```{python}
+df["latitude"] = pd.to_numeric(df["latitude"], errors="coerce")
+df["longitude"] = pd.to_numeric(df["longitude"], errors="coerce")
+# valide range of latitude is between -90 and 90
+invalid_latitude = (df["latitude"] < -90) | (df["latitude"] > 90)
+# valide range of longitude is between -180 and 180
+invalid_longitude = (df["longitude"] < -180) | (df["longitude"] > 180)
+# replace invalid values with NA
+df.loc[invalid_latitude, "latitude"] = pd.NA
+df.loc[invalid_longitude, "longitude"] = pd.NA
+```
+
+## Check the result
+```{python}
+print(df[["latitude", "longitude"]])
+```
++ we have replaced the invalid values with NA
+
+# 8.5
+## Use the for loop to insert zip codes into a list
+```{python}
+zip_code = []
+for i in range(10001, 11698):
+    zip_code.append(i)
+# check the last 5 items
+print(zip_code[-5:])
+```
+
++ we have created the list of all the NYC zipcodes successfully
+## Replace the the values that are not legit NYC zip codes with NA
+```{python}
+df["zip_code"] = pd.to_numeric(df["zip_code"], errors="coerce")
+df.loc[~df["zip_code"].isin(zip_code), "zip_code"] = pd.NA
+```
+## Check the result
+```{python}
+df["zip_code"].head(10)
+```
+
++ we have replaced the values that are not legit NYC zip codes with NA
+
+# 8.6
+## Check the missing values
+```{python}
+missing_zip_code = df["zip_code"].isnull()
+missing_borough = df["borough"].isnull()
+```
+
+## Check whether they co-occur
+```{python}
+co_occur = (missing_zip_code & missing_borough).sum()
+```
+
+## Count the missing values
+```{python}
+missing_zip_code_num = missing_zip_code.sum()
+missing_borough_num = missing_borough.sum()
+```
+
+## Compare these three numbers
+```{python}
+co_occur, missing_zip_code_num, missing_borough_num
+```
+
++ we find that these three numbers are equal, which means that the missing zip codes and boroughs always co-occur
+
+# 8.7
+## Indentify missing zip codes and boroughs with valid latitude and longitude
+```{python}
+missing_zip_borough = df["zip_code"].isnull() & df["borough"].isnull()
+valid_geo_code = df["latitude"].notnull() & df["longitude"].notnull()
+# filter the data to get the relevent rows
+rows_need_fill = df[missing_zip_borough & valid_geo_code]
+print(rows_need_fill)
+```
+
+## Fill in the missing zip code and borough
+```{python}
+# Initialize Nominatim API
+from geopy.geocoders import Nominatim
+geolocator = Nominatim(user_agent="geoapiExercises")
+def reverse_geocode(lat, lon):
+    try:
+        location = geolocator.reverse((lat, lon), exactly_one=True)
+        address = location.raw['address']
+        zip_code = address.get('postcode')
+        borough = address.get('suburb') or address.get('neighbourhood')
+        return pd.Series([zip_code, borough])
+    except:
+        return pd.Series([None, None])
+# Apply reverse geocoding only to missing ZIP codes and boroughs
+df[['zip_code', 'borough']] = df.apply(
+    lambda row: reverse_geocode(row['latitude'], row['longitude']) if pd.isnull(row['zip_code']) or pd.isnull(row['borough']) else pd.Series([row['zip_code'], row['borough']]),
+    axis=1
+)
+# Save or inspect the updated DataFrame
+df.to_csv('/Users/xudeyu/Downloads/alter.csv', index=False)
+```
+
+
+# 8.8
+## Comclusions
++ The relust of the question depends on the format of ```location```. 
++ If the format of the ```location``` is a combination of ```latitude``` and ```longitude```, it is redundant.
++ If the format of the ```location``` is generated by ```latitude``` and ```longitude```, it is not redundant.
+
+# 8.9
+## Compare the frequency of crashes at midnight and that of the other time
+```{python}
+# convert the crash time to datetime for extracting the hour easily
+df["crash_time"] = pd.to_datetime(df["crash_time"], format="%H:%M", errors="coerce")
+# extract the hour
+df["crash_hour"] = df["crash_time"].dt.hour
+# calculate the frequency
+frequency_crash_hour = df["crash_hour"].value_counts().sort_index()
+# check the frequency at midnight
+crash_midnight = frequency_crash_hour.get(0, 0)
+frequency_crash_hour, crash_midnight
+```
+
+## Comclusions
++ There is not a matter of bad luck at exactly midnight.
++ The frequency of the crashes at mignight maybe influenced by import data imput errors.
+
+## Reason
++ The frequency of the midnight is notably higher compared to most other hours.
++ The frequency of midnight is significantly higher than the other time which is close to it, such as 23:00(67 crashes) and 1:00(68 crahes).
+
+# 8.10
+## Compare the summation
+```{python}
+# calculate the number of persons killed 
+# and the summations of the numbers of pedestrians, cyclist and motorists killed
+df["killed_sum"] = (df["number_of_pedestrians_killed"] 
++ df["number_of_cyclist_killed"] 
++ df["number_of_motorist_killed"])
+killed_compare = (df["killed_sum"] == df["number_of_persons_killed"]).all()
+# calculate the number of persons injured 
+# and the summations of the numbers of pedestrians, cyclist and motorists injured
+df["injured_sum"] = (df["number_of_pedestrians_injured"] 
++ df["number_of_cyclist_injured"] 
++ df["number_of_motorist_injured"])
+injured_compare = (df["injured_sum"] == df["number_of_persons_injured"]).all()
+killed_compare, injured_compare
+```
+
+## Conclusion
++ It is not redandunt because the the number of persons injured is not equla the summations of the numbers of pedestrians, cyclist and motorists injured.
+
+# 8.11
+## Check the whole frequency table 
+```{python}
+print(df["contributing_factor_vehicle_1"].value_counts())
+```
+
+## Convert lower case to uppercases and check the table
+```{python}
+df["contributing_factor_vehicle_1"] = df["contributing_factor_vehicle_1"].str.upper()
+print(df["contributing_factor_vehicle_1"].value_counts())
+```
+
+# 8.12
+## 1. Ehance the data completeness
++ lack of some zip codes and corresponding boroughs
+
+## 2. Evaluate the standard of the data usability
++ resolve the problem that the format of time is not inconsistent
++ provide the method of determining zip codede by corresponding latitude and longitude
+
+## 3.Evaluate the accuracy of the data
++ There is a large error rate for the frequency of crashes at midnight
+
+## 4.Try to keep the variable name format fixed
++ use lower cases 
++ use undersocres instead of space
