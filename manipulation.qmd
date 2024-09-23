@@ -31,3 +31,204 @@ By the end of this chapter, you will learn to:
 
 {{< include _sqlite.qmd >}}
 
+## NYC Crash Data
+
+Consider a subset of the NYC Crash Data, which contains all
+NYC motor vehicle collisions data with documentation from
+[NYC Open Data](https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95).
+We downloaded the crash data for the week of June 30, 2024,
+on September 16, 2024, in CSC format.
+```{python}
+import pandas as pd
+
+# Load the dataset
+file_path = 'data/nyccrashes_2024w0630_by20240916.csv'
+df = pd.read_csv(file_path)
+
+# Replace column names: convert to lowercase and replace spaces with underscores
+df.columns = df.columns.str.lower().str.replace(' ', '_')
+
+# Display the first few rows of the dataset to understand its structure
+df.head()
+```
+
+Now we can do some cleaning after a quick browse.
+```{python}
+# Replace invalid coordinates (latitude=0, longitude=0 or NaN) with NaN
+df.loc[(df['latitude'] == 0) & (df['longitude'] == 0), 
+       ['latitude', 'longitude']] = pd.NA
+df['latitude'] = df['latitude'].replace(0, pd.NA)
+df['longitude'] = df['longitude'].replace(0, pd.NA)
+
+# Longitude/latitude don't need double precision
+df['latitude'] = df['latitude'].astype('float32', errors='ignore')
+df['longitude'] = df['longitude'].astype('float32', errors='ignore')
+
+# Drop the redundant 'location' column
+df = df.drop(columns=['location'])
+
+# Converting 'crash_date' and 'crash_time' columns into a single datetime column
+df['crash_datetime'] = pd.to_datetime(df['crash_date'] + ' ' 
+                       + df['crash_time'], format='%m/%d/%Y %H:%M', errors='coerce')
+
+# Drop the original 'crash_date' and 'crash_time' columns
+df = df.drop(columns=['crash_date', 'crash_time'])
+```
+
+Are missing in zip code and borough always co-occur?
+```{python}
+# Check if missing values in 'zip_code' and 'borough' always co-occur
+# Count rows where both are missing
+missing_cooccur = df[['zip_code', 'borough']].isnull().all(axis=1).sum()
+# Count total missing in 'zip_code' and 'borough', respectively
+total_missing_zip_code = df['zip_code'].isnull().sum()
+total_missing_borough = df['borough'].isnull().sum()
+
+# If missing in both columns always co-occur, the number of missing
+# co-occurrences should be equal to the total missing in either column
+missing_cooccur, total_missing_zip_code, total_missing_borough
+```
+
+Are there cases where zip_code and borough are missing
+but the geo codes are not missing? If so, fill in `zip_code`
+and `borough` using the geo codes by reverse geocoding.
+
+First make sure `geopy` is installed.
+``` shell
+pip install geopy
+```
+
+Now we use model `Nominatim` in package `geopy` to reverse geocode.
+```{python}
+from geopy.geocoders import Nominatim
+import time
+
+# Initialize the geocoder; the `user_agent` is your identifier 
+# when using the service. Be mindful not to crash the server
+# by unlimited number of queries, especially invalid code.
+geolocator = Nominatim(user_agent="jyGeopyTry")
+```
+
+We write a function to do the reverse geocoding given
+lattitude and longitude.
+```{python}
+# Function to fill missing zip_code
+def get_zip_code(latitude, longitude):
+    try:
+        location = geolocator.reverse((latitude, longitude), timeout=10)
+        if location:
+            address = location.raw['address']
+            zip_code = address.get('postcode', None)
+            return zip_code
+        else:
+            return None
+    except Exception as e:
+        print(f"Error: {e} for coordinates {latitude}, {longitude}")
+        return None
+    finally:
+        time.sleep(1)  # Delay to avoid overwhelming the service
+```
+
+Let's try it out:
+```{python}
+# Example usage
+latitude = 40.730610
+longitude = -73.935242
+zip_code = get_zip_code(latitude, longitude)
+```
+
+The function `get_zip_code` can then be applied to
+rows where zip code is missing but geocodes are not to
+fill the missing zip code.
+
+Once zip code is known, figuring out `burough` is simple
+because valid zip codes from each borough are known.
+
+
+## Cross-platform Data Format `Arrow`
+
+
+The CSV format (and related formats like TSV - tab-separated values)
+for data tables is ubiquitous, convenient, and can be read or written
+by many different data analysis environments, including spreadsheets.
+An advantage of the textual representation of the data in a CSV file 
+is that the entire data table, or portions of it, can be previewed
+in a text editor. However, the textual representation can be ambiguous
+and inconsistent. The format of a particular column: Boolean, integer,
+floating-point, text, factor, etc. must be inferred from text
+representation, often at the expense of reading the entire file
+before these inferences can be made. Experienced data scientists are aware
+that a substantial part of an analysis or report generation is often
+the "data cleaning" involved in preparing the data for analysis. This
+can be an open-ended task --- it required numerous trial-and-error
+iterations to create the list of different missing data
+representations we use for the sample CSV file and even now we are
+not sure we have them all.
+
+To read and export data efficiently, leveraging the Apache `Arrow`
+library can significantly improve performance and storage efficiency,
+especially with large datasets. The IPC (Inter-Process Communication)
+file format in the context of Apache Arrow is a key component for
+efficiently sharing data between different processes, potentially
+written in different programming languages. Arrow's IPC mechanism is
+designed around two main file formats:
+
++ Stream Format: For sending an arbitrary length sequence of Arrow
+  record batches (tables). The stream format is useful for real-time
+  data exchange where the size of the data is not known upfront and can
+  grow indefinitely.
++ File (or Feather) Format: Optimized for storage and memory-mapped
+  access, allowing for fast random access to different sections of the
+  data. This format is ideal for scenarios where the entire dataset is
+  available upfront and can be stored in a file system for repeated
+  reads and writes.
+
+
+Apache Arrow provides a columnar
+memory format for flat and hierarchical data, optimized for efficient
+data analytics. It can be used in Python through the `pyarrow`
+package. Here's how you can use Arrow to read, manipulate, and export
+data, including a demonstration of storage savings.
+
+
+First, ensure you have `pyarrow` installed on your computer (and
+preferrably, in your current virtual environment):
+``` shell
+pip install pyarrow
+```
+
+Feather is a fast, lightweight, and easy-to-use binary file format for
+storing data frames, optimized for speed and efficiency, particularly
+for IPC and data sharing between Python and R or Julia.
+
+```{python}
+df.to_feather('data/nyccrashes_cleaned.feather')
+```
+
+Read the feather file back in:
+```{python}
+dff = pd.read_feather("data/nyccrashes_cleaned.feather")
+dff.shape
+```
+
+
+
+```{python}
+import os
+
+# File paths
+csv_file = 'data/nyccrashes_2024w0630_by20240916.csv'
+feather_file = 'data/nyccrashes_cleaned.feather'
+
+# Get file sizes in bytes
+csv_size = os.path.getsize(csv_file)
+feather_size = os.path.getsize(feather_file)
+
+# Convert bytes to a more readable format (e.g., MB)
+csv_size_mb = csv_size / (1024 * 1024)
+feather_size_mb = feather_size / (1024 * 1024)
+
+# Print the file sizes
+print(f"CSV file size: {csv_size_mb:.2f} MB")
+print(f"Feather file size: {feather_size_mb:.2f} MB")
+```
