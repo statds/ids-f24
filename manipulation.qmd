@@ -203,17 +203,8 @@ for IPC and data sharing between Python and R or Julia.
 
 ```{python}
 df.to_feather('data/nyccrashes_cleaned.feather')
-```
 
-Read the feather file back in:
-```{python}
-dff = pd.read_feather("data/nyccrashes_cleaned.feather")
-dff.shape
-```
-
-
-
-```{python}
+# Compare the file sizes of the feather format and the CSV format
 import os
 
 # File paths
@@ -232,3 +223,128 @@ feather_size_mb = feather_size / (1024 * 1024)
 print(f"CSV file size: {csv_size_mb:.2f} MB")
 print(f"Feather file size: {feather_size_mb:.2f} MB")
 ```
+
+Read the feather file back in:
+```{python}
+dff = pd.read_feather("data/nyccrashes_cleaned.feather")
+dff.shape
+```
+
+## Using the Census Data
+
+The [US Census](data.census.gov) provides a lot of useful data
+that could be merged with the NYC crash data for further analytics.
+
+
+First, ensure the DataFrame (df) is ready for merging with census
+data. Specifically, check that the `incident_zip` column is clean
+and consistent.
+and consistent.
+```{python}
+print(df['zip_code'].isnull().sum())
+# Standardize to 5-digit codes, if necessary
+df['zip_code'] = df['zip_code'].astype(str).str.zfill(5) 
+```
+
+
+
+We can use the `uszipcode` package to get basic demographic data
+for each zip code. For more detailed or specific census data, 
+using the `CensusData` package or direct API calls to the Census
+Bureau's API.
+
+
+The `uszipcode` package provides a range of information about
+ZIP codes in the United States. When you query a ZIP code using
+`uszipcode`, you can access various attributes related to
+demographic data, housing, geographic location, and more. Here
+are some of the key variables available at the ZIP code level:
+
+
+**emographic Information**
+
++ `population`: The total population.
++ `population_density`: The population per square kilometer.
++ `housing_units`: The total number of housing units.
++ `occupied_housing_units`: The number of occupied housing units.
++ `median_home_value`: The median value of homes.
++ `median_household_income`: The median household income.
++ `age_distribution`: A breakdown of the population by age.
+
+**Geographic Information**
+
+
++ `zipcode`: The ZIP code.
++ `zipcode_type`: The type of ZIP code (e.g., Standard, PO Box).
++ `major_city`: The major city associated with the ZIP code.
++ `post_office_city`: The city name recognized by the U.S. Postal Service.
++ `common_city_list`: A list of common city names for the ZIP code.
++ `county`: The county in which the ZIP code is located.
++ `state`: The state in which the ZIP code is located.
++ `lat`: The latitude of the approximate center of the ZIP code.
++ `lng`: The longitude of the approximate center of the ZIP code.
++ `timezone`: The timezone of the ZIP code.
+
+**Economic and Housing Data**
+
++ `land_area_in_sqmi`: The land area in square miles.
++ `water_area_in_sqmi`: The water area in square miles.
++ `occupancy_rate`: The rate of occupancy for housing units.
++ `median_age`: The median age of the population.
+
+
+Install the `uszipcode` package into the current virtual environment
+by `pip install uszipcode`. 
+
+Now let's work on the rodent sightings data.
+
+We will first clean the `zip_code` column to ensure it only
+contains valid ZIP codes. Then, we will use a vectorized
+approach to fetch the required data for each unique zip code
+and merge this information back into the original `DataFrame`.
+
+```{python}
+# Remove rows where 'incident_zip' is missing or not a valid ZIP code format
+valid_zip_df = df.dropna(subset=['zip_code']).copy()
+valid_zip_df['zip_code'] = valid_zip_df['zip_code'].astype(str).str.zfill(5)
+unique_zips = valid_zip_df['zip_code'].unique()
+```
+
+Since `uszipcode` doesn't inherently support vectorized operations
+for multiple ZIP code queries, we'll optimize the process by
+querying each unique ZIP code once, then merging the results
+with the original `DataFrame`. This approach minimizes redundant
+queries for ZIP codes that appear multiple times.
+
+```{python}
+from uszipcode import SearchEngine
+
+# Initialize the SearchEngine
+search = SearchEngine()
+
+# Fetch median home value and median household income for each unique ZIP code
+zip_data = []
+for zip_code in unique_zips:
+    result = search.by_zipcode(zip_code)
+    if result:  # Check if the result is not None
+        zip_data.append({
+            "zip_code": zip_code,
+            "median_home_value": result.median_home_value,
+            "median_household_income": result.median_household_income
+        })
+    else:  # Handle the case where the result is None
+        zip_data.append({
+            "zip_code": zip_code,
+            "median_home_value": None,
+            "median_household_income": None
+        })
+
+# Convert to DataFrame
+zip_info_df = pd.DataFrame(zip_data)
+
+# Merge this info back into the original DataFrame based on 'zip_code'
+merged_df = pd.merge(valid_zip_df, zip_info_df, how="left", on="zip_code")
+
+merged_df.columns
+```
+
