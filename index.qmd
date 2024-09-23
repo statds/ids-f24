@@ -245,7 +245,7 @@ Please use the following table to sign up.
    11/11 | Aansh Jha              |
    11/11 | Owen Babiec            |
    11/13 | Stef Baptista          |
-   11/13 | Mohammad Parvez        |
+   11/13 | Mohammad Parvez        | Developing a Python package
 
 
 ### Final Project Presentation Schedule
