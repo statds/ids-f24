@@ -239,7 +239,7 @@ Please use the following table to sign up.
    10/21 | Jaden Astle            |
    10/23 | Olivia Kashalapov      |
    10/28 | Emily Borowski         | Random Forest
-   10/30 | Qianruo Tan            |
+   10/30 | Qianruo Tan            | Reinforcement Learning
    11/04 | Melanie Desroches      |
    11/06 | Aditya Paricharak      |
    11/11 | Aansh Jha              |
