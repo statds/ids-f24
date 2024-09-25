@@ -261,7 +261,7 @@ demographic data, housing, geographic location, and more. Here
 are some of the key variables available at the ZIP code level:
 
 
-**emographic Information**
+**Demographic Information**
 
 + `population`: The total population.
 + `population_density`: The population per square kilometer.
@@ -347,4 +347,3 @@ merged_df = pd.merge(valid_zip_df, zip_info_df, how="left", on="zip_code")
 
 merged_df.columns
 ```
-
