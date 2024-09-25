@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>importexport</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="_importExport_files/libs/clipboard/clipboard.min.js"></script>
+<script src="_importExport_files/libs/quarto-html/quarto.js"></script>
+<script src="_importExport_files/libs/quarto-html/popper.min.js"></script>
+<script src="_importExport_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="_importExport_files/libs/quarto-html/anchor.min.js"></script>
+<link href="_importExport_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="_importExport_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="_importExport_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="_importExport_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="_importExport_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Import/Export Data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This section was written by Deyu Xu, a MS student in Statistics at the time.</p>
+<section id="frame" class="level3">
+<h3 class="anchored" data-anchor-id="frame">Frame</h3>
+<ul>
+<li>import files in common formats: CSV/Excel/TXT</li>
+<li>import data from other sowtware</li>
+<li>view data information</li>
+<li>find null values</li>
+<li>export data as CSV file</li>
+</ul>
+</section>
+<section id="package-pandas" class="level3">
+<h3 class="anchored" data-anchor-id="package-pandas">Package Pandas</h3>
+<section id="import-data-based-on-package-pandas" class="level4">
+<h4 class="anchored" data-anchor-id="import-data-based-on-package-pandas">Import data based on Package Pandas</h4>
+<ul>
+<li>install the common version of Package Pandas</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install the common version of pandas</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pip install pandas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>install the latest version of Package Pandas</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install the latest version of pandas</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pip install <span class="op">--</span>upgrade pandas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>The different versions of Pandas will influence the specific code when we are importing Excel files.</li>
+</ul>
+</section>
+</section>
+<section id="import-files-in-common-formats-csvexceltxt" class="level3">
+<h3 class="anchored" data-anchor-id="import-files-in-common-formats-csvexceltxt">import files in common formats: CSV/Excel/TXT</h3>
+<section id="csv-files" class="level4">
+<h4 class="anchored" data-anchor-id="csv-files">CSV files</h4>
+<ul>
+<li>We can use the following code to import the CSV file</li>
+</ul>
+<div id="fd64c821" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use package pandas</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># choose the function "read_csv"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"311_Service_request.csv"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># show the top 5 rows of data</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_csv.head(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Unique Key            Created Date             Closed Date Agency  \
+0    62291042  09/01/2024 12:00:00 AM  09/01/2024 12:20:58 AM   NYPD   
+1    62292550  09/01/2024 12:00:05 AM  09/01/2024 12:18:16 AM   NYPD   
+2    62288880  09/01/2024 12:00:23 AM  09/01/2024 12:41:56 AM   NYPD   
+3    62289166  09/01/2024 12:00:26 AM  09/01/2024 04:59:51 AM   NYPD   
+4    62287939  09/01/2024 12:00:27 AM  09/01/2024 05:44:11 AM   NYPD   
+
+                       Agency Name           Complaint Type  \
+0  New York City Police Department      Noise - Residential   
+1  New York City Police Department  Noise - Street/Sidewalk   
+2  New York City Police Department  Noise - Street/Sidewalk   
+3  New York City Police Department      Noise - Residential   
+4  New York City Police Department          Illegal Parking   
+
+                     Descriptor               Location Type  Incident Zip  \
+0              Loud Music/Party  Residential Building/House       11413.0   
+1              Loud Music/Party             Street/Sidewalk       11206.0   
+2              Loud Music/Party             Street/Sidewalk       11691.0   
+3              Loud Music/Party  Residential Building/House       11372.0   
+4  Commercial Overnight Parking             Street/Sidewalk       11356.0   
+
+        Incident Address  ... Vehicle Type Taxi Company Borough  \
+0      135-41 223 STREET  ...          NaN                  NaN   
+1     27 TEN EYCK STREET  ...          NaN                  NaN   
+2  136 BEACH   37 STREET  ...          NaN                  NaN   
+3        33-21 89 STREET  ...          NaN                  NaN   
+4       22-11 126 STREET  ...          NaN                  NaN   
+
+  Taxi Pick Up Location Bridge Highway Name Bridge Highway Direction  \
+0                   NaN                 NaN                      NaN   
+1                   NaN                 NaN                      NaN   
+2                   NaN                 NaN                      NaN   
+3                   NaN                 NaN                      NaN   
+4                   NaN                 NaN                      NaN   
+
+  Road Ramp Bridge Highway Segment   Latitude  Longitude  \
+0       NaN                    NaN  40.675391 -73.747948   
+1       NaN                    NaN  40.709636 -73.949668   
+2       NaN                    NaN  40.592858 -73.769111   
+3       NaN                    NaN  40.755519 -73.878719   
+4       NaN                    NaN  40.779810 -73.842408   
+
+                                   Location  
+0    (40.6753906302629, -73.74794760083083)  
+1     (40.7096359534875, -73.9496682910634)  
+2  (40.592857828381014, -73.76911066502025)  
+3   (40.75551932004531, -73.87871856652497)  
+4   (40.77981027677071, -73.84240765667371)  
+
+[5 rows x 41 columns]</code></pre>
+</div>
+</div>
+</section>
+<section id="excel-files" class="level4">
+<h4 class="anchored" data-anchor-id="excel-files">Excel files</h4>
+<ul>
+<li>We can use the following code to import the CSV file if you have installed the latest version of Pandas</li>
+</ul>
+<div id="539dfb2e" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># choose the function "read_excel"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df_excel <span class="op">=</span> pd.read_excel(<span class="st">"311_Service_request.xlsx"</span>, engine <span class="op">=</span> <span class="st">"openpyxl"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># print top 2 rows of the data</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_excel.head(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Unique Key            Created Date             Closed Date Agency  \
+0    62291042  09/01/2024 12:00:00 AM  09/01/2024 12:20:58 AM   NYPD   
+1    62292550  09/01/2024 12:00:05 AM  09/01/2024 12:18:16 AM   NYPD   
+
+                       Agency Name           Complaint Type        Descriptor  \
+0  New York City Police Department      Noise - Residential  Loud Music/Party   
+1  New York City Police Department  Noise - Street/Sidewalk  Loud Music/Party   
+
+                Location Type  Incident Zip    Incident Address  ...  \
+0  Residential Building/House       11413.0   135-41 223 STREET  ...   
+1             Street/Sidewalk       11206.0  27 TEN EYCK STREET  ...   
+
+  Vehicle Type Taxi Company Borough Taxi Pick Up Location Bridge Highway Name  \
+0          NaN                  NaN                   NaN                 NaN   
+1          NaN                  NaN                   NaN                 NaN   
+
+  Bridge Highway Direction Road Ramp Bridge Highway Segment   Latitude  \
+0                      NaN       NaN                    NaN  40.675391   
+1                      NaN       NaN                    NaN  40.709636   
+
+   Longitude                                Location  
+0 -73.747948  (40.6753906302629, -73.74794760083083)  
+1 -73.949668   (40.7096359534875, -73.9496682910634)  
+
+[2 rows x 41 columns]</code></pre>
+</div>
+</div>
+</section>
+<section id="excel-files-1" class="level4">
+<h4 class="anchored" data-anchor-id="excel-files-1">Excel files</h4>
+<ul>
+<li>The following code is for the common(older) versions of Pandas</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_excel <span class="op">=</span> pd.read_excel(<span class="st">"311_Service_request.xlsx"</span>, engine <span class="op">=</span> <span class="st">"openpyxl"</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>The key is adding the correct encoding</li>
+</ul>
+</section>
+<section id="txt-files" class="level4">
+<h4 class="anchored" data-anchor-id="txt-files">txt files</h4>
+<ul>
+<li>The fisrt step is to determine the correct encoding of the file and the following code will help us get the correct encoding</li>
+</ul>
+<div id="8ade3ed9" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chardet</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># keyword, with: Excute "open" first and the executed file object is assigned to variable"f"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"311_Service_request.txt"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    raw_data <span class="op">=</span> f.read()</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> chardet.detect(raw_data) <span class="co"># Accepts one argument，a non-unicode string and returns a dictionary containing the automatically detected character encoding and a confidence level from 0 to 1.</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    encoding <span class="op">=</span> result[<span class="st">"encoding"</span>]</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">str</span>(encoding))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>UTF-16</code></pre>
+</div>
+</div>
+</section>
+<section id="txt-file" class="level4">
+<h4 class="anchored" data-anchor-id="txt-file">txt file</h4>
+<ul>
+<li>The next step is to import the txt file with its correct encoding and the code is following</li>
+</ul>
+<div id="9573900d" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># choose the function "read_table"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_txt <span class="op">=</span> pd.read_table(<span class="st">"311_Service_request.txt"</span>, encoding <span class="op">=</span> <span class="st">"utf-16"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># test the default of the fuchtion "head" </span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_txt.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Unique Key            Created Date             Closed Date Agency  \
+0    62291042  09/01/2024 12:00:00 AM  09/01/2024 12:20:58 AM   NYPD   
+1    62292550  09/01/2024 12:00:05 AM  09/01/2024 12:18:16 AM   NYPD   
+2    62288880  09/01/2024 12:00:23 AM  09/01/2024 12:41:56 AM   NYPD   
+3    62289166  09/01/2024 12:00:26 AM  09/01/2024 04:59:51 AM   NYPD   
+4    62287939  09/01/2024 12:00:27 AM  09/01/2024 05:44:11 AM   NYPD   
+
+                       Agency Name           Complaint Type  \
+0  New York City Police Department      Noise - Residential   
+1  New York City Police Department  Noise - Street/Sidewalk   
+2  New York City Police Department  Noise - Street/Sidewalk   
+3  New York City Police Department      Noise - Residential   
+4  New York City Police Department          Illegal Parking   
+
+                     Descriptor               Location Type  Incident Zip  \
+0              Loud Music/Party  Residential Building/House       11413.0   
+1              Loud Music/Party             Street/Sidewalk       11206.0   
+2              Loud Music/Party             Street/Sidewalk       11691.0   
+3              Loud Music/Party  Residential Building/House       11372.0   
+4  Commercial Overnight Parking             Street/Sidewalk       11356.0   
+
+        Incident Address  ... Vehicle Type Taxi Company Borough  \
+0      135-41 223 STREET  ...          NaN                  NaN   
+1     27 TEN EYCK STREET  ...          NaN                  NaN   
+2  136 BEACH   37 STREET  ...          NaN                  NaN   
+3        33-21 89 STREET  ...          NaN                  NaN   
+4       22-11 126 STREET  ...          NaN                  NaN   
+
+  Taxi Pick Up Location Bridge Highway Name Bridge Highway Direction  \
+0                   NaN                 NaN                      NaN   
+1                   NaN                 NaN                      NaN   
+2                   NaN                 NaN                      NaN   
+3                   NaN                 NaN                      NaN   
+4                   NaN                 NaN                      NaN   
+
+  Road Ramp Bridge Highway Segment   Latitude  Longitude  \
+0       NaN                    NaN  40.675391 -73.747948   
+1       NaN                    NaN  40.709636 -73.949668   
+2       NaN                    NaN  40.592858 -73.769111   
+3       NaN                    NaN  40.755519 -73.878719   
+4       NaN                    NaN  40.779810 -73.842408   
+
+                                   Location  
+0    (40.6753906302629, -73.74794760083083)  
+1     (40.7096359534875, -73.9496682910634)  
+2  (40.592857828381014, -73.76911066502025)  
+3   (40.75551932004531, -73.87871856652497)  
+4   (40.77981027677071, -73.84240765667371)  
+
+[5 rows x 41 columns]</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="import-the-data-from-other-software" class="level3">
+<h3 class="anchored" data-anchor-id="import-the-data-from-other-software">Import the data from other software</h3>
+<section id="sas7bdat-files" class="level4">
+<h4 class="anchored" data-anchor-id="sas7bdat-files">sas7bdat files</h4>
+<ul>
+<li>Package: sas7bdat, Function: SAS7BDAT</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sas7bdat</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sas7bdat <span class="im">import</span> SAS7BDAT</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="rdata-filesthe-suffix-of-this-file-is-.rdata" class="level4">
+<h4 class="anchored" data-anchor-id="rdata-filesthe-suffix-of-this-file-is-.rdata">rdata files(the suffix of this file is .RData)</h4>
+<ul>
+<li>Package: pyreadr, Function: read_r</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadr <span class="im">as</span> pr</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyreadr <span class="im">import</span> read_r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="stata-datathe-suffix-of-this-file-is-.dta" class="level4">
+<h4 class="anchored" data-anchor-id="stata-datathe-suffix-of-this-file-is-.dta">stata data(the suffix of this file is .dta)</h4>
+<ul>
+<li>Package: pandas, Function: read_stata</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandas <span class="im">import</span> read_stata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="import-the-data-from-other-software-1" class="level3">
+<h3 class="anchored" data-anchor-id="import-the-data-from-other-software-1">Import the data from other software</h3>
+<section id="spss-datathe-suffix-of-this-file-is-.sav" class="level4">
+<h4 class="anchored" data-anchor-id="spss-datathe-suffix-of-this-file-is-.sav">spss data(the suffix of this file is .sav)</h4>
+<ul>
+<li>It is necessary for us to get the clear understanding before importing spss data because different kinds of the data need us to use different packages and different functions</li>
+</ul>
+<section id="numeric-variables" class="level5">
+<h5 class="anchored" data-anchor-id="numeric-variables">numeric variables</h5>
+<ul>
+<li>Package: pandas, Function: read_spss</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># variables are numeric values</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandas <span class="im">import</span> read_spss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="text-variables" class="level5">
+<h5 class="anchored" data-anchor-id="text-variables">text variables</h5>
+<ul>
+<li>Package: pyreadstat, Function: read_sav</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># variables are text</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyreadstat <span class="im">import</span> read_sav</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="matlab-files" class="level4">
+<h4 class="anchored" data-anchor-id="matlab-files">Matlab files</h4>
+<ul>
+<li>Package: spicy.io, Function: loadmat</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spicy.io</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spicy.io <span class="im">import</span> loadmat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="hdf5-files" class="level4">
+<h4 class="anchored" data-anchor-id="hdf5-files">HDF5 files</h4>
+<ul>
+<li>Package: h5py, Function: File</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> h5py</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> h5py <span class="im">import</span> File</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="import-multiple-files-and-merge-them-into-a-new-file" class="level4">
+<h4 class="anchored" data-anchor-id="import-multiple-files-and-merge-them-into-a-new-file">Import multiple files and merge them into a new file</h4>
+<ul>
+<li>The following cold helps us to import multiple files at the same time and produce a merged file</li>
+</ul>
+<div id="467a50f4" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use the package globe and the package pandas</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the file path</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">"/Users/xudeyu/Downloads/data"</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge multiple arrays</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>all_files <span class="op">=</span> glob.glob(path<span class="op">+</span><span class="st">"/*.csv"</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># create a list to store the data</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>all_data <span class="op">=</span> []</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># use the cycle to import all of the csv files</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> filename <span class="kw">in</span> all_files:</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(filename, index_col<span class="op">=</span><span class="va">None</span>, header<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    all_data.append(df)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine multiple pandas objects into one along a fixed axis using some merging method</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>data_merge <span class="op">=</span> pd.concat(all_data, axis<span class="op">=</span><span class="dv">0</span>, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_merge.head(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Unique Key            Created Date             Closed Date Agency  \
+0  62291042.0  09/01/2024 12:00:00 AM  09/01/2024 12:20:58 AM   NYPD   
+1  62292550.0  09/01/2024 12:00:05 AM  09/01/2024 12:18:16 AM   NYPD   
+
+                       Agency Name           Complaint Type        Descriptor  \
+0  New York City Police Department      Noise - Residential  Loud Music/Party   
+1  New York City Police Department  Noise - Street/Sidewalk  Loud Music/Party   
+
+                Location Type  Incident Zip    Incident Address  ...  \
+0  Residential Building/House       11413.0   135-41 223 STREET  ...   
+1             Street/Sidewalk       11206.0  27 TEN EYCK STREET  ...   
+
+  Application/Credential Status Status Reason SEC Review Status  \
+0                           NaN           NaN               NaN   
+1                           NaN           NaN               NaN   
+
+  Initial Application Type How Selected Name Documents Pulse Height Weight  
+0                      NaN          NaN  NaN       NaN   NaN    NaN    NaN  
+1                      NaN          NaN  NaN       NaN   NaN    NaN    NaN  
+
+[2 rows x 71 columns]</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="view-data-information" class="level3">
+<h3 class="anchored" data-anchor-id="view-data-information">View data information</h3>
+<ul>
+<li>View data size/dimension</li>
+</ul>
+<div id="80ced2e5" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_csv.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>(9240, 41)</code></pre>
+</div>
+</div>
+<ul>
+<li>check the data type of each variable</li>
+</ul>
+<div id="d7504f61" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_csv.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>Unique Key                          int64
+Created Date                       object
+Closed Date                        object
+Agency                             object
+Agency Name                        object
+Complaint Type                     object
+Descriptor                         object
+Location Type                      object
+Incident Zip                      float64
+Incident Address                   object
+Street Name                        object
+Cross Street 1                     object
+Cross Street 2                     object
+Intersection Street 1              object
+Intersection Street 2              object
+Address Type                       object
+City                               object
+Landmark                           object
+Facility Type                      object
+Status                             object
+Due Date                           object
+Resolution Description             object
+Resolution Action Updated Date     object
+Community Board                    object
+BBL                               float64
+Borough                            object
+X Coordinate (State Plane)        float64
+Y Coordinate (State Plane)        float64
+Open Data Channel Type             object
+Park Facility Name                 object
+Park Borough                       object
+Vehicle Type                       object
+Taxi Company Borough               object
+Taxi Pick Up Location              object
+Bridge Highway Name                object
+Bridge Highway Direction           object
+Road Ramp                          object
+Bridge Highway Segment             object
+Latitude                          float64
+Longitude                         float64
+Location                           object
+dtype: object</code></pre>
+</div>
+</div>
+</section>
+<section id="view-overall-data-information" class="level3">
+<h3 class="anchored" data-anchor-id="view-overall-data-information">View overall data information</h3>
+<ul>
+<li>View overall data information</li>
+</ul>
+<div id="b191ddc4" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df_csv.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 9240 entries, 0 to 9239
+Data columns (total 41 columns):
+ #   Column                          Non-Null Count  Dtype  
+---  ------                          --------------  -----  
+ 0   Unique Key                      9240 non-null   int64  
+ 1   Created Date                    9240 non-null   object 
+ 2   Closed Date                     8368 non-null   object 
+ 3   Agency                          9240 non-null   object 
+ 4   Agency Name                     9240 non-null   object 
+ 5   Complaint Type                  9240 non-null   object 
+ 6   Descriptor                      8923 non-null   object 
+ 7   Location Type                   8628 non-null   object 
+ 8   Incident Zip                    9198 non-null   float64
+ 9   Incident Address                9092 non-null   object 
+ 10  Street Name                     9091 non-null   object 
+ 11  Cross Street 1                  8152 non-null   object 
+ 12  Cross Street 2                  8142 non-null   object 
+ 13  Intersection Street 1           7865 non-null   object 
+ 14  Intersection Street 2           7855 non-null   object 
+ 15  Address Type                    9220 non-null   object 
+ 16  City                            8751 non-null   object 
+ 17  Landmark                        7281 non-null   object 
+ 18  Facility Type                   32 non-null     object 
+ 19  Status                          9240 non-null   object 
+ 20  Due Date                        47 non-null     object 
+ 21  Resolution Description          8795 non-null   object 
+ 22  Resolution Action Updated Date  8881 non-null   object 
+ 23  Community Board                 9240 non-null   object 
+ 24  BBL                             8244 non-null   float64
+ 25  Borough                         9240 non-null   object 
+ 26  X Coordinate (State Plane)      9143 non-null   float64
+ 27  Y Coordinate (State Plane)      9143 non-null   float64
+ 28  Open Data Channel Type          9240 non-null   object 
+ 29  Park Facility Name              9225 non-null   object 
+ 30  Park Borough                    9240 non-null   object 
+ 31  Vehicle Type                    516 non-null    object 
+ 32  Taxi Company Borough            9 non-null      object 
+ 33  Taxi Pick Up Location           70 non-null     object 
+ 34  Bridge Highway Name             30 non-null     object 
+ 35  Bridge Highway Direction        16 non-null     object 
+ 36  Road Ramp                       16 non-null     object 
+ 37  Bridge Highway Segment          30 non-null     object 
+ 38  Latitude                        9143 non-null   float64
+ 39  Longitude                       9143 non-null   float64
+ 40  Location                        9143 non-null   object 
+dtypes: float64(6), int64(1), object(34)
+memory usage: 2.9+ MB</code></pre>
+</div>
+</div>
+</section>
+<section id="view-overall-data-information-1" class="level3">
+<h3 class="anchored" data-anchor-id="view-overall-data-information-1">View overall data information</h3>
+<ul>
+<li>View data description</li>
+</ul>
+<div id="527219d4" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df_csv.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unique Key</th>
+<th data-quarto-table-cell-role="th">Incident Zip</th>
+<th data-quarto-table-cell-role="th">BBL</th>
+<th data-quarto-table-cell-role="th">X Coordinate (State Plane)</th>
+<th data-quarto-table-cell-role="th">Y Coordinate (State Plane)</th>
+<th data-quarto-table-cell-role="th">Latitude</th>
+<th data-quarto-table-cell-role="th">Longitude</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>9.240000e+03</td>
+<td>9198.000000</td>
+<td>8.244000e+03</td>
+<td>9.143000e+03</td>
+<td>9143.000000</td>
+<td>9143.000000</td>
+<td>9143.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>6.229765e+07</td>
+<td>10836.116765</td>
+<td>2.743933e+09</td>
+<td>1.006204e+06</td>
+<td>206196.530570</td>
+<td>40.732586</td>
+<td>-73.920756</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>4.606457e+03</td>
+<td>545.625458</td>
+<td>1.174904e+09</td>
+<td>2.099103e+04</td>
+<td>30808.064991</td>
+<td>0.084564</td>
+<td>0.075699</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>6.228445e+07</td>
+<td>10000.000000</td>
+<td>0.000000e+00</td>
+<td>9.138300e+05</td>
+<td>121556.000000</td>
+<td>40.500070</td>
+<td>-74.253219</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>6.229530e+07</td>
+<td>10451.000000</td>
+<td>2.028020e+09</td>
+<td>9.946220e+05</td>
+<td>183993.000000</td>
+<td>40.671638</td>
+<td>-73.962612</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>6.229791e+07</td>
+<td>11206.000000</td>
+<td>3.023950e+09</td>
+<td>1.005240e+06</td>
+<td>202669.000000</td>
+<td>40.722932</td>
+<td>-73.924135</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>6.230051e+07</td>
+<td>11237.000000</td>
+<td>4.010668e+09</td>
+<td>1.018747e+06</td>
+<td>235810.000000</td>
+<td>40.813895</td>
+<td>-73.875530</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>6.236643e+07</td>
+<td>11694.000000</td>
+<td>5.080400e+09</td>
+<td>1.066817e+06</td>
+<td>270620.000000</td>
+<td>40.909422</td>
+<td>-73.701992</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="view-overall-data-information-2" class="level3">
+<h3 class="anchored" data-anchor-id="view-overall-data-information-2">View overall data information</h3>
+<ul>
+<li>View names of columns</li>
+</ul>
+<div id="72288e12" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df_csv.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>Index(['Unique Key', 'Created Date', 'Closed Date', 'Agency', 'Agency Name',
+       'Complaint Type', 'Descriptor', 'Location Type', 'Incident Zip',
+       'Incident Address', 'Street Name', 'Cross Street 1', 'Cross Street 2',
+       'Intersection Street 1', 'Intersection Street 2', 'Address Type',
+       'City', 'Landmark', 'Facility Type', 'Status', 'Due Date',
+       'Resolution Description', 'Resolution Action Updated Date',
+       'Community Board', 'BBL', 'Borough', 'X Coordinate (State Plane)',
+       'Y Coordinate (State Plane)', 'Open Data Channel Type',
+       'Park Facility Name', 'Park Borough', 'Vehicle Type',
+       'Taxi Company Borough', 'Taxi Pick Up Location', 'Bridge Highway Name',
+       'Bridge Highway Direction', 'Road Ramp', 'Bridge Highway Segment',
+       'Latitude', 'Longitude', 'Location'],
+      dtype='object')</code></pre>
+</div>
+</div>
+</section>
+<section id="view-overall-data-information-3" class="level3">
+<h3 class="anchored" data-anchor-id="view-overall-data-information-3">View overall data information</h3>
+<ul>
+<li>View the last 2 rows</li>
+</ul>
+<div id="808271cd" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df_csv.tail(n <span class="op">=</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unique Key</th>
+<th data-quarto-table-cell-role="th">Created Date</th>
+<th data-quarto-table-cell-role="th">Closed Date</th>
+<th data-quarto-table-cell-role="th">Agency</th>
+<th data-quarto-table-cell-role="th">Agency Name</th>
+<th data-quarto-table-cell-role="th">Complaint Type</th>
+<th data-quarto-table-cell-role="th">Descriptor</th>
+<th data-quarto-table-cell-role="th">Location Type</th>
+<th data-quarto-table-cell-role="th">Incident Zip</th>
+<th data-quarto-table-cell-role="th">Incident Address</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">Vehicle Type</th>
+<th data-quarto-table-cell-role="th">Taxi Company Borough</th>
+<th data-quarto-table-cell-role="th">Taxi Pick Up Location</th>
+<th data-quarto-table-cell-role="th">Bridge Highway Name</th>
+<th data-quarto-table-cell-role="th">Bridge Highway Direction</th>
+<th data-quarto-table-cell-role="th">Road Ramp</th>
+<th data-quarto-table-cell-role="th">Bridge Highway Segment</th>
+<th data-quarto-table-cell-role="th">Latitude</th>
+<th data-quarto-table-cell-role="th">Longitude</th>
+<th data-quarto-table-cell-role="th">Location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9238</td>
+<td>62295266</td>
+<td>09/02/2024 12:00:00 AM</td>
+<td>09/03/2024 09:03:57 AM</td>
+<td>DOHMH</td>
+<td>Department of Health and Mental Hygiene</td>
+<td>Food Poisoning</td>
+<td>1 or 2</td>
+<td>Restaurant/Bar/Deli/Bakery</td>
+<td>11368.0</td>
+<td>122-12 ROOSEVELT AVENUE</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>40.754847</td>
+<td>-73.844856</td>
+<td>(40.75484739858391, -73.84485615515032)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9239</td>
+<td>62309576</td>
+<td>09/02/2024 12:00:00 AM</td>
+<td>09/03/2024 09:05:19 AM</td>
+<td>DOHMH</td>
+<td>Department of Health and Mental Hygiene</td>
+<td>Food Poisoning</td>
+<td>3 or More</td>
+<td>Restaurant/Bar/Deli/Bakery</td>
+<td>10011.0</td>
+<td>98 8 AVENUE</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>40.740287</td>
+<td>-74.002122</td>
+<td>(40.740286662409055, -74.00212187601566)</td>
+</tr>
+</tbody>
+</table>
+
+<p>2 rows × 41 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="view-overall-data-information-4" class="level3">
+<h3 class="anchored" data-anchor-id="view-overall-data-information-4">View overall data information</h3>
+<ul>
+<li>Get unique values ​​of a column of data</li>
+</ul>
+<div id="8f267348" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df_csv[<span class="st">"Unique Key"</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>array([62291042, 62292550, 62288880, ..., 62296991, 62295266, 62309576])</code></pre>
+</div>
+</div>
+<ul>
+<li>Get the value of a column(without deduplication)</li>
+</ul>
+<div id="d994a810" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df_csv[<span class="st">"Unique Key"</span>].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>array([62291042, 62292550, 62288880, ..., 62296991, 62295266, 62309576])</code></pre>
+</div>
+</div>
+</section>
+<section id="find-null-values" class="level3">
+<h3 class="anchored" data-anchor-id="find-null-values">Find Null Values</h3>
+<ul>
+<li>Determine whether there are missing values ​​in the data columns</li>
+</ul>
+<div id="e08bb678" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df_csv.isnull().<span class="bu">any</span>(axis <span class="op">=</span> <span class="dv">0</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>Unique Key                        False
+Created Date                      False
+Closed Date                        True
+Agency                            False
+Agency Name                       False
+Complaint Type                    False
+Descriptor                         True
+Location Type                      True
+Incident Zip                       True
+Incident Address                   True
+Street Name                        True
+Cross Street 1                     True
+Cross Street 2                     True
+Intersection Street 1              True
+Intersection Street 2              True
+Address Type                       True
+City                               True
+Landmark                           True
+Facility Type                      True
+Status                            False
+Due Date                           True
+Resolution Description             True
+Resolution Action Updated Date     True
+Community Board                   False
+BBL                                True
+Borough                           False
+X Coordinate (State Plane)         True
+Y Coordinate (State Plane)         True
+Open Data Channel Type            False
+Park Facility Name                 True
+Park Borough                      False
+Vehicle Type                       True
+Taxi Company Borough               True
+Taxi Pick Up Location              True
+Bridge Highway Name                True
+Bridge Highway Direction           True
+Road Ramp                          True
+Bridge Highway Segment             True
+Latitude                           True
+Longitude                          True
+Location                           True
+dtype: bool</code></pre>
+</div>
+</div>
+</section>
+<section id="find-null-values-1" class="level3">
+<h3 class="anchored" data-anchor-id="find-null-values-1">Find Null Values</h3>
+<ul>
+<li>Determine whether there are missing values ​​in the data rows</li>
+</ul>
+<div id="fb21612b" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df_csv.isnull().<span class="bu">any</span>(axis <span class="op">=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>0       True
+1       True
+2       True
+3       True
+4       True
+        ... 
+9235    True
+9236    True
+9237    True
+9238    True
+9239    True
+Length: 9240, dtype: bool</code></pre>
+</div>
+</div>
+</section>
+<section id="find-null-values-2" class="level3">
+<h3 class="anchored" data-anchor-id="find-null-values-2">Find Null Values</h3>
+<ul>
+<li>Locate the rows with missing values</li>
+</ul>
+<div id="c4a66720" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df_csv.loc[df_csv.isnull().<span class="bu">any</span>(axis <span class="op">=</span> <span class="dv">1</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unique Key</th>
+<th data-quarto-table-cell-role="th">Created Date</th>
+<th data-quarto-table-cell-role="th">Closed Date</th>
+<th data-quarto-table-cell-role="th">Agency</th>
+<th data-quarto-table-cell-role="th">Agency Name</th>
+<th data-quarto-table-cell-role="th">Complaint Type</th>
+<th data-quarto-table-cell-role="th">Descriptor</th>
+<th data-quarto-table-cell-role="th">Location Type</th>
+<th data-quarto-table-cell-role="th">Incident Zip</th>
+<th data-quarto-table-cell-role="th">Incident Address</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">Vehicle Type</th>
+<th data-quarto-table-cell-role="th">Taxi Company Borough</th>
+<th data-quarto-table-cell-role="th">Taxi Pick Up Location</th>
+<th data-quarto-table-cell-role="th">Bridge Highway Name</th>
+<th data-quarto-table-cell-role="th">Bridge Highway Direction</th>
+<th data-quarto-table-cell-role="th">Road Ramp</th>
+<th data-quarto-table-cell-role="th">Bridge Highway Segment</th>
+<th data-quarto-table-cell-role="th">Latitude</th>
+<th data-quarto-table-cell-role="th">Longitude</th>
+<th data-quarto-table-cell-role="th">Location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>62291042</td>
+<td>09/01/2024 12:00:00 AM</td>
+<td>09/01/2024 12:20:58 AM</td>
+<td>NYPD</td>
+<td>New York City Police Department</td>
+<td>Noise - Residential</td>
+<td>Loud Music/Party</td>
+<td>Residential Building/House</td>
+<td>11413.0</td>
+<td>135-41 223 STREET</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>40.675391</td>
+<td>-73.747948</td>
+<td>(40.6753906302629, -73.74794760083083)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>62292550</td>
+<td>09/01/2024 12:00:05 AM</td>
+<td>09/01/2024 12:18:16 AM</td>
+<td>NYPD</td>
+<td>New York City Police Department</td>
+<td>Noise - Street/Sidewalk</td>
+<td>Loud Music/Party</td>
+<td>Street/Sidewalk</td>
+<td>11206.0</td>
+<td>27 TEN EYCK STREET</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>40.709636</td>
+<td>-73.949668</td>
+<td>(40.7096359534875, -73.9496682910634)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>62288880</td>
+<td>09/01/2024 12:00:23 AM</td>
+<td>09/01/2024 12:41:56 AM</td>
+<td>NYPD</td>
+<td>New York City Police Department</td>
+<td>Noise - Street/Sidewalk</td>
+<td>Loud Music/Party</td>
+<td>Street/Sidewalk</td>
+<td>11691.0</td>
+<td>136 BEACH 37 STREET</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>40.592858</td>
+<td>-73.769111</td>
+<td>(40.592857828381014, -73.76911066502025)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>62289166</td>
+<td>09/01/2024 12:00:26 AM</td>
+<td>09/01/2024 04:59:51 AM</td>
+<td>NYPD</td>
+<td>New York City Police Department</td>
+<td>Noise - Residential</td>
+<td>Loud Music/Party</td>
+<td>Residential Building/House</td>
+<td>11372.0</td>
+<td>33-21 89 STREET</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>40.755519</td>
+<td>-73.878719</td>
+<td>(40.75551932004531, -73.87871856652497)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>62287939</td>
+<td>09/01/2024 12:00:27 AM</td>
+<td>09/01/2024 05:44:11 AM</td>
+<td>NYPD</td>
+<td>New York City Police Department</td>
+<td>Illegal Parking</td>
+<td>Commercial Overnight Parking</td>
+<td>Street/Sidewalk</td>
+<td>11356.0</td>
+<td>22-11 126 STREET</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>40.779810</td>
+<td>-73.842408</td>
+<td>(40.77981027677071, -73.84240765667371)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9235</td>
+<td>62299901</td>
+<td>09/01/2024 11:59:46 PM</td>
+<td>09/02/2024 02:32:59 AM</td>
+<td>NYPD</td>
+<td>New York City Police Department</td>
+<td>Noise - Street/Sidewalk</td>
+<td>Loud Music/Party</td>
+<td>Street/Sidewalk</td>
+<td>10460.0</td>
+<td>1803 ARCHER STREET</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>40.837530</td>
+<td>-73.867066</td>
+<td>(40.83753001499067, -73.86706598367837)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9236</td>
+<td>62302740</td>
+<td>09/01/2024 11:59:49 PM</td>
+<td>09/02/2024 12:14:37 AM</td>
+<td>NYPD</td>
+<td>New York City Police Department</td>
+<td>Noise - Vehicle</td>
+<td>Car/Truck Music</td>
+<td>Street/Sidewalk</td>
+<td>10026.0</td>
+<td>281 WEST 119 STREET</td>
+<td>...</td>
+<td>Car</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>40.806085</td>
+<td>-73.953294</td>
+<td>(40.806085063145055, -73.95329425217405)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9237</td>
+<td>62296991</td>
+<td>09/01/2024 11:59:55 PM</td>
+<td>09/02/2024 01:49:42 AM</td>
+<td>NYPD</td>
+<td>New York City Police Department</td>
+<td>Noise - Residential</td>
+<td>Loud Music/Party</td>
+<td>Residential Building/House</td>
+<td>11234.0</td>
+<td>1324 EAST 58 STREET</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>40.622420</td>
+<td>-73.919529</td>
+<td>(40.62241995535214, -73.91952909931068)</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9238</td>
+<td>62295266</td>
+<td>09/02/2024 12:00:00 AM</td>
+<td>09/03/2024 09:03:57 AM</td>
+<td>DOHMH</td>
+<td>Department of Health and Mental Hygiene</td>
+<td>Food Poisoning</td>
+<td>1 or 2</td>
+<td>Restaurant/Bar/Deli/Bakery</td>
+<td>11368.0</td>
+<td>122-12 ROOSEVELT AVENUE</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>40.754847</td>
+<td>-73.844856</td>
+<td>(40.75484739858391, -73.84485615515032)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9239</td>
+<td>62309576</td>
+<td>09/02/2024 12:00:00 AM</td>
+<td>09/03/2024 09:05:19 AM</td>
+<td>DOHMH</td>
+<td>Department of Health and Mental Hygiene</td>
+<td>Food Poisoning</td>
+<td>3 or More</td>
+<td>Restaurant/Bar/Deli/Bakery</td>
+<td>10011.0</td>
+<td>98 8 AVENUE</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>40.740287</td>
+<td>-74.002122</td>
+<td>(40.740286662409055, -74.00212187601566)</td>
+</tr>
+</tbody>
+</table>
+
+<p>9240 rows × 41 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="find-null-values-3" class="level3">
+<h3 class="anchored" data-anchor-id="find-null-values-3">Find Null Values</h3>
+<ul>
+<li>The number of missing values ​​in each variable</li>
+</ul>
+<div id="bb36ee26" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df_csv.isnull().<span class="bu">sum</span>(axis <span class="op">=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>Unique Key                           0
+Created Date                         0
+Closed Date                        872
+Agency                               0
+Agency Name                          0
+Complaint Type                       0
+Descriptor                         317
+Location Type                      612
+Incident Zip                        42
+Incident Address                   148
+Street Name                        149
+Cross Street 1                    1088
+Cross Street 2                    1098
+Intersection Street 1             1375
+Intersection Street 2             1385
+Address Type                        20
+City                               489
+Landmark                          1959
+Facility Type                     9208
+Status                               0
+Due Date                          9193
+Resolution Description             445
+Resolution Action Updated Date     359
+Community Board                      0
+BBL                                996
+Borough                              0
+X Coordinate (State Plane)          97
+Y Coordinate (State Plane)          97
+Open Data Channel Type               0
+Park Facility Name                  15
+Park Borough                         0
+Vehicle Type                      8724
+Taxi Company Borough              9231
+Taxi Pick Up Location             9170
+Bridge Highway Name               9210
+Bridge Highway Direction          9224
+Road Ramp                         9224
+Bridge Highway Segment            9210
+Latitude                            97
+Longitude                           97
+Location                            97
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="export-data-as-csv-file" class="level3">
+<h3 class="anchored" data-anchor-id="export-data-as-csv-file">Export data as CSV file</h3>
+<ul>
+<li>Function: to_csv</li>
+<li>Add the correct address where you prefer to store the data</li>
+</ul>
+<div id="1b2c366f" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>df_csv.to_csv(<span class="st">"/Users/xudeyu/Downloads/data/311.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sources" class="level3">
+<h3 class="anchored" data-anchor-id="sources">Sources</h3>
+<ul>
+<li>data sources:</li>
+<li><a href="https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9/about_data">311_Service_request</a></li>
+<li>references:</li>
+<li><a href="https://statds.github.io/ids-s24/">ids 24 spring</a></li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

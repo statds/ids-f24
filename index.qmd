@@ -155,6 +155,10 @@ Markdown.
   + Get a good grade on this class
   + Learn more about how to processing data
 + Xu, Deyu
+  - Get the basic understanding of data science.
+  - Be familiar with machine learning.
+  - Proficiency in Python
+  - Lay a solid foundation for data processing. 
 
 ## Presentation Orders
 
