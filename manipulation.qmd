@@ -202,6 +202,7 @@ storing data frames, optimized for speed and efficiency, particularly
 for IPC and data sharing between Python and R or Julia.
 
 ```{python}
+#| eval: false
 df.to_feather('data/nyccrashes_cleaned.feather')
 
 # Compare the file sizes of the feather format and the CSV format
@@ -226,6 +227,7 @@ print(f"Feather file size: {feather_size_mb:.2f} MB")
 
 Read the feather file back in:
 ```{python}
+#| eval: false
 dff = pd.read_feather("data/nyccrashes_cleaned.feather")
 dff.shape
 ```
