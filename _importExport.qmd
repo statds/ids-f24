@@ -1,0 +1,270 @@
+## Import/Export Data
+
+This section was written by Deyu Xu, a MS student in Statistics
+at the time.
+
+### Frame
++ import files in common formats: CSV/Excel/TXT
++ import data from other sowtware
++ view data information
++ find null values
++ export data as CSV file
+
+### Package Pandas
+#### Import data based on Package Pandas
+If we want to import the data by Python, we need to use the Package, Pandas provided by Python to complete our goals. And the first step is to install Pandas.
+
++ the method of installing the common version of Package Pandas
+```python
+## install the common version of pandas
+pip install pandas
+```
++ install the latest version of Package Pandas
+```python
+## install the latest version of pandas
+pip install --upgrade pandas
+```
+The reason why I introduce the different versions of Pandas is that the different versions of Pandas will influence the specific code that we use for importing Excel files. We will see it in the subsequent content.
+
+### Import files in common formats: CSV/Excel/TXT
+#### CSV files
+The fisrt format of data files I want to introduce is CSV files. That is because I consider that we are familiar with CSV files because we might utilize this kind of files to do some analysis and print some charts by R in the past courses.
+
++ We can use the following code to import the CSV file.
+```{python}
+## use package pandas
+import pandas as pd
+## choose the function "read_csv"
+df_csv = pd.read_csv("311_Service_request.csv")
+## show the top 5 rows of data
+print(df_csv.head(5))
+```
+
+#### Excel files
+We have the CSV file which name is "311_Service_request.csv" at present but we want to import its Excel file. Fortunately, the Pandas Package has provided suitable function for us to generate Excel files.
+
++ We can use the following code to transfer CSV files to Excel files
+```{python}
+import pandas as pd
+df_csv.to_excel("311.xlsx")
+```
+
+Now we have generated the Excel file, 311.xlsx, which contains all the data of the CSV file, "311_Service_request.csv". And then we can learn how to import Excel files.
+
++ We can use the following code to import the CSV file if you have installed the latest version of Pandas.
+```{python}
+import pandas as pd
+## choose the function "read_excel"
+df_excel = pd.read_excel("311.xlsx", engine = "openpyxl")
+## print top 2 rows of the data
+print(df_excel.head(2))
+```
+
+#### Excel files
+Let us pay attention to the statement that the different versions of Pandas need us to use different code for importing Excel files. The following code is against the older(common) versions of Pandas.
+
++ We only add the correct encoding of the Excel file behind the command "engine = 'openpyxl'"
+```python
+df_excel = pd.read_excel("311_Service_request.xlsx", engine = "openpyxl", 
+encoding = "utf-8")
+```
++ The key is adding the correct encoding
+
+#### TXT files
+The last common kind of file is TXT files. We are able to generate TXT files in the similar way as generatng Excel files. 
+
++ Here is the corresponding code.
+```{python}
+import pandas as pd
+df_csv = pd.read_csv("311_Service_request.csv")
+df_csv.to_csv("311.txt", sep = "\t", index = False)
+```
+
+Now we get the corresponding the TXT file successfully. And we have to determine the correct encoding of this txt file to ensure the computer will read it smoothly.
+
++ The following code will help us get the correct encoding
+```{python}
+import chardet
+## keyword, with: 
+## Excute the command, "open" firstly.
+## Then the executed file object is assigned to variable"f".
+with open("311.txt", "rb") as f:
+    raw_data = f.read()
+    result = chardet.detect(raw_data) # Use the function detect.
+    encoding = result["encoding"]
+    print(str(encoding))
+```
+
++ It is possible to generate the encoding which is not "utf-8".
+
+#### txt file
+It is simple for us to import the TXT file with the help of the correct encoding. 
+
++ Here is the specific code.
+```{python}
+import pandas as pd
+## choose the function "read_table"
+df_txt = pd.read_table("311.txt", encoding = "utf-8")
+## test the default of the fuchtion "head" 
+print(df_txt.head())
+```
+
+
+### Import the data from other software
+#### sas7bdat files
++ Package: sas7bdat, Function: SAS7BDAT
+```python
+import sas7bdat
+from sas7bdat import SAS7BDAT
+```
+#### rdata files(the suffix of this file is .RData)
++ Package: pyreadr, Function: read_r
+```python
+import pyreadr as pr
+from pyreadr import read_r
+```
+#### stata data(the suffix of this file is .dta)
++ Package: pandas, Function: read_stata
+```python
+from pandas import read_stata
+```
+### Import the data from other software
+#### spss data(the suffix of this file is .sav)
+It is necessary for us to get the clear understanding before importing spss data because different kinds of the data need us to use different packages and different functions
+
+##### numeric variables
++ Package: pandas, Function: read_spss
+```python
+## variables are numeric values
+import pandas 
+from pandas import read_spss
+```
+
+##### text variables
++ Package: pyreadstat, Function: read_sav
+```python
+## variables are text
+import pyreadstat 
+from pyreadstat import read_sav
+```
+
+#### Matlab files
++ Package: spicy.io, Function: loadmat
+```python
+import spicy.io
+from spicy.io import loadmat
+```
+
+#### HDF5 files
++ Package: h5py, Function: File
+```python
+import h5py
+from h5py import File
+```
+
+#### Import multiple files and merge them into a new file
+I have introduce the method of importing single file of data but the powerful function of data also own the fucntion that we are able to import multiple files simultaneously.
+
++ The following cold helps us to import multiple files at the same time and produce a merged file
+```{python}
+## use the package globe and the package pandas
+import glob 
+import pandas as pd
+## Set the file path
+path = "/Users/xudeyu/Downloads/data"
+## Merge multiple arrays
+all_files = glob.glob(path+"/*.csv")
+## create a list to store the data
+all_data = []
+## use the cycle to import all of the csv files
+for filename in all_files:
+    df = pd.read_csv(filename, index_col=None, header=0)
+    all_data.append(df)
+## Combine multiple pandas objects into one along a fixed axis using some merging method
+data_merge = pd.concat(all_data, axis=0, ignore_index=True)
+print(data_merge.head(2))
+```
+
+### View data information
+It is natural for us to be interested in the fundamental information of the data we have imported. As a result, I have listed some useful functions to help us to get the basic knowledge.
+
++ View data size/dimension
+```{python}
+df_csv.shape
+```
+
++ check the data type of each variable
+```{python}
+df_csv.dtypes
+```
+
++ View overall data information
+```{python}
+df_csv.info()
+```
+
++ View data description
+```{python}
+df_csv.describe()
+```
++ View names of columns
+```{python}
+df_csv.columns
+```
+
++ View the last 2 rows
+```{python}
+df_csv.tail(n = 2)
+```
+
++ Get unique values ​​of a column of data
+```{python}
+df_csv["Unique Key"].unique()
+```
+
++ Get the value of a column(without deduplication)
+```{python}
+df_csv["Unique Key"].values
+```
+
+### Find Null Values
+It is necessary for us to find null values before we clean and preprocess the data. The following content covers how to find null values.
+
+The first step is to determine whether there are missing values.
+
++ Determine whether there are missing values ​​in the data columns.
+```{python}
+df_csv.isnull().any(axis = 0) 
+```
+
+
++ Determine whether there are missing values ​​in the data rows.
+```{python}
+df_csv.isnull().any(axis = 1)
+```
+
+The second step is to locate the rows/columns with missing values.
+
++ Locate the rows with missing values.
+```{python}
+df_csv.loc[df_csv.isnull().any(axis = 1)]
+```
+
+The last step is to determine the number of missing values.
+
++ The number of missing values ​​in each variable.
+```{python}
+df_csv.isnull().sum(axis = 0)
+```
+
+### Export data as CSV file
++ Function: to_csv
++ Add the correct address where you prefer to store the data
+```{python}
+df_csv.to_csv("311.csv")
+```
+### Sources
++ data sources:
++ [311_Service_request](https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9/about_data)
++ references:
++ [ids 24 spring](https://statds.github.io/ids-s24/)
