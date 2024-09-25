@@ -295,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="nyc-crash-data" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="nyc-crash-data"><span class="header-section-number">6.4</span> NYC Crash Data</h2>
 <p>Consider a subset of the NYC Crash Data, which contains all NYC motor vehicle collisions data with documentation from <a href="https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95">NYC Open Data</a>. We downloaded the crash data for the week of June 30, 2024, on September 16, 2024, in CSC format.</p>
-<div id="4f39956c" class="cell" data-execution_count="1">
+<div id="2a70da00" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset</span></span>
@@ -467,7 +467,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now we can do some cleaning after a quick browse.</p>
-<div id="8594796c" class="cell" data-execution_count="2">
+<div id="1c29ae96" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace invalid coordinates (latitude=0, longitude=0 or NaN) with NaN</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df.loc[(df[<span class="st">'latitude'</span>] <span class="op">==</span> <span class="dv">0</span>) <span class="op">&amp;</span> (df[<span class="st">'longitude'</span>] <span class="op">==</span> <span class="dv">0</span>), </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>       [<span class="st">'latitude'</span>, <span class="st">'longitude'</span>]] <span class="op">=</span> pd.NA</span>
@@ -489,7 +489,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'crash_date'</span>, <span class="st">'crash_time'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Are missing in zip code and borough always co-occur?</p>
-<div id="128f275d" class="cell" data-execution_count="3">
+<div id="b3cf824a" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if missing values in 'zip_code' and 'borough' always co-occur</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Count rows where both are missing</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>missing_cooccur <span class="op">=</span> df[[<span class="st">'zip_code'</span>, <span class="st">'borough'</span>]].isnull().<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>).<span class="bu">sum</span>()</span>
@@ -508,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>First make sure <code>geopy</code> is installed.</p>
 <pre class="shell"><code>pip install geopy</code></pre>
 <p>Now we use model <code>Nominatim</code> in package <code>geopy</code> to reverse geocode.</p>
-<div id="0eac50b8" class="cell" data-execution_count="4">
+<div id="21458f08" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> geopy.geocoders <span class="im">import</span> Nominatim</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -518,7 +518,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>geolocator <span class="op">=</span> Nominatim(user_agent<span class="op">=</span><span class="st">"jyGeopyTry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We write a function to do the reverse geocoding given lattitude and longitude.</p>
-<div id="b575e897" class="cell" data-execution_count="5">
+<div id="f3b6ca17" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to fill missing zip_code</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_zip_code(latitude, longitude):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
@@ -536,7 +536,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="dv">1</span>)  <span class="co"># Delay to avoid overwhelming the service</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s try it out:</p>
-<div id="3e2cb360" class="cell" data-execution_count="6">
+<div id="4e80cf8c" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>latitude <span class="op">=</span> <span class="fl">40.730610</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>longitude <span class="op">=</span> <span class="op">-</span><span class="fl">73.935242</span></span>
@@ -557,7 +557,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>First, ensure you have <code>pyarrow</code> installed on your computer (and preferrably, in your current virtual environment):</p>
 <pre class="shell"><code>pip install pyarrow</code></pre>
 <p>Feather is a fast, lightweight, and easy-to-use binary file format for storing data frames, optimized for speed and efficiency, particularly for IPC and data sharing between Python and R or Julia.</p>
-<div id="3eb7032b" class="cell" data-execution_count="7">
+<div id="bcb7107f" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df.to_feather(<span class="st">'data/nyccrashes_cleaned.feather'</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare the file sizes of the feather format and the CSV format</span></span>
@@ -578,35 +578,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the file sizes</span></span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"CSV file size: </span><span class="sc">{</span>csv_size_mb<span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Feather file size: </span><span class="sc">{</span>feather_size_mb<span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>CSV file size: 0.34 MB
-Feather file size: 0.14 MB</code></pre>
-</div>
 </div>
 <p>Read the feather file back in:</p>
-<div id="92385fdc" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dff <span class="op">=</span> pd.read_feather(<span class="st">"data/nyccrashes_cleaned.feather"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dff.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>(1875, 27)</code></pre>
-</div>
+<div id="5522c4af" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dff <span class="op">=</span> pd.read_feather(<span class="st">"data/nyccrashes_cleaned.feather"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>dff.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="using-the-census-data" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="using-the-census-data"><span class="header-section-number">6.6</span> Using the Census Data</h2>
 <p>The <a href="data.census.gov">US Census</a> provides a lot of useful data that could be merged with the NYC crash data for further analytics.</p>
 <p>First, ensure the DataFrame (df) is ready for merging with census data. Specifically, check that the <code>zip_code</code> column is clean and consistent. and consistent.</p>
-<div id="d377ab74" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'zip_code'</span>].isnull().<span class="bu">sum</span>())</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize to 5-digit codes, if necessary</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'zip_code'</span>] <span class="op">=</span> df[<span class="st">'zip_code'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1dd3eea7" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'zip_code'</span>].isnull().<span class="bu">sum</span>())</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize to 5-digit codes, if necessary</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'zip_code'</span>] <span class="op">=</span> df[<span class="st">'zip_code'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>541</code></pre>
 </div>
 </div>
 <p>We can use the <code>uszipcode</code> package to get basic demographic data for each zip code. For more detailed or specific census data, using the <code>CensusData</code> package or direct API calls to the Census Bureau’s API.</p>
 <p>The <code>uszipcode</code> package provides a range of information about ZIP codes in the United States. When you query a ZIP code using <code>uszipcode</code>, you can access various attributes related to demographic data, housing, geographic location, and more. Here are some of the key variables available at the ZIP code level:</p>
-<p><strong>emographic Information</strong></p>
+<p><strong>Demographic Information</strong></p>
 <ul>
 <li><code>population</code>: The total population.</li>
 <li><code>population_density</code>: The population per square kilometer.</li>
@@ -639,44 +632,44 @@ Feather file size: 0.14 MB</code></pre>
 <p>Install the <code>uszipcode</code> package into the current virtual environment by <code>pip install uszipcode</code>.</p>
 <p>Now let’s work on the rodent sightings data.</p>
 <p>We will first clean the <code>zip_code</code> column to ensure it only contains valid ZIP codes. Then, we will use a vectorized approach to fetch the required data for each unique zip code and merge this information back into the original <code>DataFrame</code>.</p>
-<div id="9bbb7780" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows where 'zip_code' is missing or not a valid ZIP code format</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>valid_zip_df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">'zip_code'</span>]).copy()</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>valid_zip_df[<span class="st">'zip_code'</span>] <span class="op">=</span> valid_zip_df[<span class="st">'zip_code'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">5</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>unique_zips <span class="op">=</span> valid_zip_df[<span class="st">'zip_code'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1bcd982e" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows where 'zip_code' is missing or not a valid ZIP code format</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>valid_zip_df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">'zip_code'</span>]).copy()</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>valid_zip_df[<span class="st">'zip_code'</span>] <span class="op">=</span> valid_zip_df[<span class="st">'zip_code'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">5</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>unique_zips <span class="op">=</span> valid_zip_df[<span class="st">'zip_code'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Since <code>uszipcode</code> doesn’t inherently support vectorized operations for multiple ZIP code queries, we’ll optimize the process by querying each unique ZIP code once, then merging the results with the original <code>DataFrame</code>. This approach minimizes redundant queries for ZIP codes that appear multiple times.</p>
-<div id="1dbdf441" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> uszipcode <span class="im">import</span> SearchEngine</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the SearchEngine</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> SearchEngine()</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch median home value and median household income for each unique ZIP code</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>zip_data <span class="op">=</span> []</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> zip_code <span class="kw">in</span> unique_zips:</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> search.by_zipcode(zip_code)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> result:  <span class="co"># Check if the result is not None</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>        zip_data.append({</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"zip_code"</span>: zip_code,</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"median_home_value"</span>: result.median_home_value,</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"median_household_income"</span>: result.median_household_income</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>        })</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:  <span class="co"># Handle the case where the result is None</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>        zip_data.append({</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"zip_code"</span>: zip_code,</span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">"median_home_value"</span>: <span class="va">None</span>,</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">"median_household_income"</span>: <span class="va">None</span></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        })</span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to DataFrame</span></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>zip_info_df <span class="op">=</span> pd.DataFrame(zip_data)</span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge this info back into the original DataFrame based on 'zip_code'</span></span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> pd.merge(valid_zip_df, zip_info_df, how<span class="op">=</span><span class="st">"left"</span>, on<span class="op">=</span><span class="st">"zip_code"</span>)</span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>merged_df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div id="fd1a5eb8" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> uszipcode <span class="im">import</span> SearchEngine</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the SearchEngine</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> SearchEngine()</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch median home value and median household income for each unique ZIP code</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>zip_data <span class="op">=</span> []</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> zip_code <span class="kw">in</span> unique_zips:</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> search.by_zipcode(zip_code)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> result:  <span class="co"># Check if the result is not None</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        zip_data.append({</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"zip_code"</span>: zip_code,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"median_home_value"</span>: result.median_home_value,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"median_household_income"</span>: result.median_household_income</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:  <span class="co"># Handle the case where the result is None</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        zip_data.append({</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"zip_code"</span>: zip_code,</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">"median_home_value"</span>: <span class="va">None</span>,</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">"median_household_income"</span>: <span class="va">None</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to DataFrame</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>zip_info_df <span class="op">=</span> pd.DataFrame(zip_data)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge this info back into the original DataFrame based on 'zip_code'</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> pd.merge(valid_zip_df, zip_info_df, how<span class="op">=</span><span class="st">"left"</span>, on<span class="op">=</span><span class="st">"zip_code"</span>)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>merged_df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>Index(['borough', 'zip_code', 'latitude', 'longitude', 'on_street_name',
        'cross_street_name', 'off_street_name', 'number_of_persons_injured',
        'number_of_persons_killed', 'number_of_pedestrians_injured',
