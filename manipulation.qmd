@@ -237,7 +237,7 @@ that could be merged with the NYC crash data for further analytics.
 
 
 First, ensure the DataFrame (df) is ready for merging with census
-data. Specifically, check that the `incident_zip` column is clean
+data. Specifically, check that the `zip_code` column is clean
 and consistent.
 and consistent.
 ```{python}
@@ -304,7 +304,7 @@ approach to fetch the required data for each unique zip code
 and merge this information back into the original `DataFrame`.
 
 ```{python}
-# Remove rows where 'incident_zip' is missing or not a valid ZIP code format
+# Remove rows where 'zip_code' is missing or not a valid ZIP code format
 valid_zip_df = df.dropna(subset=['zip_code']).copy()
 valid_zip_df['zip_code'] = valid_zip_df['zip_code'].astype(str).str.zfill(5)
 unique_zips = valid_zip_df['zip_code'].unique()
