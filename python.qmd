@@ -322,6 +322,8 @@ x
 # the default int8 type (64 bits)
 ```
 
+*Note: on Windows and other platforms, `dtype = 'int'` may have to be changed to `dtype = np.int64` for the code to execute. Source: [Stackoverflow](https://stackoverflow.com/questions/38314118/overflowerror-python-int-too-large-to-convert-to-c-long-on-windows-but-not-ma)*
+
 What if we increment it by 1?
 ```{python}
 y = np.array(x + 1, dtype = 'int')
