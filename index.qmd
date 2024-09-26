@@ -70,6 +70,8 @@ insightful quote from @vanderplas2016python:
 This quote captures the essence of what we aim to develop in our
 students: the ability to swiftly navigate and utilize the vast
 resources available to solve complex problems in data science.
+Examples tasks are: install needed software (or even hardware);
+search and find solutions to encountered problems. 
 
 ## Wishlist
 
@@ -78,7 +80,7 @@ order, last name first, comma, then first name). Here is an example.
 
 
 + Yan, Jun
-    - Make data science more accessible to undergraduates
+    - Make practical data science tools accessible to undergraduates
     - Co-develop a Quarto book in collaboration with the students
     - Train students to participate real data science competitions
 
@@ -91,22 +93,91 @@ Markdown.
     - Develop my ability to independently solve data problems.
     - Have a basic understanding of data science.
 
++ Akach, Suha
+    - Challenge and push myself to be better at python and all its libraries.
+    - Be confident in my abilities of programming and making statistical inferences that are correct.
+    - Be able to create my own personal project in class on time.
++ Astle, Jaden
+    - I've used Git before,  but I'd like to become more comfortable using it and get more used to different issues that arise.
+    - I'd like to learn more effective ways to "tell the story" of data analysis and show empowering visualizations.
+    - I'd like to explore more methods that professional data scientists use in their model trainings to share with UConn's Data Science Club.
++ Babiec, Owen
+    - Become more comfortable with Git and Github and their applications
+    - Better understand the Data Science pipeline and workflow
+    - Learn how to show my skills I have learned in this class during interviews
++ Baptista, Stef
++ Bienvenue, Jack
+    - Learn professional visualization techniques, particularly for geospatial data
+    - Foster a high level of working knowledge of Git
+    - Create a small portfolio of examples and projects for later reference
++ Blanchard, Zachary
+    - Gain experience working and collaborating on projects in Git
+    - Improve computer programming skills and familiarity with Python
+    - Teach other students about creating presentations using Quarto
++ Borowski, Emily
+    - Gain a greater understanding of Quarto and GitHub
+    - Become more comfortable with my coding abilities
+    - Acquire a deeper understanding of data science
++ Clokey, Sara
+    - Become more familiar with GitHub and Quarto
+    - Execute a data science project from start to finish
++ Desroches, Melanie
+    - Explore the field of data science as a possible future career
+    - Develope data science and machine learning skills
+    - Become better at programming with Python and using Git/GitHub
++ Febles, Xavier
++ Jha, Aansh
+    - Be a better student of the data science field
+    - Hone git to work in colabarative workspaces
+    - Learn better methods in data visualization
++ Johnson, Dorothea
+    - Enter data science contests
+    - Familiarize myself with using Python for data Science
+    - Develop a proficiency in Github
++ Kashalapov, Olivia
+    - Better understand neural networks
+    - Machine learning utilizing Python
+    - Creating and analyzing predictive models for informed decision making
++ Manna, Rahul
+    - Use knowledge gained and skills developed in class to study real-world problems such as climate change.
+    - Obtain a basic understanding of machine learning
++ Mazzola, Julia
+  - Become proficient in Git and Github.
+  - Have a better understanding of data science best practices and techniques.
+  - Deepen my knowledge of Python programming concepts and libraries.
++ Paricharak, Aditya
+    - Master Commandline Interface
+    - Apply my statistical knowladge and skills to course work
+    - Understand how to work with datasets
++ Parvez, Mohammad Shahriyar
+    - Familiarizing myself with GitHub to effectively track and manage the entire data analysis process.
+    - Adopting Quarto for improved documentation of my data workflows.
+    - Exploring advanced techniques for data analysis and visualization.
+    - Developing my personal Git repository and publishing data projects as a professional website.
 
++ Tan, Qianruo
+  + Learn how to use GitHub, and create my own page 
+  + Get a good grade on this class
+  + Learn more about how to processing data
++ Xu, Deyu
 
 ## Presentation Orders
 
 The topic presentation order is set up in class.
 ```{python}
-#| eval: false
+#| eval: true
 
 with open('rosters/3255.txt', 'r') as file:
     ug = [line.strip() for line in file]
 with open('rosters/5255.txt', 'r') as file:
     gr = [line.strip() for line in file]
 presenters = ug + gr
+target = "Blanchard"  # pre-arranged 1st presenter
+presenters = [name for name in presenters if target not in name]
 
 import random
-random.seed(4737 + 8852 + 3196 + 2344 + 47) # jointly set by the class on 01/24/2024
+## seed jointly set by the class
+random.seed(5347 + 2896 + 9050 + 1687 + 63)
 random.sample(presenters, len(presenters))
 ## random.shuffle(presenters) # This would shuffle the list in place
 ```
@@ -122,12 +193,15 @@ tree should be presented before random forest or extreme gradient
 boosting. This justifies certain requests for switching slots.
 
 
+
+
 ## Course Logistics
 
 ### Presentation Task Board
 
 Here are some example tasks:
 
++ Making presentations with Quarto
 + Data science ethics
 + Data science communication skills
 + Import/Export data
@@ -152,21 +226,48 @@ Here are some example tasks:
 + Developing a Python package
 
 
-Please use this [Google Sheet]() to sign up.
+Please use the following table to sign up.
 
    Date  | Presenter              | Topic
   ------ | ---------------------- | ------
-         |                        |
+   09/11 | Zachary Blanchard      | Making presentation with Quarto
+   09/16 | Deyu Xu                | Import/Export data
+   09/18 | Sara Clokey            | Communications in data science
+   09/23 | Dorathea Johnson       | Database with SQL
+   09/25 | Xavier Febles           |
+   09/30 | Jack Bienvenue         | Visualizing spatial data in a Google Map
+   10/02 | Julia Mazzola          | Data Visualization with Plotnine
+   10/07 | Suha Akach             |
+   10/09 | Rahul Manna            |
+   10/14 | Kaitlyn Anderson       | Career readiness in data science
+   10/16 | TBA                    |
+   10/21 | Jaden Astle            |
+   10/23 | Olivia Kashalapov      |
+   10/28 | Emily Borowski         | Random Forest
+   10/30 | Qianruo Tan            | Reinforcement Learning
+   11/04 | Melanie Desroches      |
+   11/06 | Aditya Paricharak      |
+   11/11 | Aansh Jha              |
+   11/11 | Owen Babiec            |
+   11/13 | Stef Baptista          |
+   11/13 | Mohammad Parvez        | Developing a Python package
+
 
 ### Final Project Presentation Schedule
 
 We use the same order as the topic presentation for undergraduate
-final presentation.
+final presentation. An [introduction on how to use Quarto to prepare
+presentation slides](https://github.com/statds/ids-f24/blob/main/templates/presentation.qmd)
+is availabe under the `templates` directory in
+the classnotes source tree, thank to Zachary Blanchard, which can
+be used as a template to start with.
 
    Date  | Presenter
   ------ | ---------------------- 
-
-
+   11/18 | Sara Clokey; Dorothea Johnson; Xavier Febles; Jack Bienvenue
+   11/20 | Julia Mazzola; Suha Akach; Rahul Manna; Jaden Astle
+   12/02 | Olivia Kashalapov; Emily Borowski；Qianruo Tan; Melanie Desroches
+   12/04 | Aditya Paricharak; Aansh Jha; Owen Babiec; Stef Baptista
 
 
 ### Contributing to the Class Notes
@@ -176,7 +277,7 @@ Contribution to the class notes is through a `pull request'.
 + Start a new branch and switch to the new branch.
 + On the new branch, add a `qmd` file for your presentation
 + If using Python, create and activate a virtual environment with `requirements.txt` 
-+ Edit `_quarto.yml` add a line for your qmd file to include it in the notes.
++ Edit `_quarto.yml` add a line for your `qmd` file to include it in the notes.
 + Work on your qmd file, test with `quarto render`.
 + When satisfied, commit and make a pull request with your quarto files and an updated `requirements.txt`.
 
@@ -199,11 +300,13 @@ code chunks, it would be hard to plagiarize.
 
 + Use the repo from Git Classroom to submit your work. See Section @sec-git.
     - Keep the repo clean (no tracking generated files).
-	- Never "Upload" your files; use the git command lines.
-	- Make commit message informative (think about the readers).
+        - Never "Upload" your files; use the git command lines.
+        - Make commit message informative (think about the readers).
 + Use `quarto` source only. See @sec-quarto.
 + For the convenience of grading, add your html output to a release in your
   repo.
++ For standalone pdf output, you will need to have
+  [LaTeX](https://www.latex-project.org/get/) installed.
 
 
 ## Practical Tips
@@ -224,4 +327,4 @@ code chunks, it would be hard to plagiarize.
 
 
 <!-- Topic presentation template -->
-{{< include _mysection.qmd >}}
+{{< include templates/_mysection.qmd >}}

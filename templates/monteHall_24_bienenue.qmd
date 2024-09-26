@@ -1,0 +1,258 @@
+---
+title: "Monty Hall and 24 Game Problems - Jack Bienvenue"
+format: pdf
+---
+
+# Introduction
+
+
+Below, we will install all necessary packages for this assignment:
+```{python}
+import random
+import matplotlib.pyplot as plt
+import math
+from itertools import permutations, product #these will help us later on in the 24 Game
+```
+
+## Monty Hall Problem
+
+The Monty Hall problem is a famous probability puzzle based on a game show scenario. 
+
+In the game show, the host Monty Hall would ask you to pick between three doors. Two doors have a goat behind them, and one has a car. The host will open another door which is not your choice. If one door is opened to a goat, you may switch your choice to the other door or stay with your current door. 
+
+The Monty Hall Problem comes from the scenario where you have already selected a door and Monty opens a different door to a goat. It is accepted that it the best strategy to switch doors in this scenario. This is because you only had an initial probability of 1/3 to select the correct door and a 2/3 chance of selecting the incorrect door. In the second scenario, which occurs 2/3 of the time, Monty must reveal a goat and by switching, you are guaranteed the car by switching. Alternatively, in those other 1/3 of games, switching will steer you away from the goat. 
+
+Our hypothesis is that, even if we generalize to *n* number of doors, the additional information provided to us by Monty will still give us a slight advantage in this game. Below, we will generate a python function to use a specified number of doors a specified number of times to simulate different versions of the Monty Hall problem for our purposes. 
+
+```{python}
+import random
+import matplotlib.pyplot as plt
+```
+
+```{python}
+
+def Monty_Hall_Game(ndoors, ntrials):
+    # Counters for later graphing:
+    wins_switching = 0
+    wins_no_switching = 0
+
+    for _ in range(ntrials):
+        # Assign car door:
+        winning_door = random.randint(0, ndoors - 1)
+        # Assign initial door choice:
+        chosen_door = random.randint(0, ndoors - 1)
+
+        # Remaining doors (list):
+        all_other_doors = [door for door in range(ndoors) if door != chosen_door]
+
+        # Reveal a door that is not the winning door and is not the chosen door
+        revealed_door = random.choice([door for door in all_other_doors if door != winning_door])
+
+        # Pick door to switch to:    
+        switch_door = [door for door in range(ndoors) if door not in [chosen_door, revealed_door]][0]
+
+        # Determine if the initially chosen door is the car door
+        if chosen_door == winning_door:
+            wins_no_switching += 1 # increment
+        elif switch_door == winning_door:
+            wins_switching += 1 # increment
+        
+    # Win rate calculations:
+    win_rate_switching = wins_switching / ntrials
+    win_rate_no_switching = wins_no_switching / ntrials
+    lose_rate_switching = 1 - win_rate_switching
+    lose_rate_no_switching = 1 - win_rate_no_switching
+
+    # Create paneled plots
+    fig, axs = plt.subplots(2, 2, figsize=(8, 10))
+
+    # Plot win/loss rates for switching
+    axs[0, 0].bar(['Win', 'Lose'], [win_rate_switching, lose_rate_switching], color=['green', 'red'])
+    axs[0, 0].set_title('Switching Strategy')
+    axs[0, 0].set_ylabel('Probability')
+    
+    # Plot win/loss rates for not switching
+    axs[0, 1].bar(['Win', 'Lose'], [win_rate_no_switching, lose_rate_no_switching], color=['blue', 'orange'])
+    axs[0, 1].set_title('No Switching Strategy')
+    axs[0, 1].set_ylabel('Probability')
+    
+    # Plot total wins and losses
+    axs[1, 0].bar(['Switching Wins', 'No Switching Wins'], [wins_switching, wins_no_switching], color=['green', 'blue'])
+    axs[1, 0].set_title('Total Wins')
+    axs[1, 0].set_ylabel('Number of Wins')
+    
+    axs[1, 1].bar(['Switching Losses', 'No Switching Losses'], [ntrials - wins_switching, ntrials - wins_no_switching], color=['red', 'orange'])
+    axs[1, 1].set_title('Total Losses')
+    axs[1, 1].set_ylabel('Number of Losses')
+    
+    # Add a tight layout
+    plt.tight_layout()
+
+    # Show the plots
+    plt.show()
+
+# Try out our function:
+Monty_Hall_Game(3, 1000)
+```
+
+Now, let's observe what will happen for a Monty Hall Problem Scenario with 5 doors:
+
+``` {python}
+Monty_Hall_Game(5, 1000)
+```
+
+We observe by these examples that we can expect a diminishing long-term advantage for the switching strategy as the numbers of doors increases. However, it is still the switching strategy that would decisively give you the best probability of getting a car -- and not just ending up with a goat. 
+
+## 24 Game
+
+The 24 game involves creating the number 24 from four numbers using basic arithmetic operations.
+
+Traditionally, the numbers for use in a game of 24 are drawn from a deck of cards. This means that we will be working with integers 1 through 13. By basic arithmetic operations, we are referring to addition (+), subtraction (-), multiplication (*), and division (/). 
+
+### 1. Grouping in the 24 Game
+It is important to note that the number of solutions for any assortment of four cards varies widely. There are scenarios in which a combination of integers does *not* yield a solution, i.e. a set containing (1,1,1,1).
+
+In this section, we will list all the possible groupings of four numbers. While doing this, we will ignore the fact that some groupings are logically equivalent for *commutative* operations. For instance, $$(a+b+c)+d$$ would evaluate to the same value as $$d+(a+b+c).$$ It is important to ignore this distinction for our purposes because we are aiming to create a *brute force* function to solve any 24 scenario and we are electing to do the fullest extent of a *brute force* process, simulating every possibility. 
+
+Useful for this problem is the combinatorics principle of Catalan numbers. While I won't go into depth about what these are, you can get an overview about them [at this Wikipedia page](https://en.wikipedia.org/wiki/Catalan_number). You can also explore more scholarly references if this is a topic of interest. 
+
+Essentially, for our case it will help us to see how many ways we can make a paranthetical combinations to model our scenario. The formula for the Catalan numbers is:
+
+$$C_{n} = \frac{1}{2n+1} \binom{2n}{n}$$
+
+```{python}
+#Let's calculate the number of groupings:
+
+#Let's make a quick function to generalize our scenario:
+def catalan_number(n):
+    return math.factorial(2 * n) // (math.factorial(n) * math.factorial(n + 1))
+
+# We have 4 operands. For Catalan number scenarios, we use the Catalan number for (p-1). We'll compute the 3rd Catalan number here:
+n = 3
+num_possibilities = catalan_number(n)
+print("The number of possibilities is", num_possibilities, ".")
+```
+
+While this seems like lots of work to simply obtain the easily countable number five, we can see that creating generalized functions is generally a good habit in data science project development. 
+
+For a, b, c, and d representing integers in the Game 24 and stars representing operations, upon inspection, we know our families of groupings are:
+
+1. 
+$$((a \star b) \star c) \star d$$
+
+2.
+$$(a \star (b \star c)) \star d$$
+
+3.
+$$(a \star b) \star (c \star d)$$
+
+4.
+$$a \star ((b \star c) \star d)$$
+
+5.
+$$a \star (b \star (c \star d))$$
+
+Note that these groupings acknowledge the fact that we are potentially working with some non-commutative operations. Simpler cases like 
+$$a+b+c+d$$
+
+are implicitly handled by these groupings. 
+
+### 2. Number of Possible Solution Pathways
+Let's consider, though, that within these *families* of groupings, there are even more possibilities. In fact, for each family, we have $4!$ possible groupings four any set of four integers. This is because the family 
+
+$$((a \star b) \star c) \star d$$
+
+also contains the group 
+
+$$(a) \star (c \star b \star d)$$
+
+and so on. This distinction becomes important because we have some noncommutative operations. 
+
+Operations in 24 can be repeated. Given that we have four distinct operations and three spaces for them, each family can support $4^3$ possible combinations of operators. 
+
+Overall, we will say that we have $5 * 4! * 4^3$ groupings which are relevant for our scripting. This equates to 
+
+``` {python}
+print('There are', 5*(math.factorial(4)*(4**3)), 'possibilties in total.')
+```
+
+### 3. The 24 Game Brute Force Solver
+Here is a Brute Force 24 Game solver with two examples attached to it. 
+```{python}
+#Let's simplify this complex problem by breaking it down into subfunctions:
+def generate_int_permutations(input_list):
+    # Generate all permutations of the input list:
+    perms = permutations(input_list)
+    # Convert the permutations to a list of lists:
+    perm_list = [list(p) for p in perms]
+    
+    return perm_list
+
+def generate_combinations():
+    #Let's define the following:
+        # 1 --> Addition
+        # 2 --> Subtraction
+        # 3 --> Multiplication
+        # 4 --> Division
+    numbers = [1, 2, 3, 4]
+    # All combinations of length 3:
+    combinations = list(product(numbers, repeat=3))
+    return combinations
+
+def translate_lists(input_encoded_list):
+    operator_mapping = {
+        1: '+',
+        2: '-',
+        3: '*',
+        4: '/'
+    }
+    # First we will pick out our numbers and operators with a cool slicing trick:
+    numbers = input_encoded_list[::2]  # Get numbers from even indices
+    operators = input_encoded_list[1::2] #operators from off indices
+
+    #Then, we can map our operators to their respective symbols:
+    op_symbols = [operator_mapping[op] for op in operators]
+
+    expressions = [
+        f"( ({numbers[0]} {op_symbols[0]} {numbers[1]}) {op_symbols[1]} {numbers[2]} ) {op_symbols[2]} {numbers[3]}",
+        f"( {numbers[0]} {op_symbols[0]} ( {numbers[1]} {op_symbols[1]} {numbers[2]} ) ) {op_symbols[2]} {numbers[3]}",
+        f"( {numbers[0]} {op_symbols[0]} {numbers[1]} ) {op_symbols[1]} ( {numbers[2]} {op_symbols[2]} {numbers[3]} )",
+        f"{numbers[0]} {op_symbols[0]} ( ( {numbers[1]} {op_symbols[1]} {numbers[2]} ) {op_symbols[2]} {numbers[3]} )",
+        f"{numbers[0]} {op_symbols[0]} ( {numbers[1]} {op_symbols[1]} ( {numbers[2]} {op_symbols[2]} {numbers[3]} ) )"
+    ]
+
+    # Check each expression to see if it evaluates to 24
+    for expr in expressions:
+        try:
+            if math.isclose(24, eval(expr)):
+                print(f"Win! 24 = {expr}")
+        except ZeroDivisionError:
+            # Skip expressions that involve division by zero
+            continue
+        except Exception as e:
+            # Print other exceptions if they occur
+            print(f"Error evaluating expression: {expr}, Error: {e}")
+
+
+def play24(input_list):
+    int_permutations = generate_int_permutations(input_list)
+    operator_combinations = generate_combinations()
+    print(f'If there are any combinations of your specified numbers which yield valid results,\nthey will appear below:')
+    for perm in int_permutations:
+        for combo in operator_combinations:
+            encoded_list = perm[:]
+            encoded_list.insert(3, combo[2])
+            encoded_list.insert(2, combo[1])
+            encoded_list.insert(1, combo[0])
+
+            translate_lists(encoded_list)
+    
+
+user_input = [5,4,10,9]
+play24(user_input)
+```
+
+``` {python}
+user_input = [1,6,13,11]
+play24(user_input)
+```

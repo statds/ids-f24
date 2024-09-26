@@ -3,7 +3,8 @@
 1. **Quarto and Git setup**
   Quarto and Git are two important tools for data science. Get
   familiar with them through the following tasks. Please use
-  the `hwtemp.qmd` template.
+  the [`templates/hw.qmd`](https://github.com/statds/ids-f24/blob/main/templates/hw.qmd)
+  template.
     1. Install Quarto onto your computer following the instructions
     of [Get Started](https://quarto.org/docs/get-started/). Document
     the obstacles you encountered and how you overcame them.
@@ -11,7 +12,8 @@
     Emacs, etc.), follow the instructions to reproduce the example
     of line plot on polar axis.
     1. Render the homework into a pdf file and put the file into
-    a release in your GitHub repo.
+    a release in your GitHub repo. Document any obstacles you have
+    and how you overcome them.
     
 
 1. **Git basics and GitHub setup**
@@ -35,14 +37,21 @@
   line; use `git diff` to see the difference from the last commit;
   commit.
     1. Play with other git operations and commit.
-  
 
 1. **Contributing to the Class Notes**
+  To contribute to the classnotes, you need to have a working
+  copy of the sources on your computer. Document the following
+  steps in a `qmd` file as if you are explaining them to someone
+  who want to contribute too.
     1. Create a fork of the notes repo into your own GitHub account.
-    1. Clone it to your local computer. 
-    1. Make a new branch to experiment with your changes.
-    1. Checkout your branch and add your wishes to the wish list; push
-    to your GitHub account.
+    1. Clone it to an appropriate folder on your computer.
+    1. Render the classnotes on your computer; document the obstacles
+    and solutions.
+    1. Make a new branch (and name it appropriately) to experiment
+    with your changes.
+    1. Checkout your branch and add your wishes to the wish list; 
+    commit with an informative message; and
+    push the changes to your GitHub account.
     1. Make a pull request to class notes repo from your fork at
     GitHub. Make sure you have clear messages to document the changes.
 
@@ -88,59 +97,71 @@
    of solutions. Some of the solutions will be equivalent, but let us
    not worry about that for now.
 
-1. The NYC motor vehicle collisions data with documentation is available from
+1. **NYC Crash Data Cleaning**
+   The NYC motor vehicle collisions data with documentation is available from
    [NYC Open
    Data](https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95).
-   The raw data needs some cleaning. (JY: Add variable name cleaning next year.)
-    1. Use the filter from the website to download the crash data of January
-       2023; save it under a directory `data` with an informative name
-	   (e.g., `nyc_crashes_202301.csv`).
-	1. Get basic summaries of each variable: missing percentage; descriptive
-       statistics for continuous variables; frequency tables for discrete
-       variables.
-	1. Are the `LATITUDE` and `LONGITIDE` values all look legitimate? If not
-       (e.g., zeroes), code them as missing values.
-	1. If `OFF STREET NAME` is not missing, are there any missing `LATITUDE` and
-	   `LONGITUDE`? If so, geocode the addresses.
-	1. (Optional) Are the missing patterns of `ON STREET NAME` and `LATITUDE` the same?
-       Summarize the missing patterns by a cross table. If `ON STREET NAME` and
-       `CROSS STREET NAME` are available, use geocoding by intersection to fill
-	   the `LATITUDE` and `LONGITUDE`.
-	1. Are `ZIP CODE` and `BOROUGH` always missing together? If `LATITUDE` and
-       `LONGITUDE` are available, use reverse geocoding to fill the `ZIP CODE`
-       and `BOROUGH`.
-	1. Print the whole frequency table of
-		`CONTRIBUTING FACTOR VEHICLE 1`. 
-	   Convert lower cases to uppercases and check the frequencies again.
-	1. Provided an opportunity to meet the data provider, what suggestions do
-       you have to make the data better based on your data exploration
-       experience?
+   The raw data needs some cleaning.
+    1. Use the filter from the website to download the crash
+    data of the week of June 30, 2024 in CSV format;
+    save it under a directory `data` with an informative
+    name (e.g., `nyccrashes_2024w0630_by20240916.csv`);
+    read the data into a Panda data frame with careful
+    handling of the date time variables.
+    1. Clean up the variable names. Use lower cases and replace
+    spaces with underscores.
+    1. Get the basic summaries of each variables:
+    missing percentage; descriptive statistics for continuous variables;
+    frequency tables for discrete variables.
+    1. Are their invalid `longitude` and `latitude` in the data?
+    If so, replace them with `NA`.
+    1. Are there `zip_code` values that are not legit NYC zip codes?
+    If so, replace them with `NA`.
+    1. Are there missing in `zip_code` and `borough`? Do they
+    always co-occur?
+    1. Are there cases where `zip_code` and `borough` are missing
+    but the geo codes are not missing? If so, fill in `zip_code`
+    and `borough` using the geo codes.
+    1. Is it redundant to keep both `location` and the
+    `longitude`/`latitude` at the NYC Open Data server?
+    1. Check the frequency of `crash_time` by hour. Is there a matter
+    of bad luck at exactly midnight? How would you interpret this?
+    1. Are the number of persons killed/injured the summation of
+    the numbers of pedestrians, cyclist, and motorists killed/injured?
+    If so, is it redundant to keep these two columns at the NYC
+    Open Data server?
+    1. Print the whole frequency table of
+    `contributing_factor_vehicle_1`. 
+    Convert lower cases to uppercases and check the frequencies again.
+    1. Provided an opportunity to meet the data provider, what
+    suggestions would you make based on your data exploration
+    experience?
 
-1. Except the first problem, use the cleaned data set with missing geocode
-   imputed (`data/nyc_crashes_202301_cleaned.csv`).
+1. **NYC Crash Data Exploration**
     1. Construct a contigency table for missing in geocode (latitude and
-       longitude) by borough. Is the missing pattern the same across borough?
-       Formulate a hypothesis and test it. 
-	1. Construct a `hour` variable with integer values from 0 to 23. Plot the
-       histogram of the number of crashes by `hour`. Plot it by borough.
-	1. Overlay the locations of the crashes on a map of NYC. The map could be a
-       static map or Google map.
-	1. Create a new variable `injury` which is one if the number of persons
-       injured is 1 or more; and zero otherwise. Construct a cross table for
-       `injury` versus borough. Test the null hypothesis that the two variables are
-       not associated.
-	1. Merge the crash data with the zip code database.
-	1. Fit a logistic model with `injury` as the outcome variable and covariates
-       that are available in the data or can be engineered from the data. For
-       example, zip code level covariates can be obtained by merging with the
-       zip code database.
-	   
+     longitude) by borough. Is the missing pattern the same across boroughs?
+     Formulate a hypothesis and test it. 
+    1. Construct a `hour` variable with integer values from 0 to 23. Plot the
+     histogram of the number of crashes by `hour`. Plot it by borough.
+    1. Overlay the locations of the crashes on a map of NYC. The map could be a
+     static map or Google map.
+    1. Create a new variable `severe` which is one if the number of persons
+     injured of deaths is 1 or more; and zero otherwise. Construct a cross
+     table for `severe` versus borough. Is the severity of the crashes the
+     same across boroughs? Test the null hypothesis that the two variables
+     are not associated with an appropriate test.
+    1. Merge the crash data with the zip code database.
+    1. Fit a logistic model with `severe` as the outcome variable and covariates
+     that are available in the data or can be engineered from the data. For
+     example, zip code level covariates can be obtained by merging with the
+     zip code database.
+
 1. Using the cleaned NYC crash data, perform classification of `injury` with
    support vector machine and compare the results with the benchmark from
    regularized logistic regression. Use the last week's data as testing data.
     1. Explain the parameters you used in your fitting for each method.
-	2. Explain the confusion matrix result from each fit.
-	3. Compare the performance of the two approaches in terms of accuracy,
+    1. Explain the confusion matrix result from each fit.
+    1. Compare the performance of the two approaches in terms of accuracy,
        precision, recall, F1-score, and AUC.
 
 

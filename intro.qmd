@@ -108,6 +108,17 @@ To jump start, here is a tutorial:
 At least, you need to know how to handle files and traverse across
 directories. The tab completion and introspection supports are very useful.
 
+Here are several commonly used shell commands:
+
++ `cd`: change directory; `..` means parent directory.
++ `pwd`: present working directory.
++ `ls`: list the content of a folder; `-l` long version;
+   `-a` show hidden files; `-t` ordered by modification time.
++ `mkdir`: create a new directory.
++ `cp`: copy file/folder from a source to a target.
++ `mv`: move file/folder from a source to a target.
++ `rm`: remove a file a folder.
+
 
 ### Python
 
@@ -117,7 +128,7 @@ Set up Python on your computer:
 - Python package manager __miniconda__ or __pip__.
 - Integrated Development Environment (IDE) (Jupyter Notebook; RStudio; VS Code; Emacs; etc.)
 
-I will be using IPython and Jupyter Notebook in class.
+I will be using VS Code in class.
 
 Readability is important!
 Check your Python coding styles against the recommended styles:
@@ -128,6 +139,6 @@ Check your Python coding styles against the recommended styles:
 Online books on Python for data science:
 
 +  [“Python Data Science Handbook: Essential Tools for Working with Data,” First Edition](https://jakevdp.github.io/PythonDataScienceHandbook/), by Jake VanderPlas, O’Reilly Media, 2016. 
-2. [“Python for Data Analysis: Data Wrangling with Pan- das, NumPy, and IPython.” Third Edition](https://wesmckinney.com/book/), by Wes McK- inney, O’Reilly Media, 2022. 
+2. [“Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython.” Third Edition](https://wesmckinney.com/book/), by Wes McK- inney, O’Reilly Media, 2022. 
 
 
