@@ -121,6 +121,9 @@ Markdown.
     - Develope data science and machine learning skills
     - Become better at programming with Python and using Git/GitHub
 + Febles, Xavier
+    - Gain a further understanding of GitHub
+    - Develop data visualization skills
+    - Learn applications of skills learned in previous courses
 + Jha, Aansh
     - Be a better student of the data science field
     - Hone git to work in colabarative workspaces
