@@ -101,6 +101,9 @@ Markdown.
     - Better understand the Data Science pipeline and workflow
     - Learn how to show my skills I have learned in this class during interviews
 + Baptista, Stef
+    - Develop a project/presentation suitible enough for industry
+    - Improve on my data science skills regarding pandas and numpy
+    - Understanding the scope of packages in python as a language 
 + Bienvenue, Jack
     - Learn professional visualization techniques, particularly for geospatial data
     - Foster a high level of working knowledge of Git
