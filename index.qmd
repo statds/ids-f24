@@ -236,7 +236,7 @@ Please use the following table to sign up.
    10/09 | Rahul Manna            |
    10/14 | Kaitlyn Anderson       | Career readiness in data science
    10/16 | TBA                    |
-   10/21 | Jaden Astle            |
+   10/21 | Jaden Astle            | Classification and regression trees 
    10/23 | Olivia Kashalapov      |
    10/28 | Emily Borowski         | Random Forest
    10/30 | Qianruo Tan            | Reinforcement Learning
