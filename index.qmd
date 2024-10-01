@@ -101,6 +101,9 @@ Markdown.
     - Better understand the Data Science pipeline and workflow
     - Learn how to show my skills I have learned in this class during interviews
 + Baptista, Stef
+    - Develop a project/presentation suitible enough for industry
+    - Improve on my data science skills regarding pandas and numpy
+    - Understanding the scope of packages in python as a language 
 + Bienvenue, Jack
     - Learn professional visualization techniques, particularly for geospatial data
     - Foster a high level of working knowledge of Git
@@ -121,6 +124,9 @@ Markdown.
     - Develope data science and machine learning skills
     - Become better at programming with Python and using Git/GitHub
 + Febles, Xavier
+    - Gain a further understanding of GitHub
+    - Develop data visualization skills
+    - Learn applications of skills learned in previous courses
 + Jha, Aansh
     - Be a better student of the data science field
     - Hone git to work in colabarative workspaces
@@ -236,7 +242,7 @@ Please use the following table to sign up.
    10/09 | Rahul Manna            |
    10/14 | Kaitlyn Anderson       | Career readiness in data science
    10/16 | TBA                    |
-   10/21 | Jaden Astle            |
+   10/21 | Jaden Astle            | Classification and regression trees 
    10/23 | Olivia Kashalapov      |
    10/28 | Emily Borowski         | Random Forest
    10/30 | Qianruo Tan            | Reinforcement Learning

@@ -1,0 +1,250 @@
+# Statistical Tests and Models
+
+
+## Tests for Exploratory Data Analysis
+
+A collection of functions are available from `scipy.stats`.
+
++ Comparing the locations of two samples
+    - `ttest_ind`: t-test for two independent samples
+    - `ttest_rel`: t-test for paired samples
+	- `ranksums`: Wilcoxon rank-sum test for two independent samples
+	- `wilcoxon`: Wilcoxon signed-rank test for paired samples
++ Comparing the locations of multiple samples
+    - `f_oneway`: one-way ANOVA
+	- `kruskal`: Kruskal-Wallis H-test
++ Tests for associations in contigency tables
+    - `chi2_contingency`: Chi-square test of independence of variables
+	- `fisher_exact`:  Fisher exact test on a 2x2 contingency table
++ Goodness of fit
+    - `goodness_of_fit`: distribution could contain unspecified parameters
+	- `anderson`: Anderson-Darling test 
+    - `kstest`: Kolmogorov-Smirnov test 
+	- `chisquare`: one-way chi-square test
+	- `normaltest`: test for normality
+
+
+Since R has a richer collections of statistical functions, we can call 
+R function from Python with `rpy2`. See, for example, a [blog on this
+subject](https://rviews.rstudio.com/2022/05/25/calling-r-from-python-with-rpy2/).
+
+
+For example, `fisher_exact` can only handle 2x2 contingency tables. For
+contingency tables larger than 2x2, we can call `fisher.test()` from R through
+`rpy2`. 
+See [this StackOverflow post](https://stackoverflow.com/questions/25368284/fishers-exact-test-for-bigger-than-2-by-2-contingency-table).
+Note that the `.` in function names and arguments are replaced with `_`.
+
+```{python}
+import pandas as pd
+import numpy as np
+import rpy2.robjects.numpy2ri
+from rpy2.robjects.packages import importr
+rpy2.robjects.numpy2ri.activate()
+
+stats = importr('stats')
+
+w0630 = pd.read_feather("data/nyccrashes_cleaned.feather")
+w0630["injury"] = np.where(w0630["number_of_persons_injured"] > 0, 1, 0)
+m = pd.crosstab(w0630["injury"], w0630["borough"])
+print(m)
+
+res = stats.fisher_test(m.to_numpy(), simulate_p_value = True)
+print(res)
+```
+
+
+
+## Statistical Modeling
+
+Statistical modeling is a cornerstone of data science, offering tools to
+understand complex relationships within data and to make predictions. Python,
+with its rich ecosystem for data analysis, features the `statsmodels` package—
+a comprehensive library designed for statistical modeling, tests, and data
+exploration. `statsmodels` stands out for its focus on classical statistical
+models and compatibility with the Python scientific stack (`numpy`, `scipy`,
+`pandas`).
+
+### Installation of `statsmodels`
+
+To start with statistical modeling, ensure `statsmodels` is installed:
+
+Using pip:
+
+```bash
+pip install statsmodels
+```
+
+### Linear Model
+
+Let's simulate some data for illustrations.
+
+```{python}
+import numpy as np
+
+nobs = 200
+ncov = 5
+np.random.seed(123)
+x = np.random.random((nobs, ncov)) # Uniform over [0, 1)
+beta = np.repeat(1, ncov)
+y = 2 + np.dot(x, beta) + np.random.normal(size = nobs)
+```
+
+Check the shape of `y`:
+```{python}
+y.shape
+```
+
+Check the shape of `x`:
+```{python}
+x.shape
+```
+
+That is, the true linear regression model is
+\[
+y = 2 + x_1 + x_2 + x_3 + x_4 + x_5 + \epsilon.
+\]
+
+A regression model for the observed data can be fitted as
+
+```{python}
+import statsmodels.api as sma
+xmat = sma.add_constant(x)
+mymod = sma.OLS(y, xmat)
+myfit = mymod.fit()
+myfit.summary()
+```
+
+Questions to review:
+
++ How are the regression coefficients interpreted? Intercept?
++ Why does it make sense to center the covariates?
+
+
+Now we form a data frame with the variables
+
+```{python}
+import pandas as pd
+df = np.concatenate((y.reshape((nobs, 1)), x), axis = 1)
+df = pd.DataFrame(data = df,
+                  columns = ["y"] + ["x" + str(i) for i in range(1,
+                  ncov + 1)])
+df.info()
+```
+
+Let's use a formula to specify the regression model as in R, and fit
+a robust linear model (`rlm`) instead of OLS. Note that the model specification
+and the function interface is similar to R.
+
+```{python}
+import statsmodels.formula.api as smf
+mymod = smf.rlm(formula = "y ~ x1 + x2 + x3 + x4 + x5", data = df)
+myfit = mymod.fit()
+myfit.summary()
+```
+
+For model diagnostics, one can check residual plots.
+
+```{python}
+import matplotlib.pyplot as plt
+
+myOlsFit = smf.ols(formula = "y ~ x1 + x2 + x3 + x4 + x5", data = df).fit()
+fig = plt.figure(figsize = (6, 6))
+## residual versus x1; can do the same for other covariates
+fig = sma.graphics.plot_regress_exog(myOlsFit, 'x1', fig=fig)
+```
+
+See more on [residual diagnostics and specification
+tests](https://www.statsmodels.org/stable/stats.html#residual-diagnostics-and-specification-tests).
+
+
+### Generalized Linear Regression
+
+A linear regression model cannot be applied to presence/absence or
+count data.  Generalized Linear Models (GLM) extend the classical
+linear regression to accommodate such response variables, that follow
+distributions other than the normal distribution. GLMs consist of
+three main components:
+
+
++ **Random Component**: This specifies the distribution of the 
+response variable $Y$. It is assumed to be from the exponential family of 
+distributions, such as Binomial for binary data and Poisson for count data.
++ **Systematic Component**: This consists of the linear predictor, 
+a linear combination of unknown parameters and explanatory variables. It 
+is denoted as $\eta = X\beta$, where $X$ represents the explanatory 
+variables, and $\beta$ represents the coefficients.
++ **Link Function**: The link function, $g$, provides the 
+relationship between the linear predictor and the mean of the distribution 
+function. For a GLM, the mean of $Y$ is related to the linear predictor 
+through the link function as $\mu = g^{-1}(\eta)$.
+
+
+GLMs adapt to various data types through the
+selection of appropriate link functions and probability distributions. Here,
+we outline four special cases of GLM: normal regression, logistic regression,
+Poisson regression, and gamma regression.
+
+
++ Normal Regression (Linear Regression).
+In normal regression, the response variable has a normal distribution. The
+identity link function ($g(\mu) = \mu$) is typically used, making this case
+equivalent to classical linear regression.
+    - **Use Case**: Modeling continuous data where residuals are normally distributed.
+    - **Link Function**: Identity ($g(\mu) = \mu$)
+    - **Distribution**: Normal
++ Logistic Regression.
+Logistic regression is used for binary response variables. It employs the
+logit link function to model the probability that an observation falls into
+one of two categories.
+    - **Use Case**: Binary outcomes (e.g., success/failure).
+    - **Link Function**: Logit ($g(\mu) = \log\frac{\mu}{1-\mu}$)
+    - **Distribution**: Binomial
++ Poisson Regression.
+Poisson regression models count data using the Poisson distribution. It's
+ideal for modeling the rate at which events occur.
+    - **Use Case**: Count data, such as the number of occurrences of an event.
+    - **Link Function**: Log ($g(\mu) = \log(\mu)$)
+    - **Distribution**: Poisson
++ Gamma Regression.
+Gamma regression is suited for modeling positive continuous variables, 
+especially when data are skewed and variance increases with the mean.
+    - **Use Case**: Positive continuous outcomes with non-constant variance.
+    - **Link Function**: Inverse ($g(\mu) = \frac{1}{\mu}$)
+    - **Distribution**: Gamma
+
+Each GLM variant addresses specific types of data and research questions,
+enabling precise modeling and inference based on the underlying data
+distribution.
+
+
+A logistic regression can be fit with `statsmodels.api.glm`.
+
+Let's generate some binary data first by dichotomizing existing variables.
+
+```{python}
+import statsmodels.genmod as smg
+eta = x.dot([2, 2, 2, 2, 2]) - 5
+p = smg.families.links.Logit().inverse(eta)
+df["yb"] = np.random.binomial(1, p, p.size)
+```
+
+Fit a logistic regression for `y1b`.
+
+```{python}
+mylogistic = smf.glm(formula = 'yb ~ x1 + x2 + x3 + x4 + x5', data = df,
+                     family = smg.families.Binomial())
+mylfit = mylogistic.fit()
+mylfit.summary()
+```
+
+
+
+If we treat `y1b` as count data, a Poisson regression can be fitted.
+
+```{python}
+myPois = smf.glm(formula = 'yb ~ x1 + x2 + x3 + x4 + x5', data = df,
+                 family = smg.families.Poisson())
+mypfit = myPois.fit()
+mypfit.summary()
+```

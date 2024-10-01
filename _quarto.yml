@@ -20,6 +20,9 @@ book:
     - python.qmd
     - communication.qmd
     - manipulation.qmd
+    - visualization.qmd
+    - stats.qmd
+    - supervised.qmd
     - exercises.qmd
     - references.qmd
 
