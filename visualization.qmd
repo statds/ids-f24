@@ -1,0 +1,3 @@
+# Visualization
+
+{{< include _plotnine.qmd >}}
