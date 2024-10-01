@@ -61,7 +61,7 @@ For the examples we will be using NYC open data to visualize motor vehicle crash
 ```{python}
 import pandas as pd
 
-nyc_crash = pd.read_feather('nyccrashes_cleaned.feather').dropna(subset=['borough'])
+nyc_crash = pd.read_feather('data/nyccrashes_cleaned.feather').dropna(subset=['borough'])
 ```
 
 ### Scatterplot
