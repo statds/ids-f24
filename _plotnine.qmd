@@ -5,7 +5,11 @@ This section was written by Julia Mazzola
 ### Introduction
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Hi! My name is Julia, and I am a Senior double majoring in Statistical Data Science and Economics. I’m excited to show you the power of data visualization with `Plotnine`, a Python library inspired by R's `ggplot2`. Visualization is a crucial tool to effectively communicate your findings to your audience and `Plotnine` is a useful library to use. 
+=======
+Hi! My name is Julia, and I am a Senior double majoring in Economics and Statistical Data Science. I’m excited to show you the power of data visualization with `Plotnine`, a Python library inspired by R's `ggplot2`. Visualization is a crucial tool to effectively communicate your findings to your audience and `Plotnine` is a useful library to use. 
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 =======
 Hi! My name is Julia, and I am a Senior double majoring in Economics and Statistical Data Science. I’m excited to show you the power of data visualization with `Plotnine`, a Python library inspired by R's `ggplot2`. Visualization is a crucial tool to effectively communicate your findings to your audience and `Plotnine` is a useful library to use. 
 >>>>>>> 7519e496e512910d2284f26de78708e5a973042e
@@ -18,17 +22,23 @@ Components of the layered grammar of graphics:
 
 - **Layer:** used to create the objects on a plot
 <<<<<<< HEAD
+<<<<<<< HEAD
 - **Data:** defines the source of the information to be visualized
 - **Mapping:** defines how the variables are represented in the plot
 - **Statistical transformation (stat):** transforms the data, generally by summarizing the information
 - **Geometric object (geom):** determines the type of plot type (e.g., points, lines, bars)
 - **Position adjustment (position):** adjusts the display of overlapping points to improve clarity 
 =======
+=======
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
     - **Data:** defines the source of the information to be visualized
     - **Mapping:** defines how the variables are represented in the plot
     - **Statistical transformation (stat):** transforms the data, generally by summarizing the information
     - **Geometric object (geom):** determines the type of plot type (e.g., points, lines, bars)
     - **Position adjustment (position):** adjusts the display of overlapping points to improve clarity 
+<<<<<<< HEAD
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
+=======
 >>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 - **Scale:** controls how values are mapped to aesthetic attributes (e.g., color, size)
 - **Coordinate system (coord):** maps the position of objects onto the plane of the plot, and controls how the axes and grid lines are drawn
@@ -74,7 +84,11 @@ For the examples we will be using NYC open data to visualize motor vehicle crash
 import pandas as pd
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 nyc_crash = pd.read_feather('nyccrashes_cleaned.feather').dropna(subset=['borough'])
+=======
+nyc_crash = pd.read_feather('data/nyccrashes_cleaned.feather').dropna(subset=['borough'])
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 =======
 nyc_crash = pd.read_feather('data/nyccrashes_cleaned.feather').dropna(subset=['borough'])
 >>>>>>> 7519e496e512910d2284f26de78708e5a973042e
@@ -91,6 +105,7 @@ warnings.filterwarnings("ignore", category=UserWarning)
 
 (ggplot(nyc_crash, aes(x='longitude', y='latitude')) +
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Specifies graph type
     geom_point() +
 # Creates labels for graphic
@@ -104,6 +119,8 @@ warnings.filterwarnings("ignore", category=UserWarning)
 `coord_fixed()`: changes the ratio of the x and y axis
 
 =======
+=======
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
     #specifies graph type
     geom_point() +
      #creates labels for graphic
@@ -112,12 +129,16 @@ warnings.filterwarnings("ignore", category=UserWarning)
          y='Latitude'))
 ```
 
+<<<<<<< HEAD
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
+=======
 >>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 **Customizing a Scatterplot**
 
 You can customize your plot further by changing the color, edge color, transparency, size, or shape of your points. This is done in `geom_point()`.
 ```{python}
 (ggplot(nyc_crash, aes(x='longitude', y='latitude')) + 
+<<<<<<< HEAD
 <<<<<<< HEAD
 # Changes what our points look like
 # color= changes the outline color
@@ -132,16 +153,22 @@ You can customize your plot further by changing the color, edge color, transpare
          y='Latitude') +
     coord_fixed(ratio = 1))
 =======
+=======
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
     geom_point(color = 'black', fill = 'purple', 
                 alpha = 0.5, size = 2, shape = 's') + 
     labs(title='Crash Locations by Contributing Factor',
          x='Longitude',
          y='Latitude'))
+<<<<<<< HEAD
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
+=======
 >>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 ```
 
 This scatterplot provides a lot of information, yet there are ways we can customize our plot to be more informative for our audience. We can create a scatterplot that differentiates by contributing factor. 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 **Changing Shape by Variables**
 
@@ -218,6 +245,8 @@ If you want to fit a linear regression line, use `geom_smooth()`. Adding this to
 ```{python}
 geom_smooth(method='lm', se=False, color='red')
 =======
+=======
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 **Changing Shape of Variables**
 
 Adding shapes by the contributing factor for vehicle 1:
@@ -329,6 +358,9 @@ Although this data is not one that makes sense to fit a regression line, the sca
     labs(title='Crash Locations',
          x='Longitude',
          y='Latitude'))
+<<<<<<< HEAD
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
+=======
 >>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 ```
 
@@ -340,22 +372,29 @@ Another common use for displaying data is a bar chart. You can create one with `
 
 ```{python}
 <<<<<<< HEAD
+<<<<<<< HEAD
 (ggplot(nyc_crash, aes(x='borough')) + # Use 'borough' for the x-axis
     geom_bar(fill='purple') +
     labs(title='Number of Crashes by Borough', 
         x='Borough',
         y='Crash Count'))
 =======
+=======
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 (ggplot(nyc_crash, aes(x='borough'))  # Use 'borough' for the x-axis
  + geom_bar(fill='purple') 
  + labs(title='Number of Crashes by Borough', 
         x='Borough',
         y='Count'))
+<<<<<<< HEAD
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
+=======
 >>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 ```
 
 **Customizing your Bar Chart**
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 You can change up your bar chart a couple of different ways. You can handpick colors you want, designate it to variables, flip orientation, etc:
 
@@ -373,6 +412,8 @@ colors = ['#B3FFBA', '#E1C6FF', '#FFB3BA', '#BAE1FF', '#FFD5BA']
         x='Borough',
         y='Crash Count'))
 =======
+=======
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 You can change up your bar chart a couple of different ways. You can handpick colors you want, designate it to variables, and flip orientation, etc:
 
 ```{python}
@@ -388,6 +429,9 @@ colors = ['#B3FFBA', '#E1C6FF', '#FFB3BA', '#BAE1FF', '#FFD5BA']
  + labs(title='Number of Crashes by Borough', 
         x='Borough',
         y='Count'))
+<<<<<<< HEAD
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
+=======
 >>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 ```
 
@@ -396,6 +440,7 @@ colors = ['#B3FFBA', '#E1C6FF', '#FFB3BA', '#BAE1FF', '#FFD5BA']
 You can also split up a bar chart to make it visually easier to understand.
 
 ```{python}
+<<<<<<< HEAD
 <<<<<<< HEAD
 # Using 'confact' dataset again for better visualization
 (ggplot(confact, aes(x='contributing_factor_vehicle_1', fill='borough')) +
@@ -410,6 +455,8 @@ You can also split up a bar chart to make it visually easier to understand.
 # figure_size= creates a larger image
     theme(axis_text_x=element_text(size=9, angle=65), figure_size= (7,7)))
 =======
+=======
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 #using 'confact' dataset again for better visualization
 (ggplot(confact, aes(x='contributing_factor_vehicle_1', fill='borough')) 
     + geom_bar()
@@ -420,6 +467,9 @@ You can also split up a bar chart to make it visually easier to understand.
     #rotates x-axis text for readability
     #creates a bigger image
     + theme(axis_text_x=element_text(size=9, angle=65), figure_size= (7,7)))
+<<<<<<< HEAD
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
+=======
 >>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 ```
 
@@ -430,17 +480,23 @@ Another useful way to display data is a histogram. You can create one with `geom
 ```{python}
 (ggplot(nyc_crash, aes(x='number_of_persons_injured')) +
 <<<<<<< HEAD
+<<<<<<< HEAD
 # bins= sets the amount of bars in your histogram
     geom_histogram(bins=10, alpha=0.8, fill='green') + 
     labs(title='Distribution of Persons Injured',
         x='Number of Persons Injured',
         y='Count of Crashes'))
 =======
+=======
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
     #bins= sets the amount of bars in your histogram
     geom_histogram(bins=10, alpha=0.8, fill='green') + 
     labs(title='Distribution of Persons Injured',
          x='Number of Persons Injured',
          y='Count of Crashes'))
+<<<<<<< HEAD
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
+=======
 >>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 ```
 
@@ -448,6 +504,7 @@ With a histogram it is very easy to understand trends for a dataset and you can 
 
 **Multivariable Histogram**
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 Similar to bar charts, you can make Histograms that display more than one variable. 
 
@@ -461,12 +518,17 @@ Similar to bar charts, you can make Histograms that display more than one variab
         y='Count of Crashes',
         fill = 'Borough'))
 =======
+=======
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 Similar to bar charts, we can make Histograms that display more than one variable. We can also add some more customizations such as adding an outline color for our sections, adding width of the bins and angle of . 
 
 ```{python}
 (ggplot(confact, aes(x='number_of_persons_injured', fill = 'borough')) 
     #changing width of the bins and adding outline color with color= to make it easier to read
     + geom_histogram(binwidth=1, color = 'black'))
+<<<<<<< HEAD
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
+=======
 >>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 ```
 
@@ -475,6 +537,7 @@ Similar to bar charts, we can make Histograms that display more than one variabl
 Histograms can also be useful when comparing multiple categories. Here we are comparing Manhattan and Brooklyn's number of persons injured with an overlapping histogram. 
 
 ```{python}
+<<<<<<< HEAD
 <<<<<<< HEAD
 # Creating plot if crash is in 'MANHATTAN' or 'BROOKLYN'
 (ggplot(nyc_crash[nyc_crash['borough'].isin(['MANHATTAN', 'BROOKLYN'])], 
@@ -485,11 +548,16 @@ Histograms can also be useful when comparing multiple categories. Here we are co
         y='Count',
         fill='Borough'))
 =======
+=======
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 (ggplot(nyc_crash[nyc_crash['borough'].isin(['MANHATTAN', 'BROOKLYN'])], aes(x='number_of_persons_injured', fill='borough')) +
     geom_histogram(bins=10) +
     labs(title='Persons Injured: Manhattan vs Brooklyn',
          x='Number of Persons Injured',
          y='Count'))
+<<<<<<< HEAD
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
+=======
 >>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 ```
 
@@ -501,7 +569,10 @@ Line charts are great for time-series data and can be created with `geom_line()`
 
 ```{python}
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Finding crashes per hour
+=======
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 =======
 >>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 nyc_crash['crash_datetime'] = pd.to_datetime(nyc_crash['crash_datetime'])
@@ -510,6 +581,7 @@ nyc_crash['crash_datetime'] = pd.to_datetime(nyc_crash['crash_datetime'])
 nyc_crash['crash_hour'] = nyc_crash['crash_datetime'].dt.hour
 
 # Count crashes per hour
+<<<<<<< HEAD
 <<<<<<< HEAD
 crash_counts = (nyc_crash.groupby(['crash_hour'])
                 .size().reset_index(name='crash_count'))
@@ -526,6 +598,8 @@ crash_counts = (nyc_crash.groupby(['crash_hour'])
         y='Crashes') +
 # Formats the x-axis to display ticks by every 2 hours
 =======
+=======
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 crash_counts = nyc_crash.groupby(['crash_hour']).size().reset_index(name='crash_count')
 ```
 ```{python}
@@ -539,6 +613,9 @@ crash_counts = nyc_crash.groupby(['crash_hour']).size().reset_index(name='crash_
          x='Hour',
          y='Crashes') +
     #formats the x-axis to display ticks by every 2 hours
+<<<<<<< HEAD
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
+=======
 >>>>>>> 7519e496e512910d2284f26de78708e5a973042e
     scale_x_continuous(breaks=range(0, 24, 2)))
 ```
@@ -550,6 +627,7 @@ This example is excellent for understanding the grammar of graphics. As you can 
 Similarly to the other figures you can create a line chart with multiple variables. Now we will create a chart with number of crashes by borough. 
 
 ```{python}
+<<<<<<< HEAD
 <<<<<<< HEAD
 # Setting crash counts to also include borough
 crash_counts = nyc_crash.groupby(['crash_hour', 
@@ -626,6 +704,8 @@ Histogram of Crashes per Hour by Borough with `facet_wrap`:
 ```
 
 =======
+=======
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 #setting crash counts to also include borough
 crash_counts = nyc_crash.groupby(['crash_hour', 'borough']).size().reset_index(name='crash_count')
 
@@ -639,6 +719,9 @@ crash_counts = nyc_crash.groupby(['crash_hour', 'borough']).size().reset_index(n
     scale_x_continuous(breaks=range(0, 24, 2)))
 ```
 
+<<<<<<< HEAD
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
+=======
 >>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 **Line Chart per Facet**
 
@@ -647,6 +730,7 @@ You can use plot each variable by on separate panels with `facet_wrap()`.
 ```{python}
 (ggplot(crash_counts, aes(x='crash_hour', y='crash_count')) +
 <<<<<<< HEAD
+<<<<<<< HEAD
     geom_line() +
     # Breaks the figure up by borough
     facet_wrap("borough") + 
@@ -654,12 +738,17 @@ You can use plot each variable by on separate panels with `facet_wrap()`.
         x='Hour of the Day',
         y='Number of Crashes'))
 =======
+=======
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
     geom_line(size=1) +
     #breaks the figure up by borough
     facet_wrap("borough") + 
     labs(title='Number of Crashes by Hour and Borough',
          x='Hour of the Day',
          y='Number of Crashes'))
+<<<<<<< HEAD
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
+=======
 >>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 ```
 
@@ -668,6 +757,11 @@ You can use plot each variable by on separate panels with `facet_wrap()`.
 `Plotnine` is a very powerful tool to make impactful and detailed graphics. The flexibility of its grammar of graphics approach means there are endless ways to modify, enhance, and be creative with your plots. You can layer geoms, adjust aesthetics, and apply scales, facets, and themes.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+**Basic things to remember:**
+
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 =======
 **Basic things to remember:**
 
@@ -701,11 +795,17 @@ Happy plotting!
 ### Sources
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Python Graph Gallery. (2024). Plotnine: ggplot in python. Python Graph Gallery. https://python-graph-gallery.com/plotnine/
 
 Sarker, D. (2018). A comprehensive guide to the grammar of graphics for effective visualization of multi-dimensional data. Towards Data Science. https://towardsdatascience.com/a-comprehensive-guide-to-the-grammar-of-graphics-for-effective-visualization-of-multi-dimensional-1f92b4ed4149
 
 Wilkinson, L. (2012). The grammar of graphics (pp. 375-414). Springer Berlin Heidelberg.
+=======
+Sarker, D. (2018). A comprehensive guide to the grammar of graphics for effective visualization of multi-dimensional data. Towards Data Science. https://towardsdatascience.com/a-comprehensive-guide-to-the-grammar-of-graphics-for-effective-visualization-of-multi-dimensional-1f92b4ed4149
+
+Python Graph Gallery. (2024). Plotnine: ggplot in python. Python Graph Gallery. https://python-graph-gallery.com/plotnine/
+>>>>>>> 7519e496e512910d2284f26de78708e5a973042e
 =======
 Sarker, D. (2018). A comprehensive guide to the grammar of graphics for effective visualization of multi-dimensional data. Towards Data Science. https://towardsdatascience.com/a-comprehensive-guide-to-the-grammar-of-graphics-for-effective-visualization-of-multi-dimensional-1f92b4ed4149
 

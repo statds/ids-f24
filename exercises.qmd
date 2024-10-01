@@ -137,7 +137,8 @@
     suggestions would you make based on your data exploration
     experience?
 
-1. **NYC Crash Data Exploration**
+1. **NYC Crash Data Exploration** Except for the first question, use
+   the cleaned crash data in feather format.
     1. Construct a contigency table for missing in geocode (latitude and
      longitude) by borough. Is the missing pattern the same across boroughs?
      Formulate a hypothesis and test it. 
@@ -156,7 +157,7 @@
      example, zip code level covariates can be obtained by merging with the
      zip code database.
 
-1. Using the cleaned NYC crash data, perform classification of `injury` with
+1. Using the cleaned NYC crash data, perform classification of `severe` with
    support vector machine and compare the results with the benchmark from
    regularized logistic regression. Use the last week's data as testing data.
     1. Explain the parameters you used in your fitting for each method.
