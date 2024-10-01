@@ -301,13 +301,14 @@ window.Quarto = {
 <li>Overlay the locations of the crashes on a map of NYC. The map could be a static map or Google map.</li>
 <li>Create a new variable <code>severe</code> which is one if the number of persons injured of deaths is 1 or more; and zero otherwise. Construct a cross table for <code>severe</code> versus borough. Is the severity of the crashes the same across boroughs? Test the null hypothesis that the two variables are not associated with an appropriate test.</li>
 <li>Merge the crash data with the zip code database.</li>
-<li>Fit a logistic model with <code>severe</code> as the outcome variable and covariates that are available in the data or can be engineered from the data. For example, zip code level covariates can be obtained by merging with the zip code database.</li>
+<li>Fit a logistic model with <code>severe</code> as the outcome variable and covariates that are available in the data or can be engineered from the data. For example, zip code level covariates can be obtained by merging with the zip code database; crash hour; number of vehicles involved.</li>
 </ol></li>
-<li><p>Using the cleaned NYC crash data, perform classification of <code>severe</code> with support vector machine and compare the results with the benchmark from regularized logistic regression. Use the last week’s data as testing data.</p>
+<li><p><strong>NYC Crash severity modeling</strong> Using the cleaned NYC crash data, merged with zipcode level information, predict <code>severe</code> of a crash.</p>
 <ol type="1">
-<li>Explain the parameters you used in your fitting for each method.</li>
-<li>Explain the confusion matrix result from each fit.</li>
-<li>Compare the performance of the two approaches in terms of accuracy, precision, recall, F1-score, and AUC.</li>
+<li>Set random seed to <code>1234</code>. Randomly select 20% of the crashes as testing data and leave the rest 80% as training data.</li>
+<li>Fit a logistic model on the training data and validate the performance on the testing data. Explain the confusion matrix result from the testing data. Compute the F1 score.</li>
+<li>Fit a logistic model on the training data with <span class="math inline">\(L_1\)</span> regularization. Select the tuning parameter with 5-fold cross-validation in F1 score</li>
+<li>Apply the regularized logistic regression to predict the severity of the crashes in the testing data. Compare the performance of the two logistic models in terms of accuracy, precision, recall, F1-score, and AUC.</li>
 </ol></li>
 <li><p>The <a href="https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9">NYC Open Data of 311 Service Requests</a> contains all requests from 2010 to present. We consider a subset of it with request time between 00:00:00 01/15/2023 and 24:00:00 01/21/2023. The subset is available in CSV format as <code>data/nyc311_011523-012123_by022023.csv</code>. Read the data dictionary to understand the meaning of the variables,</p>
 <ol type="1">
@@ -316,30 +317,6 @@ window.Quarto = {
 <li>Define a binary variable <code>over3h</code> which is 1 if <code>duration</code> is greater than 3 hours. Note that it can be obtained even for censored <code>duration</code>. Build a model to predict <code>over3h</code>. If your model has tuning parameters, justify their choices. Apply this model to the 311 requests of NYPD in the week of 01/22/2023. Assess the performance of your model.</li>
 <li>Now you know the data quite well. Come up with a research question of interest that can be answered by the data, which could be analytics or visualizations. Perform the needed analyses and answer your question.</li>
 </ol></li>
-<li><p><strong>NYC Rodents</strong> Rats in NYC are widespread, as they are in many densely populated areas (https://en.wikipedia.org/wiki/Rats_in_New_York_City). As of October 2023, NYC dropped from the 2nd to the 3rd places in the annual <a href="https://www.orkin.com/press-room/top-rodent-infested-cities-2023#">“rattiest city” list</a> released by a pest control company. In the 311 Service Request Data, there is one complain type <code>Rodent</code>. Extract all the requests with complain type <code>Rodent</code>, created between January 1, 2022 and December 31, 2023. Save them into a csv file named <code>rodent_2022-2023.csv</code>.</p>
-<ol type="1">
-<li>Are there any complains that are not closed yet?</li>
-<li>Are there any complains with a closed data before the created date?</li>
-<li>How many agencies were this complain type reported to?</li>
-<li>Summarize the missingess for each variable.</li>
-<li>Summarize a frequency table for the <code>descriptor</code> variable, and summarize a cross table by year.</li>
-<li>Which types of ‘DESCRIPTOR’ do you think should be included if our interest is rodent sighting?</li>
-<li>Take a subset of the data with the descriptors you chose and summarize the response time by borough.</li>
-</ol></li>
-<li><p><strong>NYC rodent sightings data cleaning</strong> The data appears to need some cleaning before any further analysis. Some missing values could be filled based on other columns.</p>
-<ol type="1">
-<li>Checking all 47 column names suggests that some columns might be redundant. Identify them and demonstrate the redundancy.</li>
-<li>Are zip code and borough always missing together? If geocodes are available, use reverse geocoding to fill the zip code.</li>
-<li>Export the cleaned data in both csv and feather format. Comment on the file sizes.</li>
-</ol></li>
-<li><p><strong>SQL Practice on NYC rodent sightings</strong> The NYC rodent sightings data that we prepared could be stored more efficiently using a database. Let us start from the csv file you exported from the last problem.</p>
-<ol type="1">
-<li>Create a table called <code>rodent</code> from the csv file.</li>
-<li>The <code>agency</code> and <code>agency_name</code> columns are redundant in the table. Create a table called <code>agency</code>, which contains only these two columns, one agency a row.</li>
-<li>Drop the <code>agency_name</code> name from the <code>rodent</code> table. Justify why we do not need it here.</li>
-<li>Comment on the sizes of the table (or exported csv file) of <code>rodent</code> before and after dropping the <code>agency_name</code> column.</li>
-<li>Come up with a scheme for the two tables that allows even more efficient storage of the <code>agency</code> column in the <code>rodent</code> table. _Hint: use an integer to code the agencies.</li>
-</ol></li>
 <li><p><strong>Logistic Modeling</strong> The response time to 311 service requests is a measure of civic service quality. Let us model the response time to 311 requests with complain type <code>Rodent</code>.</p>
 <ol type="1">
 <li>Compute the response time in hours. Note that some response will be missing because of unavailable closed date.</li>
@@ -347,31 +324,6 @@ window.Quarto = {
 <li>Use the package <code>uszipcode</code> to obtain the zip code level covariates such as median house income and median home value. Merge these variables to the rodent data.</li>
 <li>Split the data at random into training (80%) and testing (20%). Build a logistic model to predict <code>over3d</code> on the training data, and validate the performance on the testing data.</li>
 <li>Build a lasso logistic model to predict <code>over3d</code>, and justify your choice of the tuning parameter. Validate on the testing data.</li>
-</ol></li>
-<li><p><strong>Midterm Project: Rodents in NYC</strong> <a href="https://en.wikipedia.org/wiki/Rats_in_New_York_City">Rodents in NYC</a> are widespread, as they are in many densely populated areas. As of October 2023, NYC dropped from the 2nd to the 3rd places in the annual <a href="https://www.orkin.com/press-room/top-rodent-infested-cities-2023#">“rattiest city” list</a> released by a pest control company. Rat sightings in NYC was analyzed by Dr.&nbsp;Michael Walsh in a <a href="https://peerj.com/articles/533/">2014 PeerJ article</a>. We investigate this problem from a different angle with the <a href="https://data.cityofnewyork.us/Health/Rodent-Inspection/p937-wjvj/about_data">NYC Rodent Inspection data</a>, provided by the Department of Health and Mental Hygiene (DOHMH). Download the 2022-2023 data by filtering the <code>INSPECTION_DATE</code> to between 11:59:59 pm of 12/31/2021 and 12:00:00 am of 01/01/2024 and <code>INSPECTION_TYPE</code> is either <code>Initial</code> or <code>Compliance</code> (which should be about 108 MB). Read the meta data information to understand the data.</p>
-<ol type="1">
-<li>Data cleaning.
-<ul>
-<li>There are two zipcode columns: <code>ZIP_CODE</code> and <code>Zipcodes</code>. Which one represent the zipcode of the inspection site? Comment on the data dictionary.</li>
-<li>Summarize the missing information. Are their missing values that can be filled using other columns? Fill them if yes.</li>
-<li>Are their redundant information in the data? Try storing the data using <code>arrow</code> and comment on the efficiency gain.</li>
-<li>Are there invalid zipcode or borough? Justify and clean them up if yes.</li>
-</ul></li>
-<li>Data exploration.
-<ul>
-<li>Create binary variable <code>passing</code> indicating passing or not for the inspection result. Does <code>passing</code> depend on whether the inspection is initial or compliance? State your hypothesis and summarize your test result.</li>
-<li>Are the passing pattern different across different boroughs for initial inspections? How about compliance inspections? State your hypothesis and summarize your test results.</li>
-<li>If we suspect that the passing rate may depends on the time of a day of the inspection, we may compare the passting rates for inspections done in the mornings and inspections one in the afternoons. Visualize the comparison by borough and inspection type.</li>
-<li>Perform a formal hypothesis test to confirm the observations from your visualization.</li>
-</ul></li>
-<li>Data analytics.
-<ul>
-<li>Aggregate the inspections by zip code to create a dataset with five columns. The first three columns are <code>zipcode</code>; <code>n_initial</code>, the count of the initial inspections in that zipcode; and <code>n_initpass</code>, the number of initial inspections with a passing result in that zipcode. The other two variables are <code>n_compliance</code> and <code>n_comppass</code>, the counterpart for compliance inspections.</li>
-<li>Add a variable to your dataset, <code>n_sighting</code>, which represent the number of rodent sightings from the 311 service request data in the same 2022-2023 period.</li>
-<li>Merge your dataset with the simple zipcode table in package <code>uszipcode</code> by zipcode to obtain demographic and socioeconomic variables at the zipcode level.</li>
-<li>Build a binomial regression for the passing rate of initial inspections at the zipcode level. Assess the goodness-of-fit of your model. Summarize your results to a New Yorker who is not data science savvy.</li>
-</ul></li>
-<li>Now you know the data quite well. Come up with a research question of interest that can be answered by the data, which could be analytics or visualizations. Perform the needed analyses and answer your question.</li>
 </ol></li>
 </ol>
 
