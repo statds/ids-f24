@@ -30,7 +30,7 @@ subject](https://rviews.rstudio.com/2022/05/25/calling-r-from-python-with-rpy2/)
 
 
 For example, `fisher_exact` can only handle 2x2 contingency tables. For
-contingency tables larger than 2x2, we can call `fisher.text()` from R through
+contingency tables larger than 2x2, we can call `fisher.test()` from R through
 `rpy2`. 
 See [this StackOverflow post](https://stackoverflow.com/questions/25368284/fishers-exact-test-for-bigger-than-2-by-2-contingency-table).
 Note that the `.` in function names and arguments are replaced with `_`.
