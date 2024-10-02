@@ -220,31 +220,230 @@ distribution.
 
 A logistic regression can be fit with `statsmodels.api.glm`.
 
-Let's generate some binary data first by dichotomizing existing variables.
+To demonstrate the validation of logistic regression models, we first
+create a simulated dataset with binary outcomes. This setup involves
+generating logistic probabilities and then drawing binary outcomes
+based on these probabilities.
 
 ```{python}
-import statsmodels.genmod as smg
-eta = x.dot([2, 2, 2, 2, 2]) - 5
-p = smg.families.links.Logit().inverse(eta)
-df["yb"] = np.random.binomial(1, p, p.size)
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+
+# Set seed for reproducibility
+np.random.seed(42)
+
+# Create a DataFrame with random features named `simdat`
+simdat = pd.DataFrame(np.random.randn(1000, 5), columns=['x1', 'x2', 'x3', 'x4', 'x5'])
+
+# Calculating the linear combination of inputs plus an intercept
+eta = simdat.dot([2, 2, 2, 2, 2]) - 5
+
+# Applying the logistic function to get probabilities using statsmodels' logit link
+p = sm.families.links.Logit().inverse(eta)
+
+# Generating binary outcomes based on these probabilities and adding them to `simdat`
+simdat['yb'] = np.random.binomial(1, p, p.size)
+
+# Display the first few rows of the dataframe
+print(simdat.head())
 ```
 
-Fit a logistic regression for `y1b`.
+Fit a logistic regression for `y1b` with the formula interface.
 
 ```{python}
-mylogistic = smf.glm(formula = 'yb ~ x1 + x2 + x3 + x4 + x5', data = df,
-                     family = smg.families.Binomial())
-mylfit = mylogistic.fit()
-mylfit.summary()
+import statsmodels.formula.api as smf
+
+# Specify the model formula
+formula = 'yb ~ x1 + x2 + x3 + x4 + x5'
+
+# Fit the logistic regression model using glm and a formula
+fit = smf.glm(formula=formula, data=simdat, family=sm.families.Binomial()).fit()
+
+# Print the summary of the model
+print(fit.summary())
 ```
 
 
 
-If we treat `y1b` as count data, a Poisson regression can be fitted.
+## Validating the Results of Logistic Regression
+
+Validating the performance of logistic regression models is crucial to
+assess their effectiveness and reliability. This section explores key
+metrics used to evaluate the performance of logistic regression
+models, starting with the confusion matrix, then moving on to
+accuracy, precision, recall, F1 score, and the area under the ROC
+curve (AUC). Using simulated data, we will demonstrate how to
+calculate and interpret these metrics using Python.
+
+### Confusion Matrix
+The confusion matrix is a fundamental tool used for calculating
+several other classification metrics. It is a table used to describe
+the performance of a classification model on a set of data for which
+the true values are known. The matrix displays the actual values
+against the predicted values, providing insight into the number of
+correct and incorrect predictions.
+
+   Actual         | Predicted Positive | Predicted Negative 
+ ---------- | --------------- | ---------------
+  Actual Positive   | True Positive (TP)     | False Negative (FN) 
+  Actual Negative  | False Positive (FP)    | True Negative (TN)
+
+<https://en.wikipedia.org/wiki/Confusion_matrix>
+
+Four entries in the confusion matrix:
+
++ True Positive (TP): The cases in which the model correctly predicted
+  the positive class.
++ False Positive (FP): The cases in which the model incorrectly
+  predicted the positive class (i.e., the model predicted positive,
+  but the actual class was negative).
++ True Negative (TN): The cases in which the model correctly predicted
+  the negative class.
++ False Negative (FN): The cases in which the model incorrectly
+  predicted the negative class (i.e., the model predicted negative,
+  but the actual class was positive).
+  
+
+Four rates from the confusion matrix with actual (row) margins:
+
++ True positive rate (TPR): TP / (TP + FN). Also known as sensitivity.
++ False negative rate (FNR): FN / (TP + FN). Also known as miss rate.
++ False positive rate (FPR): FP / (FP + TN). Also known as false alarm, fall-out.
++ True negative rate (TNR): TN / (FP + TN). Also known as specificity.
+
+Note that TPR and FPR do not add up to one. Neither do FNR and FPR.
+
++ Positive predictive value (PPV): TP / (TP + FP). Also known as precision.
++ False discovery rate (FDR): FP / (TP + FP).
++ False omission rate (FOR): FN / (FN + TN).
++ Negative predictive value (NPV): TN / (FN + TN).
+
+Note that PPV and NP do not add up to one.
+
+### Accuracy
+Accuracy measures the overall correctness of the model and is
+defined as the ratio of correct predictions (both positive and
+negative) to the total number of cases examined.
+```
+  Accuracy = (TP + TN) / (TP + TN + FP + FN)
+```
+
++ Imbalanced Classes: Accuracy can be misleading if there is a
+  significant imbalance between the classes. For instance, in a
+  dataset where 95% of the samples are of one class, a model that
+  naively predicts the majority class for all instances will still
+  achieve 95% accuracy, which does not reflect true predictive
+  performance.
++ Misleading Interpretations: High overall accuracy might hide the
+  fact that the model is performing poorly on a smaller, yet
+  important, segment of the data.
+  
+
+### Precision
+Precision (or PPV) measures the accuracy of positive
+predictions. It quantifies the number of correct positive
+predictions made.
+```
+  Precision = TP / (TP + FP)
+```
+
+
++ Neglect of False Negatives: Precision focuses solely on the positive
+  class predictions. It does not take into account false negatives
+  (instances where the actual class is positive but predicted as
+  negative). This can be problematic in cases like disease screening
+  where missing a positive case (disease present) could be dangerous.
++ Not a Standalone Metric: High precision alone does not indicate good
+  model performance, especially if recall is low. This situation could
+  mean the model is too conservative in predicting positives, thus
+  missing out on a significant number of true positive instances.
+
+### Recall
+Recall (Sensitivity or TPR) measures the ability of a model to
+find all relevant cases (all actual positives).
+```
+  Recall = TP / (TP + FN)
+```
+
+
++ Neglect of False Positives: Recall does not consider false positives
+  (instances where the actual class is negative but predicted as
+  positive). High recall can be achieved at the expense of precision,
+  leading to a large number of false positives which can be costly or
+  undesirable in certain contexts, such as in spam detection.
++ Trade-off with Precision: Often, increasing recall decreases
+  precision. This trade-off needs to be managed carefully, especially
+  in contexts where both false positives and false negatives carry
+  significant costs or risks.
+  
+
+
+### F-beta Score
+The F-beta score is a weighted harmonic mean of precision and recall,
+taking into account a $\beta$ parameter such that recall is considered
+$\beta$ times as important as precision:
+$$
+(1 + \beta^2) \frac{\text{precision} \cdot \text{recall}}
+{\beta^2 \text{precision} + \text{recall}}.
+$$
+
+See [stackexchange
+  post](https://stats.stackexchange.com/questions/221997/why-f-beta-score-define-beta-like-that)
+  for the motivation of $\beta^2$ instead of just $\beta$.
+
+The F-beta score reaches its best value
+at 1 (perfect precision and recall) and worst at 0. 
+
+
+If reducing false negatives is more important (as might be the case in
+medical diagnostics where missing a positive diagnosis could be
+critical), you might choose a beta value greater than 1. If reducing
+false positives is more important (as in spam detection, where
+incorrectly classifying an email as spam could be inconvenient), a
+beta value less than 1 might be appropriate.
+
+The F1 Score is a specific case of the F-beta score where beta is 1,
+giving equal weight to precision and recall. It is the harmonic mean
+of Precision and Recall and is a useful measure when you seek a
+balance between Precision and Recall and there is an uneven class
+distribution (large number of actual negatives).
+
+### Demonstration
+
+Let's apply these metrics to the `simdat` dataset to understand their
+practical implications. We will fit a logistic regression model, make
+predictions, and then compute accuracy, precision, and recall.
+
 
 ```{python}
-myPois = smf.glm(formula = 'yb ~ x1 + x2 + x3 + x4 + x5', data = df,
-                 family = smg.families.Poisson())
-mypfit = myPois.fit()
-mypfit.summary()
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+    simdat[['x1', 'x2', 'x3', 'x4', 'x5']], simdat['yb'], test_size=0.25,
+    random_state=42)
+
+# Initialize the logistic regression model
+model = LogisticRegression()
+
+# Fit the logistic regression model on the training data
+model.fit(X_train, y_train)
+
+# Predict on the test set
+y_pred = model.predict(X_test)
+
+# Calculate metrics
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+cm = confusion_matrix(y_test, y_pred)
+
+# Print the results
+print("Confusion Matrix:\\n", cm)
+print(f"Accuracy: {accuracy:.2f}")
+print(f"Precision: {precision:.2f}")
+print(f"Recall: {recall:.2f}")
 ```
