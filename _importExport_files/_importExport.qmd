@@ -1,0 +1,521 @@
+## Import/Export Data
+
+This section was written by Deyu Xu, a MS student in Statistics
+at the time.
+
+### Summary
+I would like to divide all of the content into five sections.
+The fisrt one is exporting data to a CSV file.
+The second one is importing common formats of data.
+The third one is importing data from other software.
+The forth one is viewing basic information of the data we have imported.
+The last one is finding null values.
+
+
+### Package `Pandas`
+#### Import data based on Package `Pandas`
+We need to use the Package, `Pandas` provided by Python to import data. 
+The first step is to install the Package, `Pandas`.
+Python allows us to install different versions of `Pandas`.
+We are able to use the following code to install the common cersion.
+```python
+## install the common version of Pandas
+pip install pandas
+```
+The code for installing the latest version is listed.
+```python
+## install the latest version of Pandas
+pip install --upgrade pandas
+```
+Different versions mean there are differnces in the code to achieve the same goal.
+We will see the specific example in the part of importing Execl files.
+
+### Export the data to a CSV file:
+#### Import the cleaned crashes data at first
+
+Fisrtly, we need to import the file named "nyccrashes_cleaned.feather"
+[data source](https://github.com/statds/ids-f24/tree/main/data).
+‌Format,feather is a binary file format for storing and sharing data. 
+It is especially suitable for large-scale data analysis and data science workflows. ‌ 
+It uses Apache Arrow's columnar storage format, which can store data in binary form.
+The advantage of using this format of file is elvaluating the standard of reading and writing.
+We need to choose the function `read_feather` from `Pandas` to import the crashes data.
+```{python}
+## Choose the Package Pandas
+import pandas as pd
+## Import the cleaned crashes data
+## Choose the fcuntion, read_feather from Pandas
+## Add the relative address of the data file to let your cooperator deal with the code smoothly
+df_feather = pd.read_feather("nyccrashes_cleaned.feather")
+## Show the top 5 rows of data
+## Determine whether we import the data successfully
+print(df_feather.head(5)) # Use the fucntion "head()"
+```
+
++ We have imported the cleaned crashes data successfully.
++ We utilize the fucntion `head(5)` to show the top 5 rows of the data.
+
+#### Export the crashes data to a CSV file
+It is easy to export the data.
+The fucntion that helps us to complete this goal is `to_csv` from `Pandas`.
+```{python}
+## Choose the Package Pandas
+## Choose the function "to_csv" from Pandas
+## Use the argument, "df_feather" storing the data
+df_feather.to_csv("nyccrashes_cleaned.csv") # Add the name of the CSV file
+```
+
++ We can check whether the corresponding csv file is generated in the working directory.
+
+### Import files in common formats: CSV/Excel/TXT
+#### CSV files
+We are familiar with CSV files as utilizing them to print some charts by R in the past courses.
+Now let us import this generated CSV file.
+We are supposed to choose the function `read_csv` from `Pandas`.
+The following code shows how to import it.
+```{python}
+## Choose the Package Pandas
+import pandas as pd
+## Choose the function "read_csv"
+## Add the relative address of the generated CSV file
+df_csv = pd.read_csv("nyccrashes_cleaned.csv")
+## Check the data we have imported
+## Use the above function "head()" I have introduced
+print(df_csv.head(2))
+```
+
+
+#### Excel files
+We want to import Excel files but there are not suitable Excel files.
+We can transfer the CSV file to an Excel file by the fucntion `to_excel` from `Pandas`.
+Let's see how to achieve this goal according to the following code.
+```{python}
+## Choose the Package Pandas
+import pandas as pd
+## Use the function "to_excel"
+df_csv.to_excel("nyccrashes_cleaned.xlsx") # Add the name of the Excel file
+```
+
++ Check whether the corresponding Excel file is generated in the working directory
+
+Now we have generated the Excel file covering the same data. 
+And then we can learn how to import Excel files.
+The function wen use is `read_csv` no matter what `Pandas` version is.
+
++ The latest version of `Pandas` corresponds to the following code.
+```{python}
+import pandas as pd
+## Choose the function "read_excel"
+## Add the command "engine" to read the file smoothly
+df_excel = pd.read_excel("nyccrashes_cleaned.xlsx", engine = "openpyxl")
+## Print top 2 rows of the data
+print(df_excel.head(2))
+```
+
+The code of the common `Pandas` version is below.
+What we need to adjust is to add correct `encoding`. 
+```python
+df_excel = pd.read_excel("nyccrashes_cleaned.xlsx", engine = "openpyxl", 
+encoding = "utf-8")
+```
+
+#### TXT files
+The last common kind of file is TXT files. 
+We are able to generate the TXT file in the similar way as generatng the Excel file. 
+We choose the function `to_csv` from `Pandas`.
+It is necessary to add the command `sep="\t"`.
+At the same time, we are supposed to add `index=False` to avoid the index of Dataframe.
+The specific code is following.
+```{python}
+import pandas as pd
+df_csv = pd.read_csv("nyccrashes_cleaned.csv")
+## Choose the function "to_csv"
+## Add the command "sep='\t'"
+## Add the command "index=False"
+df_csv.to_csv("nyccrashes_cleaned.txt", sep = "\t", index = False)
+```
+
+Now we get the corresponding TXT file successfully. 
+The next step is to determine the correct encoding of this txt file.
+This is because the computer will not read the file successfully without correct encoding.
+I have listed the code helping us to obtain the correct encoding.
+We use `with` statement to deal with data.
+And then we use the function `detect` from Package `Chardet`.
+The intention of `detect` is to detect character encoding of text files.
+```{python}
+import chardet
+## Use "with" statement 
+with open("nyccrashes_cleaned.txt", "rb") as f:
+    # Execute the command "open"
+    # And then assign the result to variable "f"
+    raw_data = f.read() # Read the content from "f"
+    result = chardet.detect(raw_data) 
+    encoding = result["encoding"]
+    print(str(encoding))
+```
+
++ Warning: It is possible to generate the encoding which is not "utf-8".
+
+#### TXT files
+Now we own the TXT file and its correct encoding.
+The last step is to use the function `read_table` to import the TXT file. 
+We need to insert the correct encoding too.
+The corresponding code is following.
+```{python}
+import pandas as pd
+## Choose the function "read_table"
+## Add the encoding behind the relative address
+df_txt = pd.read_table("nyccrashes_cleaned.txt", encoding = "utf-8")
+## The defualt of function "head()" is top five rows 
+print(df_txt.head())
+```
+
+
+### Import the data from other software
+#### SAS files
+##### Transfer the CSV files to a `.xpt` file
+The reason why we choose `.xpt` file
+is to ensure data types remain consistent during conversion.
+Firstly, we need to process the data 
+to ensure there is no space in the name of columns.
+If we don't do that, we will not achieve the goal.
+The code of dealing with data is following.
+```{python}
+import pandas as pd
+df = pd.read_csv("nyccrashes_cleaned.csv")
+df_csv_without_unnamed = df.loc[:, ~df.columns.str.contains("^Unnamed")]
+df_csv_without_unnamed.columns=df_csv_without_unnamed.columns.str.replace(" ", "_")
+df_csv_without_unnamed.to_csv("Without_Unamed.csv", index=False)
+```
+
+We use the Package `pyreadstat` 
+and the function `write_xport` from `pyreadstat`
+to transfer the CSV file.
+The corresponding code is following.
+```{python}
+import pandas as pd
+import pyreadstat
+df_without_unnamed = pd.read_csv("Without_Unamed.csv")
+sas_file = "SAS.xpt"
+pyreadstat.write_xport(df_without_unnamed, "SAS.xpt")
+```
+
+##### Import the generated `.xpt` file
+We use the package `pyreadstat` too.
+We choose the function `read_xport` to import the data.
+Here is the code.
+```{python}
+import pyreadstat
+## Define the Dataframe and metadata
+df_1, meta = pyreadstat.read_xport("SAS.xpt")
+## Show the Dataframe
+print(df_1.head(2))
+## Show the metadata
+print(meta)
+```
+
+
+#### rdata files(the suffix of this file is `.RData`)
+##### Transfer the CSV file to a `.Rdata` file
+We need to install the package `rpy2`
+```python
+pip install rpy2
+```
+And then we choose the function `pandas2ri`
+The following code helps us achieve the goal.
+```{python}
+import pandas as pd
+## Use the Package rpy2
+import rpy2.robjects as ro
+from rpy2.robjects import pandas2ri
+## Activate conversion between Pandas and R
+pandas2ri.activate()
+df_csv = pd.read_csv("nyccrashes_cleaned.csv")
+## Transfer the Pandas DataFrame to R DataFrame
+df_r = pandas2ri.py2rpy(df_csv)
+## Save as .Rdata file
+ro.globalenv["R"] = df_r
+ro.r("save(R, file = 'nyccrashes_cleaned.Rdata')")
+print("The CSV file has been transfered to a .Rdata file successfully.")
+```
+
++ The error means :
+1.Type conversion failure of columns.
+Some columns were not converted to the correct data typr in r as epected,
+and were instead coerced to strings.
+2.The data is still saved, but there are potential data type issues.
+3.These errores will not influence importing the `.Rdata` file.
+
++ If you want to perform necessary type cpnversions, the following code is suitable.
+```python
+df_csv["boroughs"] = df["boroughs"].astype(str)
+```
+
+
+##### Import the generated `.Rdata` file
+We also use the Package `rpy2`.
+We need the function `pandas2ri` too.
+The code is following
+```{python}
+import pandas as pd
+import rpy2.robjects as ro
+## Load the .Rdata file
+r_file_path = "nyccrashes_cleaned.Rdata"
+ro.r["load"](r_file_path)
+## View loaded variables
+loaded_objects = ro.r("ls()")
+## Show the loaded vatiables
+print("Loaded R objects:", loaded_objects)
+## We have set the name of dataframe as "R" above
+r_dataframe = ro.r["R"]
+from rpy2.robjects import pandas2ri
+## Transfer R Dataframe to Pandas Dataframe 
+## Aim to deal with the data conveniently
+pandas2ri.activate()
+df_2 = pandas2ri.rpy2py(r_dataframe)
+print(df_2)
+```
+
+
+#### stata data(the suffix of this file is `.dta`)
+##### Transfer the CSV file to a `.dta` file
+We can only use `Pandas`.
+We choose the fucntion `to_stata` to save the `.dta` file.
+
+```{python}
+import pandas as pd
+df_csv = pd.read_csv("nyccrashes_cleaned.csv")
+df_csv.to_stata("stata.dta")
+```
+
+##### Import the `.dta` file
+We use the function `read_stata` from `Pandas`.
+And here is the specific code.
+
+```{python}
+import pandas as pd
+df_3 = pd.read_stata("stata.dta")
+print(df_3.head(2))
+```
+
+#### spss data(the suffix of this file is `.sav`)
+##### Transfer the CSV file to a `.sav` file
+We need to use the Package `pyreadstat`
+We choose the function `write_sav` form `pyreadstat`
+We are supposed to use the CSV file
+which is without space.
+We can uese the following code.
+```{python}
+import pandas as pd
+import pyreadstat
+df_csv = pd.read_csv("Without_Unamed.csv")
+pyreadstat.write_sav(df_csv, "SPSS.sav")
+```
+
+##### Import the generated `.sav` file
+We also use the Package `pyreadstat`.
+We utilize the function `read_sav` from `pyreadstat`.
+The following code helps us import the `.sav` file.
+
+```{python}
+import pandas as pd
+import pyreadstat
+df_4, meta = pyreadstat.read_sav("SPSS.sav")
+print(df_4.head(2))
+print(meta)
+```
+
+#### Matlab files(the suffix of this file is `.mat`)
+##### Transfer the CSV file to a `.mat` file
+We need to install the package `scipy.io`
+```python
+pip install scipy
+```
+And then we choose the function `savemat` from `scipy`.
+The specific code is following.
+```{python}
+import pandas as pd
+from scipy.io import savemat
+df_csv = pd.read_csv("nyccrashes_cleaned.csv")
+## Convert DataFrame to dicotionary form
+## MATLAB.mat require dictionary format
+data_dict = {"data": df_csv.to_dict("list")}
+## Save the dictionary as a .mat file
+savemat("MATLAB.mat", data_dict)
+```
+
+##### Import the generated `.mat` file
+We use the Package `scipy.io` too.
+We choose the function `loadmat` from `spicy.io`
+And the corresponding code is following.
+```{python}
+import pandas as pd
+from scipy.io import loadmat
+df_csv = pd.read_csv("nyccrashes_cleaned.csv")
+df_5 = loadmat("MATLAB.mat")
+## Show the data keys
+print(df_5.keys())
+## Show the contents of the "data" keys
+print(df_5["data"])
+```
+
+#### HDF5 files(the suffix of this file is `.h5`)
+##### Transfer the CSV file to a `.h5` file
+We can only use `Pandas`.
+At the same time, the function `to_hdf` helps us achive the goal.
+The code is following.
+```{python}
+import pandas as pd
+import tables
+df_csv = pd.read_csv("nyccrashes_cleaned.csv")
+df_csv.to_hdf("HDF5.h5", key = "data", mode = "w")
+```
+
+##### Import the generated `.h5` file
+We only use `Pandas` too.
+We need the function `read_h5`.
+The code of importing .h5 file is following.
+```{python}
+import pandas as pd
+df_6 = pd.read_hdf("HDF5.h5", key = "data")
+print(df_6.head(2))
+```
+
+#### Import multiple files and merge them into a new file
+I have introduced the method of importing single file of data.
+Python also allows us to import multiple files simultaneously.
+We choose the Package `glob` and Package `Pandas`
+```python
+## Install Package Glob
+pip install glob
+```
+The effect of Package `glob` is to find files and directories that match the specified pattern.
+We use the function `glob` from Package `glob`.
+The intention of function `glob` is to find all file paths that match a specitic pattern and return a list of file paths.
+The following fucntion is the corresponding code.
+```{python}
+## Use the package globe and the package pandas
+import glob 
+import pandas as pd
+## Merge multiple arrays
+## * means match any number of characters( including the null characters)
+all_files = glob.glob("*.csv") 
+## Create a list to store the data
+all_data = []
+## Use "for" statement to import all of the csv files
+for filename in all_files:
+    df = pd.read_csv(filename, index_col=None, header=0)
+    all_data.append(df)
+## Combine multiple pandas objects into one along a fixed axis using some merging methods
+data_merge = pd.concat(all_data, axis=0, ignore_index=True)
+## Check the result
+print(data_merge.head(2))
+```
+
+### View data information
+It is natural for us to be interested in the fundamental information of the data we have imported. 
+As a result, I have listed some useful functions to get the basic knowledge of the data.
+
+The following code helps us know how much the data is.
+We choose the basic function `shape` from `pandas`.
+```{python}
+## How much is the crashes data is
+df_csv.shape
+```
+
++ There are 1875 data and 29 columns in the file.
+
+The following code helps us check the type of each variable in data.
+The fucntion is `dtypes` from `Pandas`
+```{python}
+## Show all types of the crashes' variables
+df_csv.dtypes
+```
+
++ Our computer has listed 29 variables and their corresponding types.
+
+The following code is suitable for viewing overall data information.
+We use the basic function `info` from `Pandas`
+```{python}
+df_csv.info()
+```
+
++ The basic information of crashes data has been listed.
+
+The function `describe` from `Pandas` helps generate descriptive statistics.
+```{python}
+## Show the basic descriptive statistics of crashes data
+df_csv.describe()
+```
+
+
+If we want to summarize the names of all columns,
+it is a good choice to use the function `columns` from `Pandas`
+```{python}
+## Get all columns' names of crashes data
+df_csv.columns
+```
+
+The function `tail` from `Pandas` allow us to view the last rows.
+```{python}
+## Show the last 2 rows of crashes data
+df_csv.tail(n = 2)
+```
+
+The function `unique` from `Pandas` dedicates in unique values ​​of one column.
+```{python}
+## Show the unique values in the column named "crash_datetime"
+df_csv["crash_datetime"].unique()
+```
+
+We can get the values of one column(without deduplication).
+The choose of function is `values` from `Pandas` instead of `unique`
+```{python}
+## Show all values of the column named "crash_datetime"
+df_csv["crash_datetime"].values
+```
+
+### Find Null Values
+It is necessary for us to find null values before we clean and preprocess the data. 
+The following content covers how to find null values.
+
+#### Determine whether there are missing values.
+We need to use the function `isnull` firstly.
+The aim is to detect missing values in data.
+And then we add the command `any` to determine whether there are missing values.
+
++ Determine whether there are missing values in columns
+```{python}
+## Determine whether there are missing values in columns of crashes data
+df_csv.isnull().any(axis = 0) # "axis=0" means columns
+```
+
+
++ Determine whether there are missing values ​​in rows.
+```{python}
+## Determine whether there are missing values in rows of crashes data
+df_csv.isnull().any(axis = 1) # "axis=1" means rows
+```
+
+#### Locate the missing values of rows/columns
+We utilize the function `loc` from `Pandas`.
+The function of `loc` selects or modifies data in a DataFrame or Series.
+The slection and modification are based on labels.
+
++ Locate the missing values of rows
+```{python}
+## Locate the missing values in crashes data rows
+df_csv.loc[df_csv.isnull().any(axis = 1)]
+```
+
+#### Determine the number of missing values.
+We also use the function `isnull`.
+But this time we add the command `sum` rather than `any`.
+```{python}
+## Calculate the number of missing values in crashes data columns
+df_csv.isnull().sum(axis = 0)
+```
+
+
+
+
