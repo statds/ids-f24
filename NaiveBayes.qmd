@@ -33,6 +33,7 @@ The **Bayes Theorem** takes a test result and relates it to the conditional prob
 
 
 # Implementing our NY Crash Data analysis
+## {.scrollable}
 ::: {.incremental}
 - We want to predict whether a crash will be severe based on our independent X predictors: 
     - Borough, crash time, location, contributing factor vehicle 1, contributing factor vehicle 2, vehicle type code 1, vehicle type code 2.
@@ -40,7 +41,8 @@ The **Bayes Theorem** takes a test result and relates it to the conditional prob
     - Severe Crash: (1 = if either number of persons killed > 0 or number of persons injured > 1) , and 0 = otherwise.
 :::
 
-##  Naive Bayes Formula:
+#  Naive Bayes Formula:
+## {.scrollable}
 $$
 P(Y | X) = \frac{P(X | Y) \cdot P(Y)}{P(X)} 
 $$
@@ -55,7 +57,8 @@ $$
 - \( P(X) \): The total probability of the predictors \( X \).
 
 
-## NY Crash Data Analysis w/ Python
+# NY Crash Data Analysis w/ Python
+## {.scrollable}
 ##### 1. Importing packages
 ```{python eval=FALSE} {.scrollable}
 import pandas as pd
@@ -236,7 +239,8 @@ plt.show()
  <li> An AUC (Area Under the Curve) of 0.58 indicates that the model has a slight ability to distinguish between the two classes (severe crash vs. not severe crash), but it is not performing well. This might be due to the fact that Naive Bayes does not capture non-linear relationships effectively. </li>
  </ul>
 
-## Summary of Results
+# Summary of Results
+## {.scrollable}
 - While the Naive Bayes model demonstrates strong precision for non-severe crashes, it struggles significantly with identifying severe crashes. 
 - The overall accuracy of 60% and AUC 0.58 indicates that the model's performance could be improved.
 - Naive Bayes classifiers does not work best with random predictors.
