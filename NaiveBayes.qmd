@@ -1,0 +1,281 @@
+---
+title: "Naive Bayes"
+subtitle: "STAT 3255 - Introduction to Data Science"
+author: Suha Akach
+format:
+  revealjs:
+    slide-number: true
+    preview-links: true
+    theme: serif
+    transition: slide
+execute: 
+  cache: true    
+echo: true
+jupyter: python3
+---
+
+# Topics to be covered:
+::: {.incremental}
+
+- What is Naive Bayes?
+- Implementing our NY Crash Data analysis.
+- Testing Naive Bayes in Python.
+:::
+
+# What is Naive Bayes?
+- A classification algorithm based on Bayes Theorem.
+- "Naive" because it assumes conditional independence.
+- Used for solving text categorization problems such as email spam detection, weather detection, recommender systems, etc.
+
+::: {.callout-tip title="Bayes Rule"}
+The **Bayes Theorem** takes a test result and relates it to the conditional probability of that test result given other related events. The theorem gives a more generilized likelihood of an outcome.
+:::
+
+
+# Implementing our NY Crash Data analysis
+::: {.incremental}
+- We want to predict whether a crash will be severe based on our independent X predictors: 
+    - Borough, crash time, location, contributing factor vehicle 1, contributing factor vehicle 2, vehicle type code 1, vehicle type code 2.
+- Classification Target: 
+    - Severe Crash: (1 = if either number of persons killed > 0 or number of persons injured > 1) , and 0 = otherwise.
+:::
+
+##  Naive Bayes Formula:
+$$
+P(Y | X) = \frac{P(X | Y) \cdot P(Y)}{P(X)} 
+$$
+$$
+P(X | Y) = P(X_1 | Y) \cdot P(X_2 | Y) \cdot P(X_3 | Y) \cdots P(X_n | Y)
+$$
+
+##### Where:
+- \( P(Y | X) \): The probability of the target \( Y \) (severe crash or not) given the chosen predictors \( X \).
+- \( P(X | Y) \): The likelihood of the predictors \( X \) given the target \( Y \). 
+- \( P(Y) \): The prior probability of the target \( Y \). 
+- \( P(X) \): The total probability of the predictors \( X \).
+
+
+## NY Crash Data Analysis w/ Python
+##### 1. Importing packages
+```{python eval=FALSE} {.scrollable}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split # A function to split the dataset into training and testing sets.
+from sklearn.naive_bayes import GaussianNB # The Naive Bayes classifier for Gaussian-distributed data. It’s suitable for continuous data, but it can also handle categorical data.
+from sklearn.preprocessing import OneHotEncoder # Converts categorical variables into a format that can be provided to ML algorithms.
+from sklearn.metrics import classification_report, confusion_matrix, roc_curve, roc_auc_score # Metrics used to evaluate the model's performance.
+from imblearn.over_sampling import SMOTE # Handels class imbalance
+from sklearn.impute import SimpleImputer # If there are any missing values in dataset, use imputation techniques before applying SMOTE.
+
+# Load the dataset.
+data = pd.read_csv('nyccrashes_2024w0630_by20240916.csv')
+```
+
+::: {.callout-tip title="Training and Testing Sets"}
+- During **Training**, the algorithm runs our chosen predictors in the training set. 
+- The **Testing** set helps assess how well the model generalizes to unseen data. It would include different data points (also with crash characteristics and severity outcomes) that were not included in our chosen training set.
+:::
+#
+### 2. Predictors
+## {.scrollable}
+```{python eval=FALSE} {.scrollable}
+# Target variable for severe crashes.
+data['Severe Crash'] = ((data['NUMBER OF PERSONS KILLED'] > 0) | (data['NUMBER OF PERSONS INJURED'] > 1)).astype(int)
+
+# Select predictors.
+predictors = ['BOROUGH', 'LOCATION', 'CRASH TIME', 'CONTRIBUTING FACTOR VEHICLE 1', 
+              'VEHICLE TYPE CODE 1', 'CONTRIBUTING FACTOR VEHICLE 2', 'VEHICLE TYPE CODE 2']
+
+# Initialize data.
+X = pd.get_dummies(data[predictors], drop_first=True)
+y = data['Severe Crash']
+
+# Impute any missing values (if any)
+imputer = SimpleImputer(strategy='mean')
+X_imputed = imputer.fit_transform(X)
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(X_imputed, y, test_size=0.3, random_state=42)
+
+# Apply SMOTE to the training data
+smote = SMOTE(random_state=42)
+X_train_resampled, y_train_resampled = smote.fit_resample(X_train, y_train)
+
+```
+
+::: {.callout-tip title="Functions"}
+- **pd.get_dummies** creates new columns for each category in the categorical variables. Assigns a 1 or 0 to indicate the presence of each category.
+- **drop_first=True** removes the initial category, which helps avoid multicollinearity.
+- **test_size=0.3** 30% of the data will be used for testing.
+- **SMOTE** Synthetic Minority Over-sampling Technique generates new synthetic samples. This helps create a more balanced dataset while maintaining the underlying distribution of the minority class.
+:::
+
+
+# 3. Initialize Naive  Bayes
+```{python eval=FALSE} {.scrollable}
+model = GaussianNB()
+model.fit(X_train, y_train) # Trains the model 
+
+# Make predictions
+y_pred = model.predict(X_test) # Stores the predicted test labels
+
+# Evaluate the model
+confusion = confusion_matrix(y_test, y_pred)
+report = classification_report(y_test, y_pred)
+
+```
+
+::: {.callout-tip title="Confusion & Classification"}
+- **Confusion Matrix** makes predictions of false and true negatives and positives.
+- **Classification** summarizes the accuracy for each class prediction (severe and not severe).
+:::
+
+#  Results & Validation
+## {.scrollable}
+```{python eval=FALSE} {.scrollable}
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import classification_report, confusion_matrix
+from imblearn.over_sampling import SMOTE
+from sklearn.impute import SimpleImputer
+
+# Load the dataset
+data = pd.read_csv('nyccrashes_2024w0630_by20240916.csv')
+
+# Target variable for severe crashes
+data['Severe Crash'] = ((data['NUMBER OF PERSONS KILLED'] > 0) | (data['NUMBER OF PERSONS INJURED'] > 1)).astype(int)
+
+# Select predictors
+predictors = ['BOROUGH', 'LOCATION', 'CRASH TIME', 'CONTRIBUTING FACTOR VEHICLE 1', 
+              'VEHICLE TYPE CODE 1', 'CONTRIBUTING FACTOR VEHICLE 2', 'VEHICLE TYPE CODE 2']
+
+# Create dummy variables
+X = pd.get_dummies(data[predictors], drop_first=True)
+y = data['Severe Crash']
+
+# Impute any missing values (if any)
+imputer = SimpleImputer(strategy='mean')
+X_imputed = imputer.fit_transform(X)
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(X_imputed, y, test_size=0.3, random_state=42)
+
+# Apply SMOTE to the training data
+smote = SMOTE(random_state=42)
+X_train_resampled, y_train_resampled = smote.fit_resample(X_train, y_train)
+
+# Initialize and fit the Gaussian Naive Bayes classifier
+model = GaussianNB()
+model.fit(X_train_resampled, y_train_resampled)
+
+# Make predictions
+y_pred = model.predict(X_test)
+
+# Evaluate the model
+confusion = confusion_matrix(y_test, y_pred)
+report = classification_report(y_test, y_pred)
+
+# Output the results
+print("Confusion Matrix:")
+print(confusion)
+print("\nClassification Report:")
+print(report)
+
+# Cross-Validation Average
+from sklearn.model_selection import cross_val_score
+
+scores = cross_val_score(model, X_train, y_train, cv = 10, scoring='accuracy')
+
+print('Average cross-validation score: {:.4f}'.format(scores.mean()))
+```
+
+<p style="font-size: 25px;"></p>
+<ul style="font-size: 25px;">
+  <li>True Negatives (TN): 315 (correctly predicted as class 0)
+  <li>False Positives (FP): 187 (incorrectly predicted as class 1)</li>
+  <li>False Negatives (FN): 28 (incorrectly predicted as class 0)</li>
+  <li>True Positives (TP): 33 (correctly predicted as class 1)</li>
+</ul>
+<p style="font-size: 25px;"></p>
+<ul style="font-size: 25px;">
+ <li> We can say that the model is relatively good at predicting non-severe crashes with 92% precision and moderate recall of 75%, but it performs poorly in identifying severe crashes (very low precision).</li>
+ <li> Our original model accuracy is 0.62, but the mean cross-validation accuracy is 0.60. So, the 10-fold cross-validation accuracy does not result in performance improvement for this model.</li>
+ <li> Based on this model, approximately 60% of crashes are predicted not to be severe.</li>
+ </ul>
+ 
+#  Receiver Operating Characteristic (ROC)
+## {.scrollable}
+::: {.callout-tip title="Receiver Operating Characteristic"}
+(ROC) curve is a graphical representation used to evaluate the performance of a binary classification model. It plots the True Positive Rate (TPR) against the False Positive Rate (FPR) at various threshold settings.
+:::
+```{python}
+# Calculate probabilities and ROC
+y_probs = model.predict_proba(X_test)[:, 1]  # Get probabilities for the positive class
+fpr, tpr, thresholds = roc_curve(y_test, y_probs) # calculates the FPR and TPR at different threshold levels based on the true labels (y_test) and the predicted probabilities (y_probs)
+roc_auc = roc_auc_score(y_test, y_probs)
+
+# Plot ROC curve
+plt.figure(figsize=(10, 6))
+plt.plot(fpr, tpr, color='blue', label=f'ROC Curve (AUC = {roc_auc:.2f})')
+plt.plot([0, 1], [0, 1], color='red', linestyle='--')  # Diagonal line
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.0])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver Operating Characteristic (ROC) Curve')
+plt.legend(loc='lower right')
+plt.grid()
+plt.show()
+```
+
+<p style="font-size: 25px;"></p>
+<ul style="font-size: 25px;">
+ <li> An AUC (Area Under the Curve) of 0.58 indicates that the model has a slight ability to distinguish between the two classes (severe crash vs. not severe crash), but it is not performing well. This might be due to the fact that Naive Bayes does not capture non-linear relationships effectively. </li>
+ </ul>
+
+## Summary of Results
+- While the Naive Bayes model demonstrates strong precision for non-severe crashes, it struggles significantly with identifying severe crashes. 
+- The overall accuracy of 60% and AUC 0.58 indicates that the model's performance could be improved.
+- Naive Bayes classifiers does not work best with random predictors.
+- The presence of non-linear relationships among the predictors suggests that a model capable of capturing such complexity such as Random Forest and Logical Regression would be more effective than simpler models like Naive Bayes.
+
+# Conclusion
+::: {.incremental}
+- Defined Naive Bayes
+- Implemented our NY Crash Data analysis.
+- Tested Naive Bayes w/ Python.
+- Preformed Accuracy tests.
+:::
+
+# References
+<p style="font-size: 25px;"></p>
+<ul style="font-size: 25px;">
+@website{towardsdatascience2021,
+  title = {Introduction to Naïve Bayes Classifier},
+  author = {Towards Data Science},
+  year = {2021},
+  url = {https://towardsdatascience.com/introduction-to-naïve-bayes-classifier-fa59e3e24aaf},
+  note = {Accessed: 2024-10-2}
+}
+
+@misc{mlbook2021,
+  title = {Naïve Bayes and Logistic Regression},
+  author = {Tom Mitchell},
+  year = {2021},
+  url = {https://www.cs.cmu.edu/~tom/mlbook/NBayesLogReg.pdf},
+  note = {Accessed: 2024-10-2}
+}
+
+@website{kaggle2021,
+  title = {Naive Bayes Classifier in Python},
+  author = {Prashant},
+  year = {2021},
+  url = {https://www.kaggle.com/code/prashant111/naive-bayes-classifier-in-python/notebook},
+  note = {Accessed: 2024-10-2}
+}
+</ul>
+
+# THANK YOU!
