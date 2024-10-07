@@ -36,7 +36,7 @@ The **Bayes Theorem** takes a test result and relates it to the conditional prob
 ## {.scrollable}
 ::: {.incremental}
 - We want to predict whether a crash will be severe based on our independent X predictors: 
-    - Borough, crash time, contributing factor vehicle 1, contributing factor vehicle 2.
+    - Borough, location, crash time, contributing factor vehicle 1, contributing factor vehicle 2, vehicle type code 1, vehicle type code 2.
 - Classification Target: 
     - Severe Crash: (1 = if either number of persons killed > 0 or number of persons injured > 1) , and 0 = otherwise.
 :::
@@ -79,15 +79,15 @@ data = pd.read_csv('nyccrashes_2024w0630_by20240916.csv')
 - During **Training**, the algorithm runs our chosen predictors in the training set. 
 - The **Testing** set helps assess how well the model generalizes to unseen data. It would include different data points (also with crash characteristics and severity outcomes) that were not included in our chosen training set.
 :::
-#
-### 2. Predictors
+
+# 2. Predictors
 ## {.scrollable}
 ```{python eval=FALSE} {.scrollable}
 # Target variable for severe crashes.
 data['Severe Crash'] = ((data['NUMBER OF PERSONS KILLED'] > 0) | (data['NUMBER OF PERSONS INJURED'] > 1)).astype(int)
 
 # Select predictors.
-predictors = ['BOROUGH', 'CRASH TIME', 'CONTRIBUTING FACTOR VEHICLE 1', 'CONTRIBUTING FACTOR VEHICLE 2']
+predictors = ['BOROUGH', 'LOCATION', 'CRASH TIME', 'CONTRIBUTING FACTOR VEHICLE 1', 'CONTRIBUTING FACTOR VEHICLE 2', 'VEHICLE TYPE CODE 1', 'VEHICLE TYPE CODE 2']
 
 # Initialize data.
 X = pd.get_dummies(data[predictors], drop_first=True)
@@ -115,6 +115,7 @@ X_train_resampled, y_train_resampled = smote.fit_resample(X_train, y_train)
 
 
 # 3. Initialize Naive  Bayes
+## {.scrollable}
 ```{python eval=FALSE} {.scrollable}
 model = GaussianNB()
 model.fit(X_train, y_train) # Trains the model 
@@ -151,7 +152,7 @@ data = pd.read_csv('nyccrashes_2024w0630_by20240916.csv')
 data['Severe Crash'] = ((data['NUMBER OF PERSONS KILLED'] > 0) | (data['NUMBER OF PERSONS INJURED'] > 1)).astype(int)
 
 # Select predictors
-predictors = ['BOROUGH', 'CRASH TIME', 'CONTRIBUTING FACTOR VEHICLE 1', 'CONTRIBUTING FACTOR VEHICLE 2']
+predictors = ['BOROUGH', 'LOCATION', 'CRASH TIME', 'CONTRIBUTING FACTOR VEHICLE 1', 'CONTRIBUTING FACTOR VEHICLE 2', 'VEHICLE TYPE CODE 1', 'VEHICLE TYPE CODE 2']
 
 # Create dummy variables
 X = pd.get_dummies(data[predictors], drop_first=True)
@@ -196,16 +197,16 @@ print('Average cross-validation score: {:.4f}'.format(scores.mean()))
 
 <p style="font-size: 25px;"></p>
 <ul style="font-size: 25px;">
-  <li>True Negatives (TN): 276 (correctly predicted as class 0)
-  <li>False Positives (FP): 226 (incorrectly predicted as class 1)</li>
-  <li>False Negatives (FN): 26 (incorrectly predicted as class 0)</li>
-  <li>True Positives (TP): 35 (correctly predicted as class 1)</li>
+  <li>True Negatives (TN): 315 (correctly predicted as class 0)
+  <li>False Positives (FP): 187 (incorrectly predicted as class 1)</li>
+  <li>False Negatives (FN): 28 (incorrectly predicted as class 0)</li>
+  <li>True Positives (TP): 33 (correctly predicted as class 1)</li>
 </ul>
 <p style="font-size: 25px;"></p>
 <ul style="font-size: 25px;">
- <li> We can say that the model is relatively good at predicting non-severe crashes with 91% precision and moderate recall of 55%, but it performs poorly in identifying severe crashes with 0.13 precision (very low precision).</li>
- <li> Our original model accuracy is 0.55, but the mean cross-validation accuracy is 0.53. So, the 10-fold cross-validation accuracy test does not result in performance improvement for this model.</li>
- <li> Based on this model, approximately 53% of crashes are predicted to be not severe.</li>
+ <li> We can say that the model is relatively good at predicting non-severe crashes with 92% precision and moderate recall of 62%, but it performs poorly in identifying severe crashes with 0.15 precision (very low precision).</li>
+ <li> Our original model accuracy is 0.62, but the mean cross-validation accuracy is 0.60. So, the 10-fold cross-validation accuracy test does not result in performance improvement for this model.</li>
+ <li> Based on this model, approximately 60% of crashes are predicted to be not severe.</li>
  </ul>
  
 #  Receiver Operating Characteristic (ROC)
@@ -235,13 +236,13 @@ plt.show()
 
 <p style="font-size: 25px;"></p>
 <ul style="font-size: 25px;">
- <li> An AUC (Area Under the Curve) of 0.56 indicates that the model has a slight ability to distinguish between the two classes (severe crash vs. not severe crash), but it is not performing well. This might be due to the fact that Naive Bayes does not capture non-linear relationships effectively. </li>
+ <li> An AUC (Area Under the Curve) of 0.58 indicates that the model has a slight ability to distinguish between the two classes (severe crash vs. not severe crash), but it is not performing well. This might be due to the fact that Naive Bayes does not capture non-linear relationships effectively. </li>
  </ul>
 
 # Summary of Results
 ## {.scrollable}
 - While the Naive Bayes model demonstrates strong precision for non-severe crashes, it struggles significantly with identifying severe crashes. 
-- The overall accuracy of 53% and AUC of 56% indicates that the model's performance could be improved.
+- The overall accuracy of 60% and AUC of 58% indicates that the model's performance could be improved.
 - Naive Bayes classifiers does not work best with our predictors.
 - The presence of non-linear relationships among the predictors suggests that a model capable of capturing such complexity such as Random Forest and Logical Regression would be more effective than simpler models like Naive Bayes.
 
