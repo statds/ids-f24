@@ -346,7 +346,13 @@ See <https://en.wikipedia.org/wiki/Double-precision_floating-point_format>.
 The bottom line is that, of course, not every real number is exactly
 representable.
 
+If you have played the Game 24, here is a tricky one:
+```{python}
+8 / (3 - 8 / 3) == 24
+```
+Surprise?
 
+There are more.
 ```{python}
 0.1 + 0.1 + 0.1 == 0.3
 ```
@@ -354,12 +360,16 @@ representable.
 ```{python}
 0.3 - 0.2 == 0.1
 ```
+
 What is really going on?
 ```{python}
 import decimal
 decimal.Decimal(0.1)
 ```
 
+```{python}
+decimal.Decimal(8 / (3 - 8 / 3))
+```
 
 Because the mantissa bits are limited, it can not represent a floating point
 that's both very big and very precise. Most computers can represent all integers

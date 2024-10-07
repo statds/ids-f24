@@ -7,6 +7,7 @@ book:
   author:
     - name: "Jun Yan and Students in Fall 2024:"
     - name: Zachary Blanchard, Sara Clokey
+    - name: Julia Mazzola
   date: today
 
   sidebar:
@@ -20,6 +21,9 @@ book:
     - python.qmd
     - communication.qmd
     - manipulation.qmd
+    - visualization.qmd
+    - stats.qmd
+    - supervised.qmd
     - exercises.qmd
     - references.qmd
 
