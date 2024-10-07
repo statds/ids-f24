@@ -160,6 +160,10 @@ Markdown.
   + Get a good grade on this class
   + Learn more about how to processing data
 + Xu, Deyu
+  + Be proficient in using Python to process data.
+  + Learn the basics of machine learning.
+  + Have a basic understanding of data scienc.
+  + Lay a solid foundation for GNN and Bayes neural network.
 
 ## Presentation Orders
 
