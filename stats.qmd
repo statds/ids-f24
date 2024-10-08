@@ -101,9 +101,9 @@ x.shape
 ```
 
 That is, the true linear regression model is
-\[
+$$
 y = 2 + x_1 + x_2 + x_3 + x_4 + x_5 + \epsilon.
-\]
+$$
 
 A regression model for the observed data can be fitted as
 
@@ -566,16 +566,25 @@ reducing variance without substantial increase in bias.
 
 Practical benefits of LASSO:
 
-- **Dimensionality Reduction**: LASSO is particularly useful when the number of features \( p \) is large, potentially even larger than the number of observations \( n \), as it automatically reduces the number of features.
-- **Preventing Overfitting**: The L1 penalty helps prevent overfitting by constraining the model, especially when \( p \) is large or there is multicollinearity among features.
-- **Interpretability**: By selecting only the most important features, LASSO makes the resulting model more interpretable, which is valuable in fields like bioinformatics, economics, and social sciences.
+- **Dimensionality Reduction**: LASSO is particularly useful when the
+  number of features $p$ is large, potentially even larger than the
+  number of observations $n$, as it automatically reduces the number
+  of features.
+- **Preventing Overfitting**: The L1 penalty helps prevent overfitting
+  by constraining the model, especially when $p$ is large or there is
+  multicollinearity among features.
+- **Interpretability**: By selecting only the most important features,
+  LASSO makes the resulting model more interpretable, which is
+  valuable in fields like bioinformatics, economics, and social
+  sciences.
+
 
 ### Solution Path
 
 To illustrate the effect of the lasso penalty in logistic regression,
 we can plot the solution path of the coefficients as a function of the
-regularization parameter \( \lambda \). This demonstration will use a
-simulated dataset to show how increasing \( \lambda \) leads to more
+regularization parameter $\lambda$. This demonstration will use a
+simulated dataset to show how increasing $\lambda$ leads to more
 coefficients being set to zero.
 
 ```{python}
