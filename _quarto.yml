@@ -7,7 +7,7 @@ book:
   author:
     - name: "Jun Yan and Students in Fall 2024:"
     - name: Zachary Blanchard, Sara Clokey
-    - name: Julia Mazzola
+    - name: Julia Mazzola, Jack Bienvenue
   date: today
 
   sidebar:
@@ -24,6 +24,7 @@ book:
     - visualization.qmd
     - stats.qmd
     - supervised.qmd
+    - spatial_data_visualization.qmd
     - exercises.qmd
     - references.qmd
 
