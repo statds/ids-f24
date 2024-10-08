@@ -357,7 +357,7 @@ window.Quarto = {
 </ul>
 <p>Since R has a richer collections of statistical functions, we can call R function from Python with <code>rpy2</code>. See, for example, a <a href="https://rviews.rstudio.com/2022/05/25/calling-r-from-python-with-rpy2/">blog on this subject</a>.</p>
 <p>For example, <code>fisher_exact</code> can only handle 2x2 contingency tables. For contingency tables larger than 2x2, we can call <code>fisher.test()</code> from R through <code>rpy2</code>. See <a href="https://stackoverflow.com/questions/25368284/fishers-exact-test-for-bigger-than-2-by-2-contingency-table">this StackOverflow post</a>. Note that the <code>.</code> in function names and arguments are replaced with <code>_</code>.</p>
-<div id="423dac72" class="cell" data-execution_count="1">
+<div id="07189667" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects.numpy2ri</span>
@@ -383,7 +383,7 @@ injury
     2000 replicates)
 
 data:  structure(c(149L, 129L, 345L, 266L, 164L, 127L, 249L, 227L, 65L, 28L), dim = c(2L, 5L))
-p-value = 0.03248
+p-value = 0.02949
 alternative hypothesis: two.sided
 
 </code></pre>
@@ -402,7 +402,7 @@ alternative hypothesis: two.sided
 <section id="linear-model" class="level3" data-number="8.2.2">
 <h3 data-number="8.2.2" class="anchored" data-anchor-id="linear-model"><span class="header-section-number">8.2.2</span> Linear Model</h3>
 <p>Let’s simulate some data for illustrations.</p>
-<div id="0d68dd69" class="cell" data-execution_count="2">
+<div id="7f1c03ac" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>nobs <span class="op">=</span> <span class="dv">200</span></span>
@@ -413,22 +413,24 @@ alternative hypothesis: two.sided
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> np.dot(x, beta) <span class="op">+</span> np.random.normal(size <span class="op">=</span> nobs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Check the shape of <code>y</code>:</p>
-<div id="b69aaed7" class="cell" data-execution_count="3">
+<div id="cf68d725" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>y.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>(200,)</code></pre>
 </div>
 </div>
 <p>Check the shape of <code>x</code>:</p>
-<div id="c74988d3" class="cell" data-execution_count="4">
+<div id="bd1c4a96" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>(200, 5)</code></pre>
 </div>
 </div>
-<p>That is, the true linear regression model is [ y = 2 + x_1 + x_2 + x_3 + x_4 + x_5 + . ]</p>
+<p>That is, the true linear regression model is <span class="math display">\[
+y = 2 + x_1 + x_2 + x_3 + x_4 + x_5 + \epsilon.
+\]</span></p>
 <p>A regression model for the observed data can be fitted as</p>
-<div id="92014300" class="cell" data-execution_count="5">
+<div id="3970952f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sma</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>xmat <span class="op">=</span> sma.add_constant(x)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>mymod <span class="op">=</span> sma.OLS(y, xmat)</span>
@@ -458,13 +460,13 @@ alternative hypothesis: two.sided
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Date:</td>
-<td>Mon, 07 Oct 2024</td>
+<td>Tue, 08 Oct 2024</td>
 <td data-quarto-table-cell-role="th">Prob (F-statistic):</td>
 <td>3.31e-14</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>20:06:09</td>
+<td>11:52:01</td>
 <td data-quarto-table-cell-role="th">Log-Likelihood:</td>
 <td>-272.91</td>
 </tr>
@@ -602,7 +604,7 @@ alternative hypothesis: two.sided
 <li>Why does it make sense to center the covariates?</li>
 </ul>
 <p>Now we form a data frame with the variables</p>
-<div id="0b6a649d" class="cell" data-execution_count="6">
+<div id="4f987784" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> np.concatenate((y.reshape((nobs, <span class="dv">1</span>)), x), axis <span class="op">=</span> <span class="dv">1</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data <span class="op">=</span> df,</span>
@@ -626,7 +628,7 @@ memory usage: 9.5 KB</code></pre>
 </div>
 </div>
 <p>Let’s use a formula to specify the regression model as in R, and fit a robust linear model (<code>rlm</code>) instead of OLS. Note that the model specification and the function interface is similar to R.</p>
-<div id="d402ddbd" class="cell" data-execution_count="7">
+<div id="488b23d4" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>mymod <span class="op">=</span> smf.rlm(formula <span class="op">=</span> <span class="st">"y ~ x1 + x2 + x3 + x4 + x5"</span>, data <span class="op">=</span> df)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>myfit <span class="op">=</span> mymod.fit()</span>
@@ -673,13 +675,13 @@ memory usage: 9.5 KB</code></pre>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Date:</td>
-<td>Mon, 07 Oct 2024</td>
+<td>Tue, 08 Oct 2024</td>
 <td data-quarto-table-cell-role="th"></td>
 <td></td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>20:06:09</td>
+<td>11:52:01</td>
 <td data-quarto-table-cell-role="th"></td>
 <td></td>
 </tr>
@@ -764,7 +766,7 @@ memory usage: 9.5 KB</code></pre>
 </div>
 </div>
 <p>For model diagnostics, one can check residual plots.</p>
-<div id="e5eb77a9" class="cell" data-execution_count="8">
+<div id="ba8968fe" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>myOlsFit <span class="op">=</span> smf.ols(formula <span class="op">=</span> <span class="st">"y ~ x1 + x2 + x3 + x4 + x5"</span>, data <span class="op">=</span> df).fit()</span>
@@ -819,7 +821,7 @@ memory usage: 9.5 KB</code></pre>
 <p>Each GLM variant addresses specific types of data and research questions, enabling precise modeling and inference based on the underlying data distribution.</p>
 <p>A logistic regression can be fit with <code>statsmodels.api.glm</code>.</p>
 <p>To demonstrate the validation of logistic regression models, we first create a simulated dataset with binary outcomes. This setup involves generating logistic probabilities and then drawing binary outcomes based on these probabilities.</p>
-<div id="814e3bd9" class="cell" data-execution_count="9">
+<div id="ad96dd21" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
@@ -851,7 +853,7 @@ memory usage: 9.5 KB</code></pre>
 </div>
 </div>
 <p>Fit a logistic regression for <code>y1b</code> with the formula interface.</p>
-<div id="3a56bea0" class="cell" data-execution_count="10">
+<div id="8a7f016c" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the model formula</span></span>
@@ -870,8 +872,8 @@ Model:                            GLM   Df Residuals:                      994
 Model Family:                Binomial   Df Model:                            5
 Link Function:                  Logit   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -159.17
-Date:                Mon, 07 Oct 2024   Deviance:                       318.34
-Time:                        20:06:10   Pearson chi2:                 1.47e+03
+Date:                Tue, 08 Oct 2024   Deviance:                       318.34
+Time:                        11:52:02   Pearson chi2:                 1.47e+03
 No. Iterations:                     8   Pseudo R-squ. (CS):             0.4197
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -991,7 +993,7 @@ x5             2.0603      0.221      9.313      0.000       1.627       2.494
 <section id="demonstration" class="level3" data-number="8.3.7">
 <h3 data-number="8.3.7" class="anchored" data-anchor-id="demonstration"><span class="header-section-number">8.3.7</span> Demonstration</h3>
 <p>Let’s apply these metrics to the <code>simdat</code> dataset to understand their practical implications. We will fit a logistic regression model, make predictions, and then compute accuracy, precision, and recall.</p>
-<div id="7b38d309" class="cell" data-execution_count="11">
+<div id="b0cce467" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
@@ -1041,7 +1043,7 @@ Recall: 0.81</code></pre>
 </div>
 </div>
 <p>By varying threshold, one can plot the whole ROC curve.</p>
-<div id="b0c3b97d" class="cell" data-execution_count="12">
+<div id="a4c43c74" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute ROC curve and AUC</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>fpr, tpr, thresholds <span class="op">=</span> roc_curve(y_test, y_scores)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>roc_auc <span class="op">=</span> auc(fpr, tpr)</span>
@@ -1072,7 +1074,7 @@ Recall: 0.81</code></pre>
 </div>
 </div>
 <p>We could pick the best threshold that optmizes F1-score/</p>
-<div id="11244a63" class="cell" data-execution_count="13">
+<div id="8092484b" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute F1 score for each threshold</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>f1_scores <span class="op">=</span> []</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> thresh <span class="kw">in</span> thresholds:</span>
@@ -1115,15 +1117,15 @@ Best F1 score: 0.89</code></pre>
 <p>The lasso penalty encourages the sum of the absolute values of the coefficients to be small, effectively shrinking some coefficients to zero. This results in sparser solutions, simplifying the model and reducing variance without substantial increase in bias.</p>
 <p>Practical benefits of LASSO:</p>
 <ul>
-<li><strong>Dimensionality Reduction</strong>: LASSO is particularly useful when the number of features ( p ) is large, potentially even larger than the number of observations ( n ), as it automatically reduces the number of features.</li>
-<li><strong>Preventing Overfitting</strong>: The L1 penalty helps prevent overfitting by constraining the model, especially when ( p ) is large or there is multicollinearity among features.</li>
+<li><strong>Dimensionality Reduction</strong>: LASSO is particularly useful when the number of features <span class="math inline">\(p\)</span> is large, potentially even larger than the number of observations <span class="math inline">\(n\)</span>, as it automatically reduces the number of features.</li>
+<li><strong>Preventing Overfitting</strong>: The L1 penalty helps prevent overfitting by constraining the model, especially when <span class="math inline">\(p\)</span> is large or there is multicollinearity among features.</li>
 <li><strong>Interpretability</strong>: By selecting only the most important features, LASSO makes the resulting model more interpretable, which is valuable in fields like bioinformatics, economics, and social sciences.</li>
 </ul>
 </section>
 <section id="solution-path" class="level3" data-number="8.4.2">
 <h3 data-number="8.4.2" class="anchored" data-anchor-id="solution-path"><span class="header-section-number">8.4.2</span> Solution Path</h3>
-<p>To illustrate the effect of the lasso penalty in logistic regression, we can plot the solution path of the coefficients as a function of the regularization parameter ( ). This demonstration will use a simulated dataset to show how increasing ( ) leads to more coefficients being set to zero.</p>
-<div id="d9d2fbbc" class="cell" data-execution_count="14">
+<p>To illustrate the effect of the lasso penalty in logistic regression, we can plot the solution path of the coefficients as a function of the regularization parameter <span class="math inline">\(\lambda\)</span>. This demonstration will use a simulated dataset to show how increasing <span class="math inline">\(\lambda\)</span> leads to more coefficients being set to zero.</p>
+<div id="310a6b31" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
@@ -1199,7 +1201,7 @@ Best F1 score: 0.89</code></pre>
 <li><strong>AUC-ROC</strong>: Evaluates how well the model discriminates between the positive and negative classes.</li>
 </ul>
 <p>In Python, the <code>LogisticRegressionCV</code> class from <code>scikit-learn</code> automates cross-validation for logistic regression. It evaluates the model’s performance for a range of <span class="math inline">\(C\)</span> values and selects the best one.</p>
-<div id="a27f3690" class="cell" data-execution_count="15">
+<div id="c0b0b644" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegressionCV</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>

@@ -310,20 +310,32 @@ window.Quarto = {
 <li>Fit a logistic model on the training data with <span class="math inline">\(L_1\)</span> regularization. Select the tuning parameter with 5-fold cross-validation in F1 score</li>
 <li>Apply the regularized logistic regression to predict the severity of the crashes in the testing data. Compare the performance of the two logistic models in terms of accuracy, precision, recall, F1-score, and AUC.</li>
 </ol></li>
-<li><p>The <a href="https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9">NYC Open Data of 311 Service Requests</a> contains all requests from 2010 to present. We consider a subset of it with request time between 00:00:00 01/15/2023 and 24:00:00 01/21/2023. The subset is available in CSV format as <code>data/nyc311_011523-012123_by022023.csv</code>. Read the data dictionary to understand the meaning of the variables,</p>
+<li><p><strong>Midterm project: Noise complaints in NYC</strong> The <a href="https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9">NYC Open Data of 311 Service Requests</a> contains all requests from 2010 to present. We consider a subset of it with requests to NYPD on noise complaints that are created between 00:00:00 06/30/2024 and 24:00:00 07/06/2024. The subset is available in CSV format as <code>data/nypd311w063024noise_by100724.csv</code>. Read the data dictionary online to understand the meaning of the variables.</p>
 <ol type="1">
-<li>Clean the data: fill missing fields as much as possible; check for obvious data entry errors (e.g., can <code>Closed Date</code> be earlier than <code>Created Date</code>?); summarize your suggestions to the data curator in several bullet points.</li>
-<li>Remove requests that are not made to NYPD and create a new variable <code>duration</code>, which represents the time period from the <code>Created Date</code> to <code>Closed Date</code>. Note that <code>duration</code> may be censored for some requests. Visualize the distribution of uncensored <code>duration</code> by weekdays/weekend and by borough, and test whether the distributions are the same across weekdays/weekends of their creation and across boroughs.</li>
-<li>Define a binary variable <code>over3h</code> which is 1 if <code>duration</code> is greater than 3 hours. Note that it can be obtained even for censored <code>duration</code>. Build a model to predict <code>over3h</code>. If your model has tuning parameters, justify their choices. Apply this model to the 311 requests of NYPD in the week of 01/22/2023. Assess the performance of your model.</li>
-<li>Now you know the data quite well. Come up with a research question of interest that can be answered by the data, which could be analytics or visualizations. Perform the needed analyses and answer your question.</li>
-</ol></li>
-<li><p><strong>Logistic Modeling</strong> The response time to 311 service requests is a measure of civic service quality. Let us model the response time to 311 requests with complain type <code>Rodent</code>.</p>
-<ol type="1">
-<li>Compute the response time in hours. Note that some response will be missing because of unavailable closed date.</li>
-<li>Compute a binary variable <code>over3d</code>, which is one if the response time is greater than 3 days, and zero otherwise. Note that this variable should have no missing values.</li>
-<li>Use the package <code>uszipcode</code> to obtain the zip code level covariates such as median house income and median home value. Merge these variables to the rodent data.</li>
-<li>Split the data at random into training (80%) and testing (20%). Build a logistic model to predict <code>over3d</code> on the training data, and validate the performance on the testing data.</li>
-<li>Build a lasso logistic model to predict <code>over3d</code>, and justify your choice of the tuning parameter. Validate on the testing data.</li>
+<li>Data cleaning.
+<ul>
+<li>Import the data, rename the columns with our preferred styles.</li>
+<li>Summarize the missing information. Are there variables that are close to completely missing?</li>
+<li>Are their redundant information in the data? Try storing the data using the Arrow format and comment on the efficiency gain.</li>
+<li>Are there invalid NYC zipcode or borough? Justify and clean them if yes.</li>
+<li>Are there date errors? Examples are earlier <code>closed_date</code> than <code>created_date</code>; <code>closed_date</code> and <code>created_date</code> matching to the second; dates exactly at midnight or noon to the second; <code>action_update_date</code> after <code>closed_date</code>.</li>
+<li>Summarize your suggestions to the data curator in several bullet points.</li>
+</ul></li>
+<li>Data exploration.
+<ul>
+<li>If we suspect that response time may depend on the time of day when a complaint is made, we can compare the response times for complaints submitted during nighttime and daytime. To do this, we can visualize the comparison by complaint type, borough, and weekday (vs weekend/holiday).</li>
+<li>Perform a formal hypothesis test to confirm the observations from your visualization. Formaly state your hypotheses and summary your conclusions in plain English.</li>
+<li>Create a binary variable <code>over2h</code> to indicate that a service request took two hours or longer to close.</li>
+<li>Does <code>over2h</code> depend on the complain type, borough, or weekday (vs weekend/holiday)? State your hypotheses and summarize your conclusions in plain English.</li>
+</ul></li>
+<li>Data analysis.
+<ul>
+<li>The addresses of NYC police percincts are stored in <code>data/nypd_precincts.csv</code>. Use geocoding tools to find their geocode (longitude and lattitude) from the addresses.</li>
+<li>Create a variable <code>dist2pp</code> which represent the distance from each request incidence to the nearest police precinct.</li>
+<li>Create zip code level variables by merging with data from package <code>uszipcode</code>.</li>
+<li>Randomly select 20% of the complaints as testing data with seeds <code>1234</code>. Build a logistic model to predict <code>over2h</code> for the noise complains with the training data, using all the variables you can engineer from the available data. If you have tuning parameters, justify how they were selected.</li>
+<li>Assess the performance of your model in terms of commonly used metrics. Summarize your results to a New Yorker who is not data science savvy.</li>
+</ul></li>
 </ol></li>
 </ol>
 
