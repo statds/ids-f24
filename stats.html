@@ -357,7 +357,7 @@ window.Quarto = {
 </ul>
 <p>Since R has a richer collections of statistical functions, we can call R function from Python with <code>rpy2</code>. See, for example, a <a href="https://rviews.rstudio.com/2022/05/25/calling-r-from-python-with-rpy2/">blog on this subject</a>.</p>
 <p>For example, <code>fisher_exact</code> can only handle 2x2 contingency tables. For contingency tables larger than 2x2, we can call <code>fisher.test()</code> from R through <code>rpy2</code>. See <a href="https://stackoverflow.com/questions/25368284/fishers-exact-test-for-bigger-than-2-by-2-contingency-table">this StackOverflow post</a>. Note that the <code>.</code> in function names and arguments are replaced with <code>_</code>.</p>
-<div id="ae3ab0da" class="cell" data-execution_count="1">
+<div id="423dac72" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects.numpy2ri</span>
@@ -402,7 +402,7 @@ alternative hypothesis: two.sided
 <section id="linear-model" class="level3" data-number="8.2.2">
 <h3 data-number="8.2.2" class="anchored" data-anchor-id="linear-model"><span class="header-section-number">8.2.2</span> Linear Model</h3>
 <p>Let’s simulate some data for illustrations.</p>
-<div id="310c9085" class="cell" data-execution_count="2">
+<div id="0d68dd69" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>nobs <span class="op">=</span> <span class="dv">200</span></span>
@@ -413,14 +413,14 @@ alternative hypothesis: two.sided
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> np.dot(x, beta) <span class="op">+</span> np.random.normal(size <span class="op">=</span> nobs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Check the shape of <code>y</code>:</p>
-<div id="31cee82b" class="cell" data-execution_count="3">
+<div id="b69aaed7" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>y.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>(200,)</code></pre>
 </div>
 </div>
 <p>Check the shape of <code>x</code>:</p>
-<div id="fce571b3" class="cell" data-execution_count="4">
+<div id="c74988d3" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>(200, 5)</code></pre>
@@ -428,7 +428,7 @@ alternative hypothesis: two.sided
 </div>
 <p>That is, the true linear regression model is [ y = 2 + x_1 + x_2 + x_3 + x_4 + x_5 + . ]</p>
 <p>A regression model for the observed data can be fitted as</p>
-<div id="dfe08fd6" class="cell" data-execution_count="5">
+<div id="92014300" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sma</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>xmat <span class="op">=</span> sma.add_constant(x)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>mymod <span class="op">=</span> sma.OLS(y, xmat)</span>
@@ -464,7 +464,7 @@ alternative hypothesis: two.sided
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>13:16:48</td>
+<td>20:06:09</td>
 <td data-quarto-table-cell-role="th">Log-Likelihood:</td>
 <td>-272.91</td>
 </tr>
@@ -602,7 +602,7 @@ alternative hypothesis: two.sided
 <li>Why does it make sense to center the covariates?</li>
 </ul>
 <p>Now we form a data frame with the variables</p>
-<div id="6ef8d819" class="cell" data-execution_count="6">
+<div id="0b6a649d" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> np.concatenate((y.reshape((nobs, <span class="dv">1</span>)), x), axis <span class="op">=</span> <span class="dv">1</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data <span class="op">=</span> df,</span>
@@ -626,7 +626,7 @@ memory usage: 9.5 KB</code></pre>
 </div>
 </div>
 <p>Let’s use a formula to specify the regression model as in R, and fit a robust linear model (<code>rlm</code>) instead of OLS. Note that the model specification and the function interface is similar to R.</p>
-<div id="e14420ef" class="cell" data-execution_count="7">
+<div id="d402ddbd" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>mymod <span class="op">=</span> smf.rlm(formula <span class="op">=</span> <span class="st">"y ~ x1 + x2 + x3 + x4 + x5"</span>, data <span class="op">=</span> df)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>myfit <span class="op">=</span> mymod.fit()</span>
@@ -679,7 +679,7 @@ memory usage: 9.5 KB</code></pre>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>13:16:48</td>
+<td>20:06:09</td>
 <td data-quarto-table-cell-role="th"></td>
 <td></td>
 </tr>
@@ -764,7 +764,7 @@ memory usage: 9.5 KB</code></pre>
 </div>
 </div>
 <p>For model diagnostics, one can check residual plots.</p>
-<div id="ce4612aa" class="cell" data-execution_count="8">
+<div id="e5eb77a9" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>myOlsFit <span class="op">=</span> smf.ols(formula <span class="op">=</span> <span class="st">"y ~ x1 + x2 + x3 + x4 + x5"</span>, data <span class="op">=</span> df).fit()</span>
@@ -819,7 +819,7 @@ memory usage: 9.5 KB</code></pre>
 <p>Each GLM variant addresses specific types of data and research questions, enabling precise modeling and inference based on the underlying data distribution.</p>
 <p>A logistic regression can be fit with <code>statsmodels.api.glm</code>.</p>
 <p>To demonstrate the validation of logistic regression models, we first create a simulated dataset with binary outcomes. This setup involves generating logistic probabilities and then drawing binary outcomes based on these probabilities.</p>
-<div id="e240c5a7" class="cell" data-execution_count="9">
+<div id="814e3bd9" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
@@ -851,7 +851,7 @@ memory usage: 9.5 KB</code></pre>
 </div>
 </div>
 <p>Fit a logistic regression for <code>y1b</code> with the formula interface.</p>
-<div id="58a7e917" class="cell" data-execution_count="10">
+<div id="3a56bea0" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the model formula</span></span>
@@ -871,7 +871,7 @@ Model Family:                Binomial   Df Model:                            5
 Link Function:                  Logit   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -159.17
 Date:                Mon, 07 Oct 2024   Deviance:                       318.34
-Time:                        13:16:49   Pearson chi2:                 1.47e+03
+Time:                        20:06:10   Pearson chi2:                 1.47e+03
 No. Iterations:                     8   Pseudo R-squ. (CS):             0.4197
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -991,7 +991,7 @@ x5             2.0603      0.221      9.313      0.000       1.627       2.494
 <section id="demonstration" class="level3" data-number="8.3.7">
 <h3 data-number="8.3.7" class="anchored" data-anchor-id="demonstration"><span class="header-section-number">8.3.7</span> Demonstration</h3>
 <p>Let’s apply these metrics to the <code>simdat</code> dataset to understand their practical implications. We will fit a logistic regression model, make predictions, and then compute accuracy, precision, and recall.</p>
-<div id="bd93d3d2" class="cell" data-execution_count="11">
+<div id="7b38d309" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
@@ -1041,7 +1041,7 @@ Recall: 0.81</code></pre>
 </div>
 </div>
 <p>By varying threshold, one can plot the whole ROC curve.</p>
-<div id="9bfd4c20" class="cell" data-execution_count="12">
+<div id="b0c3b97d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute ROC curve and AUC</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>fpr, tpr, thresholds <span class="op">=</span> roc_curve(y_test, y_scores)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>roc_auc <span class="op">=</span> auc(fpr, tpr)</span>
@@ -1072,7 +1072,7 @@ Recall: 0.81</code></pre>
 </div>
 </div>
 <p>We could pick the best threshold that optmizes F1-score/</p>
-<div id="5c529867" class="cell" data-execution_count="13">
+<div id="11244a63" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute F1 score for each threshold</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>f1_scores <span class="op">=</span> []</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> thresh <span class="kw">in</span> thresholds:</span>
@@ -1123,103 +1123,65 @@ Best F1 score: 0.89</code></pre>
 <section id="solution-path" class="level3" data-number="8.4.2">
 <h3 data-number="8.4.2" class="anchored" data-anchor-id="solution-path"><span class="header-section-number">8.4.2</span> Solution Path</h3>
 <p>To illustrate the effect of the lasso penalty in logistic regression, we can plot the solution path of the coefficients as a function of the regularization parameter ( ). This demonstration will use a simulated dataset to show how increasing ( ) leads to more coefficients being set to zero.</p>
-<div id="4fc24370" class="cell" data-execution_count="14">
+<div id="d9d2fbbc" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to create a lambda grid</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_lambda_max_logistic(X, y):</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute lambda_max for logistic regression (smallest lambda at which all coefficients are zero).</span></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co">    - X: Feature matrix (numpy array or similar)</span></span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co">    - y: Target vector (numpy array or similar)</span></span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co">    - lambda_max: The largest lambda for which all coefficients are zero</span></span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Standardize the features</span></span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>    scaler <span class="op">=</span> StandardScaler()</span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>    X_scaled <span class="op">=</span> scaler.fit_transform(X)</span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initial prediction probability (0.5 since all coefficients are zero)</span></span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> np.ones_like(y)</span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate gradient at zero coefficients</span></span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>    gradient <span class="op">=</span> np.dot(X_scaled.T, p <span class="op">-</span> y)</span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Lambda max is the maximum of the absolute gradients divided by the number of samples</span></span>
-<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>    lambda_max <span class="op">=</span> np.<span class="bu">max</span>(np.<span class="bu">abs</span>(gradient)) <span class="op">/</span> X_scaled.shape[<span class="dv">0</span>]</span>
-<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lambda_max</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Generate a classification dataset</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_classification(n_samples<span class="op">=</span><span class="dv">100</span>, n_features<span class="op">=</span><span class="dv">20</span>, n_informative<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>                               random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Get a lambda grid given length of lambda and min_ratio of lambda_max</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_lambda_l1(xs: np.ndarray, y: np.ndarray, nlambda: <span class="bu">int</span>, min_ratio: <span class="bu">float</span>):</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    ybar <span class="op">=</span> np.mean(y)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    xbar <span class="op">=</span> np.mean(xs, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    xs_centered <span class="op">=</span> xs <span class="op">-</span> xbar</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    xty <span class="op">=</span> np.dot(xs_centered.T, (y <span class="op">-</span> ybar))</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    lmax <span class="op">=</span> np.<span class="bu">max</span>(np.<span class="bu">abs</span>(xty))</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    lambdas <span class="op">=</span> np.logspace(np.log10(lmax), np.log10(min_ratio <span class="op">*</span> lmax),</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>                              num<span class="op">=</span>nlambda)</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lambdas</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Calculate lambda values</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>nlambda <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>min_ratio <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>lambda_values <span class="op">=</span> get_lambda_l1(X, y, nlambda, min_ratio)</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Standardize the features</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>X_scaled <span class="op">=</span> scaler.fit_transform(X)</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Initialize arrays to store the coefficients for each lambda value</span></span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>coefficients <span class="op">=</span> []</span>
 <span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_lambda_grid(X, y, lambda_min_ratio, num_lambdas<span class="op">=</span><span class="dv">100</span>):</span>
-<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a><span class="co">    Create a logarithmically spaced lambda grid for L1-penalized logistic regression.</span></span>
-<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
-<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a><span class="co">    - X: Feature matrix (numpy array or similar)</span></span>
-<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a><span class="co">    - y: Target vector (numpy array or similar)</span></span>
-<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a><span class="co">    - lambda_min_ratio: The ratio of the smallest lambda in the grid to lambda_max</span></span>
-<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a><span class="co">    - num_lambdas: Number of lambda values to generate in the grid</span></span>
-<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
-<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a><span class="co">    - lambdas: Array of lambda values from lambda_max to lambda_min, logarithmically spaced</span></span>
-<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a><span class="co">    - Cs: Array of C values for use in scikit-learn, where C = 1/lambda</span></span>
-<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute lambda_max for logistic regression</span></span>
-<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a>    lambda_max <span class="op">=</span> compute_lambda_max_logistic(X, y)</span>
-<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute lambda_min using the lambda_min_ratio</span></span>
-<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a>    lambda_min <span class="op">=</span> lambda_max <span class="op">*</span> lambda_min_ratio</span>
-<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate a sequence of lambdas from lambda_max to lambda_min, logarithmically spaced</span></span>
-<span id="cb27-56"><a href="#cb27-56" aria-hidden="true" tabindex="-1"></a>    lambdas <span class="op">=</span> np.logspace(np.log10(lambda_max), np.log10(lambda_min), num<span class="op">=</span>num_lambdas)</span>
-<span id="cb27-57"><a href="#cb27-57" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-58"><a href="#cb27-58" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert lambdas to C values for use in scikit-learn (C = 1/lambda)</span></span>
-<span id="cb27-59"><a href="#cb27-59" aria-hidden="true" tabindex="-1"></a>    Cs <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> lambdas</span>
-<span id="cb27-60"><a href="#cb27-60" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-61"><a href="#cb27-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lambdas, Cs</span>
-<span id="cb27-62"><a href="#cb27-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-63"><a href="#cb27-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate synthetic data</span></span>
-<span id="cb27-64"><a href="#cb27-64" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_classification(n_samples<span class="op">=</span><span class="dv">100</span>, n_features<span class="op">=</span><span class="dv">20</span>, n_informative<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb27-65"><a href="#cb27-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-66"><a href="#cb27-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate lambda and C grid</span></span>
-<span id="cb27-67"><a href="#cb27-67" aria-hidden="true" tabindex="-1"></a>lambda_min_ratio <span class="op">=</span> <span class="fl">0.01</span></span>
-<span id="cb27-68"><a href="#cb27-68" aria-hidden="true" tabindex="-1"></a>lambdas, Cs <span class="op">=</span> create_lambda_grid(X, y, lambda_min_ratio)</span>
-<span id="cb27-69"><a href="#cb27-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-70"><a href="#cb27-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit logistic regression model for each C and store coefficients</span></span>
-<span id="cb27-71"><a href="#cb27-71" aria-hidden="true" tabindex="-1"></a>coefficients <span class="op">=</span> []</span>
-<span id="cb27-72"><a href="#cb27-72" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
-<span id="cb27-73"><a href="#cb27-73" aria-hidden="true" tabindex="-1"></a>X_scaled <span class="op">=</span> scaler.fit_transform(X)</span>
-<span id="cb27-74"><a href="#cb27-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-75"><a href="#cb27-75" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> C <span class="kw">in</span> Cs:</span>
-<span id="cb27-76"><a href="#cb27-76" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> LogisticRegression(penalty<span class="op">=</span><span class="st">'l1'</span>, C<span class="op">=</span>C, solver<span class="op">=</span><span class="st">'liblinear'</span>, max_iter<span class="op">=</span><span class="dv">10000</span>)</span>
-<span id="cb27-77"><a href="#cb27-77" aria-hidden="true" tabindex="-1"></a>    model.fit(X_scaled, y)</span>
-<span id="cb27-78"><a href="#cb27-78" aria-hidden="true" tabindex="-1"></a>    coefficients.append(model.coef_[<span class="dv">0</span>])</span>
-<span id="cb27-79"><a href="#cb27-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-80"><a href="#cb27-80" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot solution path against C (inverse of lambda)</span></span>
-<span id="cb27-81"><a href="#cb27-81" aria-hidden="true" tabindex="-1"></a>coefficients <span class="op">=</span> np.array(coefficients)</span>
-<span id="cb27-82"><a href="#cb27-82" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb27-83"><a href="#cb27-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-84"><a href="#cb27-84" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(coefficients.shape[<span class="dv">1</span>]):</span>
-<span id="cb27-85"><a href="#cb27-85" aria-hidden="true" tabindex="-1"></a>    plt.plot(Cs, coefficients[:, i], label<span class="op">=</span><span class="ss">f'Feature </span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb27-86"><a href="#cb27-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-87"><a href="#cb27-87" aria-hidden="true" tabindex="-1"></a>plt.xscale(<span class="st">'log'</span>)</span>
-<span id="cb27-88"><a href="#cb27-88" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'C (Inverse of Lambda)'</span>)</span>
-<span id="cb27-89"><a href="#cb27-89" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Coefficients'</span>)</span>
-<span id="cb27-90"><a href="#cb27-90" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Solution Path of Lasso Logistic Regression'</span>)</span>
-<span id="cb27-91"><a href="#cb27-91" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb27-92"><a href="#cb27-92" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Fit logistic regression with L1 regularization (Lasso) for each lambda value</span></span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lam <span class="kw">in</span> lambda_values:</span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> LogisticRegression(penalty<span class="op">=</span><span class="st">'l1'</span>, solver<span class="op">=</span><span class="st">'liblinear'</span>, C<span class="op">=</span><span class="dv">1</span><span class="op">/</span>lam, max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>    model.fit(X_scaled, y)</span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>    coefficients.append(model.coef_.flatten())</span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert coefficients list to a NumPy array for plotting</span></span>
+<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a>coefficients <span class="op">=</span> np.array(coefficients)</span>
+<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: Plot the solution path for each feature</span></span>
+<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(coefficients.shape[<span class="dv">1</span>]):</span>
+<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a>    plt.plot(lambda_values, coefficients[:, i], label<span class="op">=</span><span class="ss">f'Feature </span><span class="sc">{</span>i <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a>plt.xscale(<span class="st">'log'</span>)</span>
+<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Lambda values (log scale)'</span>)</span>
+<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Coefficient value'</span>)</span>
+<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Solution Path of Logistic Lasso Regression'</span>)</span>
+<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a>plt.legend(bbox_to_anchor<span class="op">=</span>(<span class="fl">1.05</span>, <span class="dv">1</span>), loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="stats_files/figure-html/cell-15-output-1.png" width="810" height="525" class="figure-img"></p>
+<p><img src="stats_files/figure-html/cell-15-output-1.png" width="974" height="525" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1237,7 +1199,7 @@ Best F1 score: 0.89</code></pre>
 <li><strong>AUC-ROC</strong>: Evaluates how well the model discriminates between the positive and negative classes.</li>
 </ul>
 <p>In Python, the <code>LogisticRegressionCV</code> class from <code>scikit-learn</code> automates cross-validation for logistic regression. It evaluates the model’s performance for a range of <span class="math inline">\(C\)</span> values and selects the best one.</p>
-<div id="71a3c63f" class="cell" data-execution_count="15">
+<div id="a27f3690" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegressionCV</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
