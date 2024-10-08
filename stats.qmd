@@ -101,9 +101,9 @@ x.shape
 ```
 
 That is, the true linear regression model is
-\[
+$$
 y = 2 + x_1 + x_2 + x_3 + x_4 + x_5 + \epsilon.
-\]
+$$
 
 A regression model for the observed data can be fitted as
 
@@ -409,6 +409,31 @@ of Precision and Recall and is a useful measure when you seek a
 balance between Precision and Recall and there is an uneven class
 distribution (large number of actual negatives).
 
+
+### Receiver Operating Characteristic (ROC) Curve
+
+The **Receiver Operating Characteristic (ROC) curve** is a plot that
+illustrates the diagnostic ability of a binary classifier as its
+discrimination threshold is varied. It shows the trade-off between the
+TPR and FPR. The ROC plots TPR against FPR as the decision threshold
+is varied. It can be particularly useful in evaluating the
+performance of classifiers when the class distribution is imbalanced,
+
+
+The **Area Under the ROC Curve (AUC)** is a scalar value that
+summarizes the performance of a classifier. It measures the total area
+underneath the ROC curve, providing a single metric to compare
+models. The value of AUC ranges from 0 to 1:
+
+- **AUC = 1**: A perfect classifier, which perfectly separates positive and negative classes.
+- **AUC = 0.5**: A classifier that performs no better than random chance.
+- **AUC < 0.5**: A classifier performing worse than random.
+
+The AUC value provides insight into the model's ability to
+discriminate between positive and negative classes across all possible
+threshold values.
+
+
 ### Demonstration
 
 Let's apply these metrics to the `simdat` dataset to understand their
@@ -417,33 +442,277 @@ predictions, and then compute accuracy, precision, and recall.
 
 
 ```{python}
+import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix
+from sklearn.metrics import (
+    accuracy_score, precision_score, recall_score, confusion_matrix,
+    f1_score, roc_curve, auc
+)
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_classification
+
+# Generate synthetic data
+X, y = make_classification(n_samples=1000, n_features=20, random_state=42)
 
 # Split the dataset into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(
-    simdat[['x1', 'x2', 'x3', 'x4', 'x5']], simdat['yb'], test_size=0.25,
-    random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 
-# Initialize the logistic regression model
+# Fit the logistic regression model
 model = LogisticRegression()
-
-# Fit the logistic regression model on the training data
 model.fit(X_train, y_train)
 
-# Predict on the test set
+# Predict labels on the test set
 y_pred = model.predict(X_test)
 
-# Calculate metrics
+# Get predicted probabilities for ROC curve and AUC
+y_scores = model.predict_proba(X_test)[:, 1]  # Probability for the positive class
+
+# Compute confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+
+# Calculate accuracy, precision, and recall
 accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred)
 recall = recall_score(y_test, y_pred)
-cm = confusion_matrix(y_test, y_pred)
 
-# Print the results
-print("Confusion Matrix:\\n", cm)
+# Print confusion matrix and metrics
+print("Confusion Matrix:\n", cm)
 print(f"Accuracy: {accuracy:.2f}")
 print(f"Precision: {precision:.2f}")
 print(f"Recall: {recall:.2f}")
+```
+
+
+By varying threshold, one can plot the whole ROC curve.
+
+```{python}
+# Compute ROC curve and AUC
+fpr, tpr, thresholds = roc_curve(y_test, y_scores)
+roc_auc = auc(fpr, tpr)
+
+# Print AUC
+print(f"AUC: {roc_auc:.2f}")
+
+# Plot ROC curve
+plt.figure()
+plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC curve (AUC = {roc_auc:.2f})')
+plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')  # Diagonal line (random classifier)
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver Operating Characteristic (ROC) Curve')
+plt.legend(loc="lower right")
+plt.show()
+```
+
+
+We could pick the best threshold that optmizes F1-score/
+```{python}
+# Compute F1 score for each threshold
+f1_scores = []
+for thresh in thresholds:
+    y_pred_thresh = (y_scores >= thresh).astype(int)  # Apply threshold to get binary predictions
+    f1 = f1_score(y_test, y_pred_thresh)
+    f1_scores.append(f1)
+
+# Find the best threshold (the one that maximizes F1 score)
+best_thresh = thresholds[np.argmax(f1_scores)]
+best_f1 = max(f1_scores)
+
+# Print the best threshold and corresponding F1 score
+print(f"Best threshold: {best_thresh:.4f}")
+print(f"Best F1 score: {best_f1:.2f}")
+```
+
+
+## LASSO Logistic Models
+
+The **Least Absolute Shrinkage and Selection Operator** (LASSO)
+[@tibshirani1996regression], is a regression method that
+performs both **variable selection** and **regularization**. LASSO
+imposes an L1 penalty on the regression coefficients, which has the
+effect of shrinking some coefficients exactly to zero. This results in
+simpler, more interpretable models, especially in situations where the
+number of predictors exceeds the number of observations.
+
+
+### Theoretical Formulation of the Problem
+
+
+The objective function for LASSO logistic regression can be expressed
+as,
+
+$$
+\min_{\beta} 
+\left\{ -\frac{1}{n} \sum_{i=1}^n \left[ y_i \log(\hat{p}_i) + (1 - y_i) \log(1 - \hat{p}_i) \right] + \lambda \sum_{j=1}^p |\beta_j| \right\}
+$$
+
+where:
+
+- $\hat{p}_i = \frac{1}{1 + e^{-X_i\beta}}$ is the predicted probability for the $i$-th sample.
+- $y_i$ represents the actual class label (binary: 0 or 1).
+- $X_i$ is the feature vector for the $i$-th observation.
+- $\beta$ is the vector of model coefficients (including the intercept).
+- $\lambda$ is the regularization parameter that controls the trade-off between model fit and sparsity (higher $\lambda$) encourages sparsity by shrinking more coefficients to zero).
+
+
+The lasso penalty encourages the sum of the absolute values of the
+coefficients to be small, effectively shrinking some coefficients to
+zero. This results in sparser solutions, simplifying the model and
+reducing variance without substantial increase in bias.
+
+
+Practical benefits of LASSO:
+
+- **Dimensionality Reduction**: LASSO is particularly useful when the
+  number of features $p$ is large, potentially even larger than the
+  number of observations $n$, as it automatically reduces the number
+  of features.
+- **Preventing Overfitting**: The L1 penalty helps prevent overfitting
+  by constraining the model, especially when $p$ is large or there is
+  multicollinearity among features.
+- **Interpretability**: By selecting only the most important features,
+  LASSO makes the resulting model more interpretable, which is
+  valuable in fields like bioinformatics, economics, and social
+  sciences.
+
+
+### Solution Path
+
+To illustrate the effect of the lasso penalty in logistic regression,
+we can plot the solution path of the coefficients as a function of the
+regularization parameter $\lambda$. This demonstration will use a
+simulated dataset to show how increasing $\lambda$ leads to more
+coefficients being set to zero.
+
+```{python}
+import numpy as np
+from sklearn.datasets import make_classification
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+
+# Step 1: Generate a classification dataset
+X, y = make_classification(n_samples=100, n_features=20, n_informative=2,
+                               random_state=42)
+
+# Step 2: Get a lambda grid given length of lambda and min_ratio of lambda_max
+def get_lambda_l1(xs: np.ndarray, y: np.ndarray, nlambda: int, min_ratio: float):
+    ybar = np.mean(y)
+    xbar = np.mean(xs, axis=0)
+    xs_centered = xs - xbar
+    xty = np.dot(xs_centered.T, (y - ybar))
+    lmax = np.max(np.abs(xty))
+    lambdas = np.logspace(np.log10(lmax), np.log10(min_ratio * lmax),
+                              num=nlambda)
+    return lambdas
+
+# Step 3: Calculate lambda values
+nlambda = 100
+min_ratio = 0.01
+lambda_values = get_lambda_l1(X, y, nlambda, min_ratio)
+
+# Step 4: Standardize the features
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Step 5: Initialize arrays to store the coefficients for each lambda value
+coefficients = []
+
+# Step 6: Fit logistic regression with L1 regularization (Lasso) for each lambda value
+for lam in lambda_values:
+    model = LogisticRegression(penalty='l1', solver='liblinear', C=1/lam, max_iter=1000)
+    model.fit(X_scaled, y)
+    coefficients.append(model.coef_.flatten())
+
+# Convert coefficients list to a NumPy array for plotting
+coefficients = np.array(coefficients)
+
+# Step 7: Plot the solution path for each feature
+plt.figure(figsize=(10, 6))
+for i in range(coefficients.shape[1]):
+    plt.plot(lambda_values, coefficients[:, i], label=f'Feature {i + 1}')
+    
+plt.xscale('log')
+plt.xlabel('Lambda values (log scale)')
+plt.ylabel('Coefficient value')
+plt.title('Solution Path of Logistic Lasso Regression')
+plt.grid(True)
+plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.show()
+```
+
+
+### Selection the Tuning Parameter
+
+In logistic regression with LASSO regularization, selecting the
+optimal value of the regularization parameter $C$ (the inverse of
+$\lambda$) is crucial to balancing the model's bias and
+variance. A small $C$ value (large $\lambda$) increases the
+regularization effect, shrinking more coefficients to zero and
+simplifying the model. Conversely, a large $C$ (small $\lambda$)
+allows the model to fit the data more closely.
+
+
+The best way to select the optimal $C$ is through
+**cross-validation**. In cross-validation, the dataset is split into
+several folds, and the model is trained on some folds while evaluated
+on the remaining fold. This process is repeated for each fold, and the
+results are averaged to ensure the model generalizes well to unseen
+data. The $C$ value that results in the best performance is
+selected.
+
+
+The performance metric used in cross-validation can vary based on the
+task. Common metrics include:
+
+- **Log-loss**: Measures how well the predicted probabilities match the actual outcomes.
+- **Accuracy**: Measures the proportion of correctly classified instances.
+- **F1-Score**: Balances precision and recall, especially useful for imbalanced classes.
+- **AUC-ROC**: Evaluates how well the model discriminates between the positive and negative classes.
+
+
+In Python, the `LogisticRegressionCV` class from `scikit-learn`
+automates cross-validation for logistic regression. It evaluates the
+model's performance for a range of $C$ values and selects the best
+one.
+
+```{python}
+import numpy as np
+from sklearn.linear_model import LogisticRegressionCV
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import make_classification
+from sklearn.metrics import accuracy_score
+
+# Generate synthetic data
+X, y = make_classification(n_samples=1000, n_features=20, random_state=42)
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+# Initialize LogisticRegressionCV with L1 penalty for Lasso and cross-validation
+log_reg_cv = LogisticRegressionCV(
+    Cs=np.logspace(-4, 4, 20),  # Range of C values (inverse of lambda)
+    cv=5,                       # 5-fold cross-validation
+    penalty='l1',               # Lasso regularization (L1 penalty)
+    solver='liblinear',         # Solver for L1 regularization
+    scoring='accuracy',         # Optimize for accuracy
+    max_iter=10000              # Ensure convergence
+)
+
+# Train the model with cross-validation
+log_reg_cv.fit(X_train, y_train)
+
+# Best C value (inverse of lambda)
+print(f"Best C value: {log_reg_cv.C_[0]}")
+
+# Evaluate the model on the test set
+y_pred = log_reg_cv.predict(X_test)
+test_accuracy = accuracy_score(y_test, y_pred)
+print(f"Test Accuracy: {test_accuracy:.2f}")
+
+# Display the coefficients of the best model
+print("Model Coefficients:\n", log_reg_cv.coef_)
 ```
