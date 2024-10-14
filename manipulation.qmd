@@ -147,7 +147,6 @@ because valid zip codes from each borough are known.
 
 ## Cross-platform Data Format `Arrow`
 
-
 The CSV format (and related formats like TSV - tab-separated values)
 for data tables is ubiquitous, convenient, and can be read or written
 by many different data analysis environments, including spreadsheets.

@@ -47,7 +47,7 @@ import pandas as pd
 ## Import the cleaned crashes data
 ## Choose the fcuntion, read_feather from Pandas
 ## Add the relative address of the data file to let your cooperator deal with the code smoothly
-df_feather = pd.read_feather("ids-f24/data/nyccrashes_cleaned.feather")
+df_feather = pd.read_feather("data/nyccrashes_cleaned.feather")
 ## Show the top 5 rows of data
 ## Determine whether we import the data successfully
 print(df_feather.head(5)) # Use the fucntion "head()"
@@ -223,7 +223,7 @@ print(meta)
 ```
 
 
-#### rdata files(the suffix of this file is `.RData`)
+#### rdata files (the suffix of this file is `.RData`)
 ##### Transfer the `.csv` file to a `.Rdata` file
 We need to install the package `rpy2`
 ```python
@@ -286,7 +286,7 @@ print(df_2)
 ```
 
 
-#### stata data(the suffix of this file is `.dta`)
+#### stata data (the suffix of this file is `.dta`)
 ##### Transfer the `.csv` file to a `.dta` file
 We can only use `Pandas`.
 We choose the fucntion `to_stata` to save the `.dta` file.
@@ -308,7 +308,7 @@ df_3 = pd.read_stata("stata.dta")
 print(df_3.head(2))
 ```
 
-#### spss data(the suffix of this file is `.sav`)
+#### spss data (the suffix of this file is `.sav`)
 ##### Transfer the `.csv` file to a `.sav` file
 We need to use the Package `pyreadstat`
 We choose the function `write_sav` form `pyreadstat`
@@ -336,7 +336,7 @@ print(df_4.head(2))
 print(meta)
 ```
 
-#### Matlab files(the suffix of this file is `.mat`)
+#### Matlab files (the suffix of this file is `.mat`)
 ##### Transfer the `.csv` file to a `.mat` file
 We need to install the package `scipy.io`
 ```python
@@ -371,7 +371,7 @@ print(df_5.keys())
 print(df_5["data"])
 ```
 
-#### HDF5 files(the suffix of this file is `.h5`)
+#### HDF5 files (the suffix of this file is `.h5`)
 ##### Transfer the `.csv` file to a `.h5` file
 We can only use `Pandas`.
 At the same time, the function `to_hdf` helps us achive the goal.
