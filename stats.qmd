@@ -716,3 +716,190 @@ print(f"Test Accuracy: {test_accuracy:.2f}")
 # Display the coefficients of the best model
 print("Model Coefficients:\n", log_reg_cv.coef_)
 ```
+
+
+### Preparing for Logistic Regression Fitting
+
+The `LogisticRegression()` function in `scikit.learn` takes the design
+matrix of the regression as input, which needs to be prepared with
+care from the covariates or features that we have. 
+
+
+#### Continuous Variables
+For continuous variables, it is often desirable to standardized them
+so that they have mean zero and standard deviation one. There are
+multiple advantages of doing so. It improves numerical stability in
+algorithms like logistic regression that rely on gradient descent,
+ensuring faster convergence and preventing features with large scales
+from dominating the optimization process. Standardization also
+enhances the interpretability of model coefficients by allowing for
+direct comparison of the effects of different features, as
+coefficients then represent the change in outcome for a one standard
+deviation increase in each variable. Additionally, it ensures that
+regularization techniques like Lasso and Ridge treat all features
+equally, allowing the model to select the most relevant ones without
+being biased by feature magnitude.
+
+
+Moreover, standardization is essential for distance-based models such
+as k-Nearest Neighbors (k-NN) and Support Vector Machines (SVMs),
+where differences in feature scale can distort the calculations. It
+also prevents models from being sensitive to arbitrary changes in the
+units of measurement, improving robustness and consistency. Finally,
+standardization facilitates better visualizations and diagnostics by
+putting all variables on a comparable scale, making patterns and
+residuals easier to interpret. Overall, it is a simple yet powerful
+preprocessing step that leads to better model performance and
+interpretability.
+
+
+We have already seen this with `StandardScaler`.
+
+
+#### Categorical Variables
+
+Categorical variables can be classified into two types: nominal and
+ordinal. Nominal variables represent categories with no inherent order
+or ranking between them. Examples include variables like "gender"
+(male, female) or "color" (red, blue, green), where the categories are
+simply labels and one category does not carry more significance than
+another. Ordinal variables, on the other hand, represent categories
+with a meaningful order or ranking. For example, education levels such
+as "high school," "bachelor," "master," and "PhD" have a clear
+hierarchy, where each level is ranked higher than the previous
+one. However, the differences between the ranks are not necessarily
+uniform or quantifiable, making ordinal variables distinct from
+numerical variables. Understanding the distinction between nominal and
+ordinal variables is important when deciding how to encode and
+interpret them in statistical models.
+
+
+Categorical variables needs to be coded into numrical values before
+further processing.  In Python, nominal and ordinal variables are
+typically encoded differently to account for their unique
+properties. Nominal variables, which have no inherent order, are often
+encoded using One-Hot Encoding, where each category is transformed
+into a binary column (0 or 1). For example, the OneHotEncoder from
+scikit-learn can be used to convert a "color" variable with categories
+like "red," "blue," and "green" into separate columns color_red,
+color_blue, and color_green, with only one column being 1 for each
+observation. On the other hand, ordinal variables, which have a
+meaningful order, are best encoded using Ordinal Encoding. This method
+assigns an integer to each category based on their rank. For example,
+an "education" variable with categories "high school," "bachelor,"
+"master," and "PhD" can be encoded as 0, 1, 2, and 3,
+respectively. The OrdinalEncoder from scikit-learn can be used to
+implement this encoding, which ensures that the model respects the
+order of the categories during analysis.
+
+
+#### An Example
+
+Here is a demo with `pipeline` using a simulated dataset.
+```{python}
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+import numpy as np
+from scipy.special import expit  # Sigmoid function
+
+# Generate a dataset with the specified size
+dataset_size = 1000
+np.random.seed(20241014)
+
+# Simulate categorical and numerical features
+gender = np.random.choice(
+    ['male', 'female'], size=dataset_size)  # Nominal variable
+education = np.random.choice(
+    ['high_school', 'bachelor', 'master', 'phd'], size=dataset_size)  # Ordinal variable
+age = np.random.randint(18, 65, size=dataset_size)
+income = np.random.randint(30000, 120000, size=dataset_size)
+
+# Create a logistic relationship between the features and the outcome
+gender_num = np.where(gender == 'male', 0, 1)
+
+# Define the linear predictor with regression coefficients
+linear_combination = (
+    0.3 * gender_num - 0.02 * age + 0.00002 * income
+)
+
+# Apply sigmoid function to get probabilities
+probabilities = expit(linear_combination)
+
+# Generate binary outcome based on the probabilities
+outcome = np.random.binomial(1, probabilities)
+
+# Create a DataFrame
+data = pd.DataFrame({
+    'gender': gender,
+    'education': education,
+    'age': age,
+    'income': income,
+    'outcome': outcome
+})
+
+# Split the dataset into features (X) and target (y)
+X = data[['gender', 'education', 'age', 'income']]
+y = data['outcome']
+
+# Step 1: Define categorical and numerical columns
+categorical_cols = ['gender', 'education']  
+numerical_cols = ['age', 'income']
+
+# Step 2: Define transformations for each type of variable
+categorical_transformer = OneHotEncoder(
+    categories=[['female', 'male'], ['high_school', 'bachelor', 'master', 'phd']], drop='first')
+
+# Standardize numerical variables
+numerical_transformer = StandardScaler()
+
+# Use ColumnTransformer to apply the correct transformations to the columns
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('cat', categorical_transformer, categorical_cols),
+        ('num', numerical_transformer, numerical_cols)
+    ]
+)
+
+# Create a pipeline that first applies the preprocessor and then fits a logistic model
+pipeline = Pipeline(steps=[
+    ('preprocessor', preprocessor),
+    ('classifier', LogisticRegression(penalty='l1', solver='liblinear', max_iter=1000))
+])
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=242)
+
+# Fit the pipeline to the training data
+pipeline.fit(X_train, y_train)
+
+# Print the coefficients of the logistic regression model
+model = pipeline.named_steps['classifier']
+intercept = model.intercept_
+coefficients = model.coef_
+
+# Check the preprocessor's encoding
+encoded_columns = pipeline.named_steps['preprocessor']\
+.transformers_[0][1].get_feature_names_out(categorical_cols)
+
+# Show intercept, coefficients, and encoded feature names
+intercept, coefficients, list(encoded_columns)
+```
+
+The regression coefficients returned by the logistic regression model
+in this case should be interpreted on the standardized scale of the
+numerical covariates (e.g., `age` and `income`). This is because we
+applied standardization to the numerical features using StandardScaler
+in the pipeline before fitting the model. For example, the coefficient
+for age would reflect the change in the log-odds of the outcome for a
+1 standard deviation increase in age, rather than a 1-unit increase in
+years. The coefficients for the
+one-hot encoded categorical variables (gender and education) are on
+the original scale because one-hot encoding does not change the scale
+of the variables. For instance, the coefficient for `gender_male` tells
+us how much the log-odds of the outcome changes when the observation
+is male versus the reference category (`female`).
