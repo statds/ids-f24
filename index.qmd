@@ -246,10 +246,10 @@ Please use the following table to sign up.
    10/02 | Julia Mazzola          | Data Visualization with Plotnine
    10/07 | Suha Akach             |
    10/09 | Rahul Manna            |
-   10/21 | Data science alumni panel |
    10/23 | Jaden Astle            | Classification and regression trees 
    10/23 | Olivia Kashalapov      |
-   10/28 | Emily Borowski         | Random Forest
+   10/28 | Data science alumni panel |
+   10/30 | Emily Borowski         | Random Forest
    10/30 | Aditya Paricharak      | Neural Networks
    11/04 | Melanie Desroches      |
    11/06 | Qianruo Tan            | Reinforcement Learning
