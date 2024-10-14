@@ -227,6 +227,11 @@ window.Quarto = {
   <li><a href="#classification-metrics" id="toc-classification-metrics" class="nav-link" data-scroll-target="#classification-metrics"><span class="header-section-number">9.2.2</span> Classification metrics</a></li>
   <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation"><span class="header-section-number">9.2.3</span> Cross-validation</a></li>
   </ul></li>
+  <li><a href="#decision-trees" id="toc-decision-trees" class="nav-link" data-scroll-target="#decision-trees"><span class="header-section-number">9.3</span> Decision Trees</a>
+  <ul class="collapse">
+  <li><a href="#algorithm-formulation" id="toc-algorithm-formulation" class="nav-link" data-scroll-target="#algorithm-formulation"><span class="header-section-number">9.3.1</span> Algorithm Formulation</a></li>
+  <li><a href="#matrics" id="toc-matrics" class="nav-link" data-scroll-target="#matrics"><span class="header-section-number">9.3.2</span> Matrics</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -338,8 +343,72 @@ window.Quarto = {
 </ul></li>
 <li>Choose the model <span class="math inline">\(m^* = \arg\max_m f(m)\)</span>.</li>
 </ul>
+</section>
+</section>
+<section id="decision-trees" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="decision-trees"><span class="header-section-number">9.3</span> Decision Trees</h2>
+<p>The goal of a decision tree algorithm is to create a model that predicts the value of a target variable by learning decision rules inferred from the features of the data. A decision tree can be viewed as a piecewise constant approximation of the target function.</p>
+<section id="algorithm-formulation" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="algorithm-formulation"><span class="header-section-number">9.3.1</span> Algorithm Formulation</h3>
+<p>At any given node in the tree, the algorithm seeks the best split that minimizes an impurity or loss measure <span class="math inline">\(H\)</span>. Let <span class="math inline">\(Q_m\)</span> represent the data at node <span class="math inline">\(m\)</span>, with a sample size of <span class="math inline">\(n_m\)</span>. A candidate split <span class="math inline">\(\theta\)</span> consists of a potential threshold for a chosen feature. After the split, the data are divided into two groups: <span class="math inline">\(Q_{m,l}\)</span> (left node) with sample size <span class="math inline">\(n_{m,l}\)</span>, and <span class="math inline">\(Q_{m,r}\)</span> (right node) with sample size <span class="math inline">\(n_{m,r}\)</span>. The quality of the split is measured by:</p>
+<p><span class="math display">\[
+G(Q_m, \theta) = \frac{n_{m,l}}{n_m} H(Q_{m,l}(\theta)) + \frac{n_{m,r}}{n_m} H(Q_{m,r}(\theta)).
+\]</span></p>
+<p>The algorithm selects the split that minimizes the impurity:</p>
+<p><span class="math display">\[
+\theta^* = \arg\min_{\theta} G(Q_m, \theta).
+\]</span></p>
+<p>This process is applied recursively at each child node, continuing until a stopping condition is met.</p>
+<ul>
+<li>Stopping Criteria: The algorithm stops when the maximum tree depth is reached or when the node sample size falls below a preset threshold.</li>
+<li>Pruning: Reduce the complexity of the final tree by removing branches that add little predictive value. This reduces overfitting and improves the generalization accuracy of the model.</li>
+</ul>
+</section>
+<section id="matrics" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="matrics"><span class="header-section-number">9.3.2</span> Matrics</h3>
+<p>See <code>sklearn</code> documentation for <a href="https://scikit-learn.org/stable/modules/tree.html#classification-criteria">details</a>.</p>
+<section id="classification" class="level4" data-number="9.3.2.1">
+<h4 data-number="9.3.2.1" class="anchored" data-anchor-id="classification"><span class="header-section-number">9.3.2.1</span> Classification</h4>
+<p>In decision tree classification, several criteria can be used to measure the quality of a split at each node. These criteria are based on how “pure” the resulting nodes are after the split. A pure node contains samples that predominantly belong to a single class. The goal is to minimize impurity, leading to nodes that are as homogeneous as possible.</p>
+<ul>
+<li><p>Gini Index: The Gini index measures the impurity of a node by calculating the probability of randomly choosing two different classes. A perfect split (all instances belong to one class) has a Gini index of 0. At node <span class="math inline">\(m\)</span>, the Gini index is <span class="math display">\[
+H(Q_m) = \sum_{k=1}^{K} p_{mk} (1 - p_{mk}),
+\]</span> where <span class="math inline">\(p_{mk}\)</span> is the proportion of samples of class <span class="math inline">\(k\)</span> at node <span class="math inline">\(m\)</span>; and<span class="math inline">\(K\)</span> is the total number of classes The Gini index is often preferred for its speed and simplicity, and it’s used by default in many implementations of decision trees, including <code>sklearn</code>.</p></li>
+<li><p>Entropy (Information Gain): Entropy is another measure of impurity, derived from information theory. It quantifies the “disorder” of the data at a node. Lower entropy means higher purity. At node <span class="math inline">\(m\)</span>, it is defined as <span class="math display">\[
+H(Q_m) = - \sum_{k=1}^{K} p_{mk} \log p_{mk}
+\]</span> Entropy is commonly used in decision tree algorithms like ID3 and C4.5. The choice between Gini and entropy often depends on specific use cases, but both perform similarly in practice.</p></li>
+<li><p>Misclassification Error: Misclassification error focuses solely on the most frequent class in the node. It measures the proportion of samples that do not belong to the majority class. Although less sensitive than Gini and entropy, it can be useful for classification when simplicity is preferred. At node <span class="math inline">\(m\)</span>, it is defined as <span class="math display">\[
+H(Q_m) = 1 - \max_k p_{mk},
+\]</span> where <span class="math inline">\(\max_k p_{mk}\)</span> is the largest proportion of samples belonging to any class <span class="math inline">\(k\)</span>.</p></li>
+</ul>
+</section>
+<section id="regression-criteria" class="level4" data-number="9.3.2.2">
+<h4 data-number="9.3.2.2" class="anchored" data-anchor-id="regression-criteria"><span class="header-section-number">9.3.2.2</span> Regression Criteria</h4>
+<p>In decision tree regression, different criteria are used to assess the quality of a split. The goal is to minimize the spread or variance of the target variable within each node.</p>
+<ul>
+<li><p>Mean Squared Error (MSE): Mean squared error is the most common criterion used in regression trees. It measures the average squared difference between the actual values and the predicted values (mean of the target in the node). The smaller the MSE, the better the fit. At node <span class="math inline">\(m\)</span>, it is <span class="math display">\[
+H(Q_m) = \frac{1}{n_m} \sum_{i=1}^{n_m} (y_i - \bar{y}_m)^2,
+\]</span> where</p>
+<ul>
+<li><span class="math inline">\(y_i\)</span> is the actual value for sample <span class="math inline">\(i\)</span>;</li>
+<li><span class="math inline">\(\bar{y}_m\)</span> is the mean value of the target at node <span class="math inline">\(m\)</span>;</li>
+<li><span class="math inline">\(n_m\)</span> is the number of samples at node <span class="math inline">\(m\)</span>.</li>
+</ul>
+<p>MSE works well when the target is continuous and normally distributed.</p></li>
+<li><p>Half Poisson Deviance (for count targets): When dealing with count data, the Poisson deviance is used to model the variance in the number of occurrences of an event. It is well-suited for target variables representing counts (e.g., number of occurrences of an event). At node <span class="math inline">\(m\)</span>, it is <span class="math display">\[
+H(Q_m) = \sum_{i=1}^{n_m} \left( y_i \log\left(\frac{y_i}{\hat{y}_i}\right) - (y_i - \hat{y}_i) \right),
+\]</span> where <span class="math inline">\(\hat{y}_i\)</span> is the predicted count. This criterion is especially useful when the target variable represents discrete counts, such as predicting the number of occurrences of an event.</p></li>
+<li><p>Mean Absolute Error (MAE): Mean absolute error is another criterion that minimizes the absolute differences between actual and predicted values. While it is more robust to outliers than MSE, it is slower computationally due to the lack of a closed-form solution for minimization. At node <span class="math inline">\(m\)</span>, it is <span class="math display">\[
+H(Q_m) = \frac{1}{n_m} \sum_{i=1}^{n_m} |y_i - \bar{y}_m|
+\]</span> MAE is useful when you want to minimize large deviations and can be more robust in cases where outliers are present in the data.</p></li>
+</ul>
+</section>
+<section id="summary" class="level4" data-number="9.3.2.3">
+<h4 data-number="9.3.2.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">9.3.2.3</span> Summary</h4>
+<p>In decision trees, the choice of splitting criterion depends on the type of task (classification or regression) and the nature of the data. For classification tasks, the Gini index and entropy are the most commonly used, with Gini offering simplicity and speed, and entropy providing a more theoretically grounded approach. Misclassification error can be used for simpler cases. For regression tasks, MSE is the most popular choice, but Poisson deviance and MAE are useful for specific use cases such as count data and robust models, respectively.</p>
 
 
+</section>
 </section>
 </section>
 
