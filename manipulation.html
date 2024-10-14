@@ -231,15 +231,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">6.1</span> Introduction</a></li>
   <li><a href="#importexport-data" id="toc-importexport-data" class="nav-link" data-scroll-target="#importexport-data"><span class="header-section-number">6.2</span> Import/Export Data</a>
   <ul class="collapse">
-  <li><a href="#subsection-1" id="toc-subsection-1" class="nav-link" data-scroll-target="#subsection-1"><span class="header-section-number">6.2.1</span> Subsection 1</a></li>
-  <li><a href="#subsection-2" id="toc-subsection-2" class="nav-link" data-scroll-target="#subsection-2"><span class="header-section-number">6.2.2</span> Subsection 2</a></li>
-  <li><a href="#extended-reading" id="toc-extended-reading" class="nav-link" data-scroll-target="#extended-reading"><span class="header-section-number">6.2.3</span> Extended Reading</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.2.1</span> Summary</a></li>
+  <li><a href="#package-pandas" id="toc-package-pandas" class="nav-link" data-scroll-target="#package-pandas"><span class="header-section-number">6.2.2</span> Package <code>Pandas</code></a></li>
+  <li><a href="#export-the-data-to-a-.csv-file" id="toc-export-the-data-to-a-.csv-file" class="nav-link" data-scroll-target="#export-the-data-to-a-.csv-file"><span class="header-section-number">6.2.3</span> Export the data to a <code>.csv</code> file:</a></li>
+  <li><a href="#import-files-in-common-formats-.csv.xlsx.txt" id="toc-import-files-in-common-formats-.csv.xlsx.txt" class="nav-link" data-scroll-target="#import-files-in-common-formats-.csv.xlsx.txt"><span class="header-section-number">6.2.4</span> Import files in common formats: <code>.csv</code>/<code>.xlsx</code>/<code>.txt</code></a></li>
+  <li><a href="#import-the-data-from-other-software" id="toc-import-the-data-from-other-software" class="nav-link" data-scroll-target="#import-the-data-from-other-software"><span class="header-section-number">6.2.5</span> Import the data from other software</a></li>
+  <li><a href="#view-data-information" id="toc-view-data-information" class="nav-link" data-scroll-target="#view-data-information"><span class="header-section-number">6.2.6</span> View data information</a></li>
+  <li><a href="#find-null-values" id="toc-find-null-values" class="nav-link" data-scroll-target="#find-null-values"><span class="header-section-number">6.2.7</span> Find Null Values</a></li>
   </ul></li>
   <li><a href="#sql" id="toc-sql" class="nav-link" data-scroll-target="#sql"><span class="header-section-number">6.3</span> SQL</a>
   <ul class="collapse">
-  <li><a href="#subsection-1-1" id="toc-subsection-1-1" class="nav-link" data-scroll-target="#subsection-1-1"><span class="header-section-number">6.3.1</span> Subsection 1</a></li>
-  <li><a href="#subsection-2-1" id="toc-subsection-2-1" class="nav-link" data-scroll-target="#subsection-2-1"><span class="header-section-number">6.3.2</span> Subsection 2</a></li>
-  <li><a href="#extended-reading-1" id="toc-extended-reading-1" class="nav-link" data-scroll-target="#extended-reading-1"><span class="header-section-number">6.3.3</span> Extended Reading</a></li>
+  <li><a href="#subsection-1" id="toc-subsection-1" class="nav-link" data-scroll-target="#subsection-1"><span class="header-section-number">6.3.1</span> Subsection 1</a></li>
+  <li><a href="#subsection-2" id="toc-subsection-2" class="nav-link" data-scroll-target="#subsection-2"><span class="header-section-number">6.3.2</span> Subsection 2</a></li>
+  <li><a href="#extended-reading" id="toc-extended-reading" class="nav-link" data-scroll-target="#extended-reading"><span class="header-section-number">6.3.3</span> Extended Reading</a></li>
   </ul></li>
   <li><a href="#nyc-crash-data" id="toc-nyc-crash-data" class="nav-link" data-scroll-target="#nyc-crash-data"><span class="header-section-number">6.4</span> NYC Crash Data</a></li>
   <li><a href="#cross-platform-data-format-arrow" id="toc-cross-platform-data-format-arrow" class="nav-link" data-scroll-target="#cross-platform-data-format-arrow"><span class="header-section-number">6.5</span> Cross-platform Data Format <code>Arrow</code></a></li>
@@ -285,47 +289,1779 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="importexport-data" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="importexport-data"><span class="header-section-number">6.2</span> Import/Export Data</h2>
 <p>This section was written by Deyu Xu, a MS student in Statistics at the time.</p>
-<section id="subsection-1" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="subsection-1"><span class="header-section-number">6.2.1</span> Subsection 1</h3>
+<section id="summary" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.2.1</span> Summary</h3>
+<p>I would like to divide all of the content into five sections. The fisrt one is exporting data to a <code>.csv</code> file. The second one is importing common formats of data. The third one is importing data from other softwares. The forth one is viewing basic information of the data we have imported. The last one is finding null values.</p>
 </section>
-<section id="subsection-2" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="subsection-2"><span class="header-section-number">6.2.2</span> Subsection 2</h3>
+<section id="package-pandas" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="package-pandas"><span class="header-section-number">6.2.2</span> Package <code>Pandas</code></h3>
+<section id="import-data-based-on-package-pandas" class="level4" data-number="6.2.2.1">
+<h4 data-number="6.2.2.1" class="anchored" data-anchor-id="import-data-based-on-package-pandas"><span class="header-section-number">6.2.2.1</span> Import data based on Package <code>Pandas</code></h4>
+<p>We need to use the Package, <code>Pandas</code> provided by Python to import data. The first step is to install the Package, <code>Pandas</code>. Python allows us to install different versions of <code>Pandas</code>. We are able to use the following code to install the common cersion.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">## install the common version of Pandas</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pip install pandas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The code for installing the latest version is listed.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">## install the latest version of Pandas</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pip install <span class="op">--</span>upgrade pandas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Different versions mean there are differnces in the code to achieve the same goal. We will see the specific example in the part of importing <code>.xlsx</code> files.</p>
 </section>
-<section id="extended-reading" class="level3" data-number="6.2.3">
-<h3 data-number="6.2.3" class="anchored" data-anchor-id="extended-reading"><span class="header-section-number">6.2.3</span> Extended Reading</h3>
-<p>Give some references here.</p>
+</section>
+<section id="export-the-data-to-a-.csv-file" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="export-the-data-to-a-.csv-file"><span class="header-section-number">6.2.3</span> Export the data to a <code>.csv</code> file:</h3>
+<section id="import-the-cleaned-crashes-data-at-first" class="level4" data-number="6.2.3.1">
+<h4 data-number="6.2.3.1" class="anchored" data-anchor-id="import-the-cleaned-crashes-data-at-first"><span class="header-section-number">6.2.3.1</span> Import the cleaned crashes data at first</h4>
+<p>Fisrtly, we need to import the file named “nyccrashes_cleaned.feather” <a href="https://github.com/statds/ids-f24/tree/main/data">data source</a>. ‌<code>.feather</code> file is a binary file format for storing and sharing data. It is especially suitable for large-scale data analysis and data science workflows. ‌ It uses Apache Arrow’s columnar storage format, which can store data in binary form. The advantage of using this format of file is elvaluating the standard of reading and writing. We need to choose the function <code>read_feather</code> from <code>Pandas</code> to import the crashes data.</p>
+<div id="594b8886" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the Package Pandas</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Import the cleaned crashes data</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the fcuntion, read_feather from Pandas</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">## Add the relative address of the data file to let your cooperator deal with the code smoothly</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df_feather <span class="op">=</span> pd.read_feather(<span class="st">"data/nyccrashes_cleaned.feather"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Show the top 5 rows of data</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">## Determine whether we import the data successfully</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_feather.head(<span class="dv">5</span>)) <span class="co"># Use the fucntion "head()"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        crash_datetime    borough  zip_code  latitude  longitude  \
+0  2024-06-30 17:30:00       None       NaN       NaN        NaN   
+1  2024-06-30 00:32:00       None       NaN       NaN        NaN   
+2  2024-06-30 07:05:00   BROOKLYN   11235.0  40.58106  -73.96744   
+3  2024-06-30 20:47:00  MANHATTAN   10021.0  40.76363  -73.95330   
+4  2024-06-30 10:14:00   BROOKLYN   11222.0  40.73046  -73.95149   
+
+                location     on_street_name      cross_street_name  \
+0             (0.0, 0.0)               None                   None   
+1                   None  BELT PARKWAY RAMP                   None   
+2  (40.58106, -73.96744)               None                   None   
+3   (40.76363, -73.9533)          FDR DRIVE                   None   
+4  (40.73046, -73.95149)  GREENPOINT AVENUE  MC GUINNESS BOULEVARD   
+
+           off_street_name  number_of_persons_injured  ...  \
+0              GOLD STREET                          0  ...   
+1                     None                          0  ...   
+2  2797      OCEAN PARKWAY                          0  ...   
+3                     None                          0  ...   
+4                     None                          0  ...   
+
+   contributing_factor_vehicle_2  contributing_factor_vehicle_3  \
+0                    Unspecified                           None   
+1                    Unspecified                           None   
+2                           None                           None   
+3                           None                           None   
+4                    Unspecified                           None   
+
+   contributing_factor_vehicle_4  contributing_factor_vehicle_5  collision_id  \
+0                           None                           None       4736746   
+1                           None                           None       4736768   
+2                           None                           None       4737060   
+3                           None                           None       4737510   
+4                           None                           None       4736759   
+
+                   vehicle_type_code_1                  vehicle_type_code_2  \
+0                                Sedan                                Sedan   
+1  Station Wagon/Sport Utility Vehicle  Station Wagon/Sport Utility Vehicle   
+2  Station Wagon/Sport Utility Vehicle                                 None   
+3                                Sedan                                 None   
+4                                  Bus                            Box Truck   
+
+  vehicle_type_code_3 vehicle_type_code_4 vehicle_type_code_5  
+0                None                None                None  
+1                None                None                None  
+2                None                None                None  
+3                None                None                None  
+4                None                None                None  
+
+[5 rows x 28 columns]</code></pre>
+</div>
+</div>
+<ul>
+<li>We have imported the cleaned crashes data successfully.</li>
+<li>We utilize the fucntion <code>head(5)</code> to show the top 5 rows of the data.</li>
+</ul>
+</section>
+<section id="export-the-crashes-data-to-a-.csv-file" class="level4" data-number="6.2.3.2">
+<h4 data-number="6.2.3.2" class="anchored" data-anchor-id="export-the-crashes-data-to-a-.csv-file"><span class="header-section-number">6.2.3.2</span> Export the crashes data to a <code>.csv</code> file</h4>
+<p>It is easy to export the data. The fucntion that helps us to complete this goal is <code>to_csv</code> from <code>Pandas</code>.</p>
+<div id="534094c2" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the Package Pandas</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the function "to_csv" from Pandas</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Use the argument, "df_feather" storing the data</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Export the data to the default working directory</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df_feather.to_csv(<span class="st">"nyccrashes_cleaned.csv"</span>) <span class="co"># Add the name of the CSV file</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>We can check whether the corresponding <code>.csv</code> file is generated in the default working directory.</li>
+</ul>
+<p>We have exported the data to a <code>.csv</code> file in the default working directory.</p>
+<p>We will use this <code>.csv</code> file later.</p>
+</section>
+</section>
+<section id="import-files-in-common-formats-.csv.xlsx.txt" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="import-files-in-common-formats-.csv.xlsx.txt"><span class="header-section-number">6.2.4</span> Import files in common formats: <code>.csv</code>/<code>.xlsx</code>/<code>.txt</code></h3>
+<section id="csv-files" class="level4" data-number="6.2.4.1">
+<h4 data-number="6.2.4.1" class="anchored" data-anchor-id="csv-files"><span class="header-section-number">6.2.4.1</span> <code>.csv</code> files</h4>
+<p>We are familiar with <code>.csv</code> files as utilizing them to print some charts by R in the past courses. Now let us import this generated <code>.csv</code> file. We are supposed to choose the function <code>read_csv</code> from <code>Pandas</code>. The following code shows how to import it.</p>
+<div id="20410e34" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the Package Pandas</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the function "read_csv"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Add the relative address of the generated CSV file</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"nyccrashes_cleaned.csv"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">## Check the data we have imported</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Use the above function "head()" I have introduced</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_csv.head(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Unnamed: 0       crash_datetime borough  zip_code  latitude  longitude  \
+0           0  2024-06-30 17:30:00     NaN       NaN       NaN        NaN   
+1           1  2024-06-30 00:32:00     NaN       NaN       NaN        NaN   
+
+     location     on_street_name cross_street_name off_street_name  ...  \
+0  (0.0, 0.0)                NaN               NaN     GOLD STREET  ...   
+1         NaN  BELT PARKWAY RAMP               NaN             NaN  ...   
+
+   contributing_factor_vehicle_2  contributing_factor_vehicle_3  \
+0                    Unspecified                            NaN   
+1                    Unspecified                            NaN   
+
+   contributing_factor_vehicle_4  contributing_factor_vehicle_5  collision_id  \
+0                            NaN                            NaN       4736746   
+1                            NaN                            NaN       4736768   
+
+                   vehicle_type_code_1                  vehicle_type_code_2  \
+0                                Sedan                                Sedan   
+1  Station Wagon/Sport Utility Vehicle  Station Wagon/Sport Utility Vehicle   
+
+   vehicle_type_code_3 vehicle_type_code_4 vehicle_type_code_5  
+0                  NaN                 NaN                 NaN  
+1                  NaN                 NaN                 NaN  
+
+[2 rows x 29 columns]</code></pre>
+</div>
+</div>
+</section>
+<section id="xlsx-files" class="level4" data-number="6.2.4.2">
+<h4 data-number="6.2.4.2" class="anchored" data-anchor-id="xlsx-files"><span class="header-section-number">6.2.4.2</span> <code>.xlsx</code> files</h4>
+<p>We want to import <code>.xlsx</code> files but there are not suitable <code>.xlsx</code> files. We can transfer the CSV file to a <code>.xlsx</code> file by the fucntion <code>to_excel</code> from <code>Pandas</code>. Let’s see how to achieve this goal according to the following code.</p>
+<div id="697ccab6" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the Package Pandas</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Use the function "to_excel"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Export the data to the default working directory</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>df_csv.to_excel(<span class="st">"nyccrashes_cleaned.xlsx"</span>) <span class="co"># Add the name of the Excel file</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Check whether the corresponding <code>.xlsx</code> file is generated in the working directory</li>
+</ul>
+<p>Now we have generated the <code>.xlsx</code> file covering the same data. And then we can learn how to import <code>.xlsx</code> files. The function wen use is <code>read_excel</code> no matter what <code>Pandas</code> version is.</p>
+<ul>
+<li>The latest version of <code>Pandas</code> corresponds to the following code.</li>
+</ul>
+<div id="1e6fbae7" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the function "read_excel"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Add the command "engine" to read the file smoothly</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>df_excel <span class="op">=</span> pd.read_excel(<span class="st">"nyccrashes_cleaned.xlsx"</span>, engine <span class="op">=</span> <span class="st">"openpyxl"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">## Print top 2 rows of the data</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_excel.head(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Unnamed: 0.1  Unnamed: 0       crash_datetime borough  zip_code  latitude  \
+0             0           0  2024-06-30 17:30:00     NaN       NaN       NaN   
+1             1           1  2024-06-30 00:32:00     NaN       NaN       NaN   
+
+   longitude    location     on_street_name cross_street_name  ...  \
+0        NaN  (0.0, 0.0)                NaN               NaN  ...   
+1        NaN         NaN  BELT PARKWAY RAMP               NaN  ...   
+
+  contributing_factor_vehicle_2  contributing_factor_vehicle_3  \
+0                   Unspecified                            NaN   
+1                   Unspecified                            NaN   
+
+   contributing_factor_vehicle_4  contributing_factor_vehicle_5  collision_id  \
+0                            NaN                            NaN       4736746   
+1                            NaN                            NaN       4736768   
+
+                   vehicle_type_code_1                  vehicle_type_code_2  \
+0                                Sedan                                Sedan   
+1  Station Wagon/Sport Utility Vehicle  Station Wagon/Sport Utility Vehicle   
+
+   vehicle_type_code_3  vehicle_type_code_4 vehicle_type_code_5  
+0                  NaN                  NaN                 NaN  
+1                  NaN                  NaN                 NaN  
+
+[2 rows x 30 columns]</code></pre>
+</div>
+</div>
+<p>The code of the common <code>Pandas</code> version is below. What we need to adjust is to add correct <code>encoding</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_excel <span class="op">=</span> pd.read_excel(<span class="st">"nyccrashes_cleaned.xlsx"</span>, engine <span class="op">=</span> <span class="st">"openpyxl"</span>, </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>encoding <span class="op">=</span> <span class="st">"utf-8"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="txt-files" class="level4" data-number="6.2.4.3">
+<h4 data-number="6.2.4.3" class="anchored" data-anchor-id="txt-files"><span class="header-section-number">6.2.4.3</span> <code>.txt</code> files</h4>
+<p>The last common kind of file is <code>.txt</code> files. We are able to generate the <code>.txt</code> file in the similar way as generatng the <code>.xlsx</code> file. We choose the function <code>to_csv</code> from <code>Pandas</code>. It is necessary to add the command <code>sep="\t"</code>. At the same time, we are supposed to add <code>index=False</code> to avoid the index of Dataframe. The specific code is following.</p>
+<div id="8fbc1b59" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"nyccrashes_cleaned.csv"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the function "to_csv"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Add the command "sep='\t'"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">## Add the command "index=False"</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">## Export the data to the default working directory</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>df_csv.to_csv(<span class="st">"nyccrashes_cleaned.txt"</span>, sep <span class="op">=</span> <span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, index <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we get the corresponding <code>.txt</code> file successfully. The next step is to determine the correct encoding of this <code>.txt</code> file. This is because the computer will not read the file successfully without correct encoding. I have listed the code helping us to obtain the correct encoding. We use <code>with</code> statement to deal with data. And then we use the function <code>detect</code> from Package <code>Chardet</code>. The intention of <code>detect</code> is to detect character encoding of text files.</p>
+<div id="011b45ea" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chardet</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Use "with" statement </span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"nyccrashes_cleaned.txt"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Execute the command "open"</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># And then assign the result to variable "f"</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    raw_data <span class="op">=</span> f.read() <span class="co"># Read the content from "f"</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> chardet.detect(raw_data) </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    encoding <span class="op">=</span> result[<span class="st">"encoding"</span>]</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">str</span>(encoding))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ascii</code></pre>
+</div>
+</div>
+<ul>
+<li>Warning: It is possible to generate the encoding which is not “utf-8”.</li>
+</ul>
+<p>Now we own the <code>.txt</code> file and its correct encoding. The last step is to use the function <code>read_table</code> to import the <code>.txt</code> file. We need to insert the correct encoding too. The corresponding code is following.</p>
+<div id="be7b932f" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the function "read_table"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Add the encoding behind the relative address</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>df_txt <span class="op">=</span> pd.read_table(<span class="st">"nyccrashes_cleaned.txt"</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">## The defualt of function "head()" is top five rows </span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_txt.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Unnamed: 0       crash_datetime    borough  zip_code  latitude  longitude  \
+0           0  2024-06-30 17:30:00        NaN       NaN       NaN        NaN   
+1           1  2024-06-30 00:32:00        NaN       NaN       NaN        NaN   
+2           2  2024-06-30 07:05:00   BROOKLYN   11235.0  40.58106  -73.96744   
+3           3  2024-06-30 20:47:00  MANHATTAN   10021.0  40.76363  -73.95330   
+4           4  2024-06-30 10:14:00   BROOKLYN   11222.0  40.73046  -73.95149   
+
+                location     on_street_name      cross_street_name  \
+0             (0.0, 0.0)                NaN                    NaN   
+1                    NaN  BELT PARKWAY RAMP                    NaN   
+2  (40.58106, -73.96744)                NaN                    NaN   
+3   (40.76363, -73.9533)          FDR DRIVE                    NaN   
+4  (40.73046, -73.95149)  GREENPOINT AVENUE  MC GUINNESS BOULEVARD   
+
+           off_street_name  ...  contributing_factor_vehicle_2  \
+0              GOLD STREET  ...                    Unspecified   
+1                      NaN  ...                    Unspecified   
+2  2797      OCEAN PARKWAY  ...                            NaN   
+3                      NaN  ...                            NaN   
+4                      NaN  ...                    Unspecified   
+
+   contributing_factor_vehicle_3  contributing_factor_vehicle_4  \
+0                            NaN                            NaN   
+1                            NaN                            NaN   
+2                            NaN                            NaN   
+3                            NaN                            NaN   
+4                            NaN                            NaN   
+
+   contributing_factor_vehicle_5  collision_id  \
+0                            NaN       4736746   
+1                            NaN       4736768   
+2                            NaN       4737060   
+3                            NaN       4737510   
+4                            NaN       4736759   
+
+                   vehicle_type_code_1                  vehicle_type_code_2  \
+0                                Sedan                                Sedan   
+1  Station Wagon/Sport Utility Vehicle  Station Wagon/Sport Utility Vehicle   
+2  Station Wagon/Sport Utility Vehicle                                  NaN   
+3                                Sedan                                  NaN   
+4                                  Bus                            Box Truck   
+
+   vehicle_type_code_3 vehicle_type_code_4 vehicle_type_code_5  
+0                  NaN                 NaN                 NaN  
+1                  NaN                 NaN                 NaN  
+2                  NaN                 NaN                 NaN  
+3                  NaN                 NaN                 NaN  
+4                  NaN                 NaN                 NaN  
+
+[5 rows x 29 columns]</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="import-the-data-from-other-software" class="level3" data-number="6.2.5">
+<h3 data-number="6.2.5" class="anchored" data-anchor-id="import-the-data-from-other-software"><span class="header-section-number">6.2.5</span> Import the data from other software</h3>
+<section id="sas-files" class="level4" data-number="6.2.5.1">
+<h4 data-number="6.2.5.1" class="anchored" data-anchor-id="sas-files"><span class="header-section-number">6.2.5.1</span> SAS files</h4>
+<section id="transfer-the-.csv-file-to-a-.xpt-file" class="level5" data-number="6.2.5.1.1">
+<h5 data-number="6.2.5.1.1" class="anchored" data-anchor-id="transfer-the-.csv-file-to-a-.xpt-file"><span class="header-section-number">6.2.5.1.1</span> Transfer the <code>.csv</code> file to a <code>.xpt</code> file</h5>
+<p>The reason why we choose <code>.xpt</code> file is to ensure data types remain consistent during conversion. Firstly, we need to process the data to ensure there is no space in the name of columns. If we don’t do that, we will not achieve the goal. The code of dealing with data is following.</p>
+<div id="7a0657b8" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"nyccrashes_cleaned.csv"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>df_csv_without_unnamed <span class="op">=</span> df.loc[:, <span class="op">~</span>df.columns.<span class="bu">str</span>.contains(<span class="st">"^Unnamed"</span>)]</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>df_csv_without_unnamed.columns<span class="op">=</span>df_csv_without_unnamed.columns.<span class="bu">str</span>.replace(<span class="st">" "</span>, <span class="st">"_"</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>df_csv_without_unnamed.to_csv(<span class="st">"Without_Unamed.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We use the Package <code>pyreadstat</code> and the function <code>write_xport</code> from <code>pyreadstat</code> to transfer the <code>.csv</code> file. The corresponding code is following.</p>
+<div id="e24c49a4" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>df_without_unnamed <span class="op">=</span> pd.read_csv(<span class="st">"Without_Unamed.csv"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>sas_file <span class="op">=</span> <span class="st">"SAS.xpt"</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">## Export the data to the default working directory</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>pyreadstat.write_xport(df_without_unnamed, <span class="st">"SAS.xpt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="import-the-generated-.xpt-file" class="level5" data-number="6.2.5.1.2">
+<h5 data-number="6.2.5.1.2" class="anchored" data-anchor-id="import-the-generated-.xpt-file"><span class="header-section-number">6.2.5.1.2</span> Import the generated <code>.xpt</code> file</h5>
+<p>We use the package <code>pyreadstat</code> too. We choose the function <code>read_xport</code> to import the data. Here is the code.</p>
+<div id="507c7a5b" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Define the Dataframe and metadata</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>df_1, meta <span class="op">=</span> pyreadstat.read_xport(<span class="st">"SAS.xpt"</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Show the Dataframe</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_1.head(<span class="dv">2</span>))</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">## Show the metadata</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(meta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        crash_datetime borough  zip_code  latitude  longitude    location  \
+0  2024-06-30 17:30:00               NaN       NaN        NaN  (0.0, 0.0)   
+1  2024-06-30 00:32:00               NaN       NaN        NaN               
+
+      on_street_name cross_street_name off_street_name  \
+0                                          GOLD STREET   
+1  BELT PARKWAY RAMP                                     
+
+   number_of_persons_injured  ...  contributing_factor_vehicle_2  \
+0                        0.0  ...                    Unspecified   
+1                        0.0  ...                    Unspecified   
+
+   contributing_factor_vehicle_3  contributing_factor_vehicle_4  \
+0                                                                 
+1                                                                 
+
+   contributing_factor_vehicle_5  collision_id  \
+0                                    4736746.0   
+1                                    4736768.0   
+
+                   vehicle_type_code_1                  vehicle_type_code_2  \
+0                                Sedan                                Sedan   
+1  Station Wagon/Sport Utility Vehicle  Station Wagon/Sport Utility Vehicle   
+
+  vehicle_type_code_3 vehicle_type_code_4 vehicle_type_code_5  
+0                                                              
+1                                                              
+
+[2 rows x 28 columns]
+&lt;pyreadstat._readstat_parser.metadata_container object at 0x10f3d3ce0&gt;</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="rdata-files-the-suffix-of-this-file-is-.rdata" class="level4" data-number="6.2.5.2">
+<h4 data-number="6.2.5.2" class="anchored" data-anchor-id="rdata-files-the-suffix-of-this-file-is-.rdata"><span class="header-section-number">6.2.5.2</span> rdata files (the suffix of this file is <code>.RData</code>)</h4>
+<section id="transfer-the-.csv-file-to-a-.rdata-file" class="level5" data-number="6.2.5.2.1">
+<h5 data-number="6.2.5.2.1" class="anchored" data-anchor-id="transfer-the-.csv-file-to-a-.rdata-file"><span class="header-section-number">6.2.5.2.1</span> Transfer the <code>.csv</code> file to a <code>.Rdata</code> file</h5>
+<p>We need to install the package <code>rpy2</code></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pip install rpy2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And then we choose the function <code>pandas2ri</code> The following code helps us achieve the goal.</p>
+<div id="25f4ab02" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Use the Package rpy2</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> ro</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> pandas2ri</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">## Activate conversion between Pandas and R</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>pandas2ri.activate()</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"nyccrashes_cleaned.csv"</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">## Transfer the Pandas DataFrame to R DataFrame</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>df_r <span class="op">=</span> pandas2ri.py2rpy(df_csv)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">## Save as .Rdata file</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">## Export the data to the default working directory</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>ro.globalenv[<span class="st">"R"</span>] <span class="op">=</span> df_r</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>ro.r(<span class="st">"save(R, file = 'nyccrashes_cleaned.Rdata')"</span>)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The CSV file has been transfered to a .Rdata file successfully."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Loading custom .RprofileThe CSV file has been transfered to a .Rdata file successfully.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/junyan/work/teaching/ids-f24/ids-f24/.ids-f24-venv/lib/python3.12/site-packages/rpy2/robjects/pandas2ri.py:65: UserWarning:
+
+Error while trying to convert the column "borough". Fall back to string conversion. The error is: Series can only be of one type, or None (and here we have &lt;class 'float'&gt; and &lt;class 'str'&gt;). If happening with a pandas DataFrame the method infer_objects() will normalize data types before conversion.
+
+/Users/junyan/work/teaching/ids-f24/ids-f24/.ids-f24-venv/lib/python3.12/site-packages/rpy2/robjects/pandas2ri.py:65: UserWarning:
+
+Error while trying to convert the column "on_street_name". Fall back to string conversion. The error is: Series can only be of one type, or None (and here we have &lt;class 'float'&gt; and &lt;class 'str'&gt;). If happening with a pandas DataFrame the method infer_objects() will normalize data types before conversion.
+
+/Users/junyan/work/teaching/ids-f24/ids-f24/.ids-f24-venv/lib/python3.12/site-packages/rpy2/robjects/pandas2ri.py:65: UserWarning:
+
+Error while trying to convert the column "cross_street_name". Fall back to string conversion. The error is: Series can only be of one type, or None (and here we have &lt;class 'float'&gt; and &lt;class 'str'&gt;). If happening with a pandas DataFrame the method infer_objects() will normalize data types before conversion.
+
+/Users/junyan/work/teaching/ids-f24/ids-f24/.ids-f24-venv/lib/python3.12/site-packages/rpy2/robjects/pandas2ri.py:65: UserWarning:
+
+Error while trying to convert the column "contributing_factor_vehicle_3". Fall back to string conversion. The error is: Series can only be of one type, or None (and here we have &lt;class 'float'&gt; and &lt;class 'str'&gt;). If happening with a pandas DataFrame the method infer_objects() will normalize data types before conversion.
+
+/Users/junyan/work/teaching/ids-f24/ids-f24/.ids-f24-venv/lib/python3.12/site-packages/rpy2/robjects/pandas2ri.py:65: UserWarning:
+
+Error while trying to convert the column "contributing_factor_vehicle_4". Fall back to string conversion. The error is: Series can only be of one type, or None (and here we have &lt;class 'float'&gt; and &lt;class 'str'&gt;). If happening with a pandas DataFrame the method infer_objects() will normalize data types before conversion.
+
+/Users/junyan/work/teaching/ids-f24/ids-f24/.ids-f24-venv/lib/python3.12/site-packages/rpy2/robjects/pandas2ri.py:65: UserWarning:
+
+Error while trying to convert the column "contributing_factor_vehicle_5". Fall back to string conversion. The error is: Series can only be of one type, or None (and here we have &lt;class 'float'&gt; and &lt;class 'str'&gt;). If happening with a pandas DataFrame the method infer_objects() will normalize data types before conversion.
+
+/Users/junyan/work/teaching/ids-f24/ids-f24/.ids-f24-venv/lib/python3.12/site-packages/rpy2/robjects/pandas2ri.py:65: UserWarning:
+
+Error while trying to convert the column "vehicle_type_code_3". Fall back to string conversion. The error is: Series can only be of one type, or None (and here we have &lt;class 'float'&gt; and &lt;class 'str'&gt;). If happening with a pandas DataFrame the method infer_objects() will normalize data types before conversion.
+
+/Users/junyan/work/teaching/ids-f24/ids-f24/.ids-f24-venv/lib/python3.12/site-packages/rpy2/robjects/pandas2ri.py:65: UserWarning:
+
+Error while trying to convert the column "vehicle_type_code_4". Fall back to string conversion. The error is: Series can only be of one type, or None (and here we have &lt;class 'float'&gt; and &lt;class 'str'&gt;). If happening with a pandas DataFrame the method infer_objects() will normalize data types before conversion.
+
+/Users/junyan/work/teaching/ids-f24/ids-f24/.ids-f24-venv/lib/python3.12/site-packages/rpy2/robjects/pandas2ri.py:65: UserWarning:
+
+Error while trying to convert the column "vehicle_type_code_5". Fall back to string conversion. The error is: Series can only be of one type, or None (and here we have &lt;class 'float'&gt; and &lt;class 'str'&gt;). If happening with a pandas DataFrame the method infer_objects() will normalize data types before conversion.
+</code></pre>
+</div>
+</div>
+<ul>
+<li><p>The error means : 1.Type conversion failure of columns. Some columns were not converted to the correct data typr in r as epected, and were instead coerced to strings. 2.The data is still saved, but there are potential data type issues. 3.These errores will not influence importing the <code>.Rdata</code> file.</p></li>
+<li><p>If you want to perform necessary type cpnversions, the following code is suitable.</p></li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df_csv[<span class="st">"boroughs"</span>] <span class="op">=</span> df[<span class="st">"boroughs"</span>].astype(<span class="bu">str</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="import-the-generated-.rdata-file" class="level5" data-number="6.2.5.2.2">
+<h5 data-number="6.2.5.2.2" class="anchored" data-anchor-id="import-the-generated-.rdata-file"><span class="header-section-number">6.2.5.2.2</span> Import the generated <code>.Rdata</code> file</h5>
+<p>We also use the Package <code>rpy2</code>. We need the function <code>pandas2ri</code> too. The code is following</p>
+<div id="230056f9" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> ro</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Load the .Rdata file</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>r_file_path <span class="op">=</span> <span class="st">"nyccrashes_cleaned.Rdata"</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>ro.r[<span class="st">"load"</span>](r_file_path)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">## View loaded variables</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>loaded_objects <span class="op">=</span> ro.r(<span class="st">"ls()"</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">## Show the loaded vatiables</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Loaded R objects:"</span>, loaded_objects)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">## We have set the name of dataframe as "R" above</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>r_dataframe <span class="op">=</span> ro.r[<span class="st">"R"</span>]</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> pandas2ri</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co">## Transfer R Dataframe to Pandas Dataframe </span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co">## Aim to deal with the data conveniently</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>pandas2ri.activate()</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>df_2 <span class="op">=</span> pandas2ri.rpy2py(r_dataframe)</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Loaded R objects: ['R']
+      Unnamed: 0       crash_datetime    borough  zip_code   latitude  \
+0              0  2024-06-30 17:30:00       None       NaN        NaN   
+1              1  2024-06-30 00:32:00       None       NaN        NaN   
+2              2  2024-06-30 07:05:00   BROOKLYN   11235.0  40.581060   
+3              3  2024-06-30 20:47:00  MANHATTAN   10021.0  40.763630   
+4              4  2024-06-30 10:14:00   BROOKLYN   11222.0  40.730460   
+...          ...                  ...        ...       ...        ...   
+1870        1870  2024-07-07 21:25:00      BRONX   10457.0  40.852520   
+1871        1871  2024-07-07 10:31:00      BRONX   10460.0  40.843945   
+1872        1872  2024-07-07 20:15:00     QUEENS   11436.0  40.677982   
+1873        1873  2024-07-07 14:45:00      BRONX   10452.0  40.843822   
+1874        1874  2024-07-07 14:12:00      BRONX   10468.0  40.861084   
+
+      longitude                 location           on_street_name  \
+0           NaN               (0.0, 0.0)                     None   
+1           NaN                     None        BELT PARKWAY RAMP   
+2    -73.967440    (40.58106, -73.96744)                     None   
+3    -73.953300     (40.76363, -73.9533)                FDR DRIVE   
+4    -73.951490    (40.73046, -73.95149)        GREENPOINT AVENUE   
+...         ...                      ...                      ...   
+1870 -73.900020    (40.85252, -73.90002)          EAST 180 STREET   
+1871 -73.885800    (40.843945, -73.8858)                     None   
+1872 -73.791214  (40.677982, -73.791214)        SUTPHIN BOULEVARD   
+1873 -73.927500    (40.843822, -73.9275)  MAJOR DEEGAN EXPRESSWAY   
+1874 -73.911490   (40.861084, -73.91149)                     None   
+
+          cross_street_name            off_street_name  ...  \
+0                      None                GOLD STREET  ...   
+1                      None                       None  ...   
+2                      None    2797      OCEAN PARKWAY  ...   
+3                      None                       None  ...   
+4     MC GUINNESS BOULEVARD                       None  ...   
+...                     ...                        ...  ...   
+1870                   None                       None  ...   
+1871                   None  855       EAST 178 STREET  ...   
+1872             120 AVENUE                       None  ...   
+1873                   None                       None  ...   
+1874                   None    2258      HAMPDEN PLACE  ...   
+
+      contributing_factor_vehicle_2  contributing_factor_vehicle_3  \
+0                       Unspecified                           None   
+1                       Unspecified                           None   
+2                              None                           None   
+3                              None                           None   
+4                       Unspecified                           None   
+...                             ...                            ...   
+1870                    Unspecified                           None   
+1871                    Unspecified                           None   
+1872                    Unspecified                           None   
+1873                    Unspecified                           None   
+1874                           None                           None   
+
+      contributing_factor_vehicle_4  contributing_factor_vehicle_5  \
+0                              None                           None   
+1                              None                           None   
+2                              None                           None   
+3                              None                           None   
+4                              None                           None   
+...                             ...                            ...   
+1870                           None                           None   
+1871                           None                           None   
+1872                           None                           None   
+1873                           None                           None   
+1874                           None                           None   
+
+      collision_id                  vehicle_type_code_1  \
+0          4736746                                Sedan   
+1          4736768  Station Wagon/Sport Utility Vehicle   
+2          4737060  Station Wagon/Sport Utility Vehicle   
+3          4737510                                Sedan   
+4          4736759                                  Bus   
+...            ...                                  ...   
+1870       4744144                        Pick-up Truck   
+1871       4744576  Station Wagon/Sport Utility Vehicle   
+1872       4745391                                Sedan   
+1873       4746540                                Sedan   
+1874       4746320                                Sedan   
+
+                      vehicle_type_code_2  vehicle_type_code_3  \
+0                                   Sedan                 None   
+1     Station Wagon/Sport Utility Vehicle                 None   
+2                                    None                 None   
+3                                    None                 None   
+4                               Box Truck                 None   
+...                                   ...                  ...   
+1870                                Sedan                 None   
+1871                                 None                 None   
+1872                                Sedan                 None   
+1873                                Sedan                 None   
+1874                                 None                 None   
+
+     vehicle_type_code_4 vehicle_type_code_5  
+0                   None                None  
+1                   None                None  
+2                   None                None  
+3                   None                None  
+4                   None                None  
+...                  ...                 ...  
+1870                None                None  
+1871                None                None  
+1872                None                None  
+1873                None                None  
+1874                None                None  
+
+[1875 rows x 29 columns]</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="stata-data-the-suffix-of-this-file-is-.dta" class="level4" data-number="6.2.5.3">
+<h4 data-number="6.2.5.3" class="anchored" data-anchor-id="stata-data-the-suffix-of-this-file-is-.dta"><span class="header-section-number">6.2.5.3</span> stata data (the suffix of this file is <code>.dta</code>)</h4>
+<section id="transfer-the-.csv-file-to-a-.dta-file" class="level5" data-number="6.2.5.3.1">
+<h5 data-number="6.2.5.3.1" class="anchored" data-anchor-id="transfer-the-.csv-file-to-a-.dta-file"><span class="header-section-number">6.2.5.3.1</span> Transfer the <code>.csv</code> file to a <code>.dta</code> file</h5>
+<p>We can only use <code>Pandas</code>. We choose the fucntion <code>to_stata</code> to save the <code>.dta</code> file.</p>
+<div id="9fb29aa8" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"nyccrashes_cleaned.csv"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Export the data to the default working directory</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>df_csv.to_stata(<span class="st">"stata.dta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/cq/5ysgnwfn7c3g0h46xyzvpj800000gn/T/ipykernel_70286/1977170459.py:4: InvalidColumnName:
+
+
+Not all pandas column names were valid Stata variable names.
+The following replacements have been made:
+
+    Unnamed: 0   -&gt;   Unnamed__0
+
+If this is not what you expect, please make sure you have Stata-compliant
+column names in your DataFrame (strings only, max 32 characters, only
+alphanumerics and underscores, no Stata reserved words)
+
+</code></pre>
+</div>
+</div>
+</section>
+<section id="import-the-.dta-file" class="level5" data-number="6.2.5.3.2">
+<h5 data-number="6.2.5.3.2" class="anchored" data-anchor-id="import-the-.dta-file"><span class="header-section-number">6.2.5.3.2</span> Import the <code>.dta</code> file</h5>
+<p>We use the function <code>read_stata</code> from <code>Pandas</code>. And here is the specific code.</p>
+<div id="511d9e6b" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df_3 <span class="op">=</span> pd.read_stata(<span class="st">"stata.dta"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_3.head(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   index  Unnamed__0       crash_datetime borough  zip_code  latitude  \
+0      0           0  2024-06-30 17:30:00               NaN       NaN   
+1      1           1  2024-06-30 00:32:00               NaN       NaN   
+
+   longitude    location     on_street_name cross_street_name  ...  \
+0        NaN  (0.0, 0.0)                                       ...   
+1        NaN              BELT PARKWAY RAMP                    ...   
+
+  contributing_factor_vehicle_2  contributing_factor_vehicle_3  \
+0                   Unspecified                                  
+1                   Unspecified                                  
+
+   contributing_factor_vehicle_4  contributing_factor_vehicle_5  collision_id  \
+0                                                                     4736746   
+1                                                                     4736768   
+
+                   vehicle_type_code_1                  vehicle_type_code_2  \
+0                                Sedan                                Sedan   
+1  Station Wagon/Sport Utility Vehicle  Station Wagon/Sport Utility Vehicle   
+
+   vehicle_type_code_3  vehicle_type_code_4 vehicle_type_code_5  
+0                                                                
+1                                                                
+
+[2 rows x 30 columns]</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="spss-data-the-suffix-of-this-file-is-.sav" class="level4" data-number="6.2.5.4">
+<h4 data-number="6.2.5.4" class="anchored" data-anchor-id="spss-data-the-suffix-of-this-file-is-.sav"><span class="header-section-number">6.2.5.4</span> spss data (the suffix of this file is <code>.sav</code>)</h4>
+<section id="transfer-the-.csv-file-to-a-.sav-file" class="level5" data-number="6.2.5.4.1">
+<h5 data-number="6.2.5.4.1" class="anchored" data-anchor-id="transfer-the-.csv-file-to-a-.sav-file"><span class="header-section-number">6.2.5.4.1</span> Transfer the <code>.csv</code> file to a <code>.sav</code> file</h5>
+<p>We need to use the Package <code>pyreadstat</code> We choose the function <code>write_sav</code> form <code>pyreadstat</code> We are supposed to use the CSV file which is without space. We can uese the following code.</p>
+<div id="82fe455d" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"Without_Unamed.csv"</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Export the data to the default working directory</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>pyreadstat.write_sav(df_csv, <span class="st">"SPSS.sav"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="import-the-generated-.sav-file" class="level5" data-number="6.2.5.4.2">
+<h5 data-number="6.2.5.4.2" class="anchored" data-anchor-id="import-the-generated-.sav-file"><span class="header-section-number">6.2.5.4.2</span> Import the generated <code>.sav</code> file</h5>
+<p>We also use the Package <code>pyreadstat</code>. We utilize the function <code>read_sav</code> from <code>pyreadstat</code>. The following code helps us import the <code>.sav</code> file.</p>
+<div id="9d2fc334" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>df_4, meta <span class="op">=</span> pyreadstat.read_sav(<span class="st">"SPSS.sav"</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_4.head(<span class="dv">2</span>))</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(meta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        crash_datetime borough  zip_code  latitude  longitude    location  \
+0  2024-06-30 17:30:00               NaN       NaN        NaN  (0.0, 0.0)   
+1  2024-06-30 00:32:00               NaN       NaN        NaN               
+
+      on_street_name cross_street_name off_street_name  \
+0                                          GOLD STREET   
+1  BELT PARKWAY RAMP                                     
+
+   number_of_persons_injured  ...  contributing_factor_vehicle_2  \
+0                        0.0  ...                    Unspecified   
+1                        0.0  ...                    Unspecified   
+
+   contributing_factor_vehicle_3  contributing_factor_vehicle_4  \
+0                                                                 
+1                                                                 
+
+   contributing_factor_vehicle_5  collision_id  \
+0                                    4736746.0   
+1                                    4736768.0   
+
+                   vehicle_type_code_1                  vehicle_type_code_2  \
+0                                Sedan                                Sedan   
+1  Station Wagon/Sport Utility Vehicle  Station Wagon/Sport Utility Vehicle   
+
+  vehicle_type_code_3 vehicle_type_code_4 vehicle_type_code_5  
+0                                                              
+1                                                              
+
+[2 rows x 28 columns]
+&lt;pyreadstat._readstat_parser.metadata_container object at 0x10971d760&gt;</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="matlab-files-the-suffix-of-this-file-is-.mat" class="level4" data-number="6.2.5.5">
+<h4 data-number="6.2.5.5" class="anchored" data-anchor-id="matlab-files-the-suffix-of-this-file-is-.mat"><span class="header-section-number">6.2.5.5</span> Matlab files (the suffix of this file is <code>.mat</code>)</h4>
+<section id="transfer-the-.csv-file-to-a-.mat-file" class="level5" data-number="6.2.5.5.1">
+<h5 data-number="6.2.5.5.1" class="anchored" data-anchor-id="transfer-the-.csv-file-to-a-.mat-file"><span class="header-section-number">6.2.5.5.1</span> Transfer the <code>.csv</code> file to a <code>.mat</code> file</h5>
+<p>We need to install the package <code>scipy.io</code></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>pip install scipy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And then we choose the function <code>savemat</code> from <code>scipy</code>. The specific code is following.</p>
+<div id="f88e4782" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.io <span class="im">import</span> savemat</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"nyccrashes_cleaned.csv"</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Convert DataFrame to dicotionary form</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co">## MATLAB.mat require dictionary format</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> {<span class="st">"data"</span>: df_csv.to_dict(<span class="st">"list"</span>)}</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Save the dictionary as a .mat file</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co">## Export the data to the default working directory</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>savemat(<span class="st">"MATLAB.mat"</span>, data_dict)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="import-the-generated-.mat-file" class="level5" data-number="6.2.5.5.2">
+<h5 data-number="6.2.5.5.2" class="anchored" data-anchor-id="import-the-generated-.mat-file"><span class="header-section-number">6.2.5.5.2</span> Import the generated <code>.mat</code> file</h5>
+<p>We use the Package <code>scipy.io</code> too. We choose the function <code>loadmat</code> from <code>spicy.io</code> And the corresponding code is following.</p>
+<div id="842cbcec" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.io <span class="im">import</span> loadmat</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"nyccrashes_cleaned.csv"</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>df_5 <span class="op">=</span> loadmat(<span class="st">"MATLAB.mat"</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co">## Show the data keys</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_5.keys())</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Show the contents of the "data" keys</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_5[<span class="st">"data"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['__header__', '__version__', '__globals__', 'data'])
+[[(array([[   0,    1,    2, ..., 1872, 1873, 1874]]), array(['2024-06-30 17:30:00', '2024-06-30 00:32:00',
+         '2024-06-30 07:05:00', ..., '2024-07-07 20:15:00',
+         '2024-07-07 14:45:00', '2024-07-07 14:12:00'], dtype='&lt;U19'), array(['nan                             ',
+         'nan                             ',
+         'BROOKLYN                        ', ...,
+         'QUEENS                          ',
+         'BRONX                           ',
+         'BRONX                           '], dtype='&lt;U32'), array([[   nan,    nan, 11235., ..., 11436., 10452., 10468.]]), array([[      nan,       nan, 40.58106 , ..., 40.677982, 40.843822,
+          40.861084]]), array([[       nan,        nan, -73.96744 , ..., -73.791214, -73.9275  ,
+          -73.91149 ]]), array(['(0.0, 0.0)                      ',
+         'nan                             ',
+         '(40.58106, -73.96744)           ', ...,
+         '(40.677982, -73.791214)         ',
+         '(40.843822, -73.9275)           ',
+         '(40.861084, -73.91149)          '], dtype='&lt;U32'), array(['nan                             ',
+         'BELT PARKWAY RAMP               ',
+         'nan                             ', ...,
+         'SUTPHIN BOULEVARD               ',
+         'MAJOR DEEGAN EXPRESSWAY         ',
+         'nan                             '], dtype='&lt;U32'), array(['nan                             ',
+         'nan                             ',
+         'nan                             ', ...,
+         '120 AVENUE                      ',
+         'nan                             ',
+         'nan                             '], dtype='&lt;U32'), array(['GOLD STREET                        ',
+         'nan                                ',
+         '2797      OCEAN PARKWAY            ', ...,
+         'nan                                ',
+         'nan                                ',
+         '2258      HAMPDEN PLACE            '], dtype='&lt;U35'), array([[0, 0, 0, ..., 1, 0, 0]]), array([[0, 0, 0, ..., 0, 0, 0]]), array([[0, 0, 0, ..., 0, 0, 0]]), array([[0, 0, 0, ..., 0, 0, 0]]), array([[0, 0, 0, ..., 0, 0, 0]]), array([[0, 0, 0, ..., 0, 0, 0]]), array([[0, 0, 0, ..., 1, 0, 0]]), array([[0, 0, 0, ..., 0, 0, 0]]), array(['Passing Too Closely                                  ',
+         'Unspecified                                          ',
+         'Unspecified                                          ', ...,
+         'Passing or Lane Usage Improper                       ',
+         'Driver Inexperience                                  ',
+         'Unspecified                                          '],
+        dtype='&lt;U53'), array(['Unspecified                                          ',
+         'Unspecified                                          ',
+         'nan                                                  ', ...,
+         'Unspecified                                          ',
+         'Unspecified                                          ',
+         'nan                                                  '],
+        dtype='&lt;U53'), array(['nan                             ',
+         'nan                             ',
+         'nan                             ', ...,
+         'nan                             ',
+         'nan                             ',
+         'nan                             '], dtype='&lt;U32'), array(['nan                             ',
+         'nan                             ',
+         'nan                             ', ...,
+         'nan                             ',
+         'nan                             ',
+         'nan                             '], dtype='&lt;U32'), array(['nan                             ',
+         'nan                             ',
+         'nan                             ', ...,
+         'nan                             ',
+         'nan                             ',
+         'nan                             '], dtype='&lt;U32'), array([[4736746, 4736768, 4737060, ..., 4745391, 4746540, 4746320]]), array(['Sedan                              ',
+         'Station Wagon/Sport Utility Vehicle',
+         'Station Wagon/Sport Utility Vehicle', ...,
+         'Sedan                              ',
+         'Sedan                              ',
+         'Sedan                              '], dtype='&lt;U35'), array(['Sedan                              ',
+         'Station Wagon/Sport Utility Vehicle',
+         'nan                                ', ...,
+         'Sedan                              ',
+         'Sedan                              ',
+         'nan                                '], dtype='&lt;U35'), array(['nan                                ',
+         'nan                                ',
+         'nan                                ', ...,
+         'nan                                ',
+         'nan                                ',
+         'nan                                '], dtype='&lt;U35'), array(['nan                                ',
+         'nan                                ',
+         'nan                                ', ...,
+         'nan                                ',
+         'nan                                ',
+         'nan                                '], dtype='&lt;U35'), array(['nan                                ',
+         'nan                                ',
+         'nan                                ', ...,
+         'nan                                ',
+         'nan                                ',
+         'nan                                '], dtype='&lt;U35'))                                                                                                                                                                                                                                                                                                                                                ]]</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="hdf5-files-the-suffix-of-this-file-is-.h5" class="level4" data-number="6.2.5.6">
+<h4 data-number="6.2.5.6" class="anchored" data-anchor-id="hdf5-files-the-suffix-of-this-file-is-.h5"><span class="header-section-number">6.2.5.6</span> HDF5 files (the suffix of this file is <code>.h5</code>)</h4>
+<section id="transfer-the-.csv-file-to-a-.h5-file" class="level5" data-number="6.2.5.6.1">
+<h5 data-number="6.2.5.6.1" class="anchored" data-anchor-id="transfer-the-.csv-file-to-a-.h5-file"><span class="header-section-number">6.2.5.6.1</span> Transfer the <code>.csv</code> file to a <code>.h5</code> file</h5>
+<p>We can only use <code>Pandas</code>. At the same time, the function <code>to_hdf</code> helps us achive the goal. The code is following.</p>
+<div id="899389fa" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tables</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"nyccrashes_cleaned.csv"</span>)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Export the data to the default working directory</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>df_csv.to_hdf(<span class="st">"HDF5.h5"</span>, key <span class="op">=</span> <span class="st">"data"</span>, mode <span class="op">=</span> <span class="st">"w"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/cq/5ysgnwfn7c3g0h46xyzvpj800000gn/T/ipykernel_70286/3411576893.py:5: PerformanceWarning:
+
+
+your performance may suffer as PyTables will pickle object types that it cannot
+map directly to c-types [inferred_type-&gt;mixed,key-&gt;block2_values] [items-&gt;Index(['crash_datetime', 'borough', 'location', 'on_street_name',
+       'cross_street_name', 'off_street_name', 'contributing_factor_vehicle_1',
+       'contributing_factor_vehicle_2', 'contributing_factor_vehicle_3',
+       'contributing_factor_vehicle_4', 'contributing_factor_vehicle_5',
+       'vehicle_type_code_1', 'vehicle_type_code_2', 'vehicle_type_code_3',
+       'vehicle_type_code_4', 'vehicle_type_code_5'],
+      dtype='object')]
+
+</code></pre>
+</div>
+</div>
+</section>
+<section id="import-the-generated-.h5-file" class="level5" data-number="6.2.5.6.2">
+<h5 data-number="6.2.5.6.2" class="anchored" data-anchor-id="import-the-generated-.h5-file"><span class="header-section-number">6.2.5.6.2</span> Import the generated <code>.h5</code> file</h5>
+<p>We only use <code>Pandas</code> too. We need the function <code>read_h5</code>. The code of importing .h5 file is following.</p>
+<div id="29f6e79c" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>df_6 <span class="op">=</span> pd.read_hdf(<span class="st">"HDF5.h5"</span>, key <span class="op">=</span> <span class="st">"data"</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_6.head(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Unnamed: 0       crash_datetime borough  zip_code  latitude  longitude  \
+0           0  2024-06-30 17:30:00     NaN       NaN       NaN        NaN   
+1           1  2024-06-30 00:32:00     NaN       NaN       NaN        NaN   
+
+     location     on_street_name cross_street_name off_street_name  ...  \
+0  (0.0, 0.0)                NaN               NaN     GOLD STREET  ...   
+1         NaN  BELT PARKWAY RAMP               NaN             NaN  ...   
+
+   contributing_factor_vehicle_2  contributing_factor_vehicle_3  \
+0                    Unspecified                            NaN   
+1                    Unspecified                            NaN   
+
+   contributing_factor_vehicle_4  contributing_factor_vehicle_5  collision_id  \
+0                            NaN                            NaN       4736746   
+1                            NaN                            NaN       4736768   
+
+                   vehicle_type_code_1                  vehicle_type_code_2  \
+0                                Sedan                                Sedan   
+1  Station Wagon/Sport Utility Vehicle  Station Wagon/Sport Utility Vehicle   
+
+   vehicle_type_code_3 vehicle_type_code_4 vehicle_type_code_5  
+0                  NaN                 NaN                 NaN  
+1                  NaN                 NaN                 NaN  
+
+[2 rows x 29 columns]</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="import-multiple-files-and-merge-them-into-a-new-file" class="level4" data-number="6.2.5.7">
+<h4 data-number="6.2.5.7" class="anchored" data-anchor-id="import-multiple-files-and-merge-them-into-a-new-file"><span class="header-section-number">6.2.5.7</span> Import multiple files and merge them into a new file</h4>
+<p>I have introduced the method of importing single file of data. Python also allows us to import multiple files simultaneously. We choose the Package <code>glob</code> and Package <code>Pandas</code></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Install Package Glob</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>pip install glob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The effect of Package <code>glob</code> is to find files and directories that match the specified pattern. We use the function <code>glob</code> from Package <code>glob</code>. The intention of function <code>glob</code> is to find all file paths that match a specitic pattern and return a list of file paths. The following fucntion is the corresponding code.</p>
+<div id="6441aa3f" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Use the package globe and the package pandas</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Merge multiple arrays</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co">## * means match any number of characters( including the null characters)</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>all_files <span class="op">=</span> glob.glob(<span class="st">"*.csv"</span>) </span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Create a list to store the data</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>all_data <span class="op">=</span> []</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co">## Use "for" statement to import all of the csv files</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> filename <span class="kw">in</span> all_files:</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(filename, index_col<span class="op">=</span><span class="va">None</span>, header<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>    all_data.append(df)</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="co">## Combine multiple pandas objects into one along a fixed axis using some merging methods</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>data_merge <span class="op">=</span> pd.concat(all_data, axis<span class="op">=</span><span class="dv">0</span>, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="co">## Check the result</span></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_merge.head(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Unnamed: 0       crash_datetime borough  zip_code  latitude  longitude  \
+0         0.0  2024-06-30 17:30:00     NaN       NaN       NaN        NaN   
+1         1.0  2024-06-30 00:32:00     NaN       NaN       NaN        NaN   
+
+     location     on_street_name cross_street_name off_street_name  ...  \
+0  (0.0, 0.0)                NaN               NaN     GOLD STREET  ...   
+1         NaN  BELT PARKWAY RAMP               NaN             NaN  ...   
+
+   contributing_factor_vehicle_2  contributing_factor_vehicle_3  \
+0                    Unspecified                            NaN   
+1                    Unspecified                            NaN   
+
+   contributing_factor_vehicle_4  contributing_factor_vehicle_5  collision_id  \
+0                            NaN                            NaN       4736746   
+1                            NaN                            NaN       4736768   
+
+                   vehicle_type_code_1                  vehicle_type_code_2  \
+0                                Sedan                                Sedan   
+1  Station Wagon/Sport Utility Vehicle  Station Wagon/Sport Utility Vehicle   
+
+   vehicle_type_code_3 vehicle_type_code_4 vehicle_type_code_5  
+0                  NaN                 NaN                 NaN  
+1                  NaN                 NaN                 NaN  
+
+[2 rows x 29 columns]</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="view-data-information" class="level3" data-number="6.2.6">
+<h3 data-number="6.2.6" class="anchored" data-anchor-id="view-data-information"><span class="header-section-number">6.2.6</span> View data information</h3>
+<p>It is natural for us to be interested in the fundamental information of the data we have imported. As a result, I have listed some useful functions to get the basic knowledge of the data.</p>
+<p>The following code helps us know how much the data is. We choose the basic function <code>shape</code> from <code>pandas</code>.</p>
+<div id="677ba78a" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">## How much is the crashes data is</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>df_csv.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>(1875, 29)</code></pre>
+</div>
+</div>
+<ul>
+<li>There are 1875 data and 29 columns in the file.</li>
+</ul>
+<p>The following code helps us check the type of each variable in data. The fucntion is <code>dtypes</code> from <code>Pandas</code></p>
+<div id="f7adebc2" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show all types of the crashes' variables</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>df_csv.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>Unnamed: 0                         int64
+crash_datetime                    object
+borough                           object
+zip_code                         float64
+latitude                         float64
+longitude                        float64
+location                          object
+on_street_name                    object
+cross_street_name                 object
+off_street_name                   object
+number_of_persons_injured          int64
+number_of_persons_killed           int64
+number_of_pedestrians_injured      int64
+number_of_pedestrians_killed       int64
+number_of_cyclist_injured          int64
+number_of_cyclist_killed           int64
+number_of_motorist_injured         int64
+number_of_motorist_killed          int64
+contributing_factor_vehicle_1     object
+contributing_factor_vehicle_2     object
+contributing_factor_vehicle_3     object
+contributing_factor_vehicle_4     object
+contributing_factor_vehicle_5     object
+collision_id                       int64
+vehicle_type_code_1               object
+vehicle_type_code_2               object
+vehicle_type_code_3               object
+vehicle_type_code_4               object
+vehicle_type_code_5               object
+dtype: object</code></pre>
+</div>
+</div>
+<ul>
+<li>Our computer has listed 29 variables and their corresponding types.</li>
+</ul>
+<p>The following code is suitable for viewing overall data information. We use the basic function <code>info</code> from <code>Pandas</code></p>
+<div id="278a73b6" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>df_csv.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 1875 entries, 0 to 1874
+Data columns (total 29 columns):
+ #   Column                         Non-Null Count  Dtype  
+---  ------                         --------------  -----  
+ 0   Unnamed: 0                     1875 non-null   int64  
+ 1   crash_datetime                 1875 non-null   object 
+ 2   borough                        1749 non-null   object 
+ 3   zip_code                       1749 non-null   float64
+ 4   latitude                       1722 non-null   float64
+ 5   longitude                      1722 non-null   float64
+ 6   location                       1729 non-null   object 
+ 7   on_street_name                 1329 non-null   object 
+ 8   cross_street_name              943 non-null    object 
+ 9   off_street_name                546 non-null    object 
+ 10  number_of_persons_injured      1875 non-null   int64  
+ 11  number_of_persons_killed       1875 non-null   int64  
+ 12  number_of_pedestrians_injured  1875 non-null   int64  
+ 13  number_of_pedestrians_killed   1875 non-null   int64  
+ 14  number_of_cyclist_injured      1875 non-null   int64  
+ 15  number_of_cyclist_killed       1875 non-null   int64  
+ 16  number_of_motorist_injured     1875 non-null   int64  
+ 17  number_of_motorist_killed      1875 non-null   int64  
+ 18  contributing_factor_vehicle_1  1864 non-null   object 
+ 19  contributing_factor_vehicle_2  1425 non-null   object 
+ 20  contributing_factor_vehicle_3  174 non-null    object 
+ 21  contributing_factor_vehicle_4  52 non-null     object 
+ 22  contributing_factor_vehicle_5  14 non-null     object 
+ 23  collision_id                   1875 non-null   int64  
+ 24  vehicle_type_code_1            1842 non-null   object 
+ 25  vehicle_type_code_2            1230 non-null   object 
+ 26  vehicle_type_code_3            162 non-null    object 
+ 27  vehicle_type_code_4            48 non-null     object 
+ 28  vehicle_type_code_5            14 non-null     object 
+dtypes: float64(3), int64(10), object(16)
+memory usage: 424.9+ KB</code></pre>
+</div>
+</div>
+<ul>
+<li>The basic information of crashes data has been listed.</li>
+</ul>
+<p>The function <code>describe</code> from <code>Pandas</code> helps generate descriptive statistics.</p>
+<div id="a36d1dc1" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show the basic descriptive statistics of crashes data</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>df_csv.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">zip_code</th>
+<th data-quarto-table-cell-role="th">latitude</th>
+<th data-quarto-table-cell-role="th">longitude</th>
+<th data-quarto-table-cell-role="th">number_of_persons_injured</th>
+<th data-quarto-table-cell-role="th">number_of_persons_killed</th>
+<th data-quarto-table-cell-role="th">number_of_pedestrians_injured</th>
+<th data-quarto-table-cell-role="th">number_of_pedestrians_killed</th>
+<th data-quarto-table-cell-role="th">number_of_cyclist_injured</th>
+<th data-quarto-table-cell-role="th">number_of_cyclist_killed</th>
+<th data-quarto-table-cell-role="th">number_of_motorist_injured</th>
+<th data-quarto-table-cell-role="th">number_of_motorist_killed</th>
+<th data-quarto-table-cell-role="th">collision_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>1875.000000</td>
+<td>1749.000000</td>
+<td>1722.000000</td>
+<td>1722.000000</td>
+<td>1875.000000</td>
+<td>1875.000000</td>
+<td>1875.000000</td>
+<td>1875.000000</td>
+<td>1875.000000</td>
+<td>1875.0</td>
+<td>1875.000000</td>
+<td>1875.000000</td>
+<td>1.875000e+03</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>937.000000</td>
+<td>10892.563179</td>
+<td>40.719287</td>
+<td>-73.919898</td>
+<td>0.617067</td>
+<td>0.004267</td>
+<td>0.093333</td>
+<td>0.002667</td>
+<td>0.065067</td>
+<td>0.0</td>
+<td>0.433067</td>
+<td>0.001600</td>
+<td>4.738587e+06</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>541.410196</td>
+<td>525.579066</td>
+<td>0.081315</td>
+<td>0.085191</td>
+<td>0.915610</td>
+<td>0.103219</td>
+<td>0.338452</td>
+<td>0.095207</td>
+<td>0.246709</td>
+<td>0.0</td>
+<td>0.891185</td>
+<td>0.039979</td>
+<td>1.659947e+03</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>0.000000</td>
+<td>10000.000000</td>
+<td>40.513510</td>
+<td>-74.237366</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>4.736561e+06</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>468.500000</td>
+<td>10455.000000</td>
+<td>40.662752</td>
+<td>-73.968543</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>4.737666e+06</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>937.000000</td>
+<td>11208.000000</td>
+<td>40.712778</td>
+<td>-73.922933</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>4.738257e+06</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>1405.500000</td>
+<td>11239.000000</td>
+<td>40.767641</td>
+<td>-73.869405</td>
+<td>1.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>1.000000</td>
+<td>0.000000</td>
+<td>4.738883e+06</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>1874.000000</td>
+<td>11694.000000</td>
+<td>40.907246</td>
+<td>-73.702190</td>
+<td>11.000000</td>
+<td>4.000000</td>
+<td>7.000000</td>
+<td>4.000000</td>
+<td>1.000000</td>
+<td>0.0</td>
+<td>11.000000</td>
+<td>1.000000</td>
+<td>4.752444e+06</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>If we want to summarize the names of all columns, it is a good choice to use the function <code>columns</code> from <code>Pandas</code></p>
+<div id="925a5608" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Get all columns' names of crashes data</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>df_csv.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>Index(['Unnamed: 0', 'crash_datetime', 'borough', 'zip_code', 'latitude',
+       'longitude', 'location', 'on_street_name', 'cross_street_name',
+       'off_street_name', 'number_of_persons_injured',
+       'number_of_persons_killed', 'number_of_pedestrians_injured',
+       'number_of_pedestrians_killed', 'number_of_cyclist_injured',
+       'number_of_cyclist_killed', 'number_of_motorist_injured',
+       'number_of_motorist_killed', 'contributing_factor_vehicle_1',
+       'contributing_factor_vehicle_2', 'contributing_factor_vehicle_3',
+       'contributing_factor_vehicle_4', 'contributing_factor_vehicle_5',
+       'collision_id', 'vehicle_type_code_1', 'vehicle_type_code_2',
+       'vehicle_type_code_3', 'vehicle_type_code_4', 'vehicle_type_code_5'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<p>The function <code>tail</code> from <code>Pandas</code> allow us to view the last rows.</p>
+<div id="489345ed" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show the last 2 rows of crashes data</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>df_csv.tail(n <span class="op">=</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">crash_datetime</th>
+<th data-quarto-table-cell-role="th">borough</th>
+<th data-quarto-table-cell-role="th">zip_code</th>
+<th data-quarto-table-cell-role="th">latitude</th>
+<th data-quarto-table-cell-role="th">longitude</th>
+<th data-quarto-table-cell-role="th">location</th>
+<th data-quarto-table-cell-role="th">on_street_name</th>
+<th data-quarto-table-cell-role="th">cross_street_name</th>
+<th data-quarto-table-cell-role="th">off_street_name</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">contributing_factor_vehicle_2</th>
+<th data-quarto-table-cell-role="th">contributing_factor_vehicle_3</th>
+<th data-quarto-table-cell-role="th">contributing_factor_vehicle_4</th>
+<th data-quarto-table-cell-role="th">contributing_factor_vehicle_5</th>
+<th data-quarto-table-cell-role="th">collision_id</th>
+<th data-quarto-table-cell-role="th">vehicle_type_code_1</th>
+<th data-quarto-table-cell-role="th">vehicle_type_code_2</th>
+<th data-quarto-table-cell-role="th">vehicle_type_code_3</th>
+<th data-quarto-table-cell-role="th">vehicle_type_code_4</th>
+<th data-quarto-table-cell-role="th">vehicle_type_code_5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1873</td>
+<td>1873</td>
+<td>2024-07-07 14:45:00</td>
+<td>BRONX</td>
+<td>10452.0</td>
+<td>40.843822</td>
+<td>-73.92750</td>
+<td>(40.843822, -73.9275)</td>
+<td>MAJOR DEEGAN EXPRESSWAY</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>Unspecified</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>4746540</td>
+<td>Sedan</td>
+<td>Sedan</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1874</td>
+<td>1874</td>
+<td>2024-07-07 14:12:00</td>
+<td>BRONX</td>
+<td>10468.0</td>
+<td>40.861084</td>
+<td>-73.91149</td>
+<td>(40.861084, -73.91149)</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>2258 HAMPDEN PLACE</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>4746320</td>
+<td>Sedan</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>2 rows × 29 columns</p>
+</div>
+</div>
+</div>
+<p>The function <code>unique</code> from <code>Pandas</code> dedicates in unique values ​​of one column.</p>
+<div id="515395d2" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show the unique values in the column named "crash_datetime"</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>df_csv[<span class="st">"crash_datetime"</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>array(['2024-06-30 17:30:00', '2024-06-30 00:32:00',
+       '2024-06-30 07:05:00', ..., '2024-07-07 09:13:00',
+       '2024-07-07 10:31:00', '2024-07-07 14:12:00'], dtype=object)</code></pre>
+</div>
+</div>
+<p>We can get the values of one column(without deduplication). The choose of function is <code>values</code> from <code>Pandas</code> instead of <code>unique</code></p>
+<div id="9c241963" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show all values of the column named "crash_datetime"</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>df_csv[<span class="st">"crash_datetime"</span>].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>array(['2024-06-30 17:30:00', '2024-06-30 00:32:00',
+       '2024-06-30 07:05:00', ..., '2024-07-07 20:15:00',
+       '2024-07-07 14:45:00', '2024-07-07 14:12:00'], dtype=object)</code></pre>
+</div>
+</div>
+</section>
+<section id="find-null-values" class="level3" data-number="6.2.7">
+<h3 data-number="6.2.7" class="anchored" data-anchor-id="find-null-values"><span class="header-section-number">6.2.7</span> Find Null Values</h3>
+<p>It is necessary for us to find null values before we clean and preprocess the data. The following content covers how to find null values.</p>
+<section id="determine-whether-there-are-missing-values." class="level4" data-number="6.2.7.1">
+<h4 data-number="6.2.7.1" class="anchored" data-anchor-id="determine-whether-there-are-missing-values."><span class="header-section-number">6.2.7.1</span> Determine whether there are missing values.</h4>
+<p>We need to use the function <code>isnull</code> firstly. The aim is to detect missing values in data. And then we add the command <code>any</code> to determine whether there are missing values.</p>
+<ul>
+<li>Determine whether there are missing values in columns</li>
+</ul>
+<div id="06263aa5" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Determine whether there are missing values in columns of crashes data</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>df_csv.isnull().<span class="bu">any</span>(axis <span class="op">=</span> <span class="dv">0</span>) <span class="co"># "axis=0" means columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>Unnamed: 0                       False
+crash_datetime                   False
+borough                           True
+zip_code                          True
+latitude                          True
+longitude                         True
+location                          True
+on_street_name                    True
+cross_street_name                 True
+off_street_name                   True
+number_of_persons_injured        False
+number_of_persons_killed         False
+number_of_pedestrians_injured    False
+number_of_pedestrians_killed     False
+number_of_cyclist_injured        False
+number_of_cyclist_killed         False
+number_of_motorist_injured       False
+number_of_motorist_killed        False
+contributing_factor_vehicle_1     True
+contributing_factor_vehicle_2     True
+contributing_factor_vehicle_3     True
+contributing_factor_vehicle_4     True
+contributing_factor_vehicle_5     True
+collision_id                     False
+vehicle_type_code_1               True
+vehicle_type_code_2               True
+vehicle_type_code_3               True
+vehicle_type_code_4               True
+vehicle_type_code_5               True
+dtype: bool</code></pre>
+</div>
+</div>
+<ul>
+<li>Determine whether there are missing values ​​in rows.</li>
+</ul>
+<div id="3b46d1b0" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Determine whether there are missing values in rows of crashes data</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>df_csv.isnull().<span class="bu">any</span>(axis <span class="op">=</span> <span class="dv">1</span>) <span class="co"># "axis=1" means rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>0       True
+1       True
+2       True
+3       True
+4       True
+        ... 
+1870    True
+1871    True
+1872    True
+1873    True
+1874    True
+Length: 1875, dtype: bool</code></pre>
+</div>
+</div>
+</section>
+<section id="locate-the-missing-values-of-rowscolumns" class="level4" data-number="6.2.7.2">
+<h4 data-number="6.2.7.2" class="anchored" data-anchor-id="locate-the-missing-values-of-rowscolumns"><span class="header-section-number">6.2.7.2</span> Locate the missing values of rows/columns</h4>
+<p>We utilize the function <code>loc</code> from <code>Pandas</code>. The function of <code>loc</code> selects or modifies data in a DataFrame or Series. The slection and modification are based on labels.</p>
+<ul>
+<li>Locate the missing values of rows</li>
+</ul>
+<div id="2a3c4c29" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Locate the missing values in crashes data rows</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>df_csv.loc[df_csv.isnull().<span class="bu">any</span>(axis <span class="op">=</span> <span class="dv">1</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">crash_datetime</th>
+<th data-quarto-table-cell-role="th">borough</th>
+<th data-quarto-table-cell-role="th">zip_code</th>
+<th data-quarto-table-cell-role="th">latitude</th>
+<th data-quarto-table-cell-role="th">longitude</th>
+<th data-quarto-table-cell-role="th">location</th>
+<th data-quarto-table-cell-role="th">on_street_name</th>
+<th data-quarto-table-cell-role="th">cross_street_name</th>
+<th data-quarto-table-cell-role="th">off_street_name</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">contributing_factor_vehicle_2</th>
+<th data-quarto-table-cell-role="th">contributing_factor_vehicle_3</th>
+<th data-quarto-table-cell-role="th">contributing_factor_vehicle_4</th>
+<th data-quarto-table-cell-role="th">contributing_factor_vehicle_5</th>
+<th data-quarto-table-cell-role="th">collision_id</th>
+<th data-quarto-table-cell-role="th">vehicle_type_code_1</th>
+<th data-quarto-table-cell-role="th">vehicle_type_code_2</th>
+<th data-quarto-table-cell-role="th">vehicle_type_code_3</th>
+<th data-quarto-table-cell-role="th">vehicle_type_code_4</th>
+<th data-quarto-table-cell-role="th">vehicle_type_code_5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>2024-06-30 17:30:00</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>(0.0, 0.0)</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>GOLD STREET</td>
+<td>...</td>
+<td>Unspecified</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>4736746</td>
+<td>Sedan</td>
+<td>Sedan</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1</td>
+<td>2024-06-30 00:32:00</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>BELT PARKWAY RAMP</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>Unspecified</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>4736768</td>
+<td>Station Wagon/Sport Utility Vehicle</td>
+<td>Station Wagon/Sport Utility Vehicle</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2</td>
+<td>2024-06-30 07:05:00</td>
+<td>BROOKLYN</td>
+<td>11235.0</td>
+<td>40.581060</td>
+<td>-73.967440</td>
+<td>(40.58106, -73.96744)</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>2797 OCEAN PARKWAY</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>4737060</td>
+<td>Station Wagon/Sport Utility Vehicle</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>3</td>
+<td>2024-06-30 20:47:00</td>
+<td>MANHATTAN</td>
+<td>10021.0</td>
+<td>40.763630</td>
+<td>-73.953300</td>
+<td>(40.76363, -73.9533)</td>
+<td>FDR DRIVE</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>4737510</td>
+<td>Sedan</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>4</td>
+<td>2024-06-30 10:14:00</td>
+<td>BROOKLYN</td>
+<td>11222.0</td>
+<td>40.730460</td>
+<td>-73.951490</td>
+<td>(40.73046, -73.95149)</td>
+<td>GREENPOINT AVENUE</td>
+<td>MC GUINNESS BOULEVARD</td>
+<td>NaN</td>
+<td>...</td>
+<td>Unspecified</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>4736759</td>
+<td>Bus</td>
+<td>Box Truck</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1870</td>
+<td>1870</td>
+<td>2024-07-07 21:25:00</td>
+<td>BRONX</td>
+<td>10457.0</td>
+<td>40.852520</td>
+<td>-73.900020</td>
+<td>(40.85252, -73.90002)</td>
+<td>EAST 180 STREET</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>Unspecified</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>4744144</td>
+<td>Pick-up Truck</td>
+<td>Sedan</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1871</td>
+<td>1871</td>
+<td>2024-07-07 10:31:00</td>
+<td>BRONX</td>
+<td>10460.0</td>
+<td>40.843945</td>
+<td>-73.885800</td>
+<td>(40.843945, -73.8858)</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>855 EAST 178 STREET</td>
+<td>...</td>
+<td>Unspecified</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>4744576</td>
+<td>Station Wagon/Sport Utility Vehicle</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1872</td>
+<td>1872</td>
+<td>2024-07-07 20:15:00</td>
+<td>QUEENS</td>
+<td>11436.0</td>
+<td>40.677982</td>
+<td>-73.791214</td>
+<td>(40.677982, -73.791214)</td>
+<td>SUTPHIN BOULEVARD</td>
+<td>120 AVENUE</td>
+<td>NaN</td>
+<td>...</td>
+<td>Unspecified</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>4745391</td>
+<td>Sedan</td>
+<td>Sedan</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1873</td>
+<td>1873</td>
+<td>2024-07-07 14:45:00</td>
+<td>BRONX</td>
+<td>10452.0</td>
+<td>40.843822</td>
+<td>-73.927500</td>
+<td>(40.843822, -73.9275)</td>
+<td>MAJOR DEEGAN EXPRESSWAY</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>Unspecified</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>4746540</td>
+<td>Sedan</td>
+<td>Sedan</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1874</td>
+<td>1874</td>
+<td>2024-07-07 14:12:00</td>
+<td>BRONX</td>
+<td>10468.0</td>
+<td>40.861084</td>
+<td>-73.911490</td>
+<td>(40.861084, -73.91149)</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>2258 HAMPDEN PLACE</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>4746320</td>
+<td>Sedan</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>1875 rows × 29 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="determine-the-number-of-missing-values." class="level4" data-number="6.2.7.3">
+<h4 data-number="6.2.7.3" class="anchored" data-anchor-id="determine-the-number-of-missing-values."><span class="header-section-number">6.2.7.3</span> Determine the number of missing values.</h4>
+<p>We also use the function <code>isnull</code>. But this time we add the command <code>sum</code> rather than <code>any</code>.</p>
+<div id="8daeefbb" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Calculate the number of missing values in crashes data columns</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>df_csv.isnull().<span class="bu">sum</span>(axis <span class="op">=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>Unnamed: 0                          0
+crash_datetime                      0
+borough                           126
+zip_code                          126
+latitude                          153
+longitude                         153
+location                          146
+on_street_name                    546
+cross_street_name                 932
+off_street_name                  1329
+number_of_persons_injured           0
+number_of_persons_killed            0
+number_of_pedestrians_injured       0
+number_of_pedestrians_killed        0
+number_of_cyclist_injured           0
+number_of_cyclist_killed            0
+number_of_motorist_injured          0
+number_of_motorist_killed           0
+contributing_factor_vehicle_1      11
+contributing_factor_vehicle_2     450
+contributing_factor_vehicle_3    1701
+contributing_factor_vehicle_4    1823
+contributing_factor_vehicle_5    1861
+collision_id                        0
+vehicle_type_code_1                33
+vehicle_type_code_2               645
+vehicle_type_code_3              1713
+vehicle_type_code_4              1827
+vehicle_type_code_5              1861
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
 </section>
 </section>
 <section id="sql" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="sql"><span class="header-section-number">6.3</span> SQL</h2>
 <p>This section was written by Thea Johnson, a senior in Statistics at the time.</p>
-<section id="subsection-1-1" class="level3" data-number="6.3.1">
-<h3 data-number="6.3.1" class="anchored" data-anchor-id="subsection-1-1"><span class="header-section-number">6.3.1</span> Subsection 1</h3>
+<section id="subsection-1" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="subsection-1"><span class="header-section-number">6.3.1</span> Subsection 1</h3>
 </section>
-<section id="subsection-2-1" class="level3" data-number="6.3.2">
-<h3 data-number="6.3.2" class="anchored" data-anchor-id="subsection-2-1"><span class="header-section-number">6.3.2</span> Subsection 2</h3>
+<section id="subsection-2" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="subsection-2"><span class="header-section-number">6.3.2</span> Subsection 2</h3>
 </section>
-<section id="extended-reading-1" class="level3" data-number="6.3.3">
-<h3 data-number="6.3.3" class="anchored" data-anchor-id="extended-reading-1"><span class="header-section-number">6.3.3</span> Extended Reading</h3>
+<section id="extended-reading" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="extended-reading"><span class="header-section-number">6.3.3</span> Extended Reading</h3>
 <p>Give some references here.</p>
 </section>
 </section>
 <section id="nyc-crash-data" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="nyc-crash-data"><span class="header-section-number">6.4</span> NYC Crash Data</h2>
 <p>Consider a subset of the NYC Crash Data, which contains all NYC motor vehicle collisions data with documentation from <a href="https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95">NYC Open Data</a>. We downloaded the crash data for the week of June 30, 2024, on September 16, 2024, in CSC format.</p>
-<div id="9dbf8da3" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="st">'data/nyccrashes_2024w0630_by20240916.csv'</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(file_path)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace column names: convert to lowercase and replace spaces with underscores</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df.columns <span class="op">=</span> df.columns.<span class="bu">str</span>.lower().<span class="bu">str</span>.replace(<span class="st">' '</span>, <span class="st">'_'</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first few rows of the dataset to understand its structure</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="91b3a426" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="st">'data/nyccrashes_2024w0630_by20240916.csv'</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(file_path)</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace column names: convert to lowercase and replace spaces with underscores</span></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>df.columns <span class="op">=</span> df.columns.<span class="bu">str</span>.lower().<span class="bu">str</span>.replace(<span class="st">' '</span>, <span class="st">'_'</span>)</span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first few rows of the dataset to understand its structure</span></span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
 <div>
 
 
@@ -485,40 +2221,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now we can do some cleaning after a quick browse.</p>
-<div id="e8574710" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace invalid coordinates (latitude=0, longitude=0 or NaN) with NaN</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df.loc[(df[<span class="st">'latitude'</span>] <span class="op">==</span> <span class="dv">0</span>) <span class="op">&amp;</span> (df[<span class="st">'longitude'</span>] <span class="op">==</span> <span class="dv">0</span>), </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>       [<span class="st">'latitude'</span>, <span class="st">'longitude'</span>]] <span class="op">=</span> pd.NA</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'latitude'</span>] <span class="op">=</span> df[<span class="st">'latitude'</span>].replace(<span class="dv">0</span>, pd.NA)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'longitude'</span>] <span class="op">=</span> df[<span class="st">'longitude'</span>].replace(<span class="dv">0</span>, pd.NA)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Longitude/latitude don't need double precision</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'latitude'</span>] <span class="op">=</span> df[<span class="st">'latitude'</span>].astype(<span class="st">'float32'</span>, errors<span class="op">=</span><span class="st">'ignore'</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'longitude'</span>] <span class="op">=</span> df[<span class="st">'longitude'</span>].astype(<span class="st">'float32'</span>, errors<span class="op">=</span><span class="st">'ignore'</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop the redundant 'location' column</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'location'</span>])</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting 'crash_date' and 'crash_time' columns into a single datetime column</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'crash_datetime'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'crash_date'</span>] <span class="op">+</span> <span class="st">' '</span> </span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                       <span class="op">+</span> df[<span class="st">'crash_time'</span>], <span class="bu">format</span><span class="op">=</span><span class="st">'%m/</span><span class="sc">%d</span><span class="st">/%Y %H:%M'</span>, errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop the original 'crash_date' and 'crash_time' columns</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'crash_date'</span>, <span class="st">'crash_time'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="62e1d066" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace invalid coordinates (latitude=0, longitude=0 or NaN) with NaN</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>df.loc[(df[<span class="st">'latitude'</span>] <span class="op">==</span> <span class="dv">0</span>) <span class="op">&amp;</span> (df[<span class="st">'longitude'</span>] <span class="op">==</span> <span class="dv">0</span>), </span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>       [<span class="st">'latitude'</span>, <span class="st">'longitude'</span>]] <span class="op">=</span> pd.NA</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'latitude'</span>] <span class="op">=</span> df[<span class="st">'latitude'</span>].replace(<span class="dv">0</span>, pd.NA)</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'longitude'</span>] <span class="op">=</span> df[<span class="st">'longitude'</span>].replace(<span class="dv">0</span>, pd.NA)</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Longitude/latitude don't need double precision</span></span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'latitude'</span>] <span class="op">=</span> df[<span class="st">'latitude'</span>].astype(<span class="st">'float32'</span>, errors<span class="op">=</span><span class="st">'ignore'</span>)</span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'longitude'</span>] <span class="op">=</span> df[<span class="st">'longitude'</span>].astype(<span class="st">'float32'</span>, errors<span class="op">=</span><span class="st">'ignore'</span>)</span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop the redundant 'location' column</span></span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'location'</span>])</span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting 'crash_date' and 'crash_time' columns into a single datetime column</span></span>
+<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'crash_datetime'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'crash_date'</span>] <span class="op">+</span> <span class="st">' '</span> </span>
+<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a>                       <span class="op">+</span> df[<span class="st">'crash_time'</span>], <span class="bu">format</span><span class="op">=</span><span class="st">'%m/</span><span class="sc">%d</span><span class="st">/%Y %H:%M'</span>, errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb68-17"><a href="#cb68-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-18"><a href="#cb68-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop the original 'crash_date' and 'crash_time' columns</span></span>
+<span id="cb68-19"><a href="#cb68-19" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'crash_date'</span>, <span class="st">'crash_time'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Are missing in zip code and borough always co-occur?</p>
-<div id="046ac331" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if missing values in 'zip_code' and 'borough' always co-occur</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Count rows where both are missing</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>missing_cooccur <span class="op">=</span> df[[<span class="st">'zip_code'</span>, <span class="st">'borough'</span>]].isnull().<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>).<span class="bu">sum</span>()</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Count total missing in 'zip_code' and 'borough', respectively</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>total_missing_zip_code <span class="op">=</span> df[<span class="st">'zip_code'</span>].isnull().<span class="bu">sum</span>()</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>total_missing_borough <span class="op">=</span> df[<span class="st">'borough'</span>].isnull().<span class="bu">sum</span>()</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># If missing in both columns always co-occur, the number of missing</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># co-occurrences should be equal to the total missing in either column</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>missing_cooccur, total_missing_zip_code, total_missing_borough</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div id="51bb3f3c" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if missing values in 'zip_code' and 'borough' always co-occur</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Count rows where both are missing</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>missing_cooccur <span class="op">=</span> df[[<span class="st">'zip_code'</span>, <span class="st">'borough'</span>]].isnull().<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>).<span class="bu">sum</span>()</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Count total missing in 'zip_code' and 'borough', respectively</span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>total_missing_zip_code <span class="op">=</span> df[<span class="st">'zip_code'</span>].isnull().<span class="bu">sum</span>()</span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>total_missing_borough <span class="op">=</span> df[<span class="st">'borough'</span>].isnull().<span class="bu">sum</span>()</span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="co"># If missing in both columns always co-occur, the number of missing</span></span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="co"># co-occurrences should be equal to the total missing in either column</span></span>
+<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a>missing_cooccur, total_missing_zip_code, total_missing_borough</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
 <pre><code>(np.int64(541), np.int64(541), np.int64(541))</code></pre>
 </div>
 </div>
@@ -526,39 +2262,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>First make sure <code>geopy</code> is installed.</p>
 <pre class="shell"><code>pip install geopy</code></pre>
 <p>Now we use model <code>Nominatim</code> in package <code>geopy</code> to reverse geocode.</p>
-<div id="7b45b591" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> geopy.geocoders <span class="im">import</span> Nominatim</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the geocoder; the `user_agent` is your identifier </span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># when using the service. Be mindful not to crash the server</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># by unlimited number of queries, especially invalid code.</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>geolocator <span class="op">=</span> Nominatim(user_agent<span class="op">=</span><span class="st">"jyGeopyTry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f5e0ed8d" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> geopy.geocoders <span class="im">import</span> Nominatim</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the geocoder; the `user_agent` is your identifier </span></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="co"># when using the service. Be mindful not to crash the server</span></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a><span class="co"># by unlimited number of queries, especially invalid code.</span></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>geolocator <span class="op">=</span> Nominatim(user_agent<span class="op">=</span><span class="st">"jyGeopyTry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We write a function to do the reverse geocoding given lattitude and longitude.</p>
-<div id="872fc66d" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to fill missing zip_code</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_zip_code(latitude, longitude):</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        location <span class="op">=</span> geolocator.reverse((latitude, longitude), timeout<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> location:</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            address <span class="op">=</span> location.raw[<span class="st">'address'</span>]</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            zip_code <span class="op">=</span> address.get(<span class="st">'postcode'</span>, <span class="va">None</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> zip_code</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Error: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss"> for coordinates </span><span class="sc">{</span>latitude<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>longitude<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="dv">1</span>)  <span class="co"># Delay to avoid overwhelming the service</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="99eb2d51" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to fill missing zip_code</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_zip_code(latitude, longitude):</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>        location <span class="op">=</span> geolocator.reverse((latitude, longitude), timeout<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> location:</span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>            address <span class="op">=</span> location.raw[<span class="st">'address'</span>]</span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>            zip_code <span class="op">=</span> address.get(<span class="st">'postcode'</span>, <span class="va">None</span>)</span>
+<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> zip_code</span>
+<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb73-11"><a href="#cb73-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb73-12"><a href="#cb73-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Error: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss"> for coordinates </span><span class="sc">{</span>latitude<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>longitude<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb73-13"><a href="#cb73-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb73-14"><a href="#cb73-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
+<span id="cb73-15"><a href="#cb73-15" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="dv">1</span>)  <span class="co"># Delay to avoid overwhelming the service</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s try it out:</p>
-<div id="ba7caf2b" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>latitude <span class="op">=</span> <span class="fl">40.730610</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>longitude <span class="op">=</span> <span class="op">-</span><span class="fl">73.935242</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>zip_code <span class="op">=</span> get_zip_code(latitude, longitude)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="21eef711" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>latitude <span class="op">=</span> <span class="fl">40.730610</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>longitude <span class="op">=</span> <span class="op">-</span><span class="fl">73.935242</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>zip_code <span class="op">=</span> get_zip_code(latitude, longitude)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The function <code>get_zip_code</code> can then be applied to rows where zip code is missing but geocodes are not to fill the missing zip code.</p>
 <p>Once zip code is known, figuring out <code>burough</code> is simple because valid zip codes from each borough are known.</p>
@@ -575,45 +2311,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>First, ensure you have <code>pyarrow</code> installed on your computer (and preferrably, in your current virtual environment):</p>
 <pre class="shell"><code>pip install pyarrow</code></pre>
 <p>Feather is a fast, lightweight, and easy-to-use binary file format for storing data frames, optimized for speed and efficiency, particularly for IPC and data sharing between Python and R or Julia.</p>
-<div id="ccf5dea8" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df.to_feather(<span class="st">'data/nyccrashes_cleaned.feather'</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare the file sizes of the feather format and the CSV format</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># File paths</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>csv_file <span class="op">=</span> <span class="st">'data/nyccrashes_2024w0630_by20240916.csv'</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>feather_file <span class="op">=</span> <span class="st">'data/nyccrashes_cleaned.feather'</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Get file sizes in bytes</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>csv_size <span class="op">=</span> os.path.getsize(csv_file)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>feather_size <span class="op">=</span> os.path.getsize(feather_file)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert bytes to a more readable format (e.g., MB)</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>csv_size_mb <span class="op">=</span> csv_size <span class="op">/</span> (<span class="dv">1024</span> <span class="op">*</span> <span class="dv">1024</span>)</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>feather_size_mb <span class="op">=</span> feather_size <span class="op">/</span> (<span class="dv">1024</span> <span class="op">*</span> <span class="dv">1024</span>)</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the file sizes</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"CSV file size: </span><span class="sc">{</span>csv_size_mb<span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Feather file size: </span><span class="sc">{</span>feather_size_mb<span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5fc8544b" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>df.to_feather(<span class="st">'data/nyccrashes_cleaned.feather'</span>)</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare the file sizes of the feather format and the CSV format</span></span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a><span class="co"># File paths</span></span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>csv_file <span class="op">=</span> <span class="st">'data/nyccrashes_2024w0630_by20240916.csv'</span></span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>feather_file <span class="op">=</span> <span class="st">'data/nyccrashes_cleaned.feather'</span></span>
+<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Get file sizes in bytes</span></span>
+<span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a>csv_size <span class="op">=</span> os.path.getsize(csv_file)</span>
+<span id="cb76-12"><a href="#cb76-12" aria-hidden="true" tabindex="-1"></a>feather_size <span class="op">=</span> os.path.getsize(feather_file)</span>
+<span id="cb76-13"><a href="#cb76-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-14"><a href="#cb76-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert bytes to a more readable format (e.g., MB)</span></span>
+<span id="cb76-15"><a href="#cb76-15" aria-hidden="true" tabindex="-1"></a>csv_size_mb <span class="op">=</span> csv_size <span class="op">/</span> (<span class="dv">1024</span> <span class="op">*</span> <span class="dv">1024</span>)</span>
+<span id="cb76-16"><a href="#cb76-16" aria-hidden="true" tabindex="-1"></a>feather_size_mb <span class="op">=</span> feather_size <span class="op">/</span> (<span class="dv">1024</span> <span class="op">*</span> <span class="dv">1024</span>)</span>
+<span id="cb76-17"><a href="#cb76-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-18"><a href="#cb76-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the file sizes</span></span>
+<span id="cb76-19"><a href="#cb76-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"CSV file size: </span><span class="sc">{</span>csv_size_mb<span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span>
+<span id="cb76-20"><a href="#cb76-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Feather file size: </span><span class="sc">{</span>feather_size_mb<span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Read the feather file back in:</p>
-<div id="a7525094" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dff <span class="op">=</span> pd.read_feather(<span class="st">"data/nyccrashes_cleaned.feather"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>dff.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fedc9017" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>dff <span class="op">=</span> pd.read_feather(<span class="st">"data/nyccrashes_cleaned.feather"</span>)</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>dff.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="using-the-census-data" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="using-the-census-data"><span class="header-section-number">6.6</span> Using the Census Data</h2>
 <p>The <a href="data.census.gov">US Census</a> provides a lot of useful data that could be merged with the NYC crash data for further analytics.</p>
 <p>First, ensure the DataFrame (df) is ready for merging with census data. Specifically, check that the <code>zip_code</code> column is clean and consistent.and consistent.</p>
-<div id="20ce8be5" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_feather(<span class="st">"data/nyccrashes_cleaned.feather"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>valid_zip_df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">'zip_code'</span>]).copy()</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>valid_zip_df[<span class="st">'zip_code'</span>] <span class="op">=</span> valid_zip_df[<span class="st">'zip_code'</span>].astype(<span class="bu">int</span>).astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">5</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>unique_zips <span class="op">=</span> valid_zip_df[<span class="st">'zip_code'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="be51c423" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_feather(<span class="st">"data/nyccrashes_cleaned.feather"</span>)</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>valid_zip_df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">'zip_code'</span>]).copy()</span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>valid_zip_df[<span class="st">'zip_code'</span>] <span class="op">=</span> valid_zip_df[<span class="st">'zip_code'</span>].astype(<span class="bu">int</span>).astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">5</span>)</span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>unique_zips <span class="op">=</span> valid_zip_df[<span class="st">'zip_code'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can use the <code>uszipcode</code> package to get basic demographic data for each zip code. For more detailed or specific census data, using the <code>CensusData</code> package or direct API calls to the Census Bureau’s API.</p>
 <p>The <code>uszipcode</code> package provides a range of information about ZIP codes in the United States. When you query a ZIP code using <code>uszipcode</code>, you can access various attributes related to demographic data, housing, geographic location, and more. Here are some of the key variables available at the ZIP code level:</p>
@@ -648,51 +2384,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>median_age</code>: The median age of the population.</li>
 </ul>
 <p>Install the <code>uszipcode</code> package into the current virtual environment, if it has not been installd yet.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install uszipcode</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">``</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ex">We</span> will first clean the <span class="kw">`</span><span class="ex">zip_code</span><span class="kw">`</span> column to ensure it only</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="ex">contains</span> valid ZIP codes. Then, we will use a vectorized</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="ex">approach</span> to fetch the required data for each unique zip code</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ex">and</span> merge this information back into the original <span class="kw">`</span><span class="ex">DataFrame</span><span class="kw">`</span>.</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">`</span><span class="ex">{python}</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows where 'zip_code' is missing or not a valid ZIP code format</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="ex">valid_zip_df</span> = df.dropna<span class="er">(</span><span class="va">subset</span><span class="op">=</span><span class="pp">[</span><span class="st">'zip_code'</span><span class="pp">]</span><span class="kw">)</span><span class="fu">.copy()</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="va">valid_zip_df</span><span class="op">[</span><span class="st">'zip_code'</span><span class="op">]</span> <span class="ex">=</span> valid_zip_df<span class="pp">[</span><span class="st">'zip_code'</span><span class="pp">]</span>.astype<span class="er">(</span><span class="ex">str</span><span class="kw">)</span><span class="ex">.str.zfill</span><span class="er">(</span><span class="ex">5</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install uszipcode</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="kw">``</span></span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="ex">We</span> will first clean the <span class="kw">`</span><span class="ex">zip_code</span><span class="kw">`</span> column to ensure it only</span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a><span class="ex">contains</span> valid ZIP codes. Then, we will use a vectorized</span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="ex">approach</span> to fetch the required data for each unique zip code</span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a><span class="ex">and</span> merge this information back into the original <span class="kw">`</span><span class="ex">DataFrame</span><span class="kw">`</span>.</span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a><span class="kw">`</span><span class="ex">{python}</span></span>
+<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows where 'zip_code' is missing or not a valid ZIP code format</span></span>
+<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a><span class="ex">valid_zip_df</span> = df.dropna<span class="er">(</span><span class="va">subset</span><span class="op">=</span><span class="pp">[</span><span class="st">'zip_code'</span><span class="pp">]</span><span class="kw">)</span><span class="fu">.copy()</span></span>
+<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a><span class="va">valid_zip_df</span><span class="op">[</span><span class="st">'zip_code'</span><span class="op">]</span> <span class="ex">=</span> valid_zip_df<span class="pp">[</span><span class="st">'zip_code'</span><span class="pp">]</span>.astype<span class="er">(</span><span class="ex">str</span><span class="kw">)</span><span class="ex">.str.zfill</span><span class="er">(</span><span class="ex">5</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Since <code>uszipcode</code> doesn’t valid_zip_dfrently support vectorized operations for multiple ZIP code queries, we’ll optimize the process by querying each unique ZIP code once, then merging the results with the original <code>DataFrame</code>. This approach minimizes redundant queries for ZIP codes that appear multiple</p>
 <p>times.</p>
-<div id="d8900d0d" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> uszipcode <span class="im">import</span> SearchEngine</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the SearchEngine</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> SearchEngine()</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch median home value and median household income for each unique ZIP code</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>zip_data <span class="op">=</span> []</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> zip_code <span class="kw">in</span> unique_zips:</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> search.by_zipcode(zip_code)</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> result:  <span class="co"># Check if the result is not None</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        zip_data.append({</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"zip_code"</span>: zip_code,</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"median_home_value"</span>: result.median_home_value,</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"median_household_income"</span>: result.median_household_income</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        })</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:  <span class="co"># Handle the case where the result is None</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        zip_data.append({</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"zip_code"</span>: zip_code,</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">"median_home_value"</span>: <span class="va">None</span>,</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">"median_household_income"</span>: <span class="va">None</span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>        })</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to DataFrame</span></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>zip_info_df <span class="op">=</span> pd.DataFrame(zip_data)</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge this info back into the original DataFrame based on 'zip_code'</span></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> pd.merge(valid_zip_df, zip_info_df, how<span class="op">=</span><span class="st">"left"</span>, on<span class="op">=</span><span class="st">"zip_code"</span>)</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>merged_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div id="72c3bc04" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> uszipcode <span class="im">import</span> SearchEngine</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the SearchEngine</span></span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> SearchEngine()</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch median home value and median household income for each unique ZIP code</span></span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>zip_data <span class="op">=</span> []</span>
+<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> zip_code <span class="kw">in</span> unique_zips:</span>
+<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> search.by_zipcode(zip_code)</span>
+<span id="cb80-10"><a href="#cb80-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> result:  <span class="co"># Check if the result is not None</span></span>
+<span id="cb80-11"><a href="#cb80-11" aria-hidden="true" tabindex="-1"></a>        zip_data.append({</span>
+<span id="cb80-12"><a href="#cb80-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"zip_code"</span>: zip_code,</span>
+<span id="cb80-13"><a href="#cb80-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"median_home_value"</span>: result.median_home_value,</span>
+<span id="cb80-14"><a href="#cb80-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"median_household_income"</span>: result.median_household_income</span>
+<span id="cb80-15"><a href="#cb80-15" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb80-16"><a href="#cb80-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:  <span class="co"># Handle the case where the result is None</span></span>
+<span id="cb80-17"><a href="#cb80-17" aria-hidden="true" tabindex="-1"></a>        zip_data.append({</span>
+<span id="cb80-18"><a href="#cb80-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"zip_code"</span>: zip_code,</span>
+<span id="cb80-19"><a href="#cb80-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">"median_home_value"</span>: <span class="va">None</span>,</span>
+<span id="cb80-20"><a href="#cb80-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">"median_household_income"</span>: <span class="va">None</span></span>
+<span id="cb80-21"><a href="#cb80-21" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb80-22"><a href="#cb80-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-23"><a href="#cb80-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to DataFrame</span></span>
+<span id="cb80-24"><a href="#cb80-24" aria-hidden="true" tabindex="-1"></a>zip_info_df <span class="op">=</span> pd.DataFrame(zip_data)</span>
+<span id="cb80-25"><a href="#cb80-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-26"><a href="#cb80-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge this info back into the original DataFrame based on 'zip_code'</span></span>
+<span id="cb80-27"><a href="#cb80-27" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> pd.merge(valid_zip_df, zip_info_df, how<span class="op">=</span><span class="st">"left"</span>, on<span class="op">=</span><span class="st">"zip_code"</span>)</span>
+<span id="cb80-28"><a href="#cb80-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-29"><a href="#cb80-29" aria-hidden="true" tabindex="-1"></a>merged_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
 <div>
 
 
