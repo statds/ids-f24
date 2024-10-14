@@ -796,6 +796,9 @@ order of the categories during analysis.
 #### An Example
 
 Here is a demo with `pipeline` using a simulated dataset.
+
+First we generate data with sample size 1000 from a logistic model
+with both categorical and numerical covariates.
 ```{python}
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -840,44 +843,56 @@ data = pd.DataFrame({
     'income': income,
     'outcome': outcome
 })
+```
 
+Next we split the data into features and target and define
+transformers for each types of feature columns.
+
+```{python}
 # Split the dataset into features (X) and target (y)
 X = data[['gender', 'education', 'age', 'income']]
 y = data['outcome']
 
-# Step 1: Define categorical and numerical columns
+# Define categorical and numerical columns
 categorical_cols = ['gender', 'education']  
 numerical_cols = ['age', 'income']
 
-# Step 2: Define transformations for each type of variable
+# Define transformations for categorical variable
 categorical_transformer = OneHotEncoder(
-    categories=[['female', 'male'], ['high_school', 'bachelor', 'master', 'phd']], drop='first')
+    categories=[['male', 'female'], ['high_school', 'bachelor', 'master', 'phd']],
+    drop='first')
 
-# Standardize numerical variables
+# Define transformations for continuous variables
 numerical_transformer = StandardScaler()
 
-# Use ColumnTransformer to apply the correct transformations to the columns
+# Use ColumnTransformer to transform the columns
 preprocessor = ColumnTransformer(
     transformers=[
         ('cat', categorical_transformer, categorical_cols),
         ('num', numerical_transformer, numerical_cols)
     ]
 )
+```
 
-# Create a pipeline that first applies the preprocessor and then fits a logistic model
+Define a pipeline, which preprocess the data and then fits a logistic
+model.
+```{python}
 pipeline = Pipeline(steps=[
     ('preprocessor', preprocessor),
-    ('classifier', LogisticRegression(penalty='l1', solver='liblinear', max_iter=1000))
+    ('classifier', LogisticRegression(penalty='l1', solver='liblinear',
+    max_iter=1000))
 ])
 
 # Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=242)
+    X, y, test_size=0.2, random_state=2024)
 
 # Fit the pipeline to the training data
 pipeline.fit(X_train, y_train)
+```
 
-# Print the coefficients of the logistic regression model
+Check the coefficients of the fitted logistic regression model.
+```{python}
 model = pipeline.named_steps['classifier']
 intercept = model.intercept_
 coefficients = model.coef_
@@ -890,6 +905,18 @@ encoded_columns = pipeline.named_steps['preprocessor']\
 intercept, coefficients, list(encoded_columns)
 ```
 
+Note that the encoded columns has one for gender and three for
+education, with `male` and `high_school` as reference levels,
+respectively. The reference level was determined when calling 
+`oneHotEncoder()` with `drop = 'first'`. If `categories` were not
+specified, the first level in alphabetical order would be dropped. 
+With the default `drop = 'none'`, the estimated coefficients will have
+two columns that are not estimable and were set to zero. Obviously, if
+no level were dropped in forming the model matrix, the columns of the
+one hot encoding for each categorical variable would be perfectly
+linearly dependent because they would sum to one.
+
+
 The regression coefficients returned by the logistic regression model
 in this case should be interpreted on the standardized scale of the
 numerical covariates (e.g., `age` and `income`). This is because we
@@ -900,6 +927,7 @@ for age would reflect the change in the log-odds of the outcome for a
 years. The coefficients for the
 one-hot encoded categorical variables (gender and education) are on
 the original scale because one-hot encoding does not change the scale
-of the variables. For instance, the coefficient for `gender_male` tells
+of the variables. For instance, the coefficient for `gender_female` tells
 us how much the log-odds of the outcome changes when the observation
-is male versus the reference category (`female`).
+is male versus the reference category (`male`).
+
