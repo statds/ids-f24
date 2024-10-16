@@ -249,7 +249,7 @@ Please use the following table to sign up.
    10/07 | Suha Akach             |
    10/09 | Rahul Manna            |
    10/23 | Jaden Astle            | Classification and regression trees 
-   10/23 | Olivia Kashalapov      |
+   10/23 | Olivia Kashalapov      | SMOTE
    10/28 | Data science alumni panel |
    10/30 | Emily Borowski         | Random Forest
    10/30 | Aditya Paricharak      | Neural Networks
