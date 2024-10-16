@@ -23,6 +23,7 @@ book:
     - manipulation.qmd
     - visualization.qmd
     - stats.qmd
+    - machinelearning.qmd
     - supervised.qmd
     - exercises.qmd
     - references.qmd
