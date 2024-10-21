@@ -34,7 +34,8 @@ different perspectives brought by successive student cohorts.
 
 ## Midterm Project
 
-TBA
+NYC noise complaints made to NYPD in the week of July 4, 2024.
+See details in the exercises.
 
 ## Final Project
 
