@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -226,16 +246,15 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#classification-vs-regression" id="toc-classification-vs-regression" class="nav-link active" data-scroll-target="#classification-vs-regression"><span class="header-section-number">10.1</span> Classification vs Regression</a>
+  <li><a href="#decision-trees" id="toc-decision-trees" class="nav-link active" data-scroll-target="#decision-trees"><span class="header-section-number">10.1</span> Decision Trees</a>
   <ul class="collapse">
-  <li><a href="#regression-metrics" id="toc-regression-metrics" class="nav-link" data-scroll-target="#regression-metrics"><span class="header-section-number">10.1.1</span> Regression metrics</a></li>
-  <li><a href="#classification-metrics" id="toc-classification-metrics" class="nav-link" data-scroll-target="#classification-metrics"><span class="header-section-number">10.1.2</span> Classification metrics</a></li>
-  <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation"><span class="header-section-number">10.1.3</span> Cross-validation</a></li>
+  <li><a href="#algorithm-formulation" id="toc-algorithm-formulation" class="nav-link" data-scroll-target="#algorithm-formulation"><span class="header-section-number">10.1.1</span> Algorithm Formulation</a></li>
+  <li><a href="#search-space-for-possible-splits" id="toc-search-space-for-possible-splits" class="nav-link" data-scroll-target="#search-space-for-possible-splits"><span class="header-section-number">10.1.2</span> Search Space for Possible Splits</a></li>
+  <li><a href="#metrics" id="toc-metrics" class="nav-link" data-scroll-target="#metrics"><span class="header-section-number">10.1.3</span> Metrics</a></li>
   </ul></li>
-  <li><a href="#decision-trees" id="toc-decision-trees" class="nav-link" data-scroll-target="#decision-trees"><span class="header-section-number">10.2</span> Decision Trees</a>
+  <li><a href="#naive-bayes" id="toc-naive-bayes" class="nav-link" data-scroll-target="#naive-bayes"><span class="header-section-number">10.2</span> Naive Bayes</a>
   <ul class="collapse">
-  <li><a href="#algorithm-formulation" id="toc-algorithm-formulation" class="nav-link" data-scroll-target="#algorithm-formulation"><span class="header-section-number">10.2.1</span> Algorithm Formulation</a></li>
-  <li><a href="#matrics" id="toc-matrics" class="nav-link" data-scroll-target="#matrics"><span class="header-section-number">10.2.2</span> Matrics</a></li>
+  <li><a href="#theoretical-foundations" id="toc-theoretical-foundations" class="nav-link" data-scroll-target="#theoretical-foundations"><span class="header-section-number">10.2.1</span> Theoretical Foundations</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -262,113 +281,43 @@ window.Quarto = {
 </header>
 
 
-<section id="classification-vs-regression" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="classification-vs-regression"><span class="header-section-number">10.1</span> Classification vs Regression</h2>
-<ul>
-<li>Classificaiton: outcome variable is categorical</li>
-<li>Regression: outcome variable is continuous</li>
-<li>Both problems can have many covariates (predictors/features)</li>
-</ul>
-<section id="regression-metrics" class="level3" data-number="10.1.1">
-<h3 data-number="10.1.1" class="anchored" data-anchor-id="regression-metrics"><span class="header-section-number">10.1.1</span> Regression metrics</h3>
-<ul>
-<li>Mean squared error (MSE)</li>
-<li>Mean absolute error (MAE)</li>
-</ul>
-</section>
-<section id="classification-metrics" class="level3" data-number="10.1.2">
-<h3 data-number="10.1.2" class="anchored" data-anchor-id="classification-metrics"><span class="header-section-number">10.1.2</span> Classification metrics</h3>
-<section id="confusion-matrix" class="level4" data-number="10.1.2.1">
-<h4 data-number="10.1.2.1" class="anchored" data-anchor-id="confusion-matrix"><span class="header-section-number">10.1.2.1</span> Confusion matrix</h4>
-<p><a href="https://en.wikipedia.org/wiki/Confusion_matrix" class="uri">https://en.wikipedia.org/wiki/Confusion_matrix</a></p>
-<p>Four entries in the confusion matrix:</p>
-<ul>
-<li>TP: number of true positives</li>
-<li>FN: number of false negatives</li>
-<li>FP: number of false positives</li>
-<li>TN: number of true negatives</li>
-</ul>
-<p>Four rates from the confusion matrix with actual (row) margins:</p>
-<ul>
-<li>TPR: TP / (TP + FN). Also known as sensitivity.</li>
-<li>FNR: TN / (TP + FN). Also known as miss rate.</li>
-<li>FPR: FP / (FP + TN). Also known as false alarm, fall-out.</li>
-<li>TNR: TN / (FP + TN). Also known as specificity.</li>
-</ul>
-<p>Note that TPR and FPR do not add up to one. Neither do FNR and FPR.</p>
-<p>Four rates from the confusion matrix with predicted (column) margins:</p>
-<ul>
-<li>PPV: TP / (TP + FP). Also known as precision.</li>
-<li>FDR: FP / (TP + FP).</li>
-<li>FOR: FN / (FN + TN).</li>
-<li>NPV: TN / (FN + TN).</li>
-</ul>
-</section>
-<section id="measure-of-classification-performance" class="level4" data-number="10.1.2.2">
-<h4 data-number="10.1.2.2" class="anchored" data-anchor-id="measure-of-classification-performance"><span class="header-section-number">10.1.2.2</span> Measure of classification performance</h4>
-<p>Measures for a given confusion matrix:</p>
-<ul>
-<li>Accuracy: (TP + TN) / (P + N). The proportion of all corrected predictions. Not good for highly imbalanced data.</li>
-<li>Recall (sensitivity/TPR): TP / (TP + FN). Intuitively, the ability of the classifier to find all the positive samples.</li>
-<li>Precision: TP / (TP + FP). Intuitively, the ability of the classifier not to label as positive a sample that is negative.</li>
-<li>F-beta score: Harmonic mean of precision and recall with <span class="math inline">\(\beta\)</span> chosen such that recall is considered <span class="math inline">\(\beta\)</span> times as important as precision, <span class="math display">\[
-(1 + \beta^2) \frac{\text{precision} \cdot \text{recall}}
-{\beta^2 \text{precision} + \text{recall}}
-\]</span> See <a href="https://stats.stackexchange.com/questions/221997/why-f-beta-score-define-beta-like-that">stackexchange post</a> for the motivation of <span class="math inline">\(\beta^2\)</span>.</li>
-</ul>
-<p>When classification is obtained by dichotomizing a continuous score, the receiver operating characteristic (ROC) curve gives a graphical summary of the FPR and TPR for all thresholds. The ROC curve plots the TPR against the FPR at all thresholds.</p>
-<ul>
-<li>Increasing from <span class="math inline">\((0, 0)\)</span> to <span class="math inline">\((1, 1)\)</span>.</li>
-<li>Best classification passes <span class="math inline">\((0, 1)\)</span>.</li>
-<li>Classification by random guess gives the 45-degree line.</li>
-<li>Area between the ROC and the 45-degree line is the Gini coefficient, a measure of inequality.</li>
-<li>Area under the curve (AUC) of ROC thus provides an important metric of classification results.</li>
-</ul>
-</section>
-</section>
-<section id="cross-validation" class="level3" data-number="10.1.3">
-<h3 data-number="10.1.3" class="anchored" data-anchor-id="cross-validation"><span class="header-section-number">10.1.3</span> Cross-validation</h3>
-<ul>
-<li>Goal: strike a bias-variance tradeoff.</li>
-<li>K-fold: hold out each fold as testing data.</li>
-<li>Scores: minimized to train a model</li>
-</ul>
-<p>Cross-validation is an important measure to prevent over-fitting. Good in-sample performance does not necessarily mean good out-sample performance. A general work flow in model selection with cross-validation is as follows.</p>
-<ul>
-<li>Split the data into training and testing</li>
-<li>For each candidate model <span class="math inline">\(m\)</span> (with possibly multiple tuning parameters)
-<ul>
-<li>Fit the model to the training data</li>
-<li>Obtain the performance measure <span class="math inline">\(f(m)\)</span> on the testing data (e.g., CV score, MSE, loss, etc.)</li>
-</ul></li>
-<li>Choose the model <span class="math inline">\(m^* = \arg\max_m f(m)\)</span>.</li>
-</ul>
-</section>
-</section>
-<section id="decision-trees" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="decision-trees"><span class="header-section-number">10.2</span> Decision Trees</h2>
-<p>The goal of a decision tree algorithm is to create a model that predicts the value of a target variable by learning decision rules inferred from the features of the data. A decision tree can be viewed as a piecewise constant approximation of the target function.</p>
-<section id="algorithm-formulation" class="level3" data-number="10.2.1">
-<h3 data-number="10.2.1" class="anchored" data-anchor-id="algorithm-formulation"><span class="header-section-number">10.2.1</span> Algorithm Formulation</h3>
-<p>At any given node in the tree, the algorithm seeks the best split that minimizes an impurity or loss measure <span class="math inline">\(H\)</span>. Let <span class="math inline">\(Q_m\)</span> represent the data at node <span class="math inline">\(m\)</span>, with a sample size of <span class="math inline">\(n_m\)</span>. A candidate split <span class="math inline">\(\theta\)</span> consists of a potential threshold for a chosen feature. After the split, the data are divided into two groups: <span class="math inline">\(Q_{m,l}\)</span> (left node) with sample size <span class="math inline">\(n_{m,l}\)</span>, and <span class="math inline">\(Q_{m,r}\)</span> (right node) with sample size <span class="math inline">\(n_{m,r}\)</span>. The quality of the split is measured by:</p>
+<section id="decision-trees" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="decision-trees"><span class="header-section-number">10.1</span> Decision Trees</h2>
+<p>Decision trees are widely used supervised learning models that predict the value of a target variable by iteratively splitting the dataset based on decision rules derived from input features. The model functions as a piecewise constant approximation of the target function, producing clear, interpretable rules that are easily visualized and analyzed <span class="citation" data-cites="breiman1984classification">(<a href="references.html#ref-breiman1984classification" role="doc-biblioref">Breiman et al. 1984</a>)</span>. Decision trees are fundamental in both classification and regression tasks, serving as the building blocks for more advanced ensemble models such as Random Forests and Gradient Boosting Machines.</p>
+<section id="algorithm-formulation" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="algorithm-formulation"><span class="header-section-number">10.1.1</span> Algorithm Formulation</h3>
+<p>The core mechanism of a decision tree algorithm is the identification of optimal splits that partition the data into subsets that are increasingly homogeneous with respect to the target variable. At any node <span class="math inline">\(m\)</span>, the data subset is denoted as <span class="math inline">\(Q_m\)</span> with a sample size of <span class="math inline">\(n_m\)</span>. The objective is to find a candidate split <span class="math inline">\(\theta\)</span>, defined as a threshold for a given feature, that minimizes an impurity or loss measure <span class="math inline">\(H\)</span>.</p>
+<p>When a split is made at node <span class="math inline">\(m\)</span>, the data is divided into two subsets: <span class="math inline">\(Q_{m,l}\)</span> (left node) with sample size <span class="math inline">\(n_{m,l}\)</span>, and <span class="math inline">\(Q_{m,r}\)</span> (right node) with sample size <span class="math inline">\(n_{m,r}\)</span>. The split quality, measured by <span class="math inline">\(G(Q_m, \theta)\)</span>, is given by:</p>
 <p><span class="math display">\[
-G(Q_m, \theta) = \frac{n_{m,l}}{n_m} H(Q_{m,l}(\theta)) + \frac{n_{m,r}}{n_m} H(Q_{m,r}(\theta)).
+G(Q_m, \theta) = \frac{n_{m,l}}{n_m} H(Q_{m,l}(\theta)) +
+\frac{n_{m,r}}{n_m} H(Q_{m,r}(\theta)).
 \]</span></p>
-<p>The algorithm selects the split that minimizes the impurity:</p>
+<p>The algorithm aims to identify the split that minimizes the impurity:</p>
 <p><span class="math display">\[
 \theta^* = \arg\min_{\theta} G(Q_m, \theta).
 \]</span></p>
-<p>This process is applied recursively at each child node, continuing until a stopping condition is met.</p>
+<p>This process is applied recursively at each child node until a stopping condition is met.</p>
 <ul>
 <li>Stopping Criteria: The algorithm stops when the maximum tree depth is reached or when the node sample size falls below a preset threshold.</li>
 <li>Pruning: Reduce the complexity of the final tree by removing branches that add little predictive value. This reduces overfitting and improves the generalization accuracy of the model.</li>
 </ul>
 </section>
-<section id="matrics" class="level3" data-number="10.2.2">
-<h3 data-number="10.2.2" class="anchored" data-anchor-id="matrics"><span class="header-section-number">10.2.2</span> Matrics</h3>
-<p>See <code>sklearn</code> documentation for <a href="https://scikit-learn.org/stable/modules/tree.html#classification-criteria">details</a>.</p>
-<section id="classification" class="level4" data-number="10.2.2.1">
-<h4 data-number="10.2.2.1" class="anchored" data-anchor-id="classification"><span class="header-section-number">10.2.2.1</span> Classification</h4>
+<section id="search-space-for-possible-splits" class="level3" data-number="10.1.2">
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="search-space-for-possible-splits"><span class="header-section-number">10.1.2</span> Search Space for Possible Splits</h3>
+<p>At each node in the decision tree, the search space for possible splits comprises all features in the dataset and potential thresholds derived from the values of each feature. For a given feature, the algorithm considers each unique value in the current node’s subset as a possible split point. The potential thresholds are typically set as midpoints between consecutive unique values, ensuring the data is partitioned effectively.</p>
+<p>Formally, let the feature set be <span class="math inline">\(\{X_1, X_2, \ldots, X_p\}\)</span>, where <span class="math inline">\(p\)</span> is the total number of features, and let the unique values of feature $ X_j $ at node $ m $ be denoted by ${v_{j,1}, v_{j,2}, , v_{j,k_j}} <span class="math inline">\(. The search space at node\)</span>m$ includes:</p>
+<ul>
+<li>Feature candidates: <span class="math inline">\(\{X_1, X_2, \ldots, X_p\}\)</span>.</li>
+<li>Threshold candidates for <span class="math inline">\(X_j\)</span>: <span class="math display">\[
+\left\{ \frac{v_{j,i} + v_{j,i+1}}{2} \mid 1 \leq i &lt; k_j \right\}.
+\]</span></li>
+</ul>
+<p>The search space therefore encompasses all combinations of features and their respective thresholds. While the complexity of this search can be substantial, particularly for high-dimensional data or features with numerous unique values, efficient algorithms use sorting and single-pass scanning techniques to mitigate the computational cost.</p>
+</section>
+<section id="metrics" class="level3" data-number="10.1.3">
+<h3 data-number="10.1.3" class="anchored" data-anchor-id="metrics"><span class="header-section-number">10.1.3</span> Metrics</h3>
+<section id="classification" class="level4" data-number="10.1.3.1">
+<h4 data-number="10.1.3.1" class="anchored" data-anchor-id="classification"><span class="header-section-number">10.1.3.1</span> Classification</h4>
 <p>In decision tree classification, several criteria can be used to measure the quality of a split at each node. These criteria are based on how “pure” the resulting nodes are after the split. A pure node contains samples that predominantly belong to a single class. The goal is to minimize impurity, leading to nodes that are as homogeneous as possible.</p>
 <ul>
 <li><p>Gini Index: The Gini index measures the impurity of a node by calculating the probability of randomly choosing two different classes. A perfect split (all instances belong to one class) has a Gini index of 0. At node <span class="math inline">\(m\)</span>, the Gini index is <span class="math display">\[
@@ -382,8 +331,8 @@ H(Q_m) = 1 - \max_k p_{mk},
 \]</span> where <span class="math inline">\(\max_k p_{mk}\)</span> is the largest proportion of samples belonging to any class <span class="math inline">\(k\)</span>.</p></li>
 </ul>
 </section>
-<section id="regression-criteria" class="level4" data-number="10.2.2.2">
-<h4 data-number="10.2.2.2" class="anchored" data-anchor-id="regression-criteria"><span class="header-section-number">10.2.2.2</span> Regression Criteria</h4>
+<section id="regression-criteria" class="level4" data-number="10.1.3.2">
+<h4 data-number="10.1.3.2" class="anchored" data-anchor-id="regression-criteria"><span class="header-section-number">10.1.3.2</span> Regression Criteria</h4>
 <p>In decision tree regression, different criteria are used to assess the quality of a split. The goal is to minimize the spread or variance of the target variable within each node.</p>
 <ul>
 <li><p>Mean Squared Error (MSE): Mean squared error is the most common criterion used in regression trees. It measures the average squared difference between the actual values and the predicted values (mean of the target in the node). The smaller the MSE, the better the fit. At node <span class="math inline">\(m\)</span>, it is <span class="math display">\[
@@ -403,11 +352,118 @@ H(Q_m) = \frac{1}{n_m} \sum_{i=1}^{n_m} |y_i - \bar{y}_m|
 \]</span> MAE is useful when you want to minimize large deviations and can be more robust in cases where outliers are present in the data.</p></li>
 </ul>
 </section>
-<section id="summary" class="level4" data-number="10.2.2.3">
-<h4 data-number="10.2.2.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">10.2.2.3</span> Summary</h4>
+<section id="summary" class="level4" data-number="10.1.3.3">
+<h4 data-number="10.1.3.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">10.1.3.3</span> Summary</h4>
 <p>In decision trees, the choice of splitting criterion depends on the type of task (classification or regression) and the nature of the data. For classification tasks, the Gini index and entropy are the most commonly used, with Gini offering simplicity and speed, and entropy providing a more theoretically grounded approach. Misclassification error can be used for simpler cases. For regression tasks, MSE is the most popular choice, but Poisson deviance and MAE are useful for specific use cases such as count data and robust models, respectively.</p>
+</section>
+</section>
+</section>
+<section id="naive-bayes" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="naive-bayes"><span class="header-section-number">10.2</span> Naive Bayes</h2>
+<p>Naive Bayes is a probabilistic classification algorithm based on Bayes’ Theorem, which is used for both binary and multiclass classification problems. It is particularly effective for high-dimensional datasets and is commonly applied in tasks like text classification, spam detection, and sentiment analysis. The algorithm is called “naive” because it assumes that all features are conditionally independent given the class label, an assumption that rarely holds in real-world data but still performs well in many cases.</p>
+<section id="theoretical-foundations" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="theoretical-foundations"><span class="header-section-number">10.2.1</span> Theoretical Foundations</h3>
+<p>The foundation of the Naive Bayes classifier is Bayes’ Theorem, which is used to update the probability estimate of a hypothesis given new evidence. Mathematically, Bayes’ Theorem is expressed as:</p>
+<p><span class="math display">\[
+P(y \mid X) = \frac{P(X \mid y) \, P(y)}{P(X)},
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(P(y \mid X)\)</span>: Posterior probability of class <span class="math inline">\(y\)</span> given the input features <span class="math inline">\(X\)</span>.</li>
+<li><span class="math inline">\(P(X \mid y)\)</span>: Likelihood of observing <span class="math inline">\(X\)</span> given that the class is <span class="math inline">\(y\)</span>.</li>
+<li><span class="math inline">\(P(y)\)</span>: Prior probability of the class <span class="math inline">\(y\)</span>.</li>
+<li><span class="math inline">\(P(X)\)</span>: Marginal probability of the feature vector <span class="math inline">\(X\)</span>.</li>
+</ul>
+<section id="naive-assumption-and-likelihood-decomposition" class="level4" data-number="10.2.1.1">
+<h4 data-number="10.2.1.1" class="anchored" data-anchor-id="naive-assumption-and-likelihood-decomposition"><span class="header-section-number">10.2.1.1</span> Naive Assumption and Likelihood Decomposition</h4>
+<p>The algorithm makes the simplifying assumption that features in <span class="math inline">\(X\)</span> are conditionally independent given the class <span class="math inline">\(y\)</span>. This assumption enables the likelihood <span class="math inline">\(P(X \mid y)\)</span> to be decomposed as:</p>
+<p><span class="math display">\[
+P(X \mid y) = \prod_{i=1}^n P(x_i \mid y),
+\]</span></p>
+<p>where <span class="math inline">\(X = \{x_1, x_2, \ldots, x_n\}\)</span> represents the feature vector with <span class="math inline">\(n\)</span> features, and <span class="math inline">\(P(x_i \mid y)\)</span> is the conditional probability of feature <span class="math inline">\(x_i\)</span> given the class <span class="math inline">\(y\)</span>.</p>
+<p>The model parameters are the prior probabilities <span class="math inline">\(P(y)\)</span> and the conditional probabilities <span class="math inline">\(P(x_i \mid y)\)</span>. These are estimated from the training data using the maximum likelihood estimation (MLE):</p>
+<ol type="1">
+<li><p>Prior Estimation: The prior probability <span class="math inline">\(P(y)\)</span> is estimated as the proportion of training samples in class <span class="math inline">\(y\)</span>:</p>
+<p><span class="math display">\[
+\hat{P}(y) = \frac{\text{count}(y)}{N},
+\]</span></p>
+<p>where <span class="math inline">\(\text{count}(y)\)</span> is the number of instances belonging to class <span class="math inline">\(y\)</span>, and <span class="math inline">\(N\)</span> is the total number of training samples.</p></li>
+<li><p>Conditional Probability Estimation:</p>
+<ul>
+<li><p>Categorical Features: For discrete or categorical features, the conditional probability <span class="math inline">\(P(x_i \mid y)\)</span> is estimated as:</p>
+<p><span class="math display">\[
+\hat{P}(x_i \mid y) = \frac{\text{count}(x_i, y)}{\text{count}(y)},
+\]</span></p>
+<p>where <span class="math inline">\(\text{count}(x_i, y)\)</span> is the number of samples in class <span class="math inline">\(y\)</span> that have feature <span class="math inline">\(x_i\)</span>.</p></li>
+<li><p>Continuous Features: For continuous features, Naive Bayes commonly assumes a Gaussian distribution. In this case, <span class="math inline">\(P(x_i \mid y)\)</span> is modeled using the Gaussian distribution with mean <span class="math inline">\(\mu_{y,i}\)</span> and variance <span class="math inline">\(\sigma_{y,i}^2\)</span>:</p>
+<p><span class="math display">\[
+P(x_i \mid y) = \frac{1}{\sqrt{2\pi\sigma_{y,i}^2}} \exp \left(
+-\frac{(x_i - \mu_{y,i})^2}{2\sigma_{y,i}^2} \right).
+\]</span></p>
+<p>The parameters <span class="math inline">\(\mu_{y,i}\)</span> and <span class="math inline">\(\sigma_{y,i}^2\)</span> are estimated from the training data using the sample mean and variance for each feature in each class.</p></li>
+</ul></li>
+</ol>
+</section>
+<section id="class-prediction" class="level4" data-number="10.2.1.2">
+<h4 data-number="10.2.1.2" class="anchored" data-anchor-id="class-prediction"><span class="header-section-number">10.2.1.2</span> Class Prediction</h4>
+<p>The goal of the Naive Bayes classifier is to predict the class <span class="math inline">\(y\)</span> that maximizes the posterior probability <span class="math inline">\(P(y \mid X)\)</span>. After applying Bayes’ Theorem and dropping the constant denominator <span class="math inline">\(P(X)\)</span>, the decision rule becomes:</p>
+<p><span class="math display">\[
+y^* = \arg\max_y \, P(y) \prod_{i=1}^n P(x_i \mid y).
+\]</span></p>
+<p>In practice, the log of the posterior is used to prevent numerical underflow:</p>
+<p><span class="math display">\[
+\log P(y \mid X) = \log P(y) + \sum_{i=1}^n \log P(x_i \mid y).
+\]</span></p>
+<p>The predicted class is the one that maximizes this expression.</p>
+</section>
+<section id="surprisingly-good-performance" class="level4" data-number="10.2.1.3">
+<h4 data-number="10.2.1.3" class="anchored" data-anchor-id="surprisingly-good-performance"><span class="header-section-number">10.2.1.3</span> Surprisingly Good Performance</h4>
+<p>Although the assumption of conditional independence among features is often unrealistic, Naive Bayes still performs well for several reasons:</p>
+<ol type="1">
+<li><p>Robustness to Violations of Independence: Literature suggests that Naive Bayes can achieve good classification performance even when features are correlated, as long as the dependencies are consistent across classes <span class="citation" data-cites="domingos1997optimality">(<a href="references.html#ref-domingos1997optimality" role="doc-biblioref">Domingos and Pazzani 1997</a>)</span>. This is because the decision boundaries produced by Naive Bayes are often well-aligned with the true boundaries, despite the imprecise probability estimates.</p></li>
+<li><p>Decision Rule Effectiveness: Since Naive Bayes focuses on finding the class that maximizes the posterior probability, it is less sensitive to errors in individual probability estimates, as long as the relative ordering of probabilities remains correct <span class="citation" data-cites="rish2001empirical">(<a href="references.html#ref-rish2001empirical" role="doc-biblioref">Rish 2001</a>)</span>.</p></li>
+<li><p>Zero-One Loss Minimization: Naive Bayes aims to minimize the zero-one loss, i.e., the number of misclassifications. The method benefits from the fact that exact probability estimation is not essential for accurate classification, as the correct class can still be chosen even with approximate probabilities <span class="citation" data-cites="ng2001discriminative">(<a href="references.html#ref-ng2001discriminative" role="doc-biblioref">Ng and Jordan 2001</a>)</span>.</p></li>
+<li><p>High-Dimensional Settings: In high-dimensional settings, the conditional independence assumption can act as a form of implicit regularization, preventing overfitting by simplifying the probability model <span class="citation" data-cites="rish2001empirical">(<a href="references.html#ref-rish2001empirical" role="doc-biblioref">Rish 2001</a>)</span>. This makes Naive Bayes particularly well-suited for text classification and other sparse feature spaces.</p></li>
+</ol>
+</section>
+<section id="advantages-and-limitations" class="level4" data-number="10.2.1.4">
+<h4 data-number="10.2.1.4" class="anchored" data-anchor-id="advantages-and-limitations"><span class="header-section-number">10.2.1.4</span> Advantages and Limitations</h4>
+<p>Advantages:</p>
+<ul>
+<li>Computationally efficient, with linear time complexity in terms of the number of features and data samples.</li>
+<li>Performs well on large datasets, especially when features are conditionally independent.</li>
+<li>Suitable for high-dimensional data, making it popular in text classification.</li>
+</ul>
+<p>Limitations:</p>
+<ul>
+<li>Relies on the assumption of conditional independence, which may not hold in real-world datasets, potentially affecting performance.</li>
+<li>It is sensitive to zero probabilities; if a feature value never appears in the training set for a given class, its likelihood becomes zero. To address this, Laplace smoothing (or add-one smoothing) is often applied.</li>
+</ul>
+</section>
+<section id="laplace-smoothing" class="level4" data-number="10.2.1.5">
+<h4 data-number="10.2.1.5" class="anchored" data-anchor-id="laplace-smoothing"><span class="header-section-number">10.2.1.5</span> Laplace Smoothing</h4>
+<p>Laplace smoothing is used to handle zero probabilities in the likelihood estimation. It adds a small constant $ $ (usually 1) to the count of each feature value, preventing the probability from becoming zero:</p>
+<p><span class="math display">\[
+P(x_i \mid y) = \frac{\text{count}(x_i, y) + \alpha}
+{\sum_{x_i'} (\text{count}(x_i', y) + \alpha)}.
+\]</span></p>
+<p>This adjustment ensures that even unseen features in the training data do not lead to zero probabilities, thus improving the model’s robustness.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-breiman1984classification" class="csl-entry" role="listitem">
+Breiman, L, J H Friedman, R Olshen, and C J Stone. 1984. <em>Classification and Regression Trees</em>. Wadsworth.
+</div>
+<div id="ref-domingos1997optimality" class="csl-entry" role="listitem">
+Domingos, Pedro, and Michael Pazzani. 1997. <span>“On the Optimality of the Simple <span>B</span>ayesian Classifier Under Zero-One Loss.”</span> <em>Machine Learning</em> 29 (2-3): 103–30.
+</div>
+<div id="ref-ng2001discriminative" class="csl-entry" role="listitem">
+Ng, Andrew, and Michael Jordan. 2001. <span>“On Discriminative Vs. Generative Classifiers: <span>A</span> Comparison of Logistic Regression and Naive <span>B</span>ayes.”</span> In <em>Proceedings of the 14th International Conference on Neural Information Processing Systems: Natural and Synthetic</em>, 841–48.
+</div>
+<div id="ref-rish2001empirical" class="csl-entry" role="listitem">
+Rish, Irina. 2001. <span>“An Empirical Study of the Naive <span>B</span>ayes Classifier.”</span> In <em>IJCAI 2001 Workshop on Empirical Methods in Artificial Intelligence</em>, 3:41–46. 22. Citeseer.
+</div>
+</div>
 </section>
 </section>
 </section>
