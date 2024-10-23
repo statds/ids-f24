@@ -3,16 +3,7 @@
 This section was written by Thea Johnson, a senior in Statistics
 at the time.
 
----
-title: "Database Management With SQL"
-subtitle: "Thea Johnson"
-format:
-    html:
-        slide-number: true
-        toc: true 
-    
----
-## Table of Contents
+### Table of Contents
 - What is a Database?
 - What is SQL
 - CRUD Model
@@ -22,7 +13,7 @@ format:
 - Using SQL to work with NYC Open Data
 - Queries 
 
-## What is a Database?
+### What is a Database?
 - Collection of related information
 - Ex: Phone books, grocery list, student records
 - Relational and non-relational
@@ -33,7 +24,7 @@ format:
 
 
 
-## Example Relational Database
+### Example Relational Database
 
 ```{python}
 import sqlite3
@@ -81,12 +72,12 @@ connection.close()
 
 ```
 
-## What is SQL?
+### What is SQL?
 - Structured Query Language
 - Allows users to interact with databases to store and retrieve data
 - The essential operations follow the CRUD acronym
 
-## CRUD
+### CRUD
 - Create, read, update and delete
 - Essential operations for SQL to manage a database
 - Create: adds a new record (row) to a database with unique attributes
@@ -97,7 +88,7 @@ connection.close()
 
 
 
-## Implementing SQL Through Python to Create a Table
+### Implementing SQL Through Python to Create a Table
 
 ```python
 import sqlite3
@@ -132,7 +123,7 @@ connection.close()
 ```
 
 
-## How to Insert into the SQL table?
+### How to Insert into the SQL table?
 ```python
 import sqlite3
 import pandas as pd
@@ -170,7 +161,7 @@ connection.close()
 
 
 ```
-## How to Update/Delete Using SQL?
+### How to Update/Delete Using SQL?
 ```python
 # Updating an attribute (WHERE statement is optional)
 connection = sqlite3.connect("phonebook.db")
@@ -202,7 +193,7 @@ connection.commit()
 connection.close()
 ```
 
-##
+###
 
 
 ```{python}
@@ -270,7 +261,7 @@ connection.close()
 
 ```
 
-## Using SQL to Work on a CSV file
+### Using SQL to Work on a CSV file
 ```python
 import pandas as pd
 import sqlite3
@@ -305,7 +296,7 @@ data.to_sql('nyccrashes', conn, if_exists='replace', index=False)
 
 ```
 
-## Queries 
+### Queries 
 - Commands used to pull needed data out of a database
 
 ```python
@@ -334,7 +325,7 @@ fatal_crashes = pd.read_sql_query("SELECT * FROM nyccrashes WHERE \"NUMBER OF PE
 print(fatal_crashes.head())
 ```
 
-## Queries Output
+### Queries Output
 
 ```{python}
 #Query for everythin in the table
@@ -367,13 +358,14 @@ print(specific_columns.head(5))
 conn.commit()
 ```
 
-## Conclusion
+### Conclusion
 - SQL works with relational databases
 - SQL performs the CRUD functions: create, read, update, and delete to work with databases
 - A query is a request from a database for information
 - SQL can be used to manipulate data from various formats including CSV files
 
 
-
+### Further reading 
+- Python Software Foundation. (n.d.). sqlite3 — DB-API 2.0 interface for SQLite databases. Python Documentation. https://docs.python.org/3/library/sqlite3.html
 
 
