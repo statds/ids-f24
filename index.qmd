@@ -243,13 +243,13 @@ Please use the following table to sign up.
    09/16 | Deyu Xu                | Import/Export data
    09/18 | Sara Clokey            | Communications in data science
    09/23 | Dorathea Johnson       | Database with SQL
-   09/25 | Xavier Febles           |
+   09/25 | Xavier Febles           | Statistical tests
    09/30 | Jack Bienvenue         | Visualizing spatial data in a Google Map
    10/02 | Julia Mazzola          | Data Visualization with Plotnine
-   10/07 | Suha Akach             |
-   10/09 | Rahul Manna            |
+   10/07 | Suha Akach             | Naive Bayes classifier
+   10/09 | Rahul Manna            | Animation
    10/23 | Jaden Astle            | Classification and regression trees 
-   10/23 | Olivia Kashalapov      | SMOTE
+   10/23 | Olivia Kashalapov      | Synthetic Minority Oversampling Technique (SMOTE)
    10/28 | Data science alumni panel |
    10/30 | Emily Borowski         | Random Forest
    10/30 | Aditya Paricharak      | Neural Networks
