@@ -1,0 +1,175 @@
+## Naive Bayes
+
+Naive Bayes is a probabilistic classification algorithm based on Bayes' 
+Theorem, which is used for both binary and multiclass classification 
+problems. It is particularly effective for high-dimensional datasets 
+and is commonly applied in tasks like text classification, spam 
+detection, and sentiment analysis. The algorithm is called "naive" 
+because it assumes that all features are conditionally independent 
+given the class label, an assumption that rarely holds in real-world 
+data but still performs well in many cases.
+
+### Theoretical Foundations
+
+The foundation of the Naive Bayes classifier is Bayes' Theorem, which 
+is used to update the probability estimate of a hypothesis given new 
+evidence. Mathematically, Bayes' Theorem is expressed as:
+
+$$
+P(y \mid X) = \frac{P(X \mid y) \, P(y)}{P(X)},
+$$
+
+where:
+
+- $P(y \mid X)$: Posterior probability of class $y$ given the input 
+  features $X$.
+- $P(X \mid y)$: Likelihood of observing $X$ given that the class is 
+  $y$.
+- $P(y)$: Prior probability of the class $y$.
+- $P(X)$: Marginal probability of the feature vector $X$.
+
+
+#### Naive Assumption and Likelihood Decomposition
+
+The algorithm makes the simplifying assumption that features in $X$ 
+are conditionally independent given the class $y$. This assumption 
+enables the likelihood $P(X \mid y)$ to be decomposed as:
+
+$$
+P(X \mid y) = \prod_{i=1}^n P(x_i \mid y),
+$$
+
+where $X = \{x_1, x_2, \ldots, x_n\}$ represents the feature vector 
+with $n$ features, and $P(x_i \mid y)$ is the conditional probability 
+of feature $x_i$ given the class $y$.
+
+
+
+The model parameters are the prior probabilities $P(y)$ and the 
+conditional probabilities $P(x_i \mid y)$. These are estimated from 
+the training data using the maximum likelihood estimation (MLE):
+
+1. Prior Estimation:
+   The prior probability $P(y)$ is estimated as the proportion of 
+   training samples in class $y$:
+
+   $$
+   \hat{P}(y) = \frac{\text{count}(y)}{N},
+   $$
+   
+   where $\text{count}(y)$ is the number of instances belonging to 
+   class $y$, and $N$ is the total number of training samples.
+
+2. Conditional Probability Estimation:
+   - Categorical Features: For discrete or categorical features, 
+     the conditional probability $P(x_i \mid y)$ is estimated as:
+
+     $$
+     \hat{P}(x_i \mid y) = \frac{\text{count}(x_i, y)}{\text{count}(y)},
+     $$
+
+     where $\text{count}(x_i, y)$ is the number of samples in class $y$ 
+     that have feature $x_i$.
+   
+   - Continuous Features: For continuous features, Naive Bayes 
+     commonly assumes a Gaussian distribution. In this case, 
+	 $P(x_i \mid y)$ is modeled using the Gaussian distribution with mean 
+     $\mu_{y,i}$ and variance $\sigma_{y,i}^2$:
+
+     $$
+     P(x_i \mid y) = \frac{1}{\sqrt{2\pi\sigma_{y,i}^2}} \exp \left( 
+     -\frac{(x_i - \mu_{y,i})^2}{2\sigma_{y,i}^2} \right).
+     $$
+
+     The parameters $\mu_{y,i}$ and $\sigma_{y,i}^2$ are estimated 
+     from the training data using the sample mean and variance for 
+     each feature in each class.
+
+#### Class Prediction
+
+The goal of the Naive Bayes classifier is to predict the class $y$ that 
+maximizes the posterior probability $P(y \mid X)$. After applying 
+Bayes' Theorem and dropping the constant denominator $P(X)$, the 
+decision rule becomes:
+
+$$
+y^* = \arg\max_y \, P(y) \prod_{i=1}^n P(x_i \mid y).
+$$
+
+In practice, the log of the posterior is used to prevent numerical 
+underflow:
+
+$$
+\log P(y \mid X) = \log P(y) + \sum_{i=1}^n \log P(x_i \mid y).
+$$
+
+The predicted class is the one that maximizes this expression.
+
+#### Surprisingly Good Performance
+
+Although the assumption of conditional independence among features is 
+often unrealistic, Naive Bayes still performs well for several reasons:
+
+1. Robustness to Violations of Independence: Literature suggests 
+   that Naive Bayes can achieve good classification performance even 
+   when features are correlated, as long as the dependencies are 
+   consistent across classes [@domingos1997optimality]. This is 
+   because the decision boundaries produced by Naive Bayes are often 
+   well-aligned with the true boundaries, despite the imprecise 
+   probability estimates.
+
+2. Decision Rule Effectiveness: Since Naive Bayes focuses on 
+   finding the class that maximizes the posterior probability, it is 
+   less sensitive to errors in individual probability estimates, as 
+   long as the relative ordering of probabilities remains correct 
+   [@rish2001empirical].
+
+3. Zero-One Loss Minimization: Naive Bayes aims to minimize the 
+   zero-one loss, i.e., the number of misclassifications. The method 
+   benefits from the fact that exact probability estimation is not 
+   essential for accurate classification, as the correct class can 
+   still be chosen even with approximate probabilities 
+   [@ng2001discriminative].
+
+4. High-Dimensional Settings: In high-dimensional settings, the 
+   conditional independence assumption can act as a form of implicit 
+   regularization, preventing overfitting by simplifying the 
+   probability model [@rish2001empirical]. This makes Naive Bayes 
+   particularly well-suited for text classification and other sparse 
+   feature spaces.
+
+#### Advantages and Limitations
+
+Advantages:
+
+- Computationally efficient, with linear time complexity in terms of 
+  the number of features and data samples.
+- Performs well on large datasets, especially when features are 
+  conditionally independent.
+- Suitable for high-dimensional data, making it popular in text 
+  classification.
+
+Limitations:
+
+- Relies on the assumption of conditional independence, which may not 
+  hold in real-world datasets, potentially affecting performance.
+- It is sensitive to zero probabilities; if a feature value never 
+  appears in the training set for a given class, its likelihood becomes 
+  zero. To address this, Laplace smoothing (or add-one smoothing) 
+  is often applied.
+
+#### Laplace Smoothing
+
+Laplace smoothing is used to handle zero probabilities in the 
+likelihood estimation. It adds a small constant $ \alpha $ (usually 1) 
+to the count of each feature value, preventing the probability from 
+becoming zero:
+
+$$
+P(x_i \mid y) = \frac{\text{count}(x_i, y) + \alpha}
+{\sum_{x_i'} (\text{count}(x_i', y) + \alpha)}.
+$$
+
+This adjustment ensures that even unseen features in the training data 
+do not lead to zero probabilities, thus improving the model’s robustness.
+
