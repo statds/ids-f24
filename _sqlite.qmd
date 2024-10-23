@@ -3,10 +3,369 @@
 This section was written by Thea Johnson, a senior in Statistics
 at the time.
 
-### Subsection 1
+### Table of Contents
+- What is a Database?
+- What is SQL
+- CRUD Model
+- Creating Tables with SQL
+- Inserting into SQL Tables
+- Updating/Deleting SQL Tables
+- Using SQL to work with NYC Open Data
+- Queries 
 
-### Subsection 2
+### What is a Database?
+- Collection of related information
+- Ex: Phone books, grocery list, student records
+- Relational and non-relational
+- Relational databases are structured into columns and rows
+- Each row represents an observation and each column represents an attribute
+- A key uniquely identifies each row
+- Trying to input repeat keys causes an error
 
-### Extended Reading
 
-Give some references here.
+
+### Example Relational Database
+
+```{python}
+import sqlite3
+import pandas as pd
+
+# creates a database file called phonebook.db and lets you connect
+connection = sqlite3.connect("phonebook.db")
+
+# created a cursor object lets you use the cursor function from SQlite3 module
+cursor = connection.cursor()
+
+cursor.execute("DROP TABLE IF EXISTS phonebook")
+
+# Execute function allows you to send commands in the SQL language as strings
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS phonebook (
+    phonebook_id INTEGER PRIMARY KEY,
+    name TEXT,
+    phone_num TEXT UNIQUE,
+    address TEXT
+)
+""")
+
+cursor.execute("INSERT INTO phonebook VALUES (1, 'Greta Colic', '2035452367', '1 Hartsdale road')")
+cursor.execute("INSERT INTO phonebook VALUES(2, 'Carlos Alavarez', '9145652761', '13 Porter street')")
+cursor.execute("INSERT INTO phonebook VALUES(3, 'Marin Yanko', '5753917568', '110 Ocean avenue')")
+cursor.execute("INSERT INTO phonebook VALUES(4, 'Mira Watson', '9146522761', '12 Hindmarsh avenue')")
+cursor.execute("INSERT INTO phonebook VALUES(5, 'Harry Smith', '2036658279', '180 Wallace road')")
+
+connection.commit()
+ 
+
+# alternative way of displaying output
+"""cursor.execute("SELECT * FROM phonebook")
+rows = cursor.fetchall()
+for row in rows:
+    print(row)"""
+ 
+output = pd.read_sql_query("SELECT * FROM phonebook", connection)
+print()
+print()
+print(output)
+
+connection.close()
+
+```
+
+### What is SQL?
+- Structured Query Language
+- Allows users to interact with databases to store and retrieve data
+- The essential operations follow the CRUD acronym
+
+### CRUD
+- Create, read, update and delete
+- Essential operations for SQL to manage a database
+- Create: adds a new record (row) to a database with unique attributes
+- Read: Returns records based on specified search criteria
+- Update: Allows you to change attribute(s) of the record
+- Delete: Allows you to remove records from the database
+
+
+
+
+### Implementing SQL Through Python to Create a Table
+
+```python
+import sqlite3
+
+# creates a database file called phonebook.db and lets you connect
+connection = sqlite3.connect("phonebook.db")
+
+# creates a cursor object using the cursor function from SQlite3 module
+cursor = connection.cursor()
+
+"""
+CREATE TABLE tablename
+(
+    attribute1 datatype PRIMARY KEY,
+    attribute2 datatype,
+    attribute3 datatype
+);
+"""
+# You MUST include a primary key to uniquely identify entries
+
+# Execute function allows you to send commands in the SQL language as strings
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS phonebook (
+    phonebook_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    phone_num TEXT UNIQUE,
+    address TEXT
+)
+""")
+connection.commit()
+connection.close()
+```
+
+
+### How to Insert into the SQL table?
+```python
+import sqlite3
+import pandas as pd
+
+# Connects the the previously created phonebook.db
+connection = sqlite3.connect("phonebook.db")
+
+# creates a cursor object using the cursor function from SQlite3 module
+cursor = connection.cursor()
+
+"""
+INSERT INTO database VALUES("value1", "value2", "value3");
+
+"""
+
+cursor.execute("INSERT INTO phonebook VALUES (1, 'Greta Colic', '2035452367', '1 Hartsdale road')")
+cursor.execute("INSERT INTO phonebook VALUES(2, 'Carlos Alavarez', '9145652761', '13 Porter street')")
+cursor.execute("INSERT INTO phonebook VALUES(3, 'Marin Yanko', '5753917568', '110 Ocean avenue')")
+cursor.execute("INSERT INTO phonebook VALUES(4, 'Mira Watson', '9146522761', '12 Hindmarsh avenue')")
+cursor.execute("INSERT INTO phonebook VALUES(5, 'Harry Smith', '2036658279', '180 Wallace road')")
+
+# How to input data if there's a missing value?
+"""
+INSERT INTO database(attribute1, attribute2) VALUES(val1, val2);
+"""
+# only works if the missing value is not a primary key
+cursor.execute("INSERT INTO phonebook(phonebook_id, name, phone_num) VALUES(6, 'Stacy Yang', '9178852765')")
+
+connection.commit()
+
+# Allows you to see the created table
+output = pd.read_sql_query("SELECT * FROM phonebook", connection)
+print(output)
+connection.close()
+
+
+```
+### How to Update/Delete Using SQL?
+```python
+# Updating an attribute (WHERE statement is optional)
+connection = sqlite3.connect("phonebook.db")
+
+# created a cursor object lets you use the cursor function from SQlite3 module
+cursor = connection.cursor()
+
+# Updates Greta's number
+cursor.execute("UPDATE phonebook SET phone_num = '2035151234' WHERE name = 'Greta Colic';")
+
+# Deletes Harry Smith from the phonebook
+cursor.execute("DELETE FROM phonebook WHERE name = 'Harry Smith';")
+
+# Changes Carlos's last name
+cursor.execute("UPDATE phonebook SET name = 'Carlos Ramos' WHERE name = 'Carlos Alavarez';")
+
+# Updating multiple columns
+update_multiple_query = """
+UPDATE phonebook 
+SET phone_num = '7777777777', address = '45 Main St' 
+WHERE name = 'Marin Yanko';
+"""
+cursor.execute(update_multiple_query)
+
+# deleting a table 
+cursor.execute("DROP TABLE phonebook;")
+
+connection.commit()
+connection.close()
+```
+
+###
+
+
+```{python}
+import sqlite3
+import pandas as pd
+
+# creates a database file called phonebook.db and lets you connect
+connection = sqlite3.connect("phonebook.db")
+
+# created a cursor object lets you use the cursor function from SQlite3 module
+cursor = connection.cursor()
+
+cursor.execute("DROP TABLE IF EXISTS phonebook;")
+# Execute function allows you to send commands in the SQL language as strings
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS phonebook (
+    phonebook_id INT,
+    name VARCHAR(30), 
+    phone_num VARCHAR(15) PRIMARY KEY,
+    address VARCHAR(30)
+)
+""")
+
+cursor.execute("INSERT INTO phonebook VALUES (1, 'Greta Colic', '2035452367', '1 Hartsdale road')")
+cursor.execute("INSERT INTO phonebook VALUES(2, 'Carlos Alavarez', '9145652761', '13 Porter street')")
+cursor.execute("INSERT INTO phonebook VALUES(3, 'Marin Yanko', '5753917568', '110 Ocean avenue')")
+cursor.execute("INSERT INTO phonebook VALUES(4, 'Mira Watson', '9146522761', '12 Hindmarsh avenue')")
+cursor.execute("INSERT INTO phonebook VALUES(5, 'Harry Smith', '2036658279', '180 Wallace road')")
+cursor.execute("INSERT INTO phonebook(phonebook_id, name, phone_num) VALUES(6, 'Stacy Yang', '9178852765')")
+
+connection.commit()
+ 
+
+# alternative way of displaying output
+"""cursor.execute("SELECT * FROM phonebook")
+rows = cursor.fetchall()
+for row in rows:
+    print(row)"""
+
+output = pd.read_sql_query("SELECT * FROM phonebook", connection)
+print(output)
+print(" ")
+print(" ")
+
+cursor.execute("UPDATE phonebook SET phone_num = '2035151234' WHERE name = 'Greta Colic';")
+
+# Deletes Harry Smith from the phonebook
+cursor.execute("DELETE FROM phonebook WHERE name = 'Harry Smith';")
+
+# Updating multiple columns
+update_multiple_query = """
+UPDATE phonebook 
+SET phone_num = '7777777777', address = '45 Main St' 
+WHERE name = 'Marin Yanko';
+"""
+cursor.execute(update_multiple_query)
+
+cursor.execute("UPDATE phonebook SET name = 'Carlos Ramos' WHERE name = 'Carlos Alavarez';")
+
+connection.commit()
+output = pd.read_sql_query("SELECT * FROM phonebook", connection)
+print(output)
+
+connection.close()
+
+```
+
+### Using SQL to Work on a CSV file
+```python
+import pandas as pd
+import sqlite3
+
+# Creates an SQL Database
+conn = sqlite3.connect("nyc.db")
+
+# Reads the CSV file using the path
+data = pd.read_csv(r"C:\Users\theat\Desktop\Stat_3255\ClassNotes\ids-f24\data\nyccrashes_2024w0630_by20240916.csv")
+
+cursor = conn.cursor()
+
+# automatically converts data to an SQL table
+data.to_sql('nyccrashes', conn, if_exists='replace', index=False)
+
+```
+
+```{python}
+import pandas as pd
+import sqlite3
+
+# Creates an SQL Database
+conn = sqlite3.connect("nyc.db")
+
+# Reads the CSV file using the path
+data = pd.read_csv(r"C:\Users\theat\Desktop\Stat_3255\ClassNotes\ids-f24\data\nyccrashes_2024w0630_by20240916.csv")
+
+cursor = conn.cursor()
+
+# automatically converts data to an SQL table
+data.to_sql('nyccrashes', conn, if_exists='replace', index=False)
+
+```
+
+### Queries 
+- Commands used to pull needed data out of a database
+
+```python
+# Query for everythin in the table
+query1 = pd.read_sql_query("SELECT * FROM nyccrashes;", conn)
+print(query1.head(3))
+
+# Query to count total crashes
+total_crashes = pd.read_sql_query("SELECT COUNT(*) FROM nyccrashes;", conn)
+print(total_crashes)
+
+# Query to only retrieve fixed attributes
+specific_columns = pd.read_sql_query("SELECT \"ZIP CODE\", \"CRASH TIME\" FROM nyccrashes;", conn)
+print(specific_columns.head(3))
+
+# Groups Crashes by borough
+crashes_by_borough = pd.read_sql_query("""
+    SELECT BOROUGH, COUNT(*) AS Total_Crashes
+    FROM nyccrashes
+    GROUP BY BOROUGH;
+""", conn)
+print(crashes_by_borough)
+
+# Query to show the fatal crashes
+fatal_crashes = pd.read_sql_query("SELECT * FROM nyccrashes WHERE \"NUMBER OF PERSONS KILLED\" > 0;", conn)
+print(fatal_crashes.head())
+```
+
+### Queries Output
+
+```{python}
+#Query for everythin in the table
+#query1 = pd.read_sql_query("SELECT * FROM nyccrashes;", conn)
+#print(query1.head(3))
+
+#Query to count total crashes
+print("Here's the output for the count query.")
+total_crashes = pd.read_sql_query("SELECT COUNT(*) FROM nyccrashes;", conn)
+print(total_crashes)
+print()
+
+# Groups Crashes by borough
+print("Here's the output for the query to group crashes by borough.")
+crashes_by_borough = pd.read_sql_query("""
+    SELECT BOROUGH, COUNT(*) AS Total_Crashes
+    FROM nyccrashes
+    GROUP BY BOROUGH;
+""", conn)
+print(crashes_by_borough)
+print()
+# Query to only retrieve fixed attributes
+print("Here's the output for the specific columns query.")
+specific_columns = pd.read_sql_query("SELECT \"ZIP CODE\", \"CRASH TIME\" FROM nyccrashes;", conn)
+print(specific_columns.head(5))
+
+# Query to show the fatal crashes
+# fatal_crashes = pd.read_sql_query("SELECT * FROM nyccrashes #WHERE \"NUMBER OF PERSONS KILLED\" > 0;", conn)
+# print(fatal_crashes.head())
+conn.commit()
+```
+
+### Conclusion
+- SQL works with relational databases
+- SQL performs the CRUD functions: create, read, update, and delete to work with databases
+- A query is a request from a database for information
+- SQL can be used to manipulate data from various formats including CSV files
+
+
+### Further reading 
+- Python Software Foundation. (n.d.). sqlite3 — DB-API 2.0 interface for SQLite databases. Python Documentation. https://docs.python.org/3/library/sqlite3.html
+
+
