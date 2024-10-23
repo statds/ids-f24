@@ -181,8 +181,161 @@ regression tasks, MSE is the most popular choice, but Poisson deviance
 and MAE are useful for specific use cases such as count data and
 robust models, respectively.
 
-## Boosting
 
+## Boosted Trees
+
+
+Boosted trees are a powerful ensemble technique in machine learning 
+that combine multiple weak learners, typically decision trees, into a 
+strong learner. Unlike bagging methods, which train trees 
+independently, boosting fits models sequentially, with each new model 
+correcting the errors of the previous ensemble. Gradient boosting, one 
+of the most popular variants, optimizes a loss function by iteratively 
+adding trees that reduce the residual errors of the current ensemble. 
+
+
+
+### Introduction
+
+Boosted trees build on the general concept of boosting, which aims to 
+create a strong predictor from a series of weak predictors. In boosted 
+trees, the weak learners are shallow decision trees, often referred to 
+as "stumps," and they are added sequentially to the model. At each 
+step, a new tree focuses on the training instances that are hardest to 
+predict, improving overall accuracy. This iterative focus on "hard-to-
+predict" instances is the defining characteristic of boosting.
+
+The effectiveness of boosted trees has made them popular for various 
+tasks, including classification, regression, and ranking. They also 
+form the foundation for algorithms like XGBoost, LightGBM, and 
+CatBoost, known for their speed and scalability.
+
+### Boosting Process
+
+The boosting process in gradient boosted trees builds an ensemble by 
+adding trees iteratively, each designed to minimize the residual 
+errors from the combined predictions of the previous trees. This 
+iterative approach allows the model to refine its predictions by 
+optimizing a loss function, denoted as $L(y, F(x))$, where $y$ is the 
+true value and $F(x)$ is the model's prediction.
+
+
+
+#### Model Iteration
+
+The boosting process can be delineated as follows:
+
+1. **Initialization**: 
+   Start with a base model $F_0(x)$, which is usually the mean of the 
+   target variable in regression or the log odds in classification:
+
+   - For regression: $F_0(x) = \text{mean}(y_i)$.
+   - For classification: $F_0(x) = \log \left( 
+     \frac{P(y=1)}{1-P(y=1)} \right)$.
+
+2. **Iterative Boosting**:
+   
+   At each iteration $m$:
+   
+   - Compute the pseudo-residuals, representing the negative 
+     gradient of the loss function with respect to the current model 
+     predictions. The residuals at iteration $m$ are defined as:
+     
+     $$
+     r_i^{(m)} = -\left. \frac{\partial L(y_i, F(x_i))}
+     {\partial F(x_i)} \right|_{F(x) = F_{m-1}(x)}.
+     $$
+     
+     The residuals guide the next tree to focus on reducing the 
+     largest errors from the previous iteration.
+
+   - Fit a new tree $h_m(x)$ to the pseudo-residuals. The new 
+     tree is trained to predict the residuals of the current ensemble 
+     model, identifying where the model needs the most improvement.
+
+   - Update the model as the sum of the previous model and the newly 
+     added tree, scaled by a learning rate $\eta$:
+     
+     $$
+     F_m(x) = F_{m-1}(x) + \eta \, h_m(x).
+     $$
+     
+     The learning rate, a small positive number (e.g., 0.01 to 0.1), 
+     controls the contribution of each tree, ensuring incremental 
+     improvements and reducing the risk of overfitting.
+
+3. **Final Model**:
+   
+   After $M$ iterations, the ensemble model is given by:
+
+   $$
+   F_M(x) = F_0(x) + \sum_{m=1}^M \eta \, h_m(x).
+   $$
+
+   The final model $F_M(x)$ represents the sum of the initial model 
+   and the incremental improvements made by each of the $M$ trees, 
+   with each tree trained to correct the residuals of the ensemble up 
+   to that point.
+
+### Key Concepts
+
+1. **Loss Function**: The loss function measures the discrepancy 
+   between the actual and predicted values. It guides the model 
+   updates. Common choices include:
+   
+   - Squared error for regression: 
+     $L(y, F(x)) = \frac{1}{2} (y - F(x))^2$.
+   - Logistic loss for binary classification: 
+     $L(y, F(x)) = \log(1 + \exp(-y \, F(x)))$.
+
+2. **Learning Rate**: The learning rate scales the contribution of 
+   each tree and helps control the speed of learning. A smaller 
+   learning rate typically requires more trees but results in a more 
+   robust model with better generalization.
+
+3. **Regularization**: Boosted trees incorporate regularization to 
+   avoid overfitting, including:
+   
+   - Tree depth: Limits the maximum depth of each tree, reducing 
+     model complexity.
+   - L1/L2 penalties: Regularize the weights of the trees, similar 
+     to Lasso and Ridge regression.
+   - Subsampling: Uses a fraction of the training data at each 
+     iteration, making the model more robust to overfitting and 
+     improving generalization.
+
+### Why Boosting Works
+
+The iterative approach of boosting, focusing on correcting the errors 
+of the ensemble at each step, distinguishes gradient boosting from 
+other ensemble methods like bagging or random forests. Key reasons 
+for its effectiveness include:
+
+1. **Error Correction**: By focusing on the hardest-to-predict 
+   instances, boosting gradually improves model accuracy, leading to 
+   better performance than models trained independently.
+   
+2. **Weighted Learning**: Boosting adjusts the weights of training 
+   samples based on errors, ensuring that the model learns 
+   disproportionately from difficult cases, reducing bias.
+
+3. **Flexibility**: Boosted trees can handle various loss functions, 
+   making them suitable for different types of tasks, including 
+   regression, classification, and ranking.
+
+### Applications and Popular Implementations
+
+Boosted trees are widely used in real-world applications, ranging from 
+financial risk modeling to predictive maintenance. They are also 
+favored in machine learning competitions due to their interpretability 
+and robustness. Popular implementations include:
+
+- XGBoost: Known for its speed and performance, with features like 
+  regularization, column sampling, and advanced tree pruning.
+- LightGBM: Optimized for speed and scalability, using histogram-
+  based algorithms to handle large datasets efficiently.
+- CatBoost: Effective with categorical features, using advanced 
+  encoding techniques and built-in support for categorical variables.
 
 {{< include _naivebayes.qmd >}}
 
