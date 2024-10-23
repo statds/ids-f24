@@ -1,13 +1,13 @@
 ## Data Visualization with Plotnine
 
-This section was written by Julia Mazzola
+This section was written by Julia Mazzola.
 
 ### Introduction
 
 Hi! My name is Julia, and I am a Senior double majoring in Statistical Data Science and Economics. I’m excited to show you the power of data visualization with `Plotnine`, a Python library inspired by R’s `ggplot2`. Visualization is a crucial tool to effectively communicate your findings to your audience and `Plotnine` is a useful library to use.
 
 ### What is `Plotnine`?
-`Plotnine` uses grammer of graphics to create layered, customizable visualizations. Grammar of graphics is a framework that provides a systematic approach to creating visual representations of data by breaking down the plot into its fundamental components. To understand this better, think about how sentences have grammer, we can layer our graphics to create complex and detailed visulizations.
+`Plotnine` uses grammer of graphics [@wilkinson2012grammar] to create layered, customizable visualizations. Grammar of graphics is a framework that provides a systematic approach to creating visual representations of data by breaking down the plot into its fundamental components. To understand this better, think about how sentences have grammer, we can layer our graphics to create complex and detailed visulizations.
 
 Components of the layered grammar of graphics:
 
@@ -60,7 +60,7 @@ For the examples we will be using NYC open data to visualize motor vehicle crash
 ```{python}
 import pandas as pd
 
-nyc_crash = pd.read_feather('nyccrashes_cleaned.feather').dropna(subset=['borough'])
+nyc_crash = pd.read_feather('data/nyccrashes_cleaned.feather').dropna(subset=['borough'])
 ```
 
 ### Scatterplot
@@ -454,10 +454,9 @@ There are many other features and customizations you can do with Plotnine. For m
 
 *Happy plotting!*
 
-**Sources**
+**Further Readings**
 
 Python Graph Gallery. (2024). Plotnine: ggplot in python. Python Graph Gallery. https://python-graph-gallery.com/plotnine/
 
 Sarker, D. (2018). A comprehensive guide to the grammar of graphics for effective visualization of multi-dimensional data. Towards Data Science. https://towardsdatascience.com/a-comprehensive-guide-to-the-grammar-of-graphics-for-effective-visualization-of-multi-dimensional-1f92b4ed4149
 
-Wilkinson, L. (2012). The grammar of graphics (pp. 375-414). Springer Berlin Heidelberg.

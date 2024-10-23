@@ -43,7 +43,7 @@ this challenge!
 ### Verbal Communication Skills
 
 Verbal Communication: "The use of sounds and language to relay a message"
-(@fer2018verbal)
+[@fer2018verbal].
 
 Verbal Communication Tips:
 
@@ -56,7 +56,7 @@ Verbal Communication Tips:
 ### Non-Verbal Communication Skills
 
 Non-Verbal Communication: "Information, emotion, a movement that is expressed
-without words and without the help of language" (@grillo2022nonverbal)
+without words and without the help of language" [@grillo2022nonverbal].
 
 Non-Verbal Communication Tips:
 
@@ -69,7 +69,7 @@ Non-Verbal Communication Tips:
 
 Visual Communication: "Any communication that employs one’s sense of 
 sight to deliver a message without the usage of any verbal cues" 
-(@fayaz2022visual)
+[@fayaz2022visual].
 
 Visual Communication Tips:
 
@@ -82,7 +82,7 @@ Visual Communication Tips:
 
 Written Communication: "Any form of
 communication which is written and documented from
-the sender to the receiver" (@prabavathi2018written)
+the sender to the receiver" [@prabavathi2018written].
 
 Written Communication Tips:
 
@@ -95,7 +95,7 @@ Written Communication Tips:
 ## Communication in Data Science
 
 Often, data scientists must communicate "technical
-conclusions to non-technical members" (@pragmatic2024communication); this may be colleagues
+conclusions to non-technical members"; this may be colleagues
 in other departments, like marketing, or supervisors at the managerial level. Here are some
 tips for effectively communicating project results specifically in the field of data science.
 
@@ -110,8 +110,8 @@ of executives looking to make a funding decision?
 ### Utilize Data Visualization
 One of the most effective methods of communicating results in data science,
 especially to those without technical coding knowledge, is data visualization
-techniques (@vandemeulebroecke2019quantitative). Python uses the package 'matplotlib' to
-produce these visualizations, including:
+techniques [@vandemeulebroecke2019quantitative]. Python uses the
+package `matplotlib` to produce these visualizations, including:
 
 + line plots
 + bar plots
@@ -168,3 +168,7 @@ these skills while earning your degree:
 + Explain data science coursework to peers outside of your program
 + Explore internship opportunities that involve collaboration with
 other departments
+
+
+Pragmatic. (2024). Communication skills for data science.
+<https://www.pragmaticinstitute.com/resources/articles/data/communication-skills-for-data-science/>.

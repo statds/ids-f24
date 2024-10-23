@@ -167,14 +167,14 @@ distributions other than the normal distribution. GLMs consist of
 three main components:
 
 
-+ **Random Component**: This specifies the distribution of the 
++ Random Component: This specifies the distribution of the 
 response variable $Y$. It is assumed to be from the exponential family of 
 distributions, such as Binomial for binary data and Poisson for count data.
-+ **Systematic Component**: This consists of the linear predictor, 
++ Systematic Component: This consists of the linear predictor, 
 a linear combination of unknown parameters and explanatory variables. It 
 is denoted as $\eta = X\beta$, where $X$ represents the explanatory 
 variables, and $\beta$ represents the coefficients.
-+ **Link Function**: The link function, $g$, provides the 
++ Link Function: The link function, $g$, provides the 
 relationship between the linear predictor and the mean of the distribution 
 function. For a GLM, the mean of $Y$ is related to the linear predictor 
 through the link function as $\mu = g^{-1}(\eta)$.
@@ -190,28 +190,28 @@ Poisson regression, and gamma regression.
 In normal regression, the response variable has a normal distribution. The
 identity link function ($g(\mu) = \mu$) is typically used, making this case
 equivalent to classical linear regression.
-    - **Use Case**: Modeling continuous data where residuals are normally distributed.
-    - **Link Function**: Identity ($g(\mu) = \mu$)
-    - **Distribution**: Normal
+    - Use Case: Modeling continuous data where residuals are normally distributed.
+    - Link Function: Identity ($g(\mu) = \mu$)
+    - Distribution: Normal
 + Logistic Regression.
 Logistic regression is used for binary response variables. It employs the
 logit link function to model the probability that an observation falls into
 one of two categories.
-    - **Use Case**: Binary outcomes (e.g., success/failure).
-    - **Link Function**: Logit ($g(\mu) = \log\frac{\mu}{1-\mu}$)
-    - **Distribution**: Binomial
+    - Use Case: Binary outcomes (e.g., success/failure).
+    - Link Function: Logit ($g(\mu) = \log\frac{\mu}{1-\mu}$)
+    - Distribution: Binomial
 + Poisson Regression.
 Poisson regression models count data using the Poisson distribution. It's
 ideal for modeling the rate at which events occur.
-    - **Use Case**: Count data, such as the number of occurrences of an event.
-    - **Link Function**: Log ($g(\mu) = \log(\mu)$)
-    - **Distribution**: Poisson
+    - Use Case: Count data, such as the number of occurrences of an event.
+    - Link Function: Log ($g(\mu) = \log(\mu)$)
+    - Distribution: Poisson
 + Gamma Regression.
 Gamma regression is suited for modeling positive continuous variables, 
 especially when data are skewed and variance increases with the mean.
-    - **Use Case**: Positive continuous outcomes with non-constant variance.
-    - **Link Function**: Inverse ($g(\mu) = \frac{1}{\mu}$)
-    - **Distribution**: Gamma
+    - Use Case: Positive continuous outcomes with non-constant variance.
+    - Link Function: Inverse ($g(\mu) = \frac{1}{\mu}$)
+    - Distribution: Gamma
 
 Each GLM variant addresses specific types of data and research questions,
 enabling precise modeling and inference based on the underlying data
@@ -412,7 +412,7 @@ distribution (large number of actual negatives).
 
 ### Receiver Operating Characteristic (ROC) Curve
 
-The **Receiver Operating Characteristic (ROC) curve** is a plot that
+The Receiver Operating Characteristic (ROC) curve is a plot that
 illustrates the diagnostic ability of a binary classifier as its
 discrimination threshold is varied. It shows the trade-off between the
 TPR and FPR. The ROC plots TPR against FPR as the decision threshold
@@ -420,14 +420,24 @@ is varied. It can be particularly useful in evaluating the
 performance of classifiers when the class distribution is imbalanced,
 
 
-The **Area Under the ROC Curve (AUC)** is a scalar value that
++ Increasing from $(0, 0)$ to $(1, 1)$.
++ Best classification passes $(0, 1)$.
++ Classification by random guess gives the 45-degree line.
++ Area between the ROC and the 45-degree line is the Gini coefficient, a measure
+  of inequality.
++ Area under the curve (AUC) of ROC thus provides an important metric of
+classification results.
+
+
+The Area Under the ROC Curve (AUC) is a scalar value that
 summarizes the performance of a classifier. It measures the total area
 underneath the ROC curve, providing a single metric to compare
 models. The value of AUC ranges from 0 to 1:
 
-- **AUC = 1**: A perfect classifier, which perfectly separates positive and negative classes.
-- **AUC = 0.5**: A classifier that performs no better than random chance.
-- **AUC < 0.5**: A classifier performing worse than random.
+- AUC = 1: A perfect classifier, which perfectly separates positive and negative classes.
+- AUC = 0.5: A classifier that performs no better than random chance.
+- AUC < 0.5: A classifier performing worse than random.
+
 
 The AUC value provides insight into the model's ability to
 discriminate between positive and negative classes across all possible
@@ -529,9 +539,9 @@ print(f"Best F1 score: {best_f1:.2f}")
 
 ## LASSO Logistic Models
 
-The **Least Absolute Shrinkage and Selection Operator** (LASSO)
+The Least Absolute Shrinkage and Selection Operator (LASSO)
 [@tibshirani1996regression], is a regression method that
-performs both **variable selection** and **regularization**. LASSO
+performs both variable selection and regularization. LASSO
 imposes an L1 penalty on the regression coefficients, which has the
 effect of shrinking some coefficients exactly to zero. This results in
 simpler, more interpretable models, especially in situations where the
@@ -566,14 +576,14 @@ reducing variance without substantial increase in bias.
 
 Practical benefits of LASSO:
 
-- **Dimensionality Reduction**: LASSO is particularly useful when the
+- Dimensionality Reduction: LASSO is particularly useful when the
   number of features $p$ is large, potentially even larger than the
   number of observations $n$, as it automatically reduces the number
   of features.
-- **Preventing Overfitting**: The L1 penalty helps prevent overfitting
+- Preventing Overfitting: The L1 penalty helps prevent overfitting
   by constraining the model, especially when $p$ is large or there is
   multicollinearity among features.
-- **Interpretability**: By selecting only the most important features,
+- Interpretability: By selecting only the most important features,
   LASSO makes the resulting model more interpretable, which is
   valuable in fields like bioinformatics, economics, and social
   sciences.
@@ -657,7 +667,7 @@ allows the model to fit the data more closely.
 
 
 The best way to select the optimal $C$ is through
-**cross-validation**. In cross-validation, the dataset is split into
+cross-validation. In cross-validation, the dataset is split into
 several folds, and the model is trained on some folds while evaluated
 on the remaining fold. This process is repeated for each fold, and the
 results are averaged to ensure the model generalizes well to unseen
@@ -668,10 +678,10 @@ selected.
 The performance metric used in cross-validation can vary based on the
 task. Common metrics include:
 
-- **Log-loss**: Measures how well the predicted probabilities match the actual outcomes.
-- **Accuracy**: Measures the proportion of correctly classified instances.
-- **F1-Score**: Balances precision and recall, especially useful for imbalanced classes.
-- **AUC-ROC**: Evaluates how well the model discriminates between the positive and negative classes.
+- Log-loss: Measures how well the predicted probabilities match the actual outcomes.
+- Accuracy: Measures the proportion of correctly classified instances.
+- F1-Score: Balances precision and recall, especially useful for imbalanced classes.
+- AUC-ROC: Evaluates how well the model discriminates between the positive and negative classes.
 
 
 In Python, the `LogisticRegressionCV` class from `scikit-learn`
@@ -716,3 +726,218 @@ print(f"Test Accuracy: {test_accuracy:.2f}")
 # Display the coefficients of the best model
 print("Model Coefficients:\n", log_reg_cv.coef_)
 ```
+
+
+### Preparing for Logistic Regression Fitting
+
+The `LogisticRegression()` function in `scikit.learn` takes the design
+matrix of the regression as input, which needs to be prepared with
+care from the covariates or features that we have. 
+
+
+#### Continuous Variables
+For continuous variables, it is often desirable to standardized them
+so that they have mean zero and standard deviation one. There are
+multiple advantages of doing so. It improves numerical stability in
+algorithms like logistic regression that rely on gradient descent,
+ensuring faster convergence and preventing features with large scales
+from dominating the optimization process. Standardization also
+enhances the interpretability of model coefficients by allowing for
+direct comparison of the effects of different features, as
+coefficients then represent the change in outcome for a one standard
+deviation increase in each variable. Additionally, it ensures that
+regularization techniques like Lasso and Ridge treat all features
+equally, allowing the model to select the most relevant ones without
+being biased by feature magnitude.
+
+
+Moreover, standardization is essential for distance-based models such
+as k-Nearest Neighbors (k-NN) and Support Vector Machines (SVMs),
+where differences in feature scale can distort the calculations. It
+also prevents models from being sensitive to arbitrary changes in the
+units of measurement, improving robustness and consistency. Finally,
+standardization facilitates better visualizations and diagnostics by
+putting all variables on a comparable scale, making patterns and
+residuals easier to interpret. Overall, it is a simple yet powerful
+preprocessing step that leads to better model performance and
+interpretability.
+
+
+We have already seen this with `StandardScaler`.
+
+
+#### Categorical Variables
+
+Categorical variables can be classified into two types: nominal and
+ordinal. Nominal variables represent categories with no inherent order
+or ranking between them. Examples include variables like "gender"
+(male, female) or "color" (red, blue, green), where the categories are
+simply labels and one category does not carry more significance than
+another. Ordinal variables, on the other hand, represent categories
+with a meaningful order or ranking. For example, education levels such
+as "high school," "bachelor," "master," and "PhD" have a clear
+hierarchy, where each level is ranked higher than the previous
+one. However, the differences between the ranks are not necessarily
+uniform or quantifiable, making ordinal variables distinct from
+numerical variables. Understanding the distinction between nominal and
+ordinal variables is important when deciding how to encode and
+interpret them in statistical models.
+
+
+Categorical variables needs to be coded into numrical values before
+further processing.  In Python, nominal and ordinal variables are
+typically encoded differently to account for their unique
+properties. Nominal variables, which have no inherent order, are often
+encoded using One-Hot Encoding, where each category is transformed
+into a binary column (0 or 1). For example, the OneHotEncoder from
+scikit-learn can be used to convert a "color" variable with categories
+like "red," "blue," and "green" into separate columns color_red,
+color_blue, and color_green, with only one column being 1 for each
+observation. On the other hand, ordinal variables, which have a
+meaningful order, are best encoded using Ordinal Encoding. This method
+assigns an integer to each category based on their rank. For example,
+an "education" variable with categories "high school," "bachelor,"
+"master," and "PhD" can be encoded as 0, 1, 2, and 3,
+respectively. The OrdinalEncoder from scikit-learn can be used to
+implement this encoding, which ensures that the model respects the
+order of the categories during analysis.
+
+
+#### An Example
+
+Here is a demo with `pipeline` using a simulated dataset.
+
+First we generate data with sample size 1000 from a logistic model
+with both categorical and numerical covariates.
+```{python}
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+import numpy as np
+from scipy.special import expit  # Sigmoid function
+
+# Generate a dataset with the specified size
+dataset_size = 1000
+np.random.seed(20241014)
+
+# Simulate categorical and numerical features
+gender = np.random.choice(
+    ['male', 'female'], size=dataset_size)  # Nominal variable
+education = np.random.choice(
+    ['high_school', 'bachelor', 'master', 'phd'], size=dataset_size)  # Ordinal variable
+age = np.random.randint(18, 65, size=dataset_size)
+income = np.random.randint(30000, 120000, size=dataset_size)
+
+# Create a logistic relationship between the features and the outcome
+gender_num = np.where(gender == 'male', 0, 1)
+
+# Define the linear predictor with regression coefficients
+linear_combination = (
+    0.3 * gender_num - 0.02 * age + 0.00002 * income
+)
+
+# Apply sigmoid function to get probabilities
+probabilities = expit(linear_combination)
+
+# Generate binary outcome based on the probabilities
+outcome = np.random.binomial(1, probabilities)
+
+# Create a DataFrame
+data = pd.DataFrame({
+    'gender': gender,
+    'education': education,
+    'age': age,
+    'income': income,
+    'outcome': outcome
+})
+```
+
+Next we split the data into features and target and define
+transformers for each types of feature columns.
+
+```{python}
+# Split the dataset into features (X) and target (y)
+X = data[['gender', 'education', 'age', 'income']]
+y = data['outcome']
+
+# Define categorical and numerical columns
+categorical_cols = ['gender', 'education']  
+numerical_cols = ['age', 'income']
+
+# Define transformations for categorical variable
+categorical_transformer = OneHotEncoder(
+    categories=[['male', 'female'], ['high_school', 'bachelor', 'master', 'phd']],
+    drop='first')
+
+# Define transformations for continuous variables
+numerical_transformer = StandardScaler()
+
+# Use ColumnTransformer to transform the columns
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('cat', categorical_transformer, categorical_cols),
+        ('num', numerical_transformer, numerical_cols)
+    ]
+)
+```
+
+Define a pipeline, which preprocess the data and then fits a logistic
+model.
+```{python}
+pipeline = Pipeline(steps=[
+    ('preprocessor', preprocessor),
+    ('classifier', LogisticRegression(penalty='l1', solver='liblinear',
+    max_iter=1000))
+])
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=2024)
+
+# Fit the pipeline to the training data
+pipeline.fit(X_train, y_train)
+```
+
+Check the coefficients of the fitted logistic regression model.
+```{python}
+model = pipeline.named_steps['classifier']
+intercept = model.intercept_
+coefficients = model.coef_
+
+# Check the preprocessor's encoding
+encoded_columns = pipeline.named_steps['preprocessor']\
+.transformers_[0][1].get_feature_names_out(categorical_cols)
+
+# Show intercept, coefficients, and encoded feature names
+intercept, coefficients, list(encoded_columns)
+```
+
+Note that the encoded columns has one for gender and three for
+education, with `male` and `high_school` as reference levels,
+respectively. The reference level was determined when calling 
+`oneHotEncoder()` with `drop = 'first'`. If `categories` were not
+specified, the first level in alphabetical order would be dropped. 
+With the default `drop = 'none'`, the estimated coefficients will have
+two columns that are not estimable and were set to zero. Obviously, if
+no level were dropped in forming the model matrix, the columns of the
+one hot encoding for each categorical variable would be perfectly
+linearly dependent because they would sum to one.
+
+
+The regression coefficients returned by the logistic regression model
+in this case should be interpreted on the standardized scale of the
+numerical covariates (e.g., `age` and `income`). This is because we
+applied standardization to the numerical features using StandardScaler
+in the pipeline before fitting the model. For example, the coefficient
+for age would reflect the change in the log-odds of the outcome for a
+1 standard deviation increase in age, rather than a 1-unit increase in
+years. The coefficients for the
+one-hot encoded categorical variables (gender and education) are on
+the original scale because one-hot encoding does not change the scale
+of the variables. For instance, the coefficient for `gender_female` tells
+us how much the log-odds of the outcome changes when the observation
+is male versus the reference category (`male`).
+
