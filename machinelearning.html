@@ -445,7 +445,7 @@ window.Quarto = {
 <h3 data-number="9.3.4" class="anchored" data-anchor-id="a-curve-fitting-with-splines-an-example"><span class="header-section-number">9.3.4</span> A Curve-Fitting with Splines: An Example</h3>
 <p>Overfitting occurs when a model becomes overly complex and starts to capture not just the underlying patterns in the data but also the noise or random fluctuations. This can lead to poor generalization to new, unseen data. A clear sign of overfitting is when a model performs very well on the training data but performs poorly on test data, as it fails to generalize beyond the data it was trained on.</p>
 <p>In this example, we illustrate overfitting using cubic spline regression with different numbers of knots. Splines are a flexible tool that allow for piecewise polynomial regression, with knots defining where the pieces of the polynomial meet. The more knots we use, the more flexible the model becomes, which can potentially lead to overfitting.</p>
-<div id="cc96e2be" class="cell" data-execution_count="1">
+<div id="dfc41700" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
@@ -520,7 +520,7 @@ window.Quarto = {
 <span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>knots_list <span class="op">=</span> [<span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>]</span>
 <span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>overfitting_example_with_fitted_curves(X_train, y_train, X_test, y_test, knots_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[np.float64(0.11490071512519537), np.float64(0.047704255259143576), np.float64(0.037967586697050394), np.float64(0.03497885100170878), np.float64(0.034837008222612494), np.float64(0.03493250536165414)] [np.float64(0.10017158791195516), np.float64(0.04973192519233766), np.float64(0.04400816420178909), np.float64(0.041955291723913525), np.float64(0.04254440452799023), np.float64(0.041725844397986614)]</code></pre>
+<pre><code>[np.float64(0.11925926334166218), np.float64(0.06706771870332887), np.float64(0.05149697267167946), np.float64(0.04800466398334981), np.float64(0.04807802162240843), np.float64(0.04753756150990699)] [np.float64(0.14245034022524056), np.float64(0.059019274114925316), np.float64(0.05102020213479817), np.float64(0.04772816344225628), np.float64(0.04671027698957559), np.float64(0.04594169668227475)]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>

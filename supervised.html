@@ -283,7 +283,7 @@ window.Quarto = {
 
 <section id="decision-trees" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="decision-trees"><span class="header-section-number">10.1</span> Decision Trees</h2>
-<p>Decision trees are widely used supervised learning models that predict the value of a target variable by iteratively splitting the dataset based on decision rules derived from input features. The model functions as a piecewise constant approximation of the target function, producing clear, interpretable rules that are easily visualized and analyzed <span class="citation" data-cites="breiman1984classification">(<a href="references.html#ref-breiman1984classification" role="doc-biblioref">Breiman et al. 1984</a>)</span>. Decision trees are fundamental in both classification and regression tasks, serving as the building blocks for more advanced ensemble models such as Random Forests and Gradient Boosting Machines.</p>
+<p>Decision trees are widely used supervised learning models that predict the value of a target variable by iteratively splitting the dataset based on decision rules derived from input features. The model functions as a piecewise constant approximation of the target function, producing clear, interpretable rules that are easily visualized and analyzed <span class="citation" data-cites="breiman1984classification">(<a href="references.html#ref-breiman1984classification" role="doc-biblioref">Breiman et al., 1984</a>)</span>. Decision trees are fundamental in both classification and regression tasks, serving as the building blocks for more advanced ensemble models such as Random Forests and Gradient Boosting Machines.</p>
 <section id="algorithm-formulation" class="level3" data-number="10.1.1">
 <h3 data-number="10.1.1" class="anchored" data-anchor-id="algorithm-formulation"><span class="header-section-number">10.1.1</span> Algorithm Formulation</h3>
 <p>The core mechanism of a decision tree algorithm is the identification of optimal splits that partition the data into subsets that are increasingly homogeneous with respect to the target variable. At any node <span class="math inline">\(m\)</span>, the data subset is denoted as <span class="math inline">\(Q_m\)</span> with a sample size of <span class="math inline">\(n_m\)</span>. The objective is to find a candidate split <span class="math inline">\(\theta\)</span>, defined as a threshold for a given feature, that minimizes an impurity or loss measure <span class="math inline">\(H\)</span>.</p>
@@ -420,10 +420,10 @@ y^* = \arg\max_y \, P(y) \prod_{i=1}^n P(x_i \mid y).
 <h4 data-number="10.2.1.3" class="anchored" data-anchor-id="surprisingly-good-performance"><span class="header-section-number">10.2.1.3</span> Surprisingly Good Performance</h4>
 <p>Although the assumption of conditional independence among features is often unrealistic, Naive Bayes still performs well for several reasons:</p>
 <ol type="1">
-<li><p>Robustness to Violations of Independence: Literature suggests that Naive Bayes can achieve good classification performance even when features are correlated, as long as the dependencies are consistent across classes <span class="citation" data-cites="domingos1997optimality">(<a href="references.html#ref-domingos1997optimality" role="doc-biblioref">Domingos and Pazzani 1997</a>)</span>. This is because the decision boundaries produced by Naive Bayes are often well-aligned with the true boundaries, despite the imprecise probability estimates.</p></li>
-<li><p>Decision Rule Effectiveness: Since Naive Bayes focuses on finding the class that maximizes the posterior probability, it is less sensitive to errors in individual probability estimates, as long as the relative ordering of probabilities remains correct <span class="citation" data-cites="rish2001empirical">(<a href="references.html#ref-rish2001empirical" role="doc-biblioref">Rish 2001</a>)</span>.</p></li>
-<li><p>Zero-One Loss Minimization: Naive Bayes aims to minimize the zero-one loss, i.e., the number of misclassifications. The method benefits from the fact that exact probability estimation is not essential for accurate classification, as the correct class can still be chosen even with approximate probabilities <span class="citation" data-cites="ng2001discriminative">(<a href="references.html#ref-ng2001discriminative" role="doc-biblioref">Ng and Jordan 2001</a>)</span>.</p></li>
-<li><p>High-Dimensional Settings: In high-dimensional settings, the conditional independence assumption can act as a form of implicit regularization, preventing overfitting by simplifying the probability model <span class="citation" data-cites="rish2001empirical">(<a href="references.html#ref-rish2001empirical" role="doc-biblioref">Rish 2001</a>)</span>. This makes Naive Bayes particularly well-suited for text classification and other sparse feature spaces.</p></li>
+<li><p>Robustness to Violations of Independence: Literature suggests that Naive Bayes can achieve good classification performance even when features are correlated, as long as the dependencies are consistent across classes <span class="citation" data-cites="domingos1997optimality">(<a href="references.html#ref-domingos1997optimality" role="doc-biblioref">Domingos &amp; Pazzani, 1997</a>)</span>. This is because the decision boundaries produced by Naive Bayes are often well-aligned with the true boundaries, despite the imprecise probability estimates.</p></li>
+<li><p>Decision Rule Effectiveness: Since Naive Bayes focuses on finding the class that maximizes the posterior probability, it is less sensitive to errors in individual probability estimates, as long as the relative ordering of probabilities remains correct <span class="citation" data-cites="rish2001empirical">(<a href="references.html#ref-rish2001empirical" role="doc-biblioref">Rish, 2001</a>)</span>.</p></li>
+<li><p>Zero-One Loss Minimization: Naive Bayes aims to minimize the zero-one loss, i.e., the number of misclassifications. The method benefits from the fact that exact probability estimation is not essential for accurate classification, as the correct class can still be chosen even with approximate probabilities <span class="citation" data-cites="ng2001discriminative">(<a href="references.html#ref-ng2001discriminative" role="doc-biblioref">Ng &amp; Jordan, 2001</a>)</span>.</p></li>
+<li><p>High-Dimensional Settings: In high-dimensional settings, the conditional independence assumption can act as a form of implicit regularization, preventing overfitting by simplifying the probability model <span class="citation" data-cites="rish2001empirical">(<a href="references.html#ref-rish2001empirical" role="doc-biblioref">Rish, 2001</a>)</span>. This makes Naive Bayes particularly well-suited for text classification and other sparse feature spaces.</p></li>
 </ol>
 </section>
 <section id="advantages-and-limitations" class="level4" data-number="10.2.1.4">
@@ -450,18 +450,18 @@ P(x_i \mid y) = \frac{\text{count}(x_i, y) + \alpha}
 <p>This adjustment ensures that even unseen features in the training data do not lead to zero probabilities, thus improving the model’s robustness.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-breiman1984classification" class="csl-entry" role="listitem">
-Breiman, L, J H Friedman, R Olshen, and C J Stone. 1984. <em>Classification and Regression Trees</em>. Wadsworth.
+Breiman, L., Friedman, J. H., Olshen, R., &amp; Stone, C. J. (1984). <em>Classification and regression trees</em>. Wadsworth.
 </div>
 <div id="ref-domingos1997optimality" class="csl-entry" role="listitem">
-Domingos, Pedro, and Michael Pazzani. 1997. <span>“On the Optimality of the Simple <span>B</span>ayesian Classifier Under Zero-One Loss.”</span> <em>Machine Learning</em> 29 (2-3): 103–30.
+Domingos, P., &amp; Pazzani, M. (1997). On the optimality of the simple <span>B</span>ayesian classifier under zero-one loss. <em>Machine Learning</em>, <em>29</em>(2-3), 103–130.
 </div>
 <div id="ref-ng2001discriminative" class="csl-entry" role="listitem">
-Ng, Andrew, and Michael Jordan. 2001. <span>“On Discriminative Vs. Generative Classifiers: <span>A</span> Comparison of Logistic Regression and Naive <span>B</span>ayes.”</span> In <em>Proceedings of the 14th International Conference on Neural Information Processing Systems: Natural and Synthetic</em>, 841–48.
+Ng, A., &amp; Jordan, M. (2001). On discriminative vs. Generative classifiers: <span>A</span> comparison of logistic regression and naive <span>B</span>ayes. <em>Proceedings of the 14th International Conference on Neural Information Processing Systems: Natural and Synthetic</em>, 841–848.
 </div>
 <div id="ref-rish2001empirical" class="csl-entry" role="listitem">
-Rish, Irina. 2001. <span>“An Empirical Study of the Naive <span>B</span>ayes Classifier.”</span> In <em>IJCAI 2001 Workshop on Empirical Methods in Artificial Intelligence</em>, 3:41–46. 22. Citeseer.
+Rish, I. (2001). An empirical study of the naive <span>B</span>ayes classifier. <em>IJCAI 2001 Workshop on Empirical Methods in Artificial Intelligence</em>, <em>3</em>, 41–46.
 </div>
 </div>
 </section>

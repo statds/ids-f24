@@ -317,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="import-the-cleaned-crashes-data-at-first" class="level4" data-number="6.2.3.1">
 <h4 data-number="6.2.3.1" class="anchored" data-anchor-id="import-the-cleaned-crashes-data-at-first"><span class="header-section-number">6.2.3.1</span> Import the cleaned crashes data at first</h4>
 <p>Fisrtly, we need to import the file named “nyccrashes_cleaned.feather” <a href="https://github.com/statds/ids-f24/tree/main/data">data source</a>. ‌<code>.feather</code> file is a binary file format for storing and sharing data. It is especially suitable for large-scale data analysis and data science workflows. ‌ It uses Apache Arrow’s columnar storage format, which can store data in binary form. The advantage of using this format of file is elvaluating the standard of reading and writing. We need to choose the function <code>read_feather</code> from <code>Pandas</code> to import the crashes data.</p>
-<div id="594b8886" class="cell" data-execution_count="1">
+<div id="7d56a2ff" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the Package Pandas</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Import the cleaned crashes data</span></span>
@@ -388,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="export-the-crashes-data-to-a-.csv-file" class="level4" data-number="6.2.3.2">
 <h4 data-number="6.2.3.2" class="anchored" data-anchor-id="export-the-crashes-data-to-a-.csv-file"><span class="header-section-number">6.2.3.2</span> Export the crashes data to a <code>.csv</code> file</h4>
 <p>It is easy to export the data. The fucntion that helps us to complete this goal is <code>to_csv</code> from <code>Pandas</code>.</p>
-<div id="534094c2" class="cell" data-execution_count="2">
+<div id="5dcb0f04" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the Package Pandas</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the function "to_csv" from Pandas</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Use the argument, "df_feather" storing the data</span></span>
@@ -407,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="csv-files" class="level4" data-number="6.2.4.1">
 <h4 data-number="6.2.4.1" class="anchored" data-anchor-id="csv-files"><span class="header-section-number">6.2.4.1</span> <code>.csv</code> files</h4>
 <p>We are familiar with <code>.csv</code> files as utilizing them to print some charts by R in the past courses. Now let us import this generated <code>.csv</code> file. We are supposed to choose the function <code>read_csv</code> from <code>Pandas</code>. The following code shows how to import it.</p>
-<div id="20410e34" class="cell" data-execution_count="3">
+<div id="a61f5bfe" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the Package Pandas</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the function "read_csv"</span></span>
@@ -448,7 +448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="xlsx-files" class="level4" data-number="6.2.4.2">
 <h4 data-number="6.2.4.2" class="anchored" data-anchor-id="xlsx-files"><span class="header-section-number">6.2.4.2</span> <code>.xlsx</code> files</h4>
 <p>We want to import <code>.xlsx</code> files but there are not suitable <code>.xlsx</code> files. We can transfer the CSV file to a <code>.xlsx</code> file by the fucntion <code>to_excel</code> from <code>Pandas</code>. Let’s see how to achieve this goal according to the following code.</p>
-<div id="697ccab6" class="cell" data-execution_count="4">
+<div id="ff6ed452" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the Package Pandas</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Use the function "to_excel"</span></span>
@@ -462,7 +462,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>The latest version of <code>Pandas</code> corresponds to the following code.</li>
 </ul>
-<div id="1e6fbae7" class="cell" data-execution_count="5">
+<div id="dc0a8585" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the function "read_excel"</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Add the command "engine" to read the file smoothly</span></span>
@@ -504,7 +504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="txt-files" class="level4" data-number="6.2.4.3">
 <h4 data-number="6.2.4.3" class="anchored" data-anchor-id="txt-files"><span class="header-section-number">6.2.4.3</span> <code>.txt</code> files</h4>
 <p>The last common kind of file is <code>.txt</code> files. We are able to generate the <code>.txt</code> file in the similar way as generatng the <code>.xlsx</code> file. We choose the function <code>to_csv</code> from <code>Pandas</code>. It is necessary to add the command <code>sep="\t"</code>. At the same time, we are supposed to add <code>index=False</code> to avoid the index of Dataframe. The specific code is following.</p>
-<div id="8fbc1b59" class="cell" data-execution_count="6">
+<div id="fb415f2d" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"nyccrashes_cleaned.csv"</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the function "to_csv"</span></span>
@@ -514,7 +514,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>df_csv.to_csv(<span class="st">"nyccrashes_cleaned.txt"</span>, sep <span class="op">=</span> <span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, index <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we get the corresponding <code>.txt</code> file successfully. The next step is to determine the correct encoding of this <code>.txt</code> file. This is because the computer will not read the file successfully without correct encoding. I have listed the code helping us to obtain the correct encoding. We use <code>with</code> statement to deal with data. And then we use the function <code>detect</code> from Package <code>Chardet</code>. The intention of <code>detect</code> is to detect character encoding of text files.</p>
-<div id="011b45ea" class="cell" data-execution_count="7">
+<div id="87aa8ef4" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chardet</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Use "with" statement </span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"nyccrashes_cleaned.txt"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
@@ -532,7 +532,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Warning: It is possible to generate the encoding which is not “utf-8”.</li>
 </ul>
 <p>Now we own the <code>.txt</code> file and its correct encoding. The last step is to use the function <code>read_table</code> to import the <code>.txt</code> file. We need to insert the correct encoding too. The corresponding code is following.</p>
-<div id="be7b932f" class="cell" data-execution_count="8">
+<div id="2e6c775b" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the function "read_table"</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Add the encoding behind the relative address</span></span>
@@ -601,7 +601,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="transfer-the-.csv-file-to-a-.xpt-file" class="level5" data-number="6.2.5.1.1">
 <h5 data-number="6.2.5.1.1" class="anchored" data-anchor-id="transfer-the-.csv-file-to-a-.xpt-file"><span class="header-section-number">6.2.5.1.1</span> Transfer the <code>.csv</code> file to a <code>.xpt</code> file</h5>
 <p>The reason why we choose <code>.xpt</code> file is to ensure data types remain consistent during conversion. Firstly, we need to process the data to ensure there is no space in the name of columns. If we don’t do that, we will not achieve the goal. The code of dealing with data is following.</p>
-<div id="7a0657b8" class="cell" data-execution_count="9">
+<div id="ded8284c" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"nyccrashes_cleaned.csv"</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>df_csv_without_unnamed <span class="op">=</span> df.loc[:, <span class="op">~</span>df.columns.<span class="bu">str</span>.contains(<span class="st">"^Unnamed"</span>)]</span>
@@ -609,7 +609,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>df_csv_without_unnamed.to_csv(<span class="st">"Without_Unamed.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We use the Package <code>pyreadstat</code> and the function <code>write_xport</code> from <code>pyreadstat</code> to transfer the <code>.csv</code> file. The corresponding code is following.</p>
-<div id="e24c49a4" class="cell" data-execution_count="10">
+<div id="f7d89a77" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>df_without_unnamed <span class="op">=</span> pd.read_csv(<span class="st">"Without_Unamed.csv"</span>)</span>
@@ -621,7 +621,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="import-the-generated-.xpt-file" class="level5" data-number="6.2.5.1.2">
 <h5 data-number="6.2.5.1.2" class="anchored" data-anchor-id="import-the-generated-.xpt-file"><span class="header-section-number">6.2.5.1.2</span> Import the generated <code>.xpt</code> file</h5>
 <p>We use the package <code>pyreadstat</code> too. We choose the function <code>read_xport</code> to import the data. Here is the code.</p>
-<div id="507c7a5b" class="cell" data-execution_count="11">
+<div id="79deea4f" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Define the Dataframe and metadata</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>df_1, meta <span class="op">=</span> pyreadstat.read_xport(<span class="st">"SAS.xpt"</span>)</span>
@@ -659,7 +659,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 1                                                              
 
 [2 rows x 28 columns]
-&lt;pyreadstat._readstat_parser.metadata_container object at 0x10f3d3ce0&gt;</code></pre>
+&lt;pyreadstat._readstat_parser.metadata_container object at 0x1109d3a10&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -671,7 +671,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We need to install the package <code>rpy2</code></p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pip install rpy2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>And then we choose the function <code>pandas2ri</code> The following code helps us achieve the goal.</p>
-<div id="25f4ab02" class="cell" data-execution_count="12">
+<div id="5b783fcc" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Use the Package rpy2</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> ro</span>
@@ -737,7 +737,7 @@ Error while trying to convert the column "vehicle_type_code_5". Fall back to str
 <section id="import-the-generated-.rdata-file" class="level5" data-number="6.2.5.2.2">
 <h5 data-number="6.2.5.2.2" class="anchored" data-anchor-id="import-the-generated-.rdata-file"><span class="header-section-number">6.2.5.2.2</span> Import the generated <code>.Rdata</code> file</h5>
 <p>We also use the Package <code>rpy2</code>. We need the function <code>pandas2ri</code> too. The code is following</p>
-<div id="230056f9" class="cell" data-execution_count="13">
+<div id="af16dc7b" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> ro</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Load the .Rdata file</span></span>
@@ -871,13 +871,13 @@ Error while trying to convert the column "vehicle_type_code_5". Fall back to str
 <section id="transfer-the-.csv-file-to-a-.dta-file" class="level5" data-number="6.2.5.3.1">
 <h5 data-number="6.2.5.3.1" class="anchored" data-anchor-id="transfer-the-.csv-file-to-a-.dta-file"><span class="header-section-number">6.2.5.3.1</span> Transfer the <code>.csv</code> file to a <code>.dta</code> file</h5>
 <p>We can only use <code>Pandas</code>. We choose the fucntion <code>to_stata</code> to save the <code>.dta</code> file.</p>
-<div id="9fb29aa8" class="cell" data-execution_count="14">
+<div id="5483188d" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"nyccrashes_cleaned.csv"</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Export the data to the default working directory</span></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>df_csv.to_stata(<span class="st">"stata.dta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/cq/5ysgnwfn7c3g0h46xyzvpj800000gn/T/ipykernel_70286/1977170459.py:4: InvalidColumnName:
+<pre><code>/var/folders/cq/5ysgnwfn7c3g0h46xyzvpj800000gn/T/ipykernel_33905/1977170459.py:4: InvalidColumnName:
 
 
 Not all pandas column names were valid Stata variable names.
@@ -896,7 +896,7 @@ alphanumerics and underscores, no Stata reserved words)
 <section id="import-the-.dta-file" class="level5" data-number="6.2.5.3.2">
 <h5 data-number="6.2.5.3.2" class="anchored" data-anchor-id="import-the-.dta-file"><span class="header-section-number">6.2.5.3.2</span> Import the <code>.dta</code> file</h5>
 <p>We use the function <code>read_stata</code> from <code>Pandas</code>. And here is the specific code.</p>
-<div id="511d9e6b" class="cell" data-execution_count="15">
+<div id="ff85c44a" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df_3 <span class="op">=</span> pd.read_stata(<span class="st">"stata.dta"</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_3.head(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -935,7 +935,7 @@ alphanumerics and underscores, no Stata reserved words)
 <section id="transfer-the-.csv-file-to-a-.sav-file" class="level5" data-number="6.2.5.4.1">
 <h5 data-number="6.2.5.4.1" class="anchored" data-anchor-id="transfer-the-.csv-file-to-a-.sav-file"><span class="header-section-number">6.2.5.4.1</span> Transfer the <code>.csv</code> file to a <code>.sav</code> file</h5>
 <p>We need to use the Package <code>pyreadstat</code> We choose the function <code>write_sav</code> form <code>pyreadstat</code> We are supposed to use the CSV file which is without space. We can uese the following code.</p>
-<div id="82fe455d" class="cell" data-execution_count="16">
+<div id="451179ea" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"Without_Unamed.csv"</span>)</span>
@@ -946,7 +946,7 @@ alphanumerics and underscores, no Stata reserved words)
 <section id="import-the-generated-.sav-file" class="level5" data-number="6.2.5.4.2">
 <h5 data-number="6.2.5.4.2" class="anchored" data-anchor-id="import-the-generated-.sav-file"><span class="header-section-number">6.2.5.4.2</span> Import the generated <code>.sav</code> file</h5>
 <p>We also use the Package <code>pyreadstat</code>. We utilize the function <code>read_sav</code> from <code>pyreadstat</code>. The following code helps us import the <code>.sav</code> file.</p>
-<div id="9d2fc334" class="cell" data-execution_count="17">
+<div id="ca8d4761" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>df_4, meta <span class="op">=</span> pyreadstat.read_sav(<span class="st">"SPSS.sav"</span>)</span>
@@ -982,7 +982,7 @@ alphanumerics and underscores, no Stata reserved words)
 1                                                              
 
 [2 rows x 28 columns]
-&lt;pyreadstat._readstat_parser.metadata_container object at 0x10971d760&gt;</code></pre>
+&lt;pyreadstat._readstat_parser.metadata_container object at 0x11c8dda00&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -994,7 +994,7 @@ alphanumerics and underscores, no Stata reserved words)
 <p>We need to install the package <code>scipy.io</code></p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>pip install scipy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>And then we choose the function <code>savemat</code> from <code>scipy</code>. The specific code is following.</p>
-<div id="f88e4782" class="cell" data-execution_count="18">
+<div id="45faa340" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.io <span class="im">import</span> savemat</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"nyccrashes_cleaned.csv"</span>)</span>
@@ -1009,7 +1009,7 @@ alphanumerics and underscores, no Stata reserved words)
 <section id="import-the-generated-.mat-file" class="level5" data-number="6.2.5.5.2">
 <h5 data-number="6.2.5.5.2" class="anchored" data-anchor-id="import-the-generated-.mat-file"><span class="header-section-number">6.2.5.5.2</span> Import the generated <code>.mat</code> file</h5>
 <p>We use the Package <code>scipy.io</code> too. We choose the function <code>loadmat</code> from <code>spicy.io</code> And the corresponding code is following.</p>
-<div id="842cbcec" class="cell" data-execution_count="19">
+<div id="90938f00" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.io <span class="im">import</span> loadmat</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"nyccrashes_cleaned.csv"</span>)</span>
@@ -1111,14 +1111,14 @@ alphanumerics and underscores, no Stata reserved words)
 <section id="transfer-the-.csv-file-to-a-.h5-file" class="level5" data-number="6.2.5.6.1">
 <h5 data-number="6.2.5.6.1" class="anchored" data-anchor-id="transfer-the-.csv-file-to-a-.h5-file"><span class="header-section-number">6.2.5.6.1</span> Transfer the <code>.csv</code> file to a <code>.h5</code> file</h5>
 <p>We can only use <code>Pandas</code>. At the same time, the function <code>to_hdf</code> helps us achive the goal. The code is following.</p>
-<div id="899389fa" class="cell" data-execution_count="20">
+<div id="1f6073eb" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tables</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"nyccrashes_cleaned.csv"</span>)</span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Export the data to the default working directory</span></span>
 <span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>df_csv.to_hdf(<span class="st">"HDF5.h5"</span>, key <span class="op">=</span> <span class="st">"data"</span>, mode <span class="op">=</span> <span class="st">"w"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/cq/5ysgnwfn7c3g0h46xyzvpj800000gn/T/ipykernel_70286/3411576893.py:5: PerformanceWarning:
+<pre><code>/var/folders/cq/5ysgnwfn7c3g0h46xyzvpj800000gn/T/ipykernel_33905/3411576893.py:5: PerformanceWarning:
 
 
 your performance may suffer as PyTables will pickle object types that it cannot
@@ -1137,7 +1137,7 @@ map directly to c-types [inferred_type-&gt;mixed,key-&gt;block2_values] [items-&
 <section id="import-the-generated-.h5-file" class="level5" data-number="6.2.5.6.2">
 <h5 data-number="6.2.5.6.2" class="anchored" data-anchor-id="import-the-generated-.h5-file"><span class="header-section-number">6.2.5.6.2</span> Import the generated <code>.h5</code> file</h5>
 <p>We only use <code>Pandas</code> too. We need the function <code>read_h5</code>. The code of importing .h5 file is following.</p>
-<div id="29f6e79c" class="cell" data-execution_count="21">
+<div id="3f895124" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>df_6 <span class="op">=</span> pd.read_hdf(<span class="st">"HDF5.h5"</span>, key <span class="op">=</span> <span class="st">"data"</span>)</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_6.head(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1177,7 +1177,7 @@ map directly to c-types [inferred_type-&gt;mixed,key-&gt;block2_values] [items-&
 <div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Install Package Glob</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>pip install glob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The effect of Package <code>glob</code> is to find files and directories that match the specified pattern. We use the function <code>glob</code> from Package <code>glob</code>. The intention of function <code>glob</code> is to find all file paths that match a specitic pattern and return a list of file paths. The following fucntion is the corresponding code.</p>
-<div id="6441aa3f" class="cell" data-execution_count="22">
+<div id="7da917ea" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Use the package globe and the package pandas</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob </span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -1228,7 +1228,7 @@ map directly to c-types [inferred_type-&gt;mixed,key-&gt;block2_values] [items-&
 <h3 data-number="6.2.6" class="anchored" data-anchor-id="view-data-information"><span class="header-section-number">6.2.6</span> View data information</h3>
 <p>It is natural for us to be interested in the fundamental information of the data we have imported. As a result, I have listed some useful functions to get the basic knowledge of the data.</p>
 <p>The following code helps us know how much the data is. We choose the basic function <code>shape</code> from <code>pandas</code>.</p>
-<div id="677ba78a" class="cell" data-execution_count="23">
+<div id="f7920cae" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">## How much is the crashes data is</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>df_csv.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
@@ -1239,7 +1239,7 @@ map directly to c-types [inferred_type-&gt;mixed,key-&gt;block2_values] [items-&
 <li>There are 1875 data and 29 columns in the file.</li>
 </ul>
 <p>The following code helps us check the type of each variable in data. The fucntion is <code>dtypes</code> from <code>Pandas</code></p>
-<div id="f7adebc2" class="cell" data-execution_count="24">
+<div id="a8c5f0a6" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show all types of the crashes' variables</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>df_csv.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
@@ -1279,7 +1279,7 @@ dtype: object</code></pre>
 <li>Our computer has listed 29 variables and their corresponding types.</li>
 </ul>
 <p>The following code is suitable for viewing overall data information. We use the basic function <code>info</code> from <code>Pandas</code></p>
-<div id="278a73b6" class="cell" data-execution_count="25">
+<div id="ea19a08a" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>df_csv.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -1324,7 +1324,7 @@ memory usage: 424.9+ KB</code></pre>
 <li>The basic information of crashes data has been listed.</li>
 </ul>
 <p>The function <code>describe</code> from <code>Pandas</code> helps generate descriptive statistics.</p>
-<div id="a36d1dc1" class="cell" data-execution_count="26">
+<div id="05414f79" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show the basic descriptive statistics of crashes data</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>df_csv.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
@@ -1486,7 +1486,7 @@ memory usage: 424.9+ KB</code></pre>
 </div>
 </div>
 <p>If we want to summarize the names of all columns, it is a good choice to use the function <code>columns</code> from <code>Pandas</code></p>
-<div id="925a5608" class="cell" data-execution_count="27">
+<div id="2041315d" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Get all columns' names of crashes data</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>df_csv.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
@@ -1505,7 +1505,7 @@ memory usage: 424.9+ KB</code></pre>
 </div>
 </div>
 <p>The function <code>tail</code> from <code>Pandas</code> allow us to view the last rows.</p>
-<div id="489345ed" class="cell" data-execution_count="28">
+<div id="b03b44eb" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show the last 2 rows of crashes data</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>df_csv.tail(n <span class="op">=</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
@@ -1596,7 +1596,7 @@ memory usage: 424.9+ KB</code></pre>
 </div>
 </div>
 <p>The function <code>unique</code> from <code>Pandas</code> dedicates in unique values ​​of one column.</p>
-<div id="515395d2" class="cell" data-execution_count="29">
+<div id="a0cda9d4" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show the unique values in the column named "crash_datetime"</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>df_csv[<span class="st">"crash_datetime"</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
@@ -1606,7 +1606,7 @@ memory usage: 424.9+ KB</code></pre>
 </div>
 </div>
 <p>We can get the values of one column(without deduplication). The choose of function is <code>values</code> from <code>Pandas</code> instead of <code>unique</code></p>
-<div id="9c241963" class="cell" data-execution_count="30">
+<div id="135e5c05" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show all values of the column named "crash_datetime"</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>df_csv[<span class="st">"crash_datetime"</span>].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
@@ -1625,7 +1625,7 @@ memory usage: 424.9+ KB</code></pre>
 <ul>
 <li>Determine whether there are missing values in columns</li>
 </ul>
-<div id="06263aa5" class="cell" data-execution_count="31">
+<div id="03615ae1" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Determine whether there are missing values in columns of crashes data</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>df_csv.isnull().<span class="bu">any</span>(axis <span class="op">=</span> <span class="dv">0</span>) <span class="co"># "axis=0" means columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
@@ -1664,7 +1664,7 @@ dtype: bool</code></pre>
 <ul>
 <li>Determine whether there are missing values ​​in rows.</li>
 </ul>
-<div id="3b46d1b0" class="cell" data-execution_count="32">
+<div id="f75ef041" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Determine whether there are missing values in rows of crashes data</span></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>df_csv.isnull().<span class="bu">any</span>(axis <span class="op">=</span> <span class="dv">1</span>) <span class="co"># "axis=1" means rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
@@ -1689,7 +1689,7 @@ Length: 1875, dtype: bool</code></pre>
 <ul>
 <li>Locate the missing values of rows</li>
 </ul>
-<div id="2a3c4c29" class="cell" data-execution_count="33">
+<div id="aca58a55" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Locate the missing values in crashes data rows</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>df_csv.loc[df_csv.isnull().<span class="bu">any</span>(axis <span class="op">=</span> <span class="dv">1</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
@@ -1999,7 +1999,7 @@ Length: 1875, dtype: bool</code></pre>
 <section id="determine-the-number-of-missing-values." class="level4" data-number="6.2.7.3">
 <h4 data-number="6.2.7.3" class="anchored" data-anchor-id="determine-the-number-of-missing-values."><span class="header-section-number">6.2.7.3</span> Determine the number of missing values.</h4>
 <p>We also use the function <code>isnull</code>. But this time we add the command <code>sum</code> rather than <code>any</code>.</p>
-<div id="8daeefbb" class="cell" data-execution_count="34">
+<div id="3e612a09" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Calculate the number of missing values in crashes data columns</span></span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>df_csv.isnull().<span class="bu">sum</span>(axis <span class="op">=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
@@ -2055,7 +2055,7 @@ dtype: int64</code></pre>
 <section id="nyc-crash-data" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="nyc-crash-data"><span class="header-section-number">6.4</span> NYC Crash Data</h2>
 <p>Consider a subset of the NYC Crash Data, which contains all NYC motor vehicle collisions data with documentation from <a href="https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95">NYC Open Data</a>. We downloaded the crash data for the week of June 30, 2024, on September 16, 2024, in CSC format.</p>
-<div id="91b3a426" class="cell" data-execution_count="35">
+<div id="6694efd3" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset</span></span>
@@ -2227,7 +2227,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>Now we can do some cleaning after a quick browse.</p>
-<div id="62e1d066" class="cell" data-execution_count="36">
+<div id="3f1ce016" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace invalid coordinates (latitude=0, longitude=0 or NaN) with NaN</span></span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>df.loc[(df[<span class="st">'latitude'</span>] <span class="op">==</span> <span class="dv">0</span>) <span class="op">&amp;</span> (df[<span class="st">'longitude'</span>] <span class="op">==</span> <span class="dv">0</span>), </span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>       [<span class="st">'latitude'</span>, <span class="st">'longitude'</span>]] <span class="op">=</span> pd.NA</span>
@@ -2249,7 +2249,7 @@ dtype: int64</code></pre>
 <span id="cb68-19"><a href="#cb68-19" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'crash_date'</span>, <span class="st">'crash_time'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Are missing in zip code and borough always co-occur?</p>
-<div id="51bb3f3c" class="cell" data-execution_count="37">
+<div id="4d135e4e" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if missing values in 'zip_code' and 'borough' always co-occur</span></span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Count rows where both are missing</span></span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>missing_cooccur <span class="op">=</span> df[[<span class="st">'zip_code'</span>, <span class="st">'borough'</span>]].isnull().<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>).<span class="bu">sum</span>()</span>
@@ -2268,7 +2268,7 @@ dtype: int64</code></pre>
 <p>First make sure <code>geopy</code> is installed.</p>
 <pre class="shell"><code>pip install geopy</code></pre>
 <p>Now we use model <code>Nominatim</code> in package <code>geopy</code> to reverse geocode.</p>
-<div id="f5e0ed8d" class="cell" data-execution_count="38">
+<div id="3613f92a" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> geopy.geocoders <span class="im">import</span> Nominatim</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2278,7 +2278,7 @@ dtype: int64</code></pre>
 <span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>geolocator <span class="op">=</span> Nominatim(user_agent<span class="op">=</span><span class="st">"jyGeopyTry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We write a function to do the reverse geocoding given lattitude and longitude.</p>
-<div id="99eb2d51" class="cell" data-execution_count="39">
+<div id="ba7c3de7" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to fill missing zip_code</span></span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_zip_code(latitude, longitude):</span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
@@ -2296,7 +2296,7 @@ dtype: int64</code></pre>
 <span id="cb73-15"><a href="#cb73-15" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="dv">1</span>)  <span class="co"># Delay to avoid overwhelming the service</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s try it out:</p>
-<div id="21eef711" class="cell" data-execution_count="40">
+<div id="f76d61a3" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>latitude <span class="op">=</span> <span class="fl">40.730610</span></span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>longitude <span class="op">=</span> <span class="op">-</span><span class="fl">73.935242</span></span>
@@ -2317,7 +2317,7 @@ dtype: int64</code></pre>
 <p>First, ensure you have <code>pyarrow</code> installed on your computer (and preferrably, in your current virtual environment):</p>
 <pre class="shell"><code>pip install pyarrow</code></pre>
 <p>Feather is a fast, lightweight, and easy-to-use binary file format for storing data frames, optimized for speed and efficiency, particularly for IPC and data sharing between Python and R or Julia.</p>
-<div id="5fc8544b" class="cell" data-execution_count="41">
+<div id="74ef11e1" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>df.to_feather(<span class="st">'data/nyccrashes_cleaned.feather'</span>)</span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare the file sizes of the feather format and the CSV format</span></span>
@@ -2340,7 +2340,7 @@ dtype: int64</code></pre>
 <span id="cb76-20"><a href="#cb76-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Feather file size: </span><span class="sc">{</span>feather_size_mb<span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Read the feather file back in:</p>
-<div id="fedc9017" class="cell" data-execution_count="42">
+<div id="75b41e9c" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>dff <span class="op">=</span> pd.read_feather(<span class="st">"data/nyccrashes_cleaned.feather"</span>)</span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>dff.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -2349,7 +2349,7 @@ dtype: int64</code></pre>
 <h2 data-number="6.6" class="anchored" data-anchor-id="using-the-census-data"><span class="header-section-number">6.6</span> Using the Census Data</h2>
 <p>The <a href="data.census.gov">US Census</a> provides a lot of useful data that could be merged with the NYC crash data for further analytics.</p>
 <p>First, ensure the DataFrame (df) is ready for merging with census data. Specifically, check that the <code>zip_code</code> column is clean and consistent.and consistent.</p>
-<div id="be51c423" class="cell" data-execution_count="43">
+<div id="e655b209" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_feather(<span class="st">"data/nyccrashes_cleaned.feather"</span>)</span>
 <span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2404,7 +2404,7 @@ dtype: int64</code></pre>
 <span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a><span class="va">valid_zip_df</span><span class="op">[</span><span class="st">'zip_code'</span><span class="op">]</span> <span class="ex">=</span> valid_zip_df<span class="pp">[</span><span class="st">'zip_code'</span><span class="pp">]</span>.astype<span class="er">(</span><span class="ex">str</span><span class="kw">)</span><span class="ex">.str.zfill</span><span class="er">(</span><span class="ex">5</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Since <code>uszipcode</code> doesn’t valid_zip_dfrently support vectorized operations for multiple ZIP code queries, we’ll optimize the process by querying each unique ZIP code once, then merging the results with the original <code>DataFrame</code>. This approach minimizes redundant queries for ZIP codes that appear multiple</p>
 <p>times.</p>
-<div id="72c3bc04" class="cell" data-execution_count="44">
+<div id="da52d5ce" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> uszipcode <span class="im">import</span> SearchEngine</span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the SearchEngine</span></span>

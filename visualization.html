@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -243,6 +263,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#faceting-your-plots" id="toc-faceting-your-plots" class="nav-link" data-scroll-target="#faceting-your-plots"><span class="header-section-number">7.1.8</span> Faceting Your Plots</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">7.1.9</span> Conclusion</a></li>
   </ul></li>
+  <li><a href="#spatial-data-visualization-with-google-map" id="toc-spatial-data-visualization-with-google-map" class="nav-link" data-scroll-target="#spatial-data-visualization-with-google-map"><span class="header-section-number">7.2</span> Spatial Data Visualization with Google Map</a>
+  <ul class="collapse">
+  <li><a href="#subsection" id="toc-subsection" class="nav-link" data-scroll-target="#subsection"><span class="header-section-number">7.2.1</span> Subsection</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -270,14 +294,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="data-visualization-with-plotnine" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="data-visualization-with-plotnine"><span class="header-section-number">7.1</span> Data Visualization with Plotnine</h2>
-<p>This section was written by Julia Mazzola</p>
+<p>This section was written by Julia Mazzola.</p>
 <section id="introduction" class="level3" data-number="7.1.1">
 <h3 data-number="7.1.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">7.1.1</span> Introduction</h3>
 <p>Hi! My name is Julia, and I am a Senior double majoring in Statistical Data Science and Economics. I’m excited to show you the power of data visualization with <code>Plotnine</code>, a Python library inspired by R’s <code>ggplot2</code>. Visualization is a crucial tool to effectively communicate your findings to your audience and <code>Plotnine</code> is a useful library to use.</p>
 </section>
 <section id="what-is-plotnine" class="level3" data-number="7.1.2">
 <h3 data-number="7.1.2" class="anchored" data-anchor-id="what-is-plotnine"><span class="header-section-number">7.1.2</span> What is <code>Plotnine</code>?</h3>
-<p><code>Plotnine</code> uses grammer of graphics to create layered, customizable visualizations. Grammar of graphics is a framework that provides a systematic approach to creating visual representations of data by breaking down the plot into its fundamental components. To understand this better, think about how sentences have grammer, we can layer our graphics to create complex and detailed visulizations.</p>
+<p><code>Plotnine</code> uses grammer of graphics <span class="citation" data-cites="wilkinson2012grammar">(<a href="references.html#ref-wilkinson2012grammar" role="doc-biblioref">Wilkinson, 2012</a>)</span> to create layered, customizable visualizations. Grammar of graphics is a framework that provides a systematic approach to creating visual representations of data by breaking down the plot into its fundamental components. To understand this better, think about how sentences have grammer, we can layer our graphics to create complex and detailed visulizations.</p>
 <p>Components of the layered grammar of graphics:</p>
 <ul>
 <li><strong>Layer:</strong> used to create the objects on a plot</li>
@@ -307,16 +331,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For <strong>conda:</strong></p>
 <p><code>conda install -c conda-forge plotnine</code></p>
 <p>You can import <code>Plotnine</code> without a prefix:</p>
-<div id="394b3c73" class="cell" data-execution_count="1">
+<div id="cdba8dec" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Or with with a prefix to access each component such as:</p>
-<div id="ec095683" class="cell" data-execution_count="2">
+<div id="aff9f082" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotnine <span class="im">as</span> p9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This way is generally recommended for larger projects or when collaborating with others for better code maintainability. But for simplicity in this section I will use the first method.</p>
 <p>For the examples we will be using NYC open data to visualize motor vehicle crashes from the week of June 30, 2024.</p>
-<div id="cd4cd86a" class="cell" data-execution_count="3">
+<div id="6c512589" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>nyc_crash <span class="op">=</span> pd.read_feather(<span class="st">'data/nyccrashes_cleaned.feather'</span>).dropna(subset<span class="op">=</span>[<span class="st">'borough'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -326,7 +350,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="7.1.4" class="anchored" data-anchor-id="scatterplot"><span class="header-section-number">7.1.4</span> Scatterplot</h3>
 <p>Firstly, we will be creating a scatterplot. This can be done with <code>geom_point()</code>. Our scatterplot will be displaying Crash Locations based on the longitude and latitude of the crash sites.</p>
 <p><strong>Creating a Basic Scatterplot</strong></p>
-<div id="df86b91c" class="cell" data-execution_count="4">
+<div id="d2dc1b4f" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>, category<span class="op">=</span><span class="pp">UserWarning</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -350,7 +374,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Customizing a Scatterplot</strong></p>
 <p>You can customize your plot further by changing the color, edge color, transparency, size, or shape of your points. This is done in geom_point().</p>
-<div id="3b62d02b" class="cell" data-execution_count="5">
+<div id="f7bb1823" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(ggplot(nyc_crash, aes(x<span class="op">=</span><span class="st">'longitude'</span>, y<span class="op">=</span><span class="st">'latitude'</span>)) <span class="op">+</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Changes what our points look like</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># color= changes the outline color</span></span>
@@ -375,7 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This scatterplot provides a lot of information, yet there are ways we can customize our plot to be more informative for our audience. We can create a scatterplot that differentiates by contributing factor.</p>
 <p><strong>Changing Shape by Variables</strong></p>
 <p>Changing shape of points by <code>contributing_factor_vehicle_1</code>:</p>
-<div id="d090ee06" class="cell" data-execution_count="6">
+<div id="03a769fa" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List of top 5 reasons for the contributing facor</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Abbreviating names for clairity</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>factor1 <span class="op">=</span> {<span class="st">"Driver Inattention/Distraction"</span>: <span class="st">"Distraction"</span>,</span>
@@ -392,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                                                        <span class="st">'contributing_factor_vehicle_1'</span></span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                                                        ].replace(factor1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ea177e98" class="cell" data-execution_count="7">
+<div id="84a142cb" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Changes shape of point according to 'contributing_factor_vehicle_1'</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>(ggplot(confact, aes(x<span class="op">=</span><span class="st">'longitude'</span>, y<span class="op">=</span><span class="st">'latitude'</span>,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    shape <span class="op">=</span><span class="st">'contributing_factor_vehicle_1'</span>)) <span class="op">+</span> </span>
@@ -415,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Changing Color by Variables</strong></p>
 <p>To add color coordination to your plot in <code>Plotnine</code>, specify the variable you want to use for coloring by including <code>color='variable'</code> within the <code>aes()</code> function. This enables you to visually distinguish different categories in your dataset, enhancing the clarity and interpretability of your plot.</p>
 <p>Changing color of point according to borough:</p>
-<div id="75d7b29d" class="cell" data-execution_count="8">
+<div id="f23c795a" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># color= changhes color according to 'borough'</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>(ggplot(nyc_crash, aes(x<span class="op">=</span><span class="st">'longitude'</span>, y<span class="op">=</span><span class="st">'latitude'</span>, color <span class="op">=</span> <span class="st">'borough'</span>)) <span class="op">+</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    geom_point() <span class="op">+</span></span>
@@ -436,7 +460,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>As you can see, each borough is represented by its own color, allowing the audience to easily identify which borough the crash occurred in.</p>
 <p><strong>Changing color of points by <code>contributing_factor_vehicle_1</code>:</strong></p>
-<div id="d7f9d774" class="cell" data-execution_count="9">
+<div id="2445f4d1" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># color= changes color according to 'contributing_factor_vehicle_1'</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>(ggplot(confact, aes(x<span class="op">=</span><span class="st">'longitude'</span>, y<span class="op">=</span><span class="st">'latitude'</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span><span class="st">'contributing_factor_vehicle_1'</span>)) <span class="op">+</span> </span>
@@ -459,10 +483,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This graph uses color to distinguish what contributing factor caused the crash.</p>
 <p><strong>Adding Linear Regression Line to Plot</strong></p>
 <p>If you want to fit a linear regression line, use <code>geom_smooth()</code>. Adding this to your plot can be really helpful to visualize trends of your data easier. To add a linear regression line to your scatterplot, you would include the following line of code:</p>
-<div id="1f598de3" class="cell" data-execution_count="10">
+<div id="df4ac9a7" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>geom_smooth(method<span class="op">=</span><span class="st">'lm'</span>, se<span class="op">=</span><span class="va">False</span>, color<span class="op">=</span><span class="st">'red'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>&lt;plotnine.geoms.geom_smooth.geom_smooth at 0x119b29c70&gt;</code></pre>
+<pre><code>&lt;plotnine.geoms.geom_smooth.geom_smooth at 0x1122696a0&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -470,7 +494,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="7.1.5" class="anchored" data-anchor-id="bar-chart"><span class="header-section-number">7.1.5</span> Bar Chart</h3>
 <p>Another common use for displaying data is a bar chart. You can create one with <code>geom_bar()</code>. We will start with a simple chart of crashes by borough.</p>
 <p><strong>Creating a Basic Bar Chart</strong></p>
-<div id="bff35838" class="cell" data-execution_count="11">
+<div id="09979260" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(ggplot(nyc_crash, aes(x<span class="op">=</span><span class="st">'borough'</span>)) <span class="op">+</span> <span class="co"># Use 'borough' for the x-axis</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    geom_bar(fill<span class="op">=</span><span class="st">'purple'</span>) <span class="op">+</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    labs(title<span class="op">=</span><span class="st">'Number of Crashes by Borough'</span>, </span>
@@ -486,7 +510,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Customizing your Bar Chart</strong></p>
 <p>You can change up your bar chart a couple of different ways. You can handpick colors you want, designate it to variables, flip orientation, etc:</p>
-<div id="96173520" class="cell" data-execution_count="12">
+<div id="d94c3e17" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Designate your preffered colors (pastel color codes)</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#B3FFBA'</span>, <span class="st">'#E1C6FF'</span>, <span class="st">'#FFB3BA'</span>, <span class="st">'#BAE1FF'</span>, <span class="st">'#FFD5BA'</span>]</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -509,7 +533,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Multivariable Bar Chart</strong></p>
 <p>You can also split up a bar chart to make it visually easier to understand.</p>
-<div id="d32fe3db" class="cell" data-execution_count="13">
+<div id="7a38c0b2" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using 'confact' dataset again for better visualization</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>(ggplot(confact, aes(x<span class="op">=</span><span class="st">'contributing_factor_vehicle_1'</span>, fill<span class="op">=</span><span class="st">'borough'</span>)) <span class="op">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    geom_bar() <span class="op">+</span></span>
@@ -535,7 +559,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="7.1.6" class="anchored" data-anchor-id="histogram"><span class="header-section-number">7.1.6</span> Histogram</h3>
 <p>Another useful way to display data is a histogram. You can create one with <code>geom_hisogram()</code>. Using a histogram is very useful when displaying continuous data.</p>
 <p><strong>Basic Histogram</strong></p>
-<div id="56870ae0" class="cell" data-execution_count="14">
+<div id="15642628" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(ggplot(nyc_crash, aes(x<span class="op">=</span><span class="st">'number_of_persons_injured'</span>)) <span class="op">+</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># bins= sets the amount of bars in your histogram</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    geom_histogram(bins<span class="op">=</span><span class="dv">10</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, fill<span class="op">=</span><span class="st">'green'</span>) <span class="op">+</span> </span>
@@ -553,7 +577,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>With a histogram it is very easy to understand trends for a dataset and you can see that our NYC crash data is positively skewed.</p>
 <p><strong>Multivariable Histogram</strong></p>
 <p>Similar to bar charts, you can make Histograms that display more than one variable.</p>
-<div id="7ffc197d" class="cell" data-execution_count="15">
+<div id="dd4fc8ac" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(ggplot(confact, aes(x<span class="op">=</span><span class="st">'number_of_persons_injured'</span>, fill <span class="op">=</span> <span class="st">'borough'</span>)) <span class="op">+</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># binwidth= changes width of your bars</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># color= changes outline color for better visability</span></span>
@@ -572,7 +596,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Overlapping Histogram</strong></p>
 <p>Histograms can also be useful when comparing multiple categories. Here we are comparing Manhattan and Brooklyn’s number of persons injured with an overlapping histogram.</p>
-<div id="adeca188" class="cell" data-execution_count="16">
+<div id="92ca533f" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating plot if crash is in 'MANHATTAN' or 'BROOKLYN'</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>(ggplot(nyc_crash[nyc_crash[<span class="st">'borough'</span>].isin([<span class="st">'MANHATTAN'</span>, <span class="st">'BROOKLYN'</span>])], </span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        aes(x<span class="op">=</span><span class="st">'number_of_persons_injured'</span>, fill<span class="op">=</span><span class="st">'borough'</span>)) <span class="op">+</span></span>
@@ -594,7 +618,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="7.1.7" class="anchored" data-anchor-id="line-chart"><span class="header-section-number">7.1.7</span> Line Chart</h3>
 <p>Line charts are great for time-series data and can be created with <code>geom_line()</code>. This type of chart is particularly useful for identifying patterns, fluctuations, and trends, making it easier to understand how a variable changes over a specified period. We will create one analyzing Number of Crashes by Hour.</p>
 <p><strong>Basic Line Chart</strong></p>
-<div id="160bccae" class="cell" data-execution_count="17">
+<div id="b486e530" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Finding crashes per hour</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>nyc_crash[<span class="st">'crash_datetime'</span>] <span class="op">=</span> pd.to_datetime(nyc_crash[<span class="st">'crash_datetime'</span>])</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -605,7 +629,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>crash_counts <span class="op">=</span> (nyc_crash.groupby([<span class="st">'crash_hour'</span>])</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>                .size().reset_index(name<span class="op">=</span><span class="st">'crash_count'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e56f99a8" class="cell" data-execution_count="18">
+<div id="5b25781a" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot crashes by hour</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>(ggplot(crash_counts, aes(x<span class="op">=</span><span class="st">'crash_hour'</span>, y<span class="op">=</span><span class="st">'crash_count'</span>)) <span class="op">+</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates the line chart</span></span>
@@ -628,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This example is excellent for understanding the grammar of graphics. As you can see, we use <code>geom_line()</code> to create the line chart, while also adding <code>geom_point()</code>, which is typically used for scatterplots, to make the figure clearer by layering additional details.”</p>
 <p><strong>Multivariable Line Chart</strong></p>
 <p>Similarly to the other figures you can create a line chart with multiple variables. Now we will create a chart with number of crashes by borough.</p>
-<div id="6d1a290d" class="cell" data-execution_count="19">
+<div id="ce4e384d" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting crash counts to also include borough</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>crash_counts <span class="op">=</span> nyc_crash.groupby([<span class="st">'crash_hour'</span>, </span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'borough'</span>]).size().reset_index(name<span class="op">=</span><span class="st">'crash_count'</span>)</span>
@@ -657,7 +681,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To organize your data in a way that enhances interpretability, you can utilize <code>facet_grid()</code> or <code>facet_wrap()</code>. This approach allows for the creation of separate plots based on categorical variables, making it easier to identify trends and patterns. You can facet any type of plots, scatterplots, bar charts, histograms, line charts, etc. using one or two variables.</p>
 <p><strong>Scatterplots per Facet</strong></p>
 <p>Scatterplot of Crash Locations by Contributing Factor with <code>facet_wrap()</code>:</p>
-<div id="f60b0828" class="cell" data-execution_count="20">
+<div id="9d24c504" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(ggplot(confact, aes(x<span class="op">=</span><span class="st">'longitude'</span>, y<span class="op">=</span><span class="st">'latitude'</span>)) <span class="op">+</span>  </span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    geom_point(alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="op">+</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates separate plots for each contributing factor</span></span>
@@ -675,7 +699,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Scatterplot of Two Variables, Crash Locations Contributing Factor and Borough with <code>facet_grid()</code>:</p>
-<div id="f91d0e7e" class="cell" data-execution_count="21">
+<div id="cc970761" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(ggplot(confact, aes(x<span class="op">=</span><span class="st">'longitude'</span>, y<span class="op">=</span><span class="st">'latitude'</span>)) <span class="op">+</span>  </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    geom_point(alpha <span class="op">=</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates a grid of subplots based on the values of two variables</span></span>
@@ -699,7 +723,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Bar Chart per Facet</strong></p>
 <p>Bar chart of Contributing Factors by Borough with <code>facet_wrap</code>:</p>
-<div id="42e2927d" class="cell" data-execution_count="22">
+<div id="b07a529c" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(ggplot(confact, aes(x<span class="op">=</span><span class="st">'contributing_factor_vehicle_1'</span>, fill<span class="op">=</span><span class="st">'borough'</span>)) <span class="op">+</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    geom_bar() <span class="op">+</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    labs(title<span class="op">=</span><span class="st">'Top 5 Contributing Factors by Borough'</span>,</span>
@@ -718,7 +742,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Histograms per Facet</strong></p>
 <p>Histogram of Crashes per Hour by Borough with <code>facet_wrap</code>:</p>
-<div id="724adb56" class="cell" data-execution_count="23">
+<div id="526db18d" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(ggplot(crash_counts, aes(x<span class="op">=</span><span class="st">'crash_hour'</span>, y<span class="op">=</span><span class="st">'crash_count'</span>, fill <span class="op">=</span> <span class="st">'borough'</span>)) <span class="op">+</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    geom_bar(stat<span class="op">=</span><span class="st">'identity'</span>) <span class="op">+</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    labs(x<span class="op">=</span><span class="st">'Crash Hour'</span>, y<span class="op">=</span><span class="st">'Number of Crashes'</span>, title <span class="op">=</span> <span class="st">"Crashes by Hour"</span>) <span class="op">+</span></span>
@@ -733,7 +757,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Line Chart per Facet</strong></p>
 <p>You can use plot each variable by on separate panels with <code>facet_wrap()</code>.</p>
-<div id="87f03151" class="cell" data-execution_count="24">
+<div id="e6e53cc6" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(ggplot(crash_counts, aes(x<span class="op">=</span><span class="st">'crash_hour'</span>, y<span class="op">=</span><span class="st">'crash_count'</span>)) <span class="op">+</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    geom_line() <span class="op">+</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Breaks the figure up by borough</span></span>
@@ -779,12 +803,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>There are many other features and customizations you can do with Plotnine. For more information on how to leverage the full potential of this package for your data visualization needs check out <a href="https://python-graph-gallery.com/plotnine/">Plotnine’s Graph Gallery</a>.</p>
 <p><em>Happy plotting!</em></p>
-<p><strong>Sources</strong></p>
+<p><strong>Further Readings</strong></p>
 <p>Python Graph Gallery. (2024). Plotnine: ggplot in python. Python Graph Gallery. https://python-graph-gallery.com/plotnine/</p>
 <p>Sarker, D. (2018). A comprehensive guide to the grammar of graphics for effective visualization of multi-dimensional data. Towards Data Science. https://towardsdatascience.com/a-comprehensive-guide-to-the-grammar-of-graphics-for-effective-visualization-of-multi-dimensional-1f92b4ed4149</p>
-<p>Wilkinson, L. (2012). The grammar of graphics (pp.&nbsp;375-414). Springer Berlin Heidelberg.</p>
+</section>
+</section>
+<section id="spatial-data-visualization-with-google-map" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="spatial-data-visualization-with-google-map"><span class="header-section-number">7.2</span> Spatial Data Visualization with Google Map</h2>
+<section id="subsection" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="subsection"><span class="header-section-number">7.2.1</span> Subsection</h3>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-wilkinson2012grammar" class="csl-entry" role="listitem">
+Wilkinson, L. (2012). <em>The grammar of graphics</em>. Springer.
+</div>
+</div>
 </section>
 </section>
 
