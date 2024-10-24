@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Advanced Topics – Introduction to Data Science</title>
+<title>12&nbsp; Advanced Topics – Introduction to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./exercises.html" rel="next">
-<link href="./supervised.html" rel="prev">
+<link href="./unsupervised.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./advanced.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Advanced Topics</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./advanced.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Advanced Topics</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -177,14 +177,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./unsupervised.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./advanced.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Advanced Topics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Advanced Topics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -203,20 +209,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#web-scraping" id="toc-web-scraping" class="nav-link active" data-scroll-target="#web-scraping"><span class="header-section-number">11.1</span> Web Scraping</a>
+  <li><a href="#web-scraping" id="toc-web-scraping" class="nav-link active" data-scroll-target="#web-scraping"><span class="header-section-number">12.1</span> Web Scraping</a>
   <ul class="collapse">
-  <li><a href="#subsection-1" id="toc-subsection-1" class="nav-link" data-scroll-target="#subsection-1"><span class="header-section-number">11.1.1</span> Subsection 1</a></li>
-  <li><a href="#subsection-2" id="toc-subsection-2" class="nav-link" data-scroll-target="#subsection-2"><span class="header-section-number">11.1.2</span> Subsection 2</a></li>
+  <li><a href="#subsection-1" id="toc-subsection-1" class="nav-link" data-scroll-target="#subsection-1"><span class="header-section-number">12.1.1</span> Subsection 1</a></li>
+  <li><a href="#subsection-2" id="toc-subsection-2" class="nav-link" data-scroll-target="#subsection-2"><span class="header-section-number">12.1.2</span> Subsection 2</a></li>
   </ul></li>
-  <li><a href="#interfacing-with-r" id="toc-interfacing-with-r" class="nav-link" data-scroll-target="#interfacing-with-r"><span class="header-section-number">11.2</span> Interfacing with R</a>
+  <li><a href="#interfacing-with-r" id="toc-interfacing-with-r" class="nav-link" data-scroll-target="#interfacing-with-r"><span class="header-section-number">12.2</span> Interfacing with R</a>
   <ul class="collapse">
-  <li><a href="#subsection-1-1" id="toc-subsection-1-1" class="nav-link" data-scroll-target="#subsection-1-1"><span class="header-section-number">11.2.1</span> Subsection 1</a></li>
-  <li><a href="#subsection-2-1" id="toc-subsection-2-1" class="nav-link" data-scroll-target="#subsection-2-1"><span class="header-section-number">11.2.2</span> Subsection 2</a></li>
+  <li><a href="#subsection-1-1" id="toc-subsection-1-1" class="nav-link" data-scroll-target="#subsection-1-1"><span class="header-section-number">12.2.1</span> Subsection 1</a></li>
+  <li><a href="#subsection-2-1" id="toc-subsection-2-1" class="nav-link" data-scroll-target="#subsection-2-1"><span class="header-section-number">12.2.2</span> Subsection 2</a></li>
   </ul></li>
-  <li><a href="#python-package-development" id="toc-python-package-development" class="nav-link" data-scroll-target="#python-package-development"><span class="header-section-number">11.3</span> Python Package Development</a>
+  <li><a href="#python-package-development" id="toc-python-package-development" class="nav-link" data-scroll-target="#python-package-development"><span class="header-section-number">12.3</span> Python Package Development</a>
   <ul class="collapse">
-  <li><a href="#subsection-1-2" id="toc-subsection-1-2" class="nav-link" data-scroll-target="#subsection-1-2"><span class="header-section-number">11.3.1</span> Subsection 1</a></li>
-  <li><a href="#subsection-2-2" id="toc-subsection-2-2" class="nav-link" data-scroll-target="#subsection-2-2"><span class="header-section-number">11.3.2</span> Subsection 2</a></li>
+  <li><a href="#subsection-1-2" id="toc-subsection-1-2" class="nav-link" data-scroll-target="#subsection-1-2"><span class="header-section-number">12.3.1</span> Subsection 1</a></li>
+  <li><a href="#subsection-2-2" id="toc-subsection-2-2" class="nav-link" data-scroll-target="#subsection-2-2"><span class="header-section-number">12.3.2</span> Subsection 2</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -226,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Advanced Topics</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Advanced Topics</span></h1>
 </div>
 
 
@@ -243,34 +249,34 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="web-scraping" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="web-scraping"><span class="header-section-number">11.1</span> Web Scraping</h2>
+<section id="web-scraping" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="web-scraping"><span class="header-section-number">12.1</span> Web Scraping</h2>
 <p>This section was written by …</p>
-<section id="subsection-1" class="level3" data-number="11.1.1">
-<h3 data-number="11.1.1" class="anchored" data-anchor-id="subsection-1"><span class="header-section-number">11.1.1</span> Subsection 1</h3>
+<section id="subsection-1" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="subsection-1"><span class="header-section-number">12.1.1</span> Subsection 1</h3>
 </section>
-<section id="subsection-2" class="level3" data-number="11.1.2">
-<h3 data-number="11.1.2" class="anchored" data-anchor-id="subsection-2"><span class="header-section-number">11.1.2</span> Subsection 2</h3>
+<section id="subsection-2" class="level3" data-number="12.1.2">
+<h3 data-number="12.1.2" class="anchored" data-anchor-id="subsection-2"><span class="header-section-number">12.1.2</span> Subsection 2</h3>
 </section>
 </section>
-<section id="interfacing-with-r" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="interfacing-with-r"><span class="header-section-number">11.2</span> Interfacing with R</h2>
+<section id="interfacing-with-r" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="interfacing-with-r"><span class="header-section-number">12.2</span> Interfacing with R</h2>
 <p>This section was written by …</p>
-<section id="subsection-1-1" class="level3" data-number="11.2.1">
-<h3 data-number="11.2.1" class="anchored" data-anchor-id="subsection-1-1"><span class="header-section-number">11.2.1</span> Subsection 1</h3>
+<section id="subsection-1-1" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="subsection-1-1"><span class="header-section-number">12.2.1</span> Subsection 1</h3>
 </section>
-<section id="subsection-2-1" class="level3" data-number="11.2.2">
-<h3 data-number="11.2.2" class="anchored" data-anchor-id="subsection-2-1"><span class="header-section-number">11.2.2</span> Subsection 2</h3>
+<section id="subsection-2-1" class="level3" data-number="12.2.2">
+<h3 data-number="12.2.2" class="anchored" data-anchor-id="subsection-2-1"><span class="header-section-number">12.2.2</span> Subsection 2</h3>
 </section>
 </section>
-<section id="python-package-development" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="python-package-development"><span class="header-section-number">11.3</span> Python Package Development</h2>
+<section id="python-package-development" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="python-package-development"><span class="header-section-number">12.3</span> Python Package Development</h2>
 <p>This section was written by …</p>
-<section id="subsection-1-2" class="level3" data-number="11.3.1">
-<h3 data-number="11.3.1" class="anchored" data-anchor-id="subsection-1-2"><span class="header-section-number">11.3.1</span> Subsection 1</h3>
+<section id="subsection-1-2" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="subsection-1-2"><span class="header-section-number">12.3.1</span> Subsection 1</h3>
 </section>
-<section id="subsection-2-2" class="level3" data-number="11.3.2">
-<h3 data-number="11.3.2" class="anchored" data-anchor-id="subsection-2-2"><span class="header-section-number">11.3.2</span> Subsection 2</h3>
+<section id="subsection-2-2" class="level3" data-number="12.3.2">
+<h3 data-number="12.3.2" class="anchored" data-anchor-id="subsection-2-2"><span class="header-section-number">12.3.2</span> Subsection 2</h3>
 
 
 </section>
@@ -699,13 +705,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./supervised.html" class="pagination-link" aria-label="Supervised Learning">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Supervised Learning</span></span>
+      <a href="./unsupervised.html" class="pagination-link" aria-label="Unsupervised Learning">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./exercises.html" class="pagination-link" aria-label="Exercises">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Exercises</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Exercises</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
