@@ -4,6 +4,9 @@ The notes were developed with Quarto; for details about Quarto, visit
 <https://quarto.org/docs/books>.
 
 
+This book free and is licensed under a [Creative Commons
+Attribution-NonCommercial-NoDerivs 3.0 United States License](http://creativecommons.org/licenses/by-nc-nd/3.0/us/).
+
 ## Sources at GitHub
 These lecture notes for STAT 3255/5255 in Fall 2024 represent a
 collaborative effort between Professor Jun Yan and the students
@@ -31,7 +34,8 @@ different perspectives brought by successive student cohorts.
 
 ## Midterm Project
 
-TBA
+NYC noise complaints made to NYPD in the week of July 4, 2024.
+See details in the exercises.
 
 ## Final Project
 
@@ -161,6 +165,10 @@ Markdown.
   + Get a good grade on this class
   + Learn more about how to processing data
 + Xu, Deyu
+    - Be proficient in using Python to process data.
+    - Learn the basics of machine learning.
+    - Have a basic understanding of data scienc.
+    - Lay a solid foundation for GNN and Bayes neural network.
 
 ## Presentation Orders
 
@@ -231,13 +239,14 @@ Please use the following table to sign up.
 
    Date  | Presenter              | Topic
   ------ | ---------------------- | ------
-   09/11 | Zachary Blanchard      | Making presentation with Quarto
+   09/11 | Zachary Blanchard    | Making presentation with Quarto
    09/16 | Deyu Xu                | Import/Export data
    09/18 | Sara Clokey            | Communications in data science
    09/23 | Dorathea Johnson       | Database with SQL
-   09/25 | Xavier Febles           |
+   09/25 | Xavier Febles           | Statistical tests
    09/30 | Jack Bienvenue         | Visualizing spatial data in a Google Map
    10/02 | Julia Mazzola          | Data Visualization with Plotnine
+<<<<<<< HEAD
    10/07 | Suha Akach             | Naive Bayes
    10/09 | Rahul Manna            |
    10/14 | Kaitlyn Anderson       | Career readiness in data science
@@ -246,12 +255,21 @@ Please use the following table to sign up.
    10/23 | Olivia Kashalapov      |
    10/28 | Emily Borowski         | Random Forest
    10/30 | Qianruo Tan            | Reinforcement Learning
+=======
+   10/07 | Suha Akach             | Naive Bayes classifier
+   10/09 | Rahul Manna            | Animation
+   10/23 | Jaden Astle            | Classification and regression trees 
+   10/23 | Olivia Kashalapov      | Synthetic Minority Oversampling Technique (SMOTE)
+   10/28 | Data science alumni panel |
+   10/30 | Emily Borowski         | Random Forest
+   10/30 | Aditya Paricharak      | Neural Networks
+>>>>>>> 587303803fee918c36615467b575183498220758
    11/04 | Melanie Desroches      |
-   11/06 | Aditya Paricharak      |
+   11/06 | Qianruo Tan            | Reinforcement Learning
    11/11 | Aansh Jha              |
    11/11 | Owen Babiec            | Calling R from Python and vice versa
-   11/13 | Stef Baptista          |
-   11/13 | Mohammad Parvez        | Developing a Python package
+   11/13 | Stef Baptista            |
+   11/13 | Mohammad Parvez   | Developing a Python package
 
 
 ### Final Project Presentation Schedule

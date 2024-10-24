@@ -1,3 +1,5 @@
 # Visualization
 
 {{< include _plotnine.qmd >}}
+
+{{< include _spatialvisual.qmd >}}

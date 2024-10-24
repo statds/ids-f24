@@ -14,12 +14,14 @@ babel==2.16.0
 backoff-utils==1.0.1
 beautifulsoup4==4.12.3
 bleach==6.1.0
+blosc2==2.7.1
 branca==0.7.2
 build==1.2.2
 cenpy==1.0.1
 censusbatchgeocoder==0.1.1
 certifi==2024.8.30
 cffi==1.17.1
+chardet==5.2.0
 charset-normalizer==3.3.2
 click==8.1.7
 click-plugins==1.1.1
@@ -32,6 +34,7 @@ debugpy==1.8.5
 decorator==5.1.1
 defusedxml==0.7.1
 docopt==0.6.2
+et-xmlfile==1.1.0
 exceptiongroup==1.2.2
 executing==2.1.0
 fastjsonschema==2.20.0
@@ -87,15 +90,19 @@ matplotlib==3.9.2
 matplotlib-inline==0.1.7
 mistune==3.0.2
 mizani==0.11.4
+msgpack==1.1.0
 multitasking==0.0.11
 nbclient==0.10.0
 nbconvert==7.16.4
 nbformat==5.10.4
+ndindex==1.9.2
 nest-asyncio==1.6.0
 networkx==3.3
 notebook==7.2.2
 notebook_shim==0.2.4
+numexpr==2.10.1
 numpy==2.1.1
+openpyxl==3.1.5
 overrides==7.7.0
 packaging==24.1
 pandas==2.2.2
@@ -119,6 +126,7 @@ prompt_toolkit==3.0.47
 psutil==6.0.0
 ptyprocess==0.7.0
 pure_eval==0.2.3
+py-cpuinfo==9.0.0
 pyarrow==17.0.0
 pycparser==2.22
 Pygments==2.18.0
@@ -126,6 +134,7 @@ pyogrio==0.9.0
 pyparsing==3.1.4
 pyproj==3.6.1
 pyproject_hooks==1.1.0
+pyreadstat==1.2.7
 python-dateutil==2.9.0.post0
 python-json-logger==2.0.7
 python-Levenshtein==0.26.0
@@ -158,6 +167,7 @@ SQLAlchemy==2.0.0
 sqlalchemy_mate==2.0.0.0
 stack-data==0.6.3
 statsmodels==0.14.2
+tables==3.10.1
 tenacity==9.0.0
 terminado==0.18.1
 terminaltables==3.1.10
