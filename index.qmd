@@ -246,6 +246,16 @@ Please use the following table to sign up.
    09/25 | Xavier Febles           | Statistical tests
    09/30 | Jack Bienvenue         | Visualizing spatial data in a Google Map
    10/02 | Julia Mazzola          | Data Visualization with Plotnine
+<<<<<<< HEAD
+   10/07 | Suha Akach             | Naive Bayes
+   10/09 | Rahul Manna            |
+   10/14 | Kaitlyn Anderson       | Career readiness in data science
+   10/16 | TBA                    |
+   10/21 | Jaden Astle            | Classification and regression trees 
+   10/23 | Olivia Kashalapov      |
+   10/28 | Emily Borowski         | Random Forest
+   10/30 | Qianruo Tan            | Reinforcement Learning
+=======
    10/07 | Suha Akach             | Naive Bayes classifier
    10/09 | Rahul Manna            | Animation
    10/23 | Jaden Astle            | Classification and regression trees 
@@ -253,6 +263,7 @@ Please use the following table to sign up.
    10/28 | Data science alumni panel |
    10/30 | Emily Borowski         | Random Forest
    10/30 | Aditya Paricharak      | Neural Networks
+>>>>>>> 587303803fee918c36615467b575183498220758
    11/04 | Melanie Desroches      |
    11/06 | Qianruo Tan            | Reinforcement Learning
    11/11 | Aansh Jha              |

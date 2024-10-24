@@ -173,3 +173,49 @@ $$
 This adjustment ensures that even unseen features in the training data 
 do not lead to zero probabilities, thus improving the model’s robustness.
 
+```{python eval=FALSE} {.scrollable}
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import classification_report, confusion_matrix, roc_curve, roc_auc_score
+
+# Load the dataset
+df = pd.read_feather('data/nyccrashes_newcleaned.feather')
+
+# Target variable for severe crashes
+df['severe_crash'] = ((df['number_of_persons_killed'] > 0) | (df['number_of_persons_injured'] > 1)).astype(int)
+
+# Select predictors with correct types
+predictors = ['borough', 'location', 'crash_date', 'crash_time', 'crash_time_category',
+              'contributing_factor_vehicle_1', 'contributing_factor_vehicle_2', 
+              'vehicle_type_code_1', 'vehicle_type_code_2']
+
+# Only convert categorical columns to strings if necessary
+categorical_columns = ['borough', 'location', 'crash_time_category']
+df[categorical_columns] = df[categorical_columns].astype(str)
+
+# Create dummy variables for categorical predictors
+X = pd.get_dummies(df[predictors + ['crash_time_category']], drop_first=True)
+y = df['severe_crash']
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1234)
+
+# Initialize and fit the Gaussian Naive Bayes classifier
+model = GaussianNB()
+model.fit(X_train, y_train)
+
+# Make predictions
+y_pred = model.predict(X_test)
+
+# Evaluate the model
+confusion = confusion_matrix(y_test, y_pred)
+report = classification_report(y_test, y_pred)
+
+# Output the results
+print("Confusion Matrix:")
+print(confusion)
+print("\nClassification Report:")
+print(report)
+```
