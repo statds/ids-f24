@@ -9,7 +9,7 @@
 <meta name="author" content="Jun Yan and Students in Fall 2024:">
 <meta name="author" content="Zachary Blanchard, Sara Clokey">
 <meta name="author" content="Julia Mazzola">
-<meta name="dcterms.date" content="2024-10-23">
+<meta name="dcterms.date" content="2024-10-24">
 
 <title>Introduction to Data Science</title>
 <style>
@@ -234,8 +234,14 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./advanced.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Advanced Topics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -311,7 +317,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 23, 2024</p>
+      <p class="date">October 24, 2024</p>
     </div>
   </div>
   
@@ -331,7 +337,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="sources-at-github">Sources at GitHub</h2>
 <p>These lecture notes for STAT 3255/5255 in Fall 2024 represent a collaborative effort between Professor Jun Yan and the students enrolled in the course. This cooperative approach to education was facilitated through the use of GitHub, a platform that encourages collaborative coding and content development. To view these contributions and the lecture notes in their entirety, please visit our Spring 2024 repository at <a href="https://github.com/statds/ids-f24" class="uri">https://github.com/statds/ids-f24</a>.</p>
 <p>Students contributed to the lecture notes by submitting pull requests to our dedicated GitHub repository. This method not only enriched the course material but also provided students with practical experience in collaborative software development and version control.</p>
-<p>For those interested in exploring the lecture notes from the previous years, the <a href="https://statds.github.io/ids-s24">Spring 2024</a>, <a href="https://statds.github.io/ids-s23">Spring 2023</a> and <a href="https://statds.github.io/ids-s22/">Spring 2022</a> are both publicly accessible. These archives offer valuable insights into the evolution of the course content and the different perspectives brought by successive student cohorts.</p>
+<p>For those interested in exploring the lecture notes from the previous years, the <a href="https://statds.github.io/ids-s24">Spring 2024</a>, <a href="https://statds.github.io/ids-s23">Spring 2023</a> and <a href="https://statds.github.io/ids-s22/">Spring 2022</a> are also publicly accessible. These archives offer insights into the evolution of the course content and the different perspectives brought by successive student cohorts.</p>
 </section>
 <section id="midterm-project" class="level2">
 <h2 class="anchored" data-anchor-id="midterm-project">Midterm Project</h2>
@@ -488,7 +494,7 @@ div.csl-indent {
 <section id="presentation-orders" class="level2">
 <h2 class="anchored" data-anchor-id="presentation-orders">Presentation Orders</h2>
 <p>The topic presentation order is set up in class.</p>
-<div id="e9d853ce" class="cell" data-execution_count="1">
+<div id="fda9fc3f" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'rosters/3255.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    ug <span class="op">=</span> [line.strip() <span class="cf">for</span> line <span class="kw">in</span> <span class="bu">file</span>]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'rosters/5255.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
@@ -595,7 +601,7 @@ div.csl-indent {
 <tr class="odd">
 <td>09/25</td>
 <td>Xavier Febles</td>
-<td></td>
+<td>Statistical tests</td>
 </tr>
 <tr class="even">
 <td>09/30</td>
@@ -610,12 +616,12 @@ div.csl-indent {
 <tr class="even">
 <td>10/07</td>
 <td>Suha Akach</td>
-<td></td>
+<td>Naive Bayes classifier</td>
 </tr>
 <tr class="odd">
 <td>10/09</td>
 <td>Rahul Manna</td>
-<td></td>
+<td>Animation</td>
 </tr>
 <tr class="even">
 <td>10/23</td>
@@ -625,7 +631,7 @@ div.csl-indent {
 <tr class="odd">
 <td>10/23</td>
 <td>Olivia Kashalapov</td>
-<td>SMOTE</td>
+<td>Synthetic Minority Oversampling Technique (SMOTE)</td>
 </tr>
 <tr class="even">
 <td>10/28</td>
@@ -655,7 +661,7 @@ div.csl-indent {
 <tr class="odd">
 <td>11/11</td>
 <td>Aansh Jha</td>
-<td></td>
+<td>K-means clustering</td>
 </tr>
 <tr class="even">
 <td>11/11</td>
@@ -722,7 +728,7 @@ div.csl-indent {
 </ul>
 <p>I have added a template file <code>mysection.qmd</code> and a new line to <code>_quarto.yml</code> as an example.</p>
 <p>For more detailed style guidance, please see my notes on <a href="https://statds.github.io/stat-writing/using-the-right-tools-for-writing.html#latex-for-typesetting">statistical writing</a>.</p>
-<p>Plagiarism is to be prevented. Remember that these class notes are publicly available online with your names attached. Here are some resources on []how to avoid plagiarism](https://usingsources.fas.harvard.edu/how-avoid-plagiarism). In particular, in our course, one convenient way to avoid plagiarism is to use our own data (e.g., NYC Open Data). Combined with your own explanation of the code chunks, it would be hard to plagiarize.</p>
+<p>Plagiarism is to be prevented. Remember that these class notes are publicly available online with your names attached. Here are some resources on <a href="https://usingsources.fas.harvard.edu/how-avoid-plagiarism">how to avoid plagiarism</a>. In particular, in our course, one convenient way to avoid plagiarism is to use our own data (e.g., NYC Open Data). Combined with your own explanation of the code chunks, it would be hard to plagiarize.</p>
 </section>
 <section id="homework-requirements" class="level3">
 <h3 class="anchored" data-anchor-id="homework-requirements">Homework Requirements</h3>
@@ -773,7 +779,7 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="sub-topic-1">Sub Topic 1</h3>
 <p>Put materials on topic 1 here</p>
 <p>Python examples can be put into <code>python</code> code chunks:</p>
-<div id="84535b63" class="cell" data-execution_count="2">
+<div id="e2ed7db4" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># do something</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
