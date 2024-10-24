@@ -25,6 +25,7 @@ book:
     - stats.qmd
     - machinelearning.qmd
     - supervised.qmd
+    - advanced.qmd
     - exercises.qmd
     - references.qmd
 
