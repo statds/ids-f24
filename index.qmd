@@ -28,8 +28,8 @@ years, the
 [Spring 2024](https://statds.github.io/ids-s24),
 [Spring 2023](https://statds.github.io/ids-s23) and
 [Spring 2022](https://statds.github.io/ids-s22/)
-are both publicly accessible. These archives offer
-valuable insights into the evolution of the course content and the
+are also publicly accessible. These archives offer
+insights into the evolution of the course content and the
 different perspectives brought by successive student cohorts.
 
 ## Midterm Project
@@ -255,7 +255,7 @@ Please use the following table to sign up.
    10/30 | Aditya Paricharak      | Neural Networks
    11/04 | Melanie Desroches      |
    11/06 | Qianruo Tan            | Reinforcement Learning
-   11/11 | Aansh Jha              |
+   11/11 | Aansh Jha              | K-means clustering
    11/11 | Owen Babiec            | Calling R from Python and vice versa
    11/13 | Stef Baptista            |
    11/13 | Mohammad Parvez   | Developing a Python package
@@ -297,7 +297,7 @@ writing](https://statds.github.io/stat-writing/using-the-right-tools-for-writing
 
 
 Plagiarism is to be prevented. Remember that these class notes are publicly
-available online with your names attached.  Here are some resources on []how to
+available online with your names attached.  Here are some resources on [how to
 avoid plagiarism](https://usingsources.fas.harvard.edu/how-avoid-plagiarism). 
 In particular, in our course, one convenient way to avoid plagiarism is to use
 our own data (e.g., NYC Open Data). Combined with your own explanation of the
