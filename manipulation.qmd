@@ -147,7 +147,6 @@ because valid zip codes from each borough are known.
 
 ## Cross-platform Data Format `Arrow`
 
-
 The CSV format (and related formats like TSV - tab-separated values)
 for data tables is ubiquitous, convenient, and can be read or written
 by many different data analysis environments, including spreadsheets.
@@ -240,15 +239,15 @@ that could be merged with the NYC crash data for further analytics.
 
 First, ensure the DataFrame (df) is ready for merging with census
 data. Specifically, check that the `zip_code` column is clean
-and consistent.
-and consistent.
+and consistent.and consistent.
 ```{python}
-print(df['zip_code'].isnull().sum())
-# Standardize to 5-digit codes, if necessary
-df['zip_code'] = df['zip_code'].astype(str).str.zfill(5) 
+import pandas as pd
+df = pd.read_feather("data/nyccrashes_cleaned.feather")
+
+valid_zip_df = df.dropna(subset=['zip_code']).copy()
+valid_zip_df['zip_code'] = valid_zip_df['zip_code'].astype(int).astype(str).str.zfill(5)
+unique_zips = valid_zip_df['zip_code'].unique()
 ```
-
-
 
 We can use the `uszipcode` package to get basic demographic data
 for each zip code. For more detailed or specific census data, 
@@ -295,28 +294,32 @@ are some of the key variables available at the ZIP code level:
 + `median_age`: The median age of the population.
 
 
-Install the `uszipcode` package into the current virtual environment
-by `pip install uszipcode`. 
+Install the `uszipcode` package into the current virtual environment,
+if it has not been installd yet.
+```bash
+pip install uszipcode
 
-Now let's work on the rodent sightings data.
 
+``
 We will first clean the `zip_code` column to ensure it only
 contains valid ZIP codes. Then, we will use a vectorized
 approach to fetch the required data for each unique zip code
 and merge this information back into the original `DataFrame`.
-
-```{python}
+`{python}
 # Remove rows where 'zip_code' is missing or not a valid ZIP code format
 valid_zip_df = df.dropna(subset=['zip_code']).copy()
 valid_zip_df['zip_code'] = valid_zip_df['zip_code'].astype(str).str.zfill(5)
-unique_zips = valid_zip_df['zip_code'].unique()
+
 ```
 
-Since `uszipcode` doesn't inherently support vectorized operations
+
+Since `uszipcode` doesn't valid_zip_dfrently support vectorized operations
 for multiple ZIP code queries, we'll optimize the process by
 querying each unique ZIP code once, then merging the results
 with the original `DataFrame`. This approach minimizes redundant
-queries for ZIP codes that appear multiple times.
+queries for ZIP codes that appear multiple
+
+ times.
 
 ```{python}
 from uszipcode import SearchEngine
@@ -347,5 +350,5 @@ zip_info_df = pd.DataFrame(zip_data)
 # Merge this info back into the original DataFrame based on 'zip_code'
 merged_df = pd.merge(valid_zip_df, zip_info_df, how="left", on="zip_code")
 
-merged_df.columns
+merged_df.head()
 ```

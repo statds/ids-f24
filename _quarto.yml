@@ -6,7 +6,11 @@ book:
   subtitle: "STAT 3255/5255 @ UConn, Fall 2024"
   author:
     - name: "Jun Yan and Students in Fall 2024:"
-    - name: Zachary Blanchard, Sara Clokey
+    - name: Zachary Blanchard
+    - name: Deyu Xu
+    - name: Sara Clokey
+    - name: Thea Johnson
+    - name: Julia Mazzola
   date: today
 
   sidebar:
@@ -22,11 +26,16 @@ book:
     - manipulation.qmd
     - visualization.qmd
     - stats.qmd
+    - machinelearning.qmd
     - supervised.qmd
+    - unsupervised.qmd
+    - advanced.qmd
     - exercises.qmd
     - references.qmd
 
 bibliography: references.bib
+csl: apa.csl
+
 
 format:
   html:
