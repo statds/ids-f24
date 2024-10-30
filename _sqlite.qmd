@@ -270,7 +270,7 @@ import sqlite3
 conn = sqlite3.connect("nyc.db")
 
 # Reads the CSV file using the path
-data = pd.read_csv(r"C:\Users\theat\Desktop\Stat_3255\ClassNotes\ids-f24\data\nyccrashes_2024w0630_by20240916.csv")
+data = pd.read_csv(r"data/nyccrashes_2024w0630_by20240916.csv")
 
 cursor = conn.cursor()
 
@@ -287,7 +287,7 @@ import sqlite3
 conn = sqlite3.connect("nyc.db")
 
 # Reads the CSV file using the path
-data = pd.read_csv(r"C:\Users\theat\Desktop\Stat_3255\ClassNotes\ids-f24\data\nyccrashes_2024w0630_by20240916.csv")
+data = pd.read_csv(r"data/nyccrashes_2024w0630_by20240916.csv")
 
 cursor = conn.cursor()
 
@@ -328,11 +328,11 @@ print(fatal_crashes.head())
 ### Queries Output
 
 ```{python}
-#Query for everythin in the table
-#query1 = pd.read_sql_query("SELECT * FROM nyccrashes;", conn)
-#print(query1.head(3))
+# Query for everythin in the table
+# query1 = pd.read_sql_query("SELECT * FROM nyccrashes;", conn)
+# print(query1.head(3))
 
-#Query to count total crashes
+# Query to count total crashes
 print("Here's the output for the count query.")
 total_crashes = pd.read_sql_query("SELECT COUNT(*) FROM nyccrashes;", conn)
 print(total_crashes)
@@ -366,6 +366,6 @@ conn.commit()
 
 
 ### Further reading 
-- Python Software Foundation. (n.d.). sqlite3 — DB-API 2.0 interface for SQLite databases. Python Documentation. https://docs.python.org/3/library/sqlite3.html
+- Python Software Foundation. (n.d.). sqlite3 — DB-API 2.0 interface for SQLite databases. Python Documentation. <https://docs.python.org/3/library/sqlite3.html>
 
 
