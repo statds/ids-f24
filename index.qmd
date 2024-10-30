@@ -310,9 +310,10 @@ code chunks, it would be hard to plagiarize.
     - Keep the repo clean (no tracking generated files).
         - Never "Upload" your files; use the git command lines.
         - Make commit message informative (think about the readers).
+    - Make at least 10 commits and form a style of frequent small commits.
 + Use `quarto` source only. See @sec-quarto.
-+ For the convenience of grading, add your html output to a release in your
-  repo.
++ For the convenience of grading, add your standalone html or pdf
+  output to a release in your repo.
 + For standalone pdf output, you will need to have
   [LaTeX](https://www.latex-project.org/get/) installed.
 
