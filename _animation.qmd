@@ -1,0 +1,671 @@
+## Animating Plots and Maps
+### Introduction
+
+Hello everyone! My name is Rahul Manna. I am an undergraduate junior doing a dual degree in Statistical Data Science and Mechanical Engineering. I will be showing you how you can animate plots and maps using Matplotlib's `FuncAnimation` function.
+
+Animated maps and plots are valuable for showing changes over time or across locations, making trends and patterns easier to see. They’re useful in fields like public health, where animated maps can show how a disease spreads, or in economics, where plots can track market trends. Environmental scientists also use animated weather maps to illustrate seasonal shifts. These visuals make complex data clearer and help in understanding and decision-making.
+
+**Overview**
+
+1. Matplotlib Review
+2. Animating Plots
+3. Animating Maps
+4. Saving your Animation
+
+
+
+### Matplotlib {.smaller}
+
+ - Developed by John D. Hunter in 2003 as a tool for scientific computing in Python.
+ - Initially aimed at providing MATLAB-like plotting capabilities but has evolved into one of the most widely-used plotting libraries.
+
+Source: @matplotlib
+
+
+::: {.callout-tip}
+#### Fun Fact
+Matplotlib was used for data visualization during the 2008 landing of the Phoenix spacecraft on Mars and in generating the first image of a black hole (Source: @eventhorizon2020first).
+:::
+
+
+#### Installation:
+
+To install `matplotlib`, you can use either of the following lines in your terminal or conda prompt respectively.
+
+```{.python}
+pip install matplotlib # pip users
+conda install -c conda-forge matplotlib # conda users
+```
+
+#### Basic Matplotlib Commands {.smaller}
+
+Majority of plotting with `matplotlib` is done with the `pyplot` module which can be imported with the following code.
+```{.python}
+import matplotlib.pyplot as plt
+```
+
+These are some of the most common `matplotlib.pyplot` commands. 
+
+- `plt.plot()` : Plot y versus x as lines and/or markers.
+- `plt.scatter()` : Create a scatter plot of points.
+- `plt.bar()` : Create bar charts.
+- `plt.hist()` : Create histograms.
+- `plt.xlabel()` : Set the label for the x-axis.
+- `plt.ylabel()` : Set the label for the y-axis.
+- `plt.title()` : Set the title of the plot.
+- `plt.legend()` : Display a legend for the plot.
+- `plt.subplots()` : Create a figure and a grid of subplots.
+- `plt.show()` : Display all open figures.
+
+Source: @matplotlib
+
+
+#### Some Examples 
+
+Here are some examples of plots made using `matplotlib.pyplot`.
+
+##### Coin Toss
+
+Let's create a line plot to show how the proportion of heads in coin tosses changes as the number of tosses increases. 
+
+```{python}
+#| fig-align: center
+import random
+import matplotlib.pyplot as plt
+
+random.seed(3255)
+
+def prob_heads(trials):
+    result = []
+    prop_heads = []
+    for i in range(trials):
+        toss = random.randint(0,1)
+        result.append(toss)
+        prop_heads.append(sum(result)/len(result)) 
+    return prop_heads
+
+plt.figure(figsize=(6,3))
+plt.hlines(0.5,0,2500,linestyles='dashed')
+plt.plot(prob_heads(2500),color='tab:red')
+plt.ylim(0,1)
+plt.title("Coin Toss")
+plt.ylabel('Proportion of Heads')
+plt.xlabel('Number of Tosses')
+plt.show()
+```
+
+
+##### Bar Chart
+
+Let's create a simple bar plot of the crashes in New York City by borough in the week of July 30, 2024.
+
+```{python}
+#| fig-align: center
+import matplotlib.pyplot as plt
+import pandas as pd
+
+crash_data = pd.read_feather("data/nyccrashes_cleaned.feather")
+
+crash_data = crash_data.groupby('borough')
+
+boroughs = crash_data.groups.keys()
+
+heights = [len(crash_data.get_group(x)) for x in boroughs]
+
+plt.bar(boroughs,height=heights)
+plt.title('Bar Plot of Crashes in NYC by Borough - 6/30/24 - 7/7/24')
+plt.xlabel('Borough')
+plt.ylabel('Number of Crashes')
+plt.show()
+```
+
+
+
+### Animating Plots
+
+#### Matplotlib's FuncAnimation {.smaller}
+
+```{.python}
+from matplotlib.animation import FuncAnimation
+```
+`FuncAnimation` is used to create animations in Matplotlib by repeatedly calling a user-defined function.
+
+`anim = FuncAnimation(fig,func,frames,interval,repeat,repeat_delay)`
+
+**Key Inputs**
+
+- `fig`: Matplotlib figure object.
+- `func`: The update function for each frame.
+- `frames`: Sequence or number of frames.
+- `interval`: Time interval between frames (ms).
+- `repeat`: Whether to repeat animation (True/False).
+- `repeat_delay`: Delay before repeating (ms).
+
+Source: @matplotlib_funcanimation
+
+
+#### Coin Toss Animtion
+
+Using `FuncAnimation`, we can animate the coin toss plot we previously made.
+```{.python}
+
+prop_heads = prob_heads(2500)
+
+frames = range(len(prop_heads))
+
+fig, ax = plt.subplots(figsize=(12,6))
+
+def update(frame):
+    # Clear previous frame
+    ax.clear()
+
+    # Add title, and labels
+    ax.set_title('Coin Toss')
+    ax.set_ylabel('Proportion of Heads')
+    ax.set_xlabel('Number of Tosses')
+    ax.set_ylim(0,1)
+
+    # Plot data
+    ax.hlines(0.5,0,frame+1,linestyles='dashed')
+    ax.plot(range(1,frame+1),prop_heads[:frame],color='tab:red')
+
+
+anim = FuncAnimation(fig,update,frames=frames,repeat=False)
+
+anim.save('coin_toss.gif',writer='Pillow',fps=50)
+
+plt.show()
+```
+
+
+![](images/animations/coin_toss.gif){fig-align="center"}
+
+
+#### A Step Further - Coin Toss Animation
+
+We can take this a step further by labeling the current proportion value for each frame.
+
+```{.python}
+prop_heads = prob_heads(2500)
+
+frames = range(len(prop_heads))
+
+fig, ax = plt.subplots(figsize=(12,6))
+
+def update(frame):
+    ax.clear()
+    ax.set_title('Coin Toss')
+    ax.set_ylabel('Proportion of Heads')
+    ax.set_xlabel('Number of Tosses')
+    ax.hlines(0.5,0,frame+1,linestyles='dashed')
+    ax.set_ylim(0,1)
+
+    # Add text
+    ax.text(frame+1,prop_heads[frame]*1.05,f'{prop_heads[frame]:.3f}',weight='bold')
+
+    ax.plot(range(1,frame+1),prop_heads[:frame],color='tab:red')
+
+
+anim = FuncAnimation(fig,update,frames=frames)
+
+anim.save('coin_toss_with_txt.gif',writer='Pillow',fps=50)
+
+plt.show()
+```
+
+
+![](images/animations/coin_toss_with_txt.gif){fig-align="center"}
+
+
+#### Bar Chart Animation
+
+Let's animate the bar chart we created in section 8.1.5.
+Here I am using `plt.barh` to create a horizontal bar chart. 
+
+```{.python}
+crash_data['crash_datetime'] = pd.to_datetime(crash_data['crash_datetime'], 
+format='%Y-%m-%d %H:%M:%S')
+
+fig, ax = plt.subplots(figsize=(12,6))
+
+def update(frame):
+    ax.clear()
+    current_data = crash_data[crash_data['crash_datetime'] <= frame]
+    
+    # Group data by borough and count the number of crashes
+    grouped_data = current_data.groupby('borough').size().reset_index(
+                                                        name='num_crashes')
+
+    # Sort by number of crashes for consistent bar ordering
+    grouped_data = grouped_data.sort_values(by='num_crashes', ascending=True)
+    
+    # Create horizontal bar chart
+    bars = ax.barh(grouped_data['borough'], grouped_data['num_crashes'])
+    
+    # Set titles and labels
+    ax.set_title('Bar Plot of Crashes in NYC by Borough')
+    ax.set_xlabel('Number of Crashes')
+    ax.set_ylabel('Borough')
+    ax.legend([f'Data up to {frame}'], prop={'size': 'large'})
+    
+    # Annotate bars with crash numbers
+    for i, bar in enumerate(bars):
+        ax.text(bar.get_width(), bar.get_y() + bar.get_height() / 2,
+                f'{grouped_data["num_crashes"].iloc[i]}', va='center', 
+                ha='left', color='black')
+        
+
+anim = FuncAnimation(fig,update,frames=pd.date_range(
+    start=crash_data['crash_datetime'].min(),
+    end=crash_data['crash_datetime'].max(),freq='h'))
+
+anim.save('bar_plot_animation.gif',writer='Pillow',fps=15)
+plt.show()
+```
+
+
+![](images/animations/bar_plot_animation.gif)
+
+
+#### Relative Bar Plot Animation
+
+Similarly, we can plot and animate the relative bar plot of crashes by borough.
+
+```{.python}
+fig, ax = plt.subplots(figsize=(12,6))
+
+def update(frame):
+    ax.clear()
+    current_data = crash_data[crash_data['crash_datetime'] <= frame]
+
+    total_crashes = len(current_data)
+    grouped_data = current_data.groupby('borough')
+    
+    boroughs = sorted(grouped_data.groups.keys())
+    height = [len(grouped_data.get_group(x))/total_crashes for x in boroughs]
+    
+    # Create horizontal bar chart
+    bars = ax.bar(boroughs,height)
+    
+    # Set titles and labels
+    ax.set_title('Bar Plot of Relative Percentage of Crashes in NYC by Borough')
+    ax.set_xlabel('Proportion of NYC Crashes')
+    ax.set_ylabel('Borough')
+    ax.legend([f'Data up to {frame}'])
+    ax.set_ylim(0,1)
+    
+    # Annotate bars with crash numbers
+    for i, bar in enumerate(bars):
+        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(),
+                f'{height[i]:.4}', va='bottom', ha='center', color='black')
+        
+anim = FuncAnimation(fig,update,frames=pd.date_range(start=
+                                crash_data['crash_datetime'].min(),
+                        end=crash_data['crash_datetime'].max(),freq='h'))
+
+plt.show()
+```
+
+![](images/animations/relative_bar_plot_animation.gif)
+
+### Animating Maps
+
+The same `FuncAnimation` function can be used to animate maps.
+
+
+#### Basic Idea
+
+1. Process data as a Geo-dataframe with Geopandas
+2. Obtain map using libraries like `Contextily`, `Cartopy`, or `Basemap`.
+3. Create a frame fuction that:
+    1. Clears previous plot
+    2. Plots geo-spatial data
+    3. Add a basemap background
+4. Animate the map.
+
+
+#### More Packages {.smaller}
+
+Two more packages are needed to create an animated map.
+
+**Geopandas (Source: @geopandas)** {.smaller}
+- Extends Pandas to support spatial (geometric) data operations.
+- Handles GeoDataFrames that store geometries like points, lines, and polygons.
+- Provides support for reading and writing geospatial data formats
+- Integrates easily with Matplotlib for plotting spatial data.
+
+**Contextily (Source: @contextily_docs)** {.smaller} 
+- Adds basemaps to Matplotlib and Geopandas plots.
+- Fetches tile-based maps from popular online sources (like OpenStreetMap).
+
+**Installation**
+```{.python}
+pip install geopandas contextily # pip users
+conda install -c conda-forge geopandas contextily # conda users
+```
+```{.python}
+import geopandas as gpd
+import contextily as ctx
+```
+
+#### Step 1: Process Data as GeoDataFrame
+
+```{.python}
+# Read Data
+crash_data = pd.read_feather("data/nyccrashes_cleaned.feather")
+
+# Make Date Time Column
+crash_data['crash_datetime'] = pd.to_datetime(crash_data['crash_datetime'],
+                                                format='%Y-%m-%d %H:%M:%S')
+
+# Create Hour and Date columns
+crash_data['date'] = crash_data['crash_datetime'].dt.date
+crash_data['hour'] = crash_data['crash_datetime'].dt.hour
+
+# Create GeoPandas Data frame
+crash_gdf = gpd.GeoDataFrame(crash_data,
+    geometry=gpd.points_from_xy(crash_data['longitude'], 
+                            crash_data['latitude']),crs="EPSG:4326")
+
+# Transform from EPSG 4326 to EPSG 3857
+crash_gdf = crash_gdf.to_crs(epsg=3857)
+
+# Group crash_gdf by date and then hour
+crash_grouped = crash_gdf.groupby(['date','hour'])
+```
+
+#### Step 2: Get Basemap
+
+```{.python}
+newyork = ctx.Place("New York", source=ctx.providers.OpenStreetMap.Mapnik,zoom=12)
+ny_img = newyork.im # Get Map Image
+ny_bbox = newyork.bbox_map # Get Coordinates EPSG 3857
+```
+![](images/animations/nyc_basemap.png)
+
+
+#### Step 3: Frame Function
+
+```{.python}
+crash_grouped = crash_gdf.groupby(['date','hour'])
+
+keys = [key for key in grouped.groups.keys()] # frames
+
+fig, ax = plt.subplots(figsize=(6,7))
+
+def update(frame):
+    # Extrate date, hr from input
+    date, hr = frame
+
+    # Get group
+    df = crash_grouped.get_group((date,hr))
+
+    ax.clear() # Clear previous frame
+
+    # Plot using Geopandas df.plot
+    df.plot(ax=ax,color='red',edgecolor='k',label=f'Date: {date}\nHour: {hr}')
+    
+    ax.imshow(ny_img,extent=ny_bbox) # add basemap
+    ax.legend(loc='lower right')
+    ax.set_title("Crashes by Hour in NYC - Week of 6/30/24 to 7/7/24")
+    ax.axis('off')
+```
+
+
+#### Step 3: Animate the Map
+
+```{.python}
+fig.subplots_adjust(left=0,right=1,top=0.95,bottom=0)
+
+anim = FuncAnimation(fig,update,frames=keys)
+anim.save("crash_maps_nyc_24-6-30_24-7-7_300dpi.gif",writer='Pillow',fps=2,dpi=300)
+
+plt.show()
+```
+
+
+![](images/animations/crash_maps_nyc_24-6-30_24-7-7_260dpi.gif)
+
+
+*Note: a lower dpi (265) and size than shown in the chunk above was used for this figure to keep it GitHub's 100 Mb limit.*
+
+
+#### Other Basemaps {.smaller}
+
+The `Contextily` has several other basemaps available. Here are some of there most popular options. 
+
+- **`ctx.providers.Stamen.Toner`**: Black-and-white map, minimal details.
+- **`ctx.providers.Stamen.Terrain`**: Topographic map with terrain shading.
+- **`ctx.providers.OpenStreetMap.Mapnik`**: Standard OpenStreetMap, detailed streets.
+- **`ctx.providers.CartoDB.Positron`**: Light map with subtle details.
+- **`ctx.providers.CartoDB.Voyager`**: Colorful and detailed street map.
+- **`ctx.providers.Esri.WorldImagery`**: High-res satellite imagery.
+
+Source: @contextily_docs
+
+#### Satellite Example
+
+This is an example of the same map animated with a satellite basemap.
+
+![](images/animations/satellite_crash_maps_nyc_24-6-30_24-7-7_300dpi.gif)
+
+
+### Advance Example - Animating Maps
+
+The [NYC Open Data](https://opendata.cityofnewyork.us/) contains traffic speed data that is updated several times a day. We will be plotting this data on the map we previously made. 
+
+Link to data: [DOT Traffic Speeds NBE](https://data.cityofnewyork.us/Transportation/DOT-Traffic-Speeds-NBE/i4gi-tjb9/about_data)
+
+These are some of the variables from the dataset:
+
+- `DATA_AS_OF`: Timestamp when the data was recorded.
+- `SPEED`: Recorded speed in miles per hour.
+- `LINK_ID`: Identifier for road segments.
+- `LINK_POINTS`: List of geographic coordinates for the road segment.
+- `ENCODED_POLY_LINE`: Encoded string representing the polyline of the segment.
+- `BOROUGH`: NYC borough where data is collected (e.g., Manhattan, Brooklyn).
+
+
+#### Traffic Speed Data
+
+Let's process the `DATA_AS_OF` column as a `datetime` column. 
+
+Since the data only contains the speed which is different for different roads, we can create a normalized speed column. This column contains the traffic speed at the time divided by the average speed over that week for each 'LINK_ID' or unique section of the road. 
+
+```{.python}
+speed_data = pd.read_feather("data/DOT_Traffic_Speeds_NBE_20241005.feather")
+
+# Create Date Column
+speed_data['DATA_AS_OF'] = pd.to_datetime(speed_data['DATA_AS_OF'],
+                                        format='%m/%d/%Y %I:%M:%S %p')
+speed_data['hour'] = speed_data['DATA_AS_OF'].dt.hour
+speed_data['date'] = speed_data['DATA_AS_OF'].dt.date
+
+group_link_id = speed_data.groupby(['LINK_ID'])
+
+# Function to Normalize speed
+def normalize_speed(row):
+    group = group_link_id.get_group(row['LINK_ID'])
+    if row['SPEED']:
+        row['normalized_speed'] = row['SPEED'] / group['SPEED'].mean()
+    else:
+        row['normalized_speed'] = None
+    return row
+
+speed_data = speed_data.apply(normalize_speed,axis=1)
+```
+
+#### Extract Polyline
+
+We can extract the polyline to plot on the map. 
+
+```{.python}
+from shapely.geometry import LineString
+import polyline
+
+# Example encoded-poly-line
+# {q{vFrzrcMta@kl@hDiInBiIr@}F\mHOsR
+
+def poly(x):
+    try:
+        # Decode Polyline
+        decoded = polyline.decode(x)
+        
+        # Create a box for NYC to filter invalid coordinates
+        valid_lat_range = (40.47, 40.91)
+        valid_lon_range = (-74.25, -73.7) 
+
+        # Filter coordinates
+        cleaned_coords = [(lon, lat) for lat, lon in decoded
+            if valid_lat_range[0] <= lat <= valid_lat_range[1] and 
+            valid_lon_range[0] <= lon <= valid_lon_range[1]]
+
+        # Return coordinates
+        return cleaned_coords if cleaned_coords else None
+    
+    except (IndexError, TypeError):
+        return None
+
+# Decode Polyline
+speed_data['decoded_polyline'] = speed_data['ENCODED_POLY_LINE'].apply(poly)
+
+# Geometry for Geo data frame by processing polylines as linestring
+geometry = speed_data['decoded_polyline'].apply(lambda x: LineString(x) 
+                                                                if x else None)
+
+# Create Geo data frame and convert to ESPG 3857
+speed_gdf = gpd.GeoDataFrame(speed_data,geometry=geometry,crs='EPSG:4326')
+speed_gdf = speed_gdf.to_crs(epsg=3857)
+
+# Obtain data for July 2
+grouped_speed_gdf = speed_gdf.groupby(['date'])
+grouped_speed_gdf = grouped_speed_gdf.get_group(datetime.date(2024,7,2))
+
+# Group Dataframe by hour
+grouped_speed_gdf = grouped_speed_gdf.groupby(['hour'])
+```
+
+#### Updated Frame Function
+
+```{.python}
+from matplotlib.colors import Normalize
+
+
+# Obtain Crash data for July 2 grouped by hour
+crash_grouped = crash_gdf.groupby(['date'])
+crash_grouped = crash_grouped.get_group(datetime.date(2024,7,2))
+crash_grouped = crash_grouped.groupby(['hour'])
+
+# Get keys to generate frames
+keys = [key for key in crash_grouped.groups.keys()]
+
+# Normalize range to make color bar
+norm = Normalize(vmin=speed_gdf['normalized_speed'].min(), 
+                            vmax=speed_gdf['normalized_speed'].max())
+
+fig, ax = plt.subplots(figsize=(6,7))
+
+def update(frame):
+    hr = frame
+
+    # Get Crash and Traffic Data
+    df = crash_grouped.get_group((hr))
+    speed_df = grouped_speed_gdf.get_group((hr))
+
+    speed_df = speed_df.drop_duplicates(subset='LINK_ID', 
+                                    keep='last').reset_index(drop=True)
+
+    ax.clear()
+
+    df.plot(ax=ax,color='red',edgecolor='k',
+                            label=f'Date: 2 July, 2024\nHour: {hr}')
+
+    speed_df.plot(ax=ax,column='normalized_speed',cmap='plasma',norm=norm,
+                                    label='Normalized Traffic Speed')
+
+    ax.imshow(ny_img,extent=ny_bbox)
+    ax.legend(loc='lower right')
+    ax.set_title("Crash and Traffic Data by Hour - 2 July, 2024")
+    ax.axis('off')
+    
+
+# Add Colorbar
+sm = cm.ScalarMappable(cmap='plasma', norm=norm)
+fig.colorbar(sm, ax=ax,fraction=0.02, pad=0.03, shrink=0.6,aspect=25) 
+
+# Remove Whitespace
+fig.subplots_adjust(left=0.04,right=0.95,top=1,bottom=0)
+
+anim = FuncAnimation(fig,update,frames=keys)
+anim.save("crash_traffic_7_1_24.gif", writer='Pillow', fps=2)
+
+plt.show()
+```
+
+![](images/animations/crash_traffic_7_2_24.gif)
+
+### Saving your Animation
+
+
+#### GIF {.smaller}
+
+To save your animation as a **GIF**:
+
+- **Writer**: `Pillow`
+- **Command**: Use `anim.save()` with the `writer='Pillow'` option.
+
+```python
+pip install pillow # pip users
+conda install -c conda-forge pillow # conda users
+```
+
+**Example:**
+```python
+anim.save('animation.gif', writer='Pillow', fps=30, dpi=200)
+```
+
+
+#### MP4 {.smaller}
+
+To save your animation as **MP4**:
+
+- **Writer**: `ffmpeg`
+- **Command**: Use `anim.save()` with the `writer='ffmpeg'` option.
+
+```python
+conda install -c conda-forge ffmpeg # conda users
+```
+
+**Pip Users**: 
+
+1. Download from [ffmeg.org](https://www.ffmpeg.org/)
+2. Extract the folder 
+3. Add the bins folder path to your system variables.
+
+
+**Example:**
+```python
+anim.save('animation.mp4', writer='ffmpeg', fps=30, dpi=300)
+```
+
+
+### Conclusion {.smaller}
+
+Here is what was covered in this section of the book.
+
+- Animating Plots and Maps using `FuncAnimation`
+    - Creating a figure and axes object with `plt.subplots()`
+    - Creating an update function
+    - Generating Animmation
+    - Obtaining and adding basemap background for map animations
+    - Processing geospatial data
+    - Saving animations
+
+If you have more questions or would like to try it:
+
+- [Matplotlib's FunctionAnimation Documentation](https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.FuncAnimation.html)
+- [Matplotlib Documentation](https://matplotlib.org/stable/)
+- [Contextily Documentation](https://contextily.readthedocs.io/en/latest/index.html)
+- [GeoPandas Documentation](https://geopandas.org/en/stable/index.html)
+
+
