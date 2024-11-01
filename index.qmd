@@ -32,6 +32,23 @@ are also publicly accessible. These archives offer
 insights into the evolution of the course content and the
 different perspectives brought by successive student cohorts.
 
+
+## Compiling the Classnotes
+To reproduce the classnotes output on your own computer, here are the
+necessary steps:
+
++ Clone the classnotes repository to an appropriate location on your
+  computer.
++ Set up a Python virtual environment in the root folder of the
+  source.
++ Install all the packages specified in `requirements.txt`.
++ For some chapters that need to interact with Google map services,
+  you need to save your API key in a file named `api_key.txt` in the
+  root folder of the source.
++ Render the book with `quarto render` from the root folder on a
+  terminal; the rendered book will be stored under `_book`.
+
+
 ## Midterm Project
 
 NYC noise complaints made to NYPD in the week of July 4, 2024.
