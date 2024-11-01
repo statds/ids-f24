@@ -1,3 +1,7 @@
+---
+format: pdf
+jupyter: python3
+---
 ## Data Visualization with Plotnine
 
 This section was written by Julia Mazzola.
@@ -158,7 +162,8 @@ Changing color of point according to borough:
 # Changes key title to 'Borough'
         color= 'Borough') +
     coord_fixed(ratio = 1) +
-    theme(figure_size = (7,5)))
+# legend_position= changes where the legend is located
+    theme(figure_size = (7,5), legend_position='bottom'))
 ```
 
 As you can see, each borough is represented by its own color, allowing the audience to easily identify which borough the crash occurred in.
@@ -237,7 +242,8 @@ You can also split up a bar chart to make it visually easier to understand.
 # size= creates smaller text
 # angle= rotates x-axis text for readability
 # figure_size= creates a larger image
-    theme(axis_text_x=element_text(size=9, angle=65), figure_size= (7,7)))
+    theme(axis_text_x=element_text(size=9, angle=65), 
+            figure_size= (7,7), legend_position='bottom'))
 ```
 
 ### Histogram
@@ -269,7 +275,8 @@ Similar to bar charts, you can make Histograms that display more than one variab
     labs(title='Distribution of Persons Injured',
         x='Number of Persons Injured',
         y='Count of Crashes',
-        fill = 'Borough'))
+        fill = 'Borough') +
+        theme(legend_position='bottom'))
 ```
 
 
@@ -339,7 +346,8 @@ crash_counts = nyc_crash.groupby(['crash_hour',
         x='Hour of the Day',
         y='Number of Crashes',
         color = 'Borough') +
-    scale_x_continuous(breaks=range(0, 24, 2)))
+    scale_x_continuous(breaks=range(0, 24, 2)) +
+    theme(legend_position='bottom'))
 ```
 
 
@@ -393,7 +401,8 @@ Bar chart of Contributing Factors by Borough with `facet_wrap`:
         y='Number of Crashes',
         fill = 'Borough') +
     facet_wrap('~ borough') + 
-    theme(axis_text_x=element_text(size=9, angle=65), figure_size= (7,7)))
+    theme(axis_text_x=element_text(size=9, angle=65), 
+            figure_size= (7,7), legend_position='bottom'))
 ```
 
 
@@ -404,7 +413,10 @@ Histogram of Crashes per Hour by Borough with `facet_wrap`:
 ```{python}
 (ggplot(crash_counts, aes(x='crash_hour', y='crash_count', fill = 'borough')) +
     geom_bar(stat='identity') +
-    labs(x='Crash Hour', y='Number of Crashes', title = "Crashes by Hour") +
+    labs(x='Crash Hour', 
+        y='Number of Crashes', 
+        title = "Crashes by Hour") +
+    theme(legend_position='bottom') +
     facet_wrap('~ borough'))
 ```
 
