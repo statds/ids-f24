@@ -184,7 +184,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducibile Data Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Data Science</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -277,7 +277,24 @@ div.csl-indent {
   </ul></li>
   <li><a href="#spatial-data-visualization-with-google-map" id="toc-spatial-data-visualization-with-google-map" class="nav-link" data-scroll-target="#spatial-data-visualization-with-google-map"><span class="header-section-number">7.2</span> Spatial Data Visualization with Google Map</a>
   <ul class="collapse">
-  <li><a href="#subsection" id="toc-subsection" class="nav-link" data-scroll-target="#subsection"><span class="header-section-number">7.2.1</span> Subsection</a></li>
+  <li><a href="#introducing-spatial-data" id="toc-introducing-spatial-data" class="nav-link" data-scroll-target="#introducing-spatial-data"><span class="header-section-number">7.2.1</span> Introducing Spatial Data</a></li>
+  <li><a href="#google-spatial-data" id="toc-google-spatial-data" class="nav-link" data-scroll-target="#google-spatial-data"><span class="header-section-number">7.2.2</span> Google &amp; Spatial Data</a></li>
+  <li><a href="#getting-started-in-google-maps-platform" id="toc-getting-started-in-google-maps-platform" class="nav-link" data-scroll-target="#getting-started-in-google-maps-platform"><span class="header-section-number">7.2.3</span> Getting Started in Google Maps Platform</a></li>
+  <li><a href="#using-googlemaps-and-gmplot" id="toc-using-googlemaps-and-gmplot" class="nav-link" data-scroll-target="#using-googlemaps-and-gmplot"><span class="header-section-number">7.2.4</span> Using googlemaps and gmplot</a></li>
+  <li><a href="#gmplot-heat-map-example" id="toc-gmplot-heat-map-example" class="nav-link" data-scroll-target="#gmplot-heat-map-example"><span class="header-section-number">7.2.5</span> gmplot Heat Map Example</a></li>
+  <li><a href="#googlemaps" id="toc-googlemaps" class="nav-link" data-scroll-target="#googlemaps"><span class="header-section-number">7.2.6</span> Googlemaps</a></li>
+  <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1"><span class="header-section-number">7.2.7</span> Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7.2.8</span> References</a></li>
+  </ul></li>
+  <li><a href="#animating-plots-and-maps" id="toc-animating-plots-and-maps" class="nav-link" data-scroll-target="#animating-plots-and-maps"><span class="header-section-number">7.3</span> Animating Plots and Maps</a>
+  <ul class="collapse">
+  <li><a href="#introduction-1" id="toc-introduction-1" class="nav-link" data-scroll-target="#introduction-1"><span class="header-section-number">7.3.1</span> Introduction</a></li>
+  <li><a href="#matplotlib" id="toc-matplotlib" class="nav-link" data-scroll-target="#matplotlib"><span class="header-section-number">7.3.2</span> Matplotlib</a></li>
+  <li><a href="#animating-plots" id="toc-animating-plots" class="nav-link" data-scroll-target="#animating-plots"><span class="header-section-number">7.3.3</span> Animating Plots</a></li>
+  <li><a href="#animating-maps" id="toc-animating-maps" class="nav-link" data-scroll-target="#animating-maps"><span class="header-section-number">7.3.4</span> Animating Maps</a></li>
+  <li><a href="#advance-example---animating-maps" id="toc-advance-example---animating-maps" class="nav-link" data-scroll-target="#advance-example---animating-maps"><span class="header-section-number">7.3.5</span> Advance Example - Animating Maps</a></li>
+  <li><a href="#saving-your-animation" id="toc-saving-your-animation" class="nav-link" data-scroll-target="#saving-your-animation"><span class="header-section-number">7.3.6</span> Saving your Animation</a></li>
+  <li><a href="#conclusion-2" id="toc-conclusion-2" class="nav-link" data-scroll-target="#conclusion-2"><span class="header-section-number">7.3.7</span> Conclusion</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -313,7 +330,7 @@ div.csl-indent {
 </section>
 <section id="what-is-plotnine" class="level3" data-number="7.1.2">
 <h3 data-number="7.1.2" class="anchored" data-anchor-id="what-is-plotnine"><span class="header-section-number">7.1.2</span> What is <code>Plotnine</code>?</h3>
-<p><code>Plotnine</code> uses grammer of graphics <span class="citation" data-cites="wilkinson2012grammar">(<a href="references.html#ref-wilkinson2012grammar" role="doc-biblioref">Wilkinson, 2012</a>)</span> to create layered, customizable visualizations. Grammar of graphics is a framework that provides a systematic approach to creating visual representations of data by breaking down the plot into its fundamental components. To understand this better, think about how sentences have grammer, we can layer our graphics to create complex and detailed visulizations.</p>
+<p><code>Plotnine</code> uses grammar of graphics <span class="citation" data-cites="wilkinson2012grammar">(<a href="references.html#ref-wilkinson2012grammar" role="doc-biblioref">Wilkinson, 2012</a>)</span> to create layered, customizable visualizations. Grammar of graphics is a framework that provides a systematic approach to creating visual representations of data by breaking down the plot into its fundamental components. To understand this better, think about how sentences have grammar, we can layer our graphics to create complex and detailed visulizations.</p>
 <p>Components of the layered grammar of graphics:</p>
 <ul>
 <li><strong>Layer:</strong> used to create the objects on a plot</li>
@@ -343,16 +360,16 @@ div.csl-indent {
 <p>For <strong>conda:</strong></p>
 <p><code>conda install -c conda-forge plotnine</code></p>
 <p>You can import <code>Plotnine</code> without a prefix:</p>
-<div id="cdba8dec" class="cell" data-execution_count="1">
+<div id="f85b64ea" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Or with with a prefix to access each component such as:</p>
-<div id="aff9f082" class="cell" data-execution_count="2">
+<div id="39cfaee5" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotnine <span class="im">as</span> p9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This way is generally recommended for larger projects or when collaborating with others for better code maintainability. But for simplicity in this section I will use the first method.</p>
 <p>For the examples we will be using NYC open data to visualize motor vehicle crashes from the week of June 30, 2024.</p>
-<div id="6c512589" class="cell" data-execution_count="3">
+<div id="abad2f1e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>nyc_crash <span class="op">=</span> pd.read_feather(<span class="st">'data/nyccrashes_cleaned.feather'</span>).dropna(subset<span class="op">=</span>[<span class="st">'borough'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -362,7 +379,7 @@ div.csl-indent {
 <h3 data-number="7.1.4" class="anchored" data-anchor-id="scatterplot"><span class="header-section-number">7.1.4</span> Scatterplot</h3>
 <p>Firstly, we will be creating a scatterplot. This can be done with <code>geom_point()</code>. Our scatterplot will be displaying Crash Locations based on the longitude and latitude of the crash sites.</p>
 <p><strong>Creating a Basic Scatterplot</strong></p>
-<div id="d2dc1b4f" class="cell" data-execution_count="4">
+<div id="2c18ecb0" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>, category<span class="op">=</span><span class="pp">UserWarning</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -386,7 +403,7 @@ div.csl-indent {
 </div>
 <p><strong>Customizing a Scatterplot</strong></p>
 <p>You can customize your plot further by changing the color, edge color, transparency, size, or shape of your points. This is done in geom_point().</p>
-<div id="f7bb1823" class="cell" data-execution_count="5">
+<div id="b81418c8" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(ggplot(nyc_crash, aes(x<span class="op">=</span><span class="st">'longitude'</span>, y<span class="op">=</span><span class="st">'latitude'</span>)) <span class="op">+</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Changes what our points look like</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># color= changes the outline color</span></span>
@@ -411,7 +428,7 @@ div.csl-indent {
 <p>This scatterplot provides a lot of information, yet there are ways we can customize our plot to be more informative for our audience. We can create a scatterplot that differentiates by contributing factor.</p>
 <p><strong>Changing Shape by Variables</strong></p>
 <p>Changing shape of points by <code>contributing_factor_vehicle_1</code>:</p>
-<div id="03a769fa" class="cell" data-execution_count="6">
+<div id="b5b9389f" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List of top 5 reasons for the contributing facor</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Abbreviating names for clairity</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>factor1 <span class="op">=</span> {<span class="st">"Driver Inattention/Distraction"</span>: <span class="st">"Distraction"</span>,</span>
@@ -428,7 +445,7 @@ div.csl-indent {
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                                                        <span class="st">'contributing_factor_vehicle_1'</span></span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                                                        ].replace(factor1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="84a142cb" class="cell" data-execution_count="7">
+<div id="06280ff0" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Changes shape of point according to 'contributing_factor_vehicle_1'</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>(ggplot(confact, aes(x<span class="op">=</span><span class="st">'longitude'</span>, y<span class="op">=</span><span class="st">'latitude'</span>,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    shape <span class="op">=</span><span class="st">'contributing_factor_vehicle_1'</span>)) <span class="op">+</span> </span>
@@ -451,7 +468,7 @@ div.csl-indent {
 <p><strong>Changing Color by Variables</strong></p>
 <p>To add color coordination to your plot in <code>Plotnine</code>, specify the variable you want to use for coloring by including <code>color='variable'</code> within the <code>aes()</code> function. This enables you to visually distinguish different categories in your dataset, enhancing the clarity and interpretability of your plot.</p>
 <p>Changing color of point according to borough:</p>
-<div id="f23c795a" class="cell" data-execution_count="8">
+<div id="bd605878" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># color= changhes color according to 'borough'</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>(ggplot(nyc_crash, aes(x<span class="op">=</span><span class="st">'longitude'</span>, y<span class="op">=</span><span class="st">'latitude'</span>, color <span class="op">=</span> <span class="st">'borough'</span>)) <span class="op">+</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    geom_point() <span class="op">+</span></span>
@@ -461,7 +478,8 @@ div.csl-indent {
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Changes key title to 'Borough'</span></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span> <span class="st">'Borough'</span>) <span class="op">+</span></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    coord_fixed(ratio <span class="op">=</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    theme(figure_size <span class="op">=</span> (<span class="dv">7</span>,<span class="dv">5</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># legend_position= changes where the legend is located</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    theme(figure_size <span class="op">=</span> (<span class="dv">7</span>,<span class="dv">5</span>), legend_position<span class="op">=</span><span class="st">'bottom'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -472,7 +490,7 @@ div.csl-indent {
 </div>
 <p>As you can see, each borough is represented by its own color, allowing the audience to easily identify which borough the crash occurred in.</p>
 <p><strong>Changing color of points by <code>contributing_factor_vehicle_1</code>:</strong></p>
-<div id="2445f4d1" class="cell" data-execution_count="9">
+<div id="84bf3f24" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># color= changes color according to 'contributing_factor_vehicle_1'</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>(ggplot(confact, aes(x<span class="op">=</span><span class="st">'longitude'</span>, y<span class="op">=</span><span class="st">'latitude'</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span><span class="st">'contributing_factor_vehicle_1'</span>)) <span class="op">+</span> </span>
@@ -495,10 +513,10 @@ div.csl-indent {
 <p>This graph uses color to distinguish what contributing factor caused the crash.</p>
 <p><strong>Adding Linear Regression Line to Plot</strong></p>
 <p>If you want to fit a linear regression line, use <code>geom_smooth()</code>. Adding this to your plot can be really helpful to visualize trends of your data easier. To add a linear regression line to your scatterplot, you would include the following line of code:</p>
-<div id="df4ac9a7" class="cell" data-execution_count="10">
+<div id="5fbded43" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>geom_smooth(method<span class="op">=</span><span class="st">'lm'</span>, se<span class="op">=</span><span class="va">False</span>, color<span class="op">=</span><span class="st">'red'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>&lt;plotnine.geoms.geom_smooth.geom_smooth at 0x1122696a0&gt;</code></pre>
+<pre><code>&lt;plotnine.geoms.geom_smooth.geom_smooth at 0x1267e4860&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -506,7 +524,7 @@ div.csl-indent {
 <h3 data-number="7.1.5" class="anchored" data-anchor-id="bar-chart"><span class="header-section-number">7.1.5</span> Bar Chart</h3>
 <p>Another common use for displaying data is a bar chart. You can create one with <code>geom_bar()</code>. We will start with a simple chart of crashes by borough.</p>
 <p><strong>Creating a Basic Bar Chart</strong></p>
-<div id="09979260" class="cell" data-execution_count="11">
+<div id="adf9d404" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(ggplot(nyc_crash, aes(x<span class="op">=</span><span class="st">'borough'</span>)) <span class="op">+</span> <span class="co"># Use 'borough' for the x-axis</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    geom_bar(fill<span class="op">=</span><span class="st">'purple'</span>) <span class="op">+</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    labs(title<span class="op">=</span><span class="st">'Number of Crashes by Borough'</span>, </span>
@@ -522,7 +540,7 @@ div.csl-indent {
 </div>
 <p><strong>Customizing your Bar Chart</strong></p>
 <p>You can change up your bar chart a couple of different ways. You can handpick colors you want, designate it to variables, flip orientation, etc:</p>
-<div id="d94c3e17" class="cell" data-execution_count="12">
+<div id="2ed61cea" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Designate your preffered colors (pastel color codes)</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#B3FFBA'</span>, <span class="st">'#E1C6FF'</span>, <span class="st">'#FFB3BA'</span>, <span class="st">'#BAE1FF'</span>, <span class="st">'#FFD5BA'</span>]</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -545,7 +563,7 @@ div.csl-indent {
 </div>
 <p><strong>Multivariable Bar Chart</strong></p>
 <p>You can also split up a bar chart to make it visually easier to understand.</p>
-<div id="7a38c0b2" class="cell" data-execution_count="13">
+<div id="414d382f" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using 'confact' dataset again for better visualization</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>(ggplot(confact, aes(x<span class="op">=</span><span class="st">'contributing_factor_vehicle_1'</span>, fill<span class="op">=</span><span class="st">'borough'</span>)) <span class="op">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    geom_bar() <span class="op">+</span></span>
@@ -557,7 +575,8 @@ div.csl-indent {
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># size= creates smaller text</span></span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># angle= rotates x-axis text for readability</span></span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># figure_size= creates a larger image</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    theme(axis_text_x<span class="op">=</span>element_text(size<span class="op">=</span><span class="dv">9</span>, angle<span class="op">=</span><span class="dv">65</span>), figure_size<span class="op">=</span> (<span class="dv">7</span>,<span class="dv">7</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    theme(axis_text_x<span class="op">=</span>element_text(size<span class="op">=</span><span class="dv">9</span>, angle<span class="op">=</span><span class="dv">65</span>), </span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>            figure_size<span class="op">=</span> (<span class="dv">7</span>,<span class="dv">7</span>), legend_position<span class="op">=</span><span class="st">'bottom'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -571,7 +590,7 @@ div.csl-indent {
 <h3 data-number="7.1.6" class="anchored" data-anchor-id="histogram"><span class="header-section-number">7.1.6</span> Histogram</h3>
 <p>Another useful way to display data is a histogram. You can create one with <code>geom_hisogram()</code>. Using a histogram is very useful when displaying continuous data.</p>
 <p><strong>Basic Histogram</strong></p>
-<div id="15642628" class="cell" data-execution_count="14">
+<div id="f57ad8fe" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(ggplot(nyc_crash, aes(x<span class="op">=</span><span class="st">'number_of_persons_injured'</span>)) <span class="op">+</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># bins= sets the amount of bars in your histogram</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    geom_histogram(bins<span class="op">=</span><span class="dv">10</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, fill<span class="op">=</span><span class="st">'green'</span>) <span class="op">+</span> </span>
@@ -589,7 +608,7 @@ div.csl-indent {
 <p>With a histogram it is very easy to understand trends for a dataset and you can see that our NYC crash data is positively skewed.</p>
 <p><strong>Multivariable Histogram</strong></p>
 <p>Similar to bar charts, you can make Histograms that display more than one variable.</p>
-<div id="dd4fc8ac" class="cell" data-execution_count="15">
+<div id="a77527e4" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(ggplot(confact, aes(x<span class="op">=</span><span class="st">'number_of_persons_injured'</span>, fill <span class="op">=</span> <span class="st">'borough'</span>)) <span class="op">+</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># binwidth= changes width of your bars</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># color= changes outline color for better visability</span></span>
@@ -597,7 +616,8 @@ div.csl-indent {
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    labs(title<span class="op">=</span><span class="st">'Distribution of Persons Injured'</span>,</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">'Number of Persons Injured'</span>,</span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">'Count of Crashes'</span>,</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        fill <span class="op">=</span> <span class="st">'Borough'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        fill <span class="op">=</span> <span class="st">'Borough'</span>) <span class="op">+</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        theme(legend_position<span class="op">=</span><span class="st">'bottom'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -608,7 +628,7 @@ div.csl-indent {
 </div>
 <p><strong>Overlapping Histogram</strong></p>
 <p>Histograms can also be useful when comparing multiple categories. Here we are comparing Manhattan and Brooklyn’s number of persons injured with an overlapping histogram.</p>
-<div id="92ca533f" class="cell" data-execution_count="16">
+<div id="a82cfda9" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating plot if crash is in 'MANHATTAN' or 'BROOKLYN'</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>(ggplot(nyc_crash[nyc_crash[<span class="st">'borough'</span>].isin([<span class="st">'MANHATTAN'</span>, <span class="st">'BROOKLYN'</span>])], </span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        aes(x<span class="op">=</span><span class="st">'number_of_persons_injured'</span>, fill<span class="op">=</span><span class="st">'borough'</span>)) <span class="op">+</span></span>
@@ -630,7 +650,7 @@ div.csl-indent {
 <h3 data-number="7.1.7" class="anchored" data-anchor-id="line-chart"><span class="header-section-number">7.1.7</span> Line Chart</h3>
 <p>Line charts are great for time-series data and can be created with <code>geom_line()</code>. This type of chart is particularly useful for identifying patterns, fluctuations, and trends, making it easier to understand how a variable changes over a specified period. We will create one analyzing Number of Crashes by Hour.</p>
 <p><strong>Basic Line Chart</strong></p>
-<div id="b486e530" class="cell" data-execution_count="17">
+<div id="f0d3a946" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Finding crashes per hour</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>nyc_crash[<span class="st">'crash_datetime'</span>] <span class="op">=</span> pd.to_datetime(nyc_crash[<span class="st">'crash_datetime'</span>])</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -641,7 +661,7 @@ div.csl-indent {
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>crash_counts <span class="op">=</span> (nyc_crash.groupby([<span class="st">'crash_hour'</span>])</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>                .size().reset_index(name<span class="op">=</span><span class="st">'crash_count'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="5b25781a" class="cell" data-execution_count="18">
+<div id="7745cfcc" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot crashes by hour</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>(ggplot(crash_counts, aes(x<span class="op">=</span><span class="st">'crash_hour'</span>, y<span class="op">=</span><span class="st">'crash_count'</span>)) <span class="op">+</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates the line chart</span></span>
@@ -661,10 +681,10 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>This example is excellent for understanding the grammar of graphics. As you can see, we use <code>geom_line()</code> to create the line chart, while also adding <code>geom_point()</code>, which is typically used for scatterplots, to make the figure clearer by layering additional details.”</p>
+<p>This example is excellent for understanding the grammar of graphics. As you can see, we use <code>geom_line()</code> to create the line chart, while also adding <code>geom_point()</code>, which is typically used for scatterplots, to make the figure clearer by layering additional details.</p>
 <p><strong>Multivariable Line Chart</strong></p>
 <p>Similarly to the other figures you can create a line chart with multiple variables. Now we will create a chart with number of crashes by borough.</p>
-<div id="ce4e384d" class="cell" data-execution_count="19">
+<div id="69439882" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting crash counts to also include borough</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>crash_counts <span class="op">=</span> nyc_crash.groupby([<span class="st">'crash_hour'</span>, </span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'borough'</span>]).size().reset_index(name<span class="op">=</span><span class="st">'crash_count'</span>)</span>
@@ -678,7 +698,8 @@ div.csl-indent {
 <span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">'Hour of the Day'</span>,</span>
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">'Number of Crashes'</span>,</span>
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> <span class="st">'Borough'</span>) <span class="op">+</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    scale_x_continuous(breaks<span class="op">=</span><span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">24</span>, <span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    scale_x_continuous(breaks<span class="op">=</span><span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">24</span>, <span class="dv">2</span>)) <span class="op">+</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    theme(legend_position<span class="op">=</span><span class="st">'bottom'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -693,7 +714,7 @@ div.csl-indent {
 <p>To organize your data in a way that enhances interpretability, you can utilize <code>facet_grid()</code> or <code>facet_wrap()</code>. This approach allows for the creation of separate plots based on categorical variables, making it easier to identify trends and patterns. You can facet any type of plots, scatterplots, bar charts, histograms, line charts, etc. using one or two variables.</p>
 <p><strong>Scatterplots per Facet</strong></p>
 <p>Scatterplot of Crash Locations by Contributing Factor with <code>facet_wrap()</code>:</p>
-<div id="9d24c504" class="cell" data-execution_count="20">
+<div id="0d23edf3" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(ggplot(confact, aes(x<span class="op">=</span><span class="st">'longitude'</span>, y<span class="op">=</span><span class="st">'latitude'</span>)) <span class="op">+</span>  </span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    geom_point(alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="op">+</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates separate plots for each contributing factor</span></span>
@@ -711,7 +732,7 @@ div.csl-indent {
 </div>
 </div>
 <p>Scatterplot of Two Variables, Crash Locations Contributing Factor and Borough with <code>facet_grid()</code>:</p>
-<div id="cc970761" class="cell" data-execution_count="21">
+<div id="96a34995" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(ggplot(confact, aes(x<span class="op">=</span><span class="st">'longitude'</span>, y<span class="op">=</span><span class="st">'latitude'</span>)) <span class="op">+</span>  </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    geom_point(alpha <span class="op">=</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates a grid of subplots based on the values of two variables</span></span>
@@ -735,7 +756,7 @@ div.csl-indent {
 </div>
 <p><strong>Bar Chart per Facet</strong></p>
 <p>Bar chart of Contributing Factors by Borough with <code>facet_wrap</code>:</p>
-<div id="b07a529c" class="cell" data-execution_count="22">
+<div id="d3d32b28" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(ggplot(confact, aes(x<span class="op">=</span><span class="st">'contributing_factor_vehicle_1'</span>, fill<span class="op">=</span><span class="st">'borough'</span>)) <span class="op">+</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    geom_bar() <span class="op">+</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    labs(title<span class="op">=</span><span class="st">'Top 5 Contributing Factors by Borough'</span>,</span>
@@ -743,7 +764,8 @@ div.csl-indent {
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">'Number of Crashes'</span>,</span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        fill <span class="op">=</span> <span class="st">'Borough'</span>) <span class="op">+</span></span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    facet_wrap(<span class="st">'~ borough'</span>) <span class="op">+</span> </span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    theme(axis_text_x<span class="op">=</span>element_text(size<span class="op">=</span><span class="dv">9</span>, angle<span class="op">=</span><span class="dv">65</span>), figure_size<span class="op">=</span> (<span class="dv">7</span>,<span class="dv">7</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    theme(axis_text_x<span class="op">=</span>element_text(size<span class="op">=</span><span class="dv">9</span>, angle<span class="op">=</span><span class="dv">65</span>), </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>            figure_size<span class="op">=</span> (<span class="dv">7</span>,<span class="dv">7</span>), legend_position<span class="op">=</span><span class="st">'bottom'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -754,11 +776,14 @@ div.csl-indent {
 </div>
 <p><strong>Histograms per Facet</strong></p>
 <p>Histogram of Crashes per Hour by Borough with <code>facet_wrap</code>:</p>
-<div id="526db18d" class="cell" data-execution_count="23">
+<div id="5858c3b3" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(ggplot(crash_counts, aes(x<span class="op">=</span><span class="st">'crash_hour'</span>, y<span class="op">=</span><span class="st">'crash_count'</span>, fill <span class="op">=</span> <span class="st">'borough'</span>)) <span class="op">+</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    geom_bar(stat<span class="op">=</span><span class="st">'identity'</span>) <span class="op">+</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    labs(x<span class="op">=</span><span class="st">'Crash Hour'</span>, y<span class="op">=</span><span class="st">'Number of Crashes'</span>, title <span class="op">=</span> <span class="st">"Crashes by Hour"</span>) <span class="op">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    facet_wrap(<span class="st">'~ borough'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    labs(x<span class="op">=</span><span class="st">'Crash Hour'</span>, </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">'Number of Crashes'</span>, </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        title <span class="op">=</span> <span class="st">"Crashes by Hour"</span>) <span class="op">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    theme(legend_position<span class="op">=</span><span class="st">'bottom'</span>) <span class="op">+</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    facet_wrap(<span class="st">'~ borough'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -769,7 +794,7 @@ div.csl-indent {
 </div>
 <p><strong>Line Chart per Facet</strong></p>
 <p>You can use plot each variable by on separate panels with <code>facet_wrap()</code>.</p>
-<div id="e6e53cc6" class="cell" data-execution_count="24">
+<div id="29fdf47a" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(ggplot(crash_counts, aes(x<span class="op">=</span><span class="st">'crash_hour'</span>, y<span class="op">=</span><span class="st">'crash_count'</span>)) <span class="op">+</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    geom_line() <span class="op">+</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Breaks the figure up by borough</span></span>
@@ -822,11 +847,936 @@ div.csl-indent {
 </section>
 <section id="spatial-data-visualization-with-google-map" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="spatial-data-visualization-with-google-map"><span class="header-section-number">7.2</span> Spatial Data Visualization with Google Map</h2>
-<section id="subsection" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="subsection"><span class="header-section-number">7.2.1</span> Subsection</h3>
+<p>Hi! My name is Jack Bienvenue, a senior in Statistical Data Science.</p>
+<p>In this section, I’ll walk you through how to begin with spatial data visualizations.</p>
+<p>Specifically, in this section we’ll talk about using <em>Google Maps</em> as a tool to visualize spatial data.</p>
+<p>We will start by talking about Google and their spatial data products, but work our way into something more aligned with our needs, which is integrating code into our Python scripts to generate Google Maps versions of our outputs.</p>
+<p>This section will be capped off with some example code of using Google Maps to create a heatmap of crash data in New York City.</p>
+<p><em><a href="##Getting-Started-in-Google-Maps-Platform">Skip to proceed to purely technical information by clicking here</a></em></p>
+<p>Enjoy and keep learning!</p>
+<section id="introducing-spatial-data" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="introducing-spatial-data"><span class="header-section-number">7.2.1</span> Introducing Spatial Data</h3>
+<section id="having-fun-with-spatial-data" class="level4" data-number="7.2.1.1">
+<h4 data-number="7.2.1.1" class="anchored" data-anchor-id="having-fun-with-spatial-data"><span class="header-section-number">7.2.1.1</span> Having fun with spatial data</h4>
+<p>Spatial data handling and visualization introduces new challenges, softwares, and packages.</p>
+<p>Spatial data operations can be time-consuming and the pathway to your desired results is often unclear.</p>
+<p><strong>Stay patient, have fun</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/spatial_data_visualization/Bagels_map.png" class="img-fluid figure-img"></p>
+<figcaption>Map of all the locations in NYC where I have eaten a bagel</figcaption>
+</figure>
+</div>
+<p>Above is an example of me having fun with spatial data.</p>
+<p>There are so many fun things to do with data visualization. Remember, you have the skillset to do things that almost nobody can! Make the most of it for yourself and for the world.</p>
+</section>
+<section id="why-spatial-data" class="level4" data-number="7.2.1.2">
+<h4 data-number="7.2.1.2" class="anchored" data-anchor-id="why-spatial-data"><span class="header-section-number">7.2.1.2</span> Why Spatial Data?</h4>
+<p><strong>Spatial trends matter</strong>. They allow us to do things like:</p>
+<ul>
+<li>Understand geographic localizations of trends
+<ul>
+<li>Unveil hidden trends</li>
+</ul></li>
+<li>Evaluate how social factors may influence trends
+<ul>
+<li>Create information to address disparities</li>
+</ul></li>
+<li>Provide recommendations to relevant local authorities</li>
+</ul>
+</section>
+</section>
+<section id="google-spatial-data" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="google-spatial-data"><span class="header-section-number">7.2.2</span> Google &amp; Spatial Data</h3>
+<section id="google-spatial-data-products" class="level4" data-number="7.2.2.1">
+<h4 data-number="7.2.2.1" class="anchored" data-anchor-id="google-spatial-data-products"><span class="header-section-number">7.2.2.1</span> Google Spatial Data Products:</h4>
+<p>Google offers several products for performing Geographic Information Science (GIS) tasks. These include:</p>
+<ul>
+<li>Google MyMaps
+<ul>
+<li>A simple, no-code way to visualize data</li>
+</ul></li>
+<li>Google Earth Engine
+<ul>
+<li>Enhanced computing capabilities for analytic tasks</li>
+</ul></li>
+<li>Google Maps Platform
+<ul>
+<li>Comprehensive map construction, focused on visualization</li>
+</ul></li>
+</ul>
+</section>
+<section id="google-mymaps" class="level4" data-number="7.2.2.2">
+<h4 data-number="7.2.2.2" class="anchored" data-anchor-id="google-mymaps"><span class="header-section-number">7.2.2.2</span> Google MyMaps</h4>
+<p>Google MyMaps allows for visualization of line and point data.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/spatial_data_visualization/MyMap.png" class="img-fluid figure-img"></p>
+<figcaption>Image of MyMaps UI. As we can see, there is a very small extent of functionality.</figcaption>
+</figure>
+</div>
+</section>
+<section id="google-earth-engine" class="level4" data-number="7.2.2.3">
+<h4 data-number="7.2.2.3" class="anchored" data-anchor-id="google-earth-engine"><span class="header-section-number">7.2.2.3</span> Google Earth Engine</h4>
+<p>Google Earth Engine is used for <strong>remote sensing</strong> applications.</p>
+<p>It uses JavaScript.</p>
+<p>It pairs well with landcover classification to aid in tasks like:</p>
+<ul>
+<li>Landcover Classification
+<ul>
+<li>Tracking deforestation</li>
+<li>Habitat Monitoring</li>
+<li><strong>Solar Panel Identification</strong></li>
+</ul></li>
+</ul>
+</section>
+<section id="google-earth-engine-example" class="level4" data-number="7.2.2.4">
+<h4 data-number="7.2.2.4" class="anchored" data-anchor-id="google-earth-engine-example"><span class="header-section-number">7.2.2.4</span> Google Earth Engine Example</h4>
+<p>Here’s an example of Google Earth Engine being used to identify commercial solar properties to fill in missing data:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/spatial_data_visualization/GEE_example.png" class="img-fluid figure-img"></p>
+<figcaption>Example of Landcover classifcation model in GEE</figcaption>
+</figure>
+</div>
+</section>
+<section id="google-maps-platform" class="level4" data-number="7.2.2.5">
+<h4 data-number="7.2.2.5" class="anchored" data-anchor-id="google-maps-platform"><span class="header-section-number">7.2.2.5</span> Google Maps Platform</h4>
+<p>Google Maps Platform significantly broadens capabilities.</p>
+<p>It allows us to perform tasks such as:</p>
+<ul>
+<li>Coalescing nearby points into clusters for zooming</li>
+<li>Creating heat maps from point data</li>
+<li>Embedding maps into websites</li>
+<li>Automatically translating a map into a user’s language</li>
+<li>3D geospatial visualization</li>
+<li>and more!</li>
+</ul>
+</section>
+</section>
+<section id="getting-started-in-google-maps-platform" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="getting-started-in-google-maps-platform"><span class="header-section-number">7.2.3</span> Getting Started in Google Maps Platform</h3>
+<section id="why-google-maps-platform" class="level4" data-number="7.2.3.1">
+<h4 data-number="7.2.3.1" class="anchored" data-anchor-id="why-google-maps-platform"><span class="header-section-number">7.2.3.1</span> Why Google Maps Platform?</h4>
+<p>We want to be able to include maps right inside of our Python code, so Google Maps will be our platform of choice.</p>
+<p>Google Maps Platform uses Google Cloud computing.</p>
+<p>We must log in and do some setup there first.</p>
+</section>
+<section id="google-cloud-platform" class="level4" data-number="7.2.3.2">
+<h4 data-number="7.2.3.2" class="anchored" data-anchor-id="google-cloud-platform"><span class="header-section-number">7.2.3.2</span> Google Cloud Platform</h4>
+<p>Google Cloud Platform <a href="https://console.cloud.google.com/">is accessible here.</a></p>
+<p>UConn terminated Google accounts in 2024, so to access Google Cloud Console, sign in with your <strong>personal email</strong>.</p>
+</section>
+<section id="accessing-the-console" class="level4" data-number="7.2.3.3">
+<h4 data-number="7.2.3.3" class="anchored" data-anchor-id="accessing-the-console"><span class="header-section-number">7.2.3.3</span> Accessing the console</h4>
+<p>To access Google Maps Platform, we must enter our Google Cloud Console.</p>
+<p>Navigate to console.cloud.google.com to view your console. It should look like this. Press “select project” and create your new project.</p>
+<p><img src="images/spatial_data_visualization/Select_Project.png" class="img-fluid"></p>
+</section>
+<section id="building-project" class="level4" data-number="7.2.3.4">
+<h4 data-number="7.2.3.4" class="anchored" data-anchor-id="building-project"><span class="header-section-number">7.2.3.4</span> Building Project</h4>
+<p>→ “Select a Project”</p>
+<p>→ “New Project”</p>
+<p>→ Name your project, set location as ‘No Organization’</p>
+<p>→ “Create”</p>
+<p>→ Select newly created project</p>
+<p>→ Next, we’ll set up an API key in the following slides</p>
+</section>
+<section id="api-what-is-an-api" class="level4" data-number="7.2.3.5">
+<h4 data-number="7.2.3.5" class="anchored" data-anchor-id="api-what-is-an-api"><span class="header-section-number">7.2.3.5</span> API: What is an API?</h4>
+<p>API stands for “Application Programming Interface.”</p>
+<p><strong>Google Maps API</strong> is a set of tools allowing us to perform tasks like:</p>
+<ul>
+<li>Visualizing data and embedding it into websites</li>
+<li>Route finding</li>
+<li>3D map viewing
+<ul>
+<li>Street view, etc.</li>
+</ul></li>
+<li>And more!</li>
+</ul>
+</section>
+<section id="api-what-are-api-keys" class="level4" data-number="7.2.3.6">
+<h4 data-number="7.2.3.6" class="anchored" data-anchor-id="api-what-are-api-keys"><span class="header-section-number">7.2.3.6</span> API: What are API keys?</h4>
+<p>An API Key allows us to access our projects <strong>exclusively</strong></p>
+<p>Generate an API key for your Maps project in Google Cloud here:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/spatial_data_visualization/Make_API_key.png" class="img-fluid figure-img"></p>
+<figcaption>Where to navigate to generate API key</figcaption>
+</figure>
+</div>
+</section>
+<section id="api-enabling-necessary-apis" class="level4" data-number="7.2.3.7">
+<h4 data-number="7.2.3.7" class="anchored" data-anchor-id="api-enabling-necessary-apis"><span class="header-section-number">7.2.3.7</span> API: Enabling necessary APIs</h4>
+<p>In this example, we will visualize our data as a heat map. For this we will need to enable the following APIs:</p>
+<ul>
+<li>Maps JavaScript API</li>
+<li>Maps Datasets API</li>
+<li>Places API</li>
+</ul>
+<p><em>(Select ‘APIs and Services’ from the left sidebar to access)</em></p>
+</section>
+<section id="python-and-google-maps" class="level4" data-number="7.2.3.8">
+<h4 data-number="7.2.3.8" class="anchored" data-anchor-id="python-and-google-maps"><span class="header-section-number">7.2.3.8</span> Python and Google Maps</h4>
+<p>Let’s begin by downloading our packages in terminal or an equivalent command shell:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> pip install googlemaps </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> pip install gmplot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now we can start working with Google Maps in Python!</p>
+<ul>
+<li>googlemaps
+<ul>
+<li>Provides access to Google Maps Platform services in a Python client</li>
+</ul></li>
+<li>gmplot
+<ul>
+<li>Primarily for plotting</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="using-googlemaps-and-gmplot" class="level3" data-number="7.2.4">
+<h3 data-number="7.2.4" class="anchored" data-anchor-id="using-googlemaps-and-gmplot"><span class="header-section-number">7.2.4</span> Using googlemaps and gmplot</h3>
+<section id="gmplot-initialization" class="level4" data-number="7.2.4.1">
+<h4 data-number="7.2.4.1" class="anchored" data-anchor-id="gmplot-initialization"><span class="header-section-number">7.2.4.1</span> gmplot: Initialization</h4>
+<p>We’ll use the standardized nyccrashes_cleaned.feather file provided in the coursenotes for our examples.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> pip install pyarrow</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="ce722fcb" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gmplot</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_feather(<span class="st">'data/nyccrashes_cleaned.feather'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="gmplot" class="level4" data-number="7.2.4.2">
+<h4 data-number="7.2.4.2" class="anchored" data-anchor-id="gmplot"><span class="header-section-number">7.2.4.2</span> gmplot</h4>
+<p>Here’s some example code for gmplot using the cleaned NYC Crashes Dataset:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gmplot</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co">## Load the dataset using pd.read_feather()</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_feather(<span class="st">'data/nyccrashes_cleaned.feather'</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co">#NaN values prevent plotting, let's remove them:</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">'latitude'</span>, <span class="st">'longitude'</span>])</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="co">## Insert API key (substitute with your own!)</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>api_key_file_path <span class="op">=</span> <span class="st">"api_key.txt"</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(file_path, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    api_key <span class="op">=</span> <span class="bu">file</span>.read().strip()</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="co">## Center the map on NYC using the mean center</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>center_lat <span class="op">=</span> df[<span class="st">'latitude'</span>].mean()</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>center_lon <span class="op">=</span> df[<span class="st">'longitude'</span>].mean()</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="co">## Create gmplot object (third argument is the zoom level)</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>gmap <span class="op">=</span> gmplot.GoogleMapPlotter(center_lat, center_lon, <span class="dv">11</span>, apikey<span class="op">=</span>api_key)</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="co">## Extract latitudes and longitudes directly</span></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>latitudes <span class="op">=</span> df[<span class="st">'latitude'</span>].tolist()</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>longitudes <span class="op">=</span> df[<span class="st">'longitude'</span>].tolist()</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot all points at once</span></span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>gmap.scatter(latitudes, longitudes, marker<span class="op">=</span><span class="va">True</span>, size<span class="op">=</span><span class="dv">20</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a><span class="co">## Define output path</span></span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>output_dir <span class="op">=</span> <span class="st">"map_outputs"</span></span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>output_path <span class="op">=</span> os.path.join(output_dir, <span class="st">"nyccrashes_map.html"</span>)</span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a><span class="co">## Create the output directory if it doesn't exist</span></span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>os.makedirs(output_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a><span class="co">## Save the map</span></span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a>gmap.draw(output_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="gmplot-example-code-output" class="level4" data-number="7.2.4.3">
+<h4 data-number="7.2.4.3" class="anchored" data-anchor-id="gmplot-example-code-output"><span class="header-section-number">7.2.4.3</span> gmplot example code output:</h4>
+<p>You would retrieve this as an html generated in the specified directory, but for this presentation I’ll show this as an image:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/spatial_data_visualization/gmplot_output.png" class="img-fluid figure-img"></p>
+<figcaption>Output of example code</figcaption>
+</figure>
+</div>
+</section>
+<section id="gmplot-heat-maps" class="level4" data-number="7.2.4.4">
+<h4 data-number="7.2.4.4" class="anchored" data-anchor-id="gmplot-heat-maps"><span class="header-section-number">7.2.4.4</span> gmplot: Heat Maps</h4>
+<p>Here’s some example code for a heat map:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Now create a heatmap</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Create a new gmplot object for the heatmap</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>heatmap <span class="op">=</span> gmplot.GoogleMapPlotter(center_lat, center_lon, <span class="dv">11</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>          apikey<span class="op">=</span>api_key)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot the heatmap</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>heatmap.heatmap(latitudes, longitudes)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="co">## Define output path for heatmap</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>heatmap_output_path <span class="op">=</span> os.path.join(output_dir, <span class="st">"nyccrashes_heatmap.html"</span>)</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="co">## Save the heatmap</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>heatmap.draw(heatmap_output_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(Woods 2017)</p>
+</section>
+</section>
+<section id="gmplot-heat-map-example" class="level3" data-number="7.2.5">
+<h3 data-number="7.2.5" class="anchored" data-anchor-id="gmplot-heat-map-example"><span class="header-section-number">7.2.5</span> gmplot Heat Map Example</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/spatial_data_visualization/heatmap_output.png" class="img-fluid figure-img"></p>
+<figcaption>Heat map output; <em>Remark: multiple gmplot html outputs might not reliably work for a single script</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="googlemaps" class="level3" data-number="7.2.6">
+<h3 data-number="7.2.6" class="anchored" data-anchor-id="googlemaps"><span class="header-section-number">7.2.6</span> Googlemaps</h3>
+<p>Googlemaps as a package is valuable in allowing us to access advanced functionality, beyond the scope of this write-up. Access more information <a href="###References">here</a>. (Google 2023)</p>
+</section>
+<section id="conclusion-1" class="level3" data-number="7.2.7">
+<h3 data-number="7.2.7" class="anchored" data-anchor-id="conclusion-1"><span class="header-section-number">7.2.7</span> Conclusion</h3>
+<section id="geospatial-visualization" class="level4" data-number="7.2.7.1">
+<h4 data-number="7.2.7.1" class="anchored" data-anchor-id="geospatial-visualization"><span class="header-section-number">7.2.7.1</span> Geospatial Visualization</h4>
+<p>There are a range of different geospatial visualization platforms.</p>
+<p>But, using Python, you can do all the spatial visualization you need right in your code!</p>
+</section>
+<section id="thank-you" class="level4" data-number="7.2.7.2">
+<h4 data-number="7.2.7.2" class="anchored" data-anchor-id="thank-you"><span class="header-section-number">7.2.7.2</span> Thank you!</h4>
+<p>Best of luck with your spatial data visualization! Keep learning.</p>
+</section>
+</section>
+<section id="references" class="level3" data-number="7.2.8">
+<h3 data-number="7.2.8" class="anchored" data-anchor-id="references"><span class="header-section-number">7.2.8</span> References</h3>
+<ul>
+<li><p>Woods, M. (2017). gmplot: Plotting data on Google Maps, the easy (stupid) way. URL: Https://Github.Com/Gmplot/Gmplot.</p></li>
+<li><p>Google. (2023). googlemaps (v4.7.3) [Python package]. PyPI. https://pypi.org/project/googlemaps/</p></li>
+</ul>
+</section>
+</section>
+<section id="animating-plots-and-maps" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="animating-plots-and-maps"><span class="header-section-number">7.3</span> Animating Plots and Maps</h2>
+<section id="introduction-1" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="introduction-1"><span class="header-section-number">7.3.1</span> Introduction</h3>
+<p>Hello everyone! My name is Rahul Manna. I am an undergraduate junior doing a dual degree in Statistical Data Science and Mechanical Engineering. I will be showing you how you can animate plots and maps using Matplotlib’s <code>FuncAnimation</code> function.</p>
+<p>Animated maps and plots are valuable for showing changes over time or across locations, making trends and patterns easier to see. They’re useful in fields like public health, where animated maps can show how a disease spreads, or in economics, where plots can track market trends. Environmental scientists also use animated weather maps to illustrate seasonal shifts. These visuals make complex data clearer and help in understanding and decision-making.</p>
+<p><strong>Overview</strong></p>
+<ol type="1">
+<li>Matplotlib Review</li>
+<li>Animating Plots</li>
+<li>Animating Maps</li>
+<li>Saving your Animation</li>
+</ol>
+</section>
+<section id="matplotlib" class="level3 smaller" data-number="7.3.2">
+<h3 class="smaller anchored" data-number="7.3.2" data-anchor-id="matplotlib"><span class="header-section-number">7.3.2</span> Matplotlib</h3>
+<ul>
+<li>Developed by John D. Hunter in 2003 as a tool for scientific computing in Python.</li>
+<li>Initially aimed at providing MATLAB-like plotting capabilities but has evolved into one of the most widely-used plotting libraries.</li>
+</ul>
+<p>Source: <span class="citation" data-cites="matplotlib">Hunter &amp; Matplotlib Development Team (<a href="references.html#ref-matplotlib" role="doc-biblioref">2023a</a>)</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Fun Fact
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Matplotlib was used for data visualization during the 2008 landing of the Phoenix spacecraft on Mars and in generating the first image of a black hole (Source: <span class="citation" data-cites="eventhorizon2020first">Collaboration (<a href="references.html#ref-eventhorizon2020first" role="doc-biblioref">2019</a>)</span>).</p>
+</div>
+</div>
+<section id="installation" class="level4" data-number="7.3.2.1">
+<h4 data-number="7.3.2.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">7.3.2.1</span> Installation:</h4>
+<p>To install <code>matplotlib</code>, you can use either of the following lines in your terminal or conda prompt respectively.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pip install matplotlib <span class="co"># pip users</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>conda install <span class="op">-</span>c conda<span class="op">-</span>forge matplotlib <span class="co"># conda users</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="basic-matplotlib-commands" class="level4 smaller" data-number="7.3.2.2">
+<h4 class="smaller anchored" data-number="7.3.2.2" data-anchor-id="basic-matplotlib-commands"><span class="header-section-number">7.3.2.2</span> Basic Matplotlib Commands</h4>
+<p>Majority of plotting with <code>matplotlib</code> is done with the <code>pyplot</code> module which can be imported with the following code.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>These are some of the most common <code>matplotlib.pyplot</code> commands.</p>
+<ul>
+<li><code>plt.plot()</code> : Plot y versus x as lines and/or markers.</li>
+<li><code>plt.scatter()</code> : Create a scatter plot of points.</li>
+<li><code>plt.bar()</code> : Create bar charts.</li>
+<li><code>plt.hist()</code> : Create histograms.</li>
+<li><code>plt.xlabel()</code> : Set the label for the x-axis.</li>
+<li><code>plt.ylabel()</code> : Set the label for the y-axis.</li>
+<li><code>plt.title()</code> : Set the title of the plot.</li>
+<li><code>plt.legend()</code> : Display a legend for the plot.</li>
+<li><code>plt.subplots()</code> : Create a figure and a grid of subplots.</li>
+<li><code>plt.show()</code> : Display all open figures.</li>
+</ul>
+<p>Source: <span class="citation" data-cites="matplotlib">Hunter &amp; Matplotlib Development Team (<a href="references.html#ref-matplotlib" role="doc-biblioref">2023a</a>)</span></p>
+</section>
+<section id="some-examples" class="level4" data-number="7.3.2.3">
+<h4 data-number="7.3.2.3" class="anchored" data-anchor-id="some-examples"><span class="header-section-number">7.3.2.3</span> Some Examples</h4>
+<p>Here are some examples of plots made using <code>matplotlib.pyplot</code>.</p>
+<section id="coin-toss" class="level5" data-number="7.3.2.3.1">
+<h5 data-number="7.3.2.3.1" class="anchored" data-anchor-id="coin-toss"><span class="header-section-number">7.3.2.3.1</span> Coin Toss</h5>
+<p>Let’s create a line plot to show how the proportion of heads in coin tosses changes as the number of tosses increases.</p>
+<div id="fc4725b2" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">3255</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> prob_heads(trials):</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> []</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    prop_heads <span class="op">=</span> []</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(trials):</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>        toss <span class="op">=</span> random.randint(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>        result.append(toss)</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>        prop_heads.append(<span class="bu">sum</span>(result)<span class="op">/</span><span class="bu">len</span>(result)) </span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> prop_heads</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">3</span>))</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>plt.hlines(<span class="fl">0.5</span>,<span class="dv">0</span>,<span class="dv">2500</span>,linestyles<span class="op">=</span><span class="st">'dashed'</span>)</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>plt.plot(prob_heads(<span class="dv">2500</span>),color<span class="op">=</span><span class="st">'tab:red'</span>)</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Coin Toss"</span>)</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Proportion of Heads'</span>)</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Number of Tosses'</span>)</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="visualization_files/figure-html/cell-27-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="514" height="302"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bar-chart-1" class="level5" data-number="7.3.2.3.2">
+<h5 data-number="7.3.2.3.2" class="anchored" data-anchor-id="bar-chart-1"><span class="header-section-number">7.3.2.3.2</span> Bar Chart</h5>
+<p>Let’s create a simple bar plot of the crashes in New York City by borough in the week of July 30, 2024.</p>
+<div id="64bb0282" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>crash_data <span class="op">=</span> pd.read_feather(<span class="st">"data/nyccrashes_cleaned.feather"</span>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>crash_data <span class="op">=</span> crash_data.groupby(<span class="st">'borough'</span>)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>boroughs <span class="op">=</span> crash_data.groups.keys()</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>heights <span class="op">=</span> [<span class="bu">len</span>(crash_data.get_group(x)) <span class="cf">for</span> x <span class="kw">in</span> boroughs]</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>plt.bar(boroughs,height<span class="op">=</span>heights)</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Bar Plot of Crashes in NYC by Borough - 6/30/24 - 7/7/24'</span>)</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Borough'</span>)</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Number of Crashes'</span>)</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="visualization_files/figure-html/cell-28-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="593" height="449"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="animating-plots" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="animating-plots"><span class="header-section-number">7.3.3</span> Animating Plots</h3>
+<section id="matplotlibs-funcanimation" class="level4 smaller" data-number="7.3.3.1">
+<h4 class="smaller anchored" data-number="7.3.3.1" data-anchor-id="matplotlibs-funcanimation"><span class="header-section-number">7.3.3.1</span> Matplotlib’s FuncAnimation</h4>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.animation <span class="im">import</span> FuncAnimation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>FuncAnimation</code> is used to create animations in Matplotlib by repeatedly calling a user-defined function.</p>
+<p><code>anim = FuncAnimation(fig,func,frames,interval,repeat,repeat_delay)</code></p>
+<p><strong>Key Inputs</strong></p>
+<ul>
+<li><code>fig</code>: Matplotlib figure object.</li>
+<li><code>func</code>: The update function for each frame.</li>
+<li><code>frames</code>: Sequence or number of frames.</li>
+<li><code>interval</code>: Time interval between frames (ms).</li>
+<li><code>repeat</code>: Whether to repeat animation (True/False).</li>
+<li><code>repeat_delay</code>: Delay before repeating (ms).</li>
+</ul>
+<p>Source: <span class="citation" data-cites="matplotlib_funcanimation">Hunter &amp; Matplotlib Development Team (<a href="references.html#ref-matplotlib_funcanimation" role="doc-biblioref">2023b</a>)</span></p>
+</section>
+<section id="coin-toss-animtion" class="level4" data-number="7.3.3.2">
+<h4 data-number="7.3.3.2" class="anchored" data-anchor-id="coin-toss-animtion"><span class="header-section-number">7.3.3.2</span> Coin Toss Animtion</h4>
+<p>Using <code>FuncAnimation</code>, we can animate the coin toss plot we previously made.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>prop_heads <span class="op">=</span> prob_heads(<span class="dv">2500</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>frames <span class="op">=</span> <span class="bu">range</span>(<span class="bu">len</span>(prop_heads))</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">6</span>))</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(frame):</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Clear previous frame</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    ax.clear()</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add title, and labels</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">'Coin Toss'</span>)</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">'Proportion of Heads'</span>)</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">'Number of Tosses'</span>)</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot data</span></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>    ax.hlines(<span class="fl">0.5</span>,<span class="dv">0</span>,frame<span class="op">+</span><span class="dv">1</span>,linestyles<span class="op">=</span><span class="st">'dashed'</span>)</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>    ax.plot(<span class="bu">range</span>(<span class="dv">1</span>,frame<span class="op">+</span><span class="dv">1</span>),prop_heads[:frame],color<span class="op">=</span><span class="st">'tab:red'</span>)</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>anim <span class="op">=</span> FuncAnimation(fig,update,frames<span class="op">=</span>frames,repeat<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>anim.save(<span class="st">'coin_toss.gif'</span>,writer<span class="op">=</span><span class="st">'Pillow'</span>,fps<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/animations/coin_toss.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="a-step-further---coin-toss-animation" class="level4" data-number="7.3.3.3">
+<h4 data-number="7.3.3.3" class="anchored" data-anchor-id="a-step-further---coin-toss-animation"><span class="header-section-number">7.3.3.3</span> A Step Further - Coin Toss Animation</h4>
+<p>We can take this a step further by labeling the current proportion value for each frame.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>prop_heads <span class="op">=</span> prob_heads(<span class="dv">2500</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>frames <span class="op">=</span> <span class="bu">range</span>(<span class="bu">len</span>(prop_heads))</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">6</span>))</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(frame):</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    ax.clear()</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">'Coin Toss'</span>)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">'Proportion of Heads'</span>)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">'Number of Tosses'</span>)</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>    ax.hlines(<span class="fl">0.5</span>,<span class="dv">0</span>,frame<span class="op">+</span><span class="dv">1</span>,linestyles<span class="op">=</span><span class="st">'dashed'</span>)</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add text</span></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>    ax.text(frame<span class="op">+</span><span class="dv">1</span>,prop_heads[frame]<span class="op">*</span><span class="fl">1.05</span>,<span class="ss">f'</span><span class="sc">{</span>prop_heads[frame]<span class="sc">:.3f}</span><span class="ss">'</span>,weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>    ax.plot(<span class="bu">range</span>(<span class="dv">1</span>,frame<span class="op">+</span><span class="dv">1</span>),prop_heads[:frame],color<span class="op">=</span><span class="st">'tab:red'</span>)</span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a>anim <span class="op">=</span> FuncAnimation(fig,update,frames<span class="op">=</span>frames)</span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a>anim.save(<span class="st">'coin_toss_with_txt.gif'</span>,writer<span class="op">=</span><span class="st">'Pillow'</span>,fps<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/animations/coin_toss_with_txt.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="bar-chart-animation" class="level4" data-number="7.3.3.4">
+<h4 data-number="7.3.3.4" class="anchored" data-anchor-id="bar-chart-animation"><span class="header-section-number">7.3.3.4</span> Bar Chart Animation</h4>
+<p>Let’s animate the bar chart we created in section 8.1.5. Here I am using <code>plt.barh</code> to create a horizontal bar chart.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>crash_data[<span class="st">'crash_datetime'</span>] <span class="op">=</span> pd.to_datetime(crash_data[<span class="st">'crash_datetime'</span>], </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">format</span><span class="op">=</span><span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M:%S'</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">6</span>))</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(frame):</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    ax.clear()</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    current_data <span class="op">=</span> crash_data[crash_data[<span class="st">'crash_datetime'</span>] <span class="op">&lt;=</span> frame]</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Group data by borough and count the number of crashes</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    grouped_data <span class="op">=</span> current_data.groupby(<span class="st">'borough'</span>).size().reset_index(</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>                                                        name<span class="op">=</span><span class="st">'num_crashes'</span>)</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sort by number of crashes for consistent bar ordering</span></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>    grouped_data <span class="op">=</span> grouped_data.sort_values(by<span class="op">=</span><span class="st">'num_crashes'</span>, ascending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create horizontal bar chart</span></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>    bars <span class="op">=</span> ax.barh(grouped_data[<span class="st">'borough'</span>], grouped_data[<span class="st">'num_crashes'</span>])</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set titles and labels</span></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">'Bar Plot of Crashes in NYC by Borough'</span>)</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">'Number of Crashes'</span>)</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">'Borough'</span>)</span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>    ax.legend([<span class="ss">f'Data up to </span><span class="sc">{</span>frame<span class="sc">}</span><span class="ss">'</span>], prop<span class="op">=</span>{<span class="st">'size'</span>: <span class="st">'large'</span>})</span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Annotate bars with crash numbers</span></span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, bar <span class="kw">in</span> <span class="bu">enumerate</span>(bars):</span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>        ax.text(bar.get_width(), bar.get_y() <span class="op">+</span> bar.get_height() <span class="op">/</span> <span class="dv">2</span>,</span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f'</span><span class="sc">{</span>grouped_data[<span class="st">"num_crashes"</span>]<span class="sc">.</span>iloc[i]<span class="sc">}</span><span class="ss">'</span>, va<span class="op">=</span><span class="st">'center'</span>, </span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>                ha<span class="op">=</span><span class="st">'left'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a>anim <span class="op">=</span> FuncAnimation(fig,update,frames<span class="op">=</span>pd.date_range(</span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a>    start<span class="op">=</span>crash_data[<span class="st">'crash_datetime'</span>].<span class="bu">min</span>(),</span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a>    end<span class="op">=</span>crash_data[<span class="st">'crash_datetime'</span>].<span class="bu">max</span>(),freq<span class="op">=</span><span class="st">'h'</span>))</span>
+<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a>anim.save(<span class="st">'bar_plot_animation.gif'</span>,writer<span class="op">=</span><span class="st">'Pillow'</span>,fps<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/animations/bar_plot_animation.gif" class="img-fluid"></p>
+</section>
+<section id="relative-bar-plot-animation" class="level4" data-number="7.3.3.5">
+<h4 data-number="7.3.3.5" class="anchored" data-anchor-id="relative-bar-plot-animation"><span class="header-section-number">7.3.3.5</span> Relative Bar Plot Animation</h4>
+<p>Similarly, we can plot and animate the relative bar plot of crashes by borough.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">6</span>))</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(frame):</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    ax.clear()</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    current_data <span class="op">=</span> crash_data[crash_data[<span class="st">'crash_datetime'</span>] <span class="op">&lt;=</span> frame]</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    total_crashes <span class="op">=</span> <span class="bu">len</span>(current_data)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    grouped_data <span class="op">=</span> current_data.groupby(<span class="st">'borough'</span>)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>    boroughs <span class="op">=</span> <span class="bu">sorted</span>(grouped_data.groups.keys())</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    height <span class="op">=</span> [<span class="bu">len</span>(grouped_data.get_group(x))<span class="op">/</span>total_crashes <span class="cf">for</span> x <span class="kw">in</span> boroughs]</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create horizontal bar chart</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>    bars <span class="op">=</span> ax.bar(boroughs,height)</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set titles and labels</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">'Bar Plot of Relative Percentage of Crashes in NYC by Borough'</span>)</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">'Proportion of NYC Crashes'</span>)</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">'Borough'</span>)</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>    ax.legend([<span class="ss">f'Data up to </span><span class="sc">{</span>frame<span class="sc">}</span><span class="ss">'</span>])</span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Annotate bars with crash numbers</span></span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, bar <span class="kw">in</span> <span class="bu">enumerate</span>(bars):</span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>        ax.text(bar.get_x() <span class="op">+</span> bar.get_width() <span class="op">/</span> <span class="dv">2</span>, bar.get_height(),</span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f'</span><span class="sc">{</span>height[i]<span class="sc">:.4}</span><span class="ss">'</span>, va<span class="op">=</span><span class="st">'bottom'</span>, ha<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a>anim <span class="op">=</span> FuncAnimation(fig,update,frames<span class="op">=</span>pd.date_range(start<span class="op">=</span></span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a>                                crash_data[<span class="st">'crash_datetime'</span>].<span class="bu">min</span>(),</span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a>                        end<span class="op">=</span>crash_data[<span class="st">'crash_datetime'</span>].<span class="bu">max</span>(),freq<span class="op">=</span><span class="st">'h'</span>))</span>
+<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/animations/relative_bar_plot_animation.gif" class="img-fluid"></p>
+</section>
+</section>
+<section id="animating-maps" class="level3" data-number="7.3.4">
+<h3 data-number="7.3.4" class="anchored" data-anchor-id="animating-maps"><span class="header-section-number">7.3.4</span> Animating Maps</h3>
+<p>The same <code>FuncAnimation</code> function can be used to animate maps.</p>
+<section id="basic-idea" class="level4" data-number="7.3.4.1">
+<h4 data-number="7.3.4.1" class="anchored" data-anchor-id="basic-idea"><span class="header-section-number">7.3.4.1</span> Basic Idea</h4>
+<ol type="1">
+<li>Process data as a Geo-dataframe with Geopandas</li>
+<li>Obtain map using libraries like <code>Contextily</code>, <code>Cartopy</code>, or <code>Basemap</code>.</li>
+<li>Create a frame fuction that:
+<ol type="1">
+<li>Clears previous plot</li>
+<li>Plots geo-spatial data</li>
+<li>Add a basemap background</li>
+</ol></li>
+<li>Animate the map.</li>
+</ol>
+</section>
+<section id="more-packages" class="level4 smaller" data-number="7.3.4.2">
+<h4 class="smaller anchored" data-number="7.3.4.2" data-anchor-id="more-packages"><span class="header-section-number">7.3.4.2</span> More Packages</h4>
+<p>Two more packages are needed to create an animated map.</p>
+<p><strong>Geopandas (Source: <span class="citation" data-cites="geopandas">Team (<a href="references.html#ref-geopandas" role="doc-biblioref">2024</a>)</span>)</strong> {.smaller} - Extends Pandas to support spatial (geometric) data operations. - Handles GeoDataFrames that store geometries like points, lines, and polygons. - Provides support for reading and writing geospatial data formats - Integrates easily with Matplotlib for plotting spatial data.</p>
+<p><strong>Contextily (Source: <span class="citation" data-cites="contextily_docs">Kharlamov (<a href="references.html#ref-contextily_docs" role="doc-biblioref">2023</a>)</span>)</strong> {.smaller} - Adds basemaps to Matplotlib and Geopandas plots. - Fetches tile-based maps from popular online sources (like OpenStreetMap).</p>
+<p><strong>Installation</strong></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>pip install geopandas contextily <span class="co"># pip users</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>conda install <span class="op">-</span>c conda<span class="op">-</span>forge geopandas contextily <span class="co"># conda users</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextily <span class="im">as</span> ctx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-1-process-data-as-geodataframe" class="level4" data-number="7.3.4.3">
+<h4 data-number="7.3.4.3" class="anchored" data-anchor-id="step-1-process-data-as-geodataframe"><span class="header-section-number">7.3.4.3</span> Step 1: Process Data as GeoDataFrame</h4>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read Data</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>crash_data <span class="op">=</span> pd.read_feather(<span class="st">"data/nyccrashes_cleaned.feather"</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Make Date Time Column</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>crash_data[<span class="st">'crash_datetime'</span>] <span class="op">=</span> pd.to_datetime(crash_data[<span class="st">'crash_datetime'</span>],</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>                                                <span class="bu">format</span><span class="op">=</span><span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M:%S'</span>)</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Hour and Date columns</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>crash_data[<span class="st">'date'</span>] <span class="op">=</span> crash_data[<span class="st">'crash_datetime'</span>].dt.date</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>crash_data[<span class="st">'hour'</span>] <span class="op">=</span> crash_data[<span class="st">'crash_datetime'</span>].dt.hour</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create GeoPandas Data frame</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>crash_gdf <span class="op">=</span> gpd.GeoDataFrame(crash_data,</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>gpd.points_from_xy(crash_data[<span class="st">'longitude'</span>], </span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>                            crash_data[<span class="st">'latitude'</span>]),crs<span class="op">=</span><span class="st">"EPSG:4326"</span>)</span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform from EPSG 4326 to EPSG 3857</span></span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>crash_gdf <span class="op">=</span> crash_gdf.to_crs(epsg<span class="op">=</span><span class="dv">3857</span>)</span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Group crash_gdf by date and then hour</span></span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>crash_grouped <span class="op">=</span> crash_gdf.groupby([<span class="st">'date'</span>,<span class="st">'hour'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-2-get-basemap" class="level4" data-number="7.3.4.4">
+<h4 data-number="7.3.4.4" class="anchored" data-anchor-id="step-2-get-basemap"><span class="header-section-number">7.3.4.4</span> Step 2: Get Basemap</h4>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>newyork <span class="op">=</span> ctx.Place(<span class="st">"New York"</span>, source<span class="op">=</span>ctx.providers.OpenStreetMap.Mapnik,zoom<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>ny_img <span class="op">=</span> newyork.im <span class="co"># Get Map Image</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>ny_bbox <span class="op">=</span> newyork.bbox_map <span class="co"># Get Coordinates EPSG 3857</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/animations/nyc_basemap.png" class="img-fluid"></p>
+</section>
+<section id="step-3-frame-function" class="level4" data-number="7.3.4.5">
+<h4 data-number="7.3.4.5" class="anchored" data-anchor-id="step-3-frame-function"><span class="header-section-number">7.3.4.5</span> Step 3: Frame Function</h4>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>crash_grouped <span class="op">=</span> crash_gdf.groupby([<span class="st">'date'</span>,<span class="st">'hour'</span>])</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>keys <span class="op">=</span> [key <span class="cf">for</span> key <span class="kw">in</span> grouped.groups.keys()] <span class="co"># frames</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">7</span>))</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(frame):</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extrate date, hr from input</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    date, hr <span class="op">=</span> frame</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get group</span></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> crash_grouped.get_group((date,hr))</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>    ax.clear() <span class="co"># Clear previous frame</span></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot using Geopandas df.plot</span></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>    df.plot(ax<span class="op">=</span>ax,color<span class="op">=</span><span class="st">'red'</span>,edgecolor<span class="op">=</span><span class="st">'k'</span>,label<span class="op">=</span><span class="ss">f'Date: </span><span class="sc">{</span>date<span class="sc">}</span><span class="ch">\n</span><span class="ss">Hour: </span><span class="sc">{</span>hr<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>    ax.imshow(ny_img,extent<span class="op">=</span>ny_bbox) <span class="co"># add basemap</span></span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>    ax.legend(loc<span class="op">=</span><span class="st">'lower right'</span>)</span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">"Crashes by Hour in NYC - Week of 6/30/24 to 7/7/24"</span>)</span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">'off'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-3-animate-the-map" class="level4" data-number="7.3.4.6">
+<h4 data-number="7.3.4.6" class="anchored" data-anchor-id="step-3-animate-the-map"><span class="header-section-number">7.3.4.6</span> Step 3: Animate the Map</h4>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(left<span class="op">=</span><span class="dv">0</span>,right<span class="op">=</span><span class="dv">1</span>,top<span class="op">=</span><span class="fl">0.95</span>,bottom<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>anim <span class="op">=</span> FuncAnimation(fig,update,frames<span class="op">=</span>keys)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>anim.save(<span class="st">"crash_maps_nyc_24-6-30_24-7-7_300dpi.gif"</span>,writer<span class="op">=</span><span class="st">'Pillow'</span>,fps<span class="op">=</span><span class="dv">2</span>,dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/animations/crash_maps_nyc_24-6-30_24-7-7_260dpi.gif" class="img-fluid"></p>
+<p><em>Note: a lower dpi (265) and size than shown in the chunk above was used for this figure to keep it under GitHub’s 100 Mb limit.</em></p>
+</section>
+<section id="other-basemaps" class="level4 smaller" data-number="7.3.4.7">
+<h4 class="smaller anchored" data-number="7.3.4.7" data-anchor-id="other-basemaps"><span class="header-section-number">7.3.4.7</span> Other Basemaps</h4>
+<p>The <code>Contextily</code> has several other basemaps available. Here are some of there most popular options.</p>
+<ul>
+<li><strong><code>ctx.providers.Stamen.Toner</code></strong>: Black-and-white map, minimal details.</li>
+<li><strong><code>ctx.providers.Stamen.Terrain</code></strong>: Topographic map with terrain shading.</li>
+<li><strong><code>ctx.providers.OpenStreetMap.Mapnik</code></strong>: Standard OpenStreetMap, detailed streets.</li>
+<li><strong><code>ctx.providers.CartoDB.Positron</code></strong>: Light map with subtle details.</li>
+<li><strong><code>ctx.providers.CartoDB.Voyager</code></strong>: Colorful and detailed street map.</li>
+<li><strong><code>ctx.providers.Esri.WorldImagery</code></strong>: High-res satellite imagery.</li>
+</ul>
+<p>Source: <span class="citation" data-cites="contextily_docs">Kharlamov (<a href="references.html#ref-contextily_docs" role="doc-biblioref">2023</a>)</span></p>
+</section>
+<section id="satellite-example" class="level4" data-number="7.3.4.8">
+<h4 data-number="7.3.4.8" class="anchored" data-anchor-id="satellite-example"><span class="header-section-number">7.3.4.8</span> Satellite Example</h4>
+<p>This is an example of the same map animated with a satellite basemap.</p>
+<p><img src="images/animations/satellite_crash_maps_nyc_24-6-30_24-7-7_300dpi.gif" class="img-fluid"></p>
+</section>
+</section>
+<section id="advance-example---animating-maps" class="level3" data-number="7.3.5">
+<h3 data-number="7.3.5" class="anchored" data-anchor-id="advance-example---animating-maps"><span class="header-section-number">7.3.5</span> Advance Example - Animating Maps</h3>
+<p>The <a href="https://opendata.cityofnewyork.us/">NYC Open Data</a> contains traffic speed data that is updated several times a day. We will be plotting this data on the map we previously made.</p>
+<p>Link to data: <a href="https://data.cityofnewyork.us/Transportation/DOT-Traffic-Speeds-NBE/i4gi-tjb9/about_data">DOT Traffic Speeds NBE</a></p>
+<p>These are some of the variables from the dataset:</p>
+<ul>
+<li><code>DATA_AS_OF</code>: Timestamp when the data was recorded.</li>
+<li><code>SPEED</code>: Recorded speed in miles per hour.</li>
+<li><code>LINK_ID</code>: Identifier for road segments.</li>
+<li><code>LINK_POINTS</code>: List of geographic coordinates for the road segment.</li>
+<li><code>ENCODED_POLY_LINE</code>: Encoded string representing the polyline of the segment.</li>
+<li><code>BOROUGH</code>: NYC borough where data is collected (e.g., Manhattan, Brooklyn).</li>
+</ul>
+<section id="traffic-speed-data" class="level4" data-number="7.3.5.1">
+<h4 data-number="7.3.5.1" class="anchored" data-anchor-id="traffic-speed-data"><span class="header-section-number">7.3.5.1</span> Traffic Speed Data</h4>
+<p>Let’s process the <code>DATA_AS_OF</code> column as a <code>datetime</code> column.</p>
+<p>Since the data only contains the speed which is different for different roads, we can create a normalized speed column. This column contains the traffic speed at the time divided by the average speed over that week for each ‘LINK_ID’ or unique section of the road.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>speed_data <span class="op">=</span> pd.read_feather(<span class="st">"data/DOT_Traffic_Speeds_NBE_20241005.feather"</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Date Column</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>speed_data[<span class="st">'DATA_AS_OF'</span>] <span class="op">=</span> pd.to_datetime(speed_data[<span class="st">'DATA_AS_OF'</span>],</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>                                        <span class="bu">format</span><span class="op">=</span><span class="st">'%m/</span><span class="sc">%d</span><span class="st">/%Y %I:%M:%S %p'</span>)</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>speed_data[<span class="st">'hour'</span>] <span class="op">=</span> speed_data[<span class="st">'DATA_AS_OF'</span>].dt.hour</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>speed_data[<span class="st">'date'</span>] <span class="op">=</span> speed_data[<span class="st">'DATA_AS_OF'</span>].dt.date</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>group_link_id <span class="op">=</span> speed_data.groupby([<span class="st">'LINK_ID'</span>])</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to Normalize speed</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalize_speed(row):</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>    group <span class="op">=</span> group_link_id.get_group(row[<span class="st">'LINK_ID'</span>])</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> row[<span class="st">'SPEED'</span>]:</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>        row[<span class="st">'normalized_speed'</span>] <span class="op">=</span> row[<span class="st">'SPEED'</span>] <span class="op">/</span> group[<span class="st">'SPEED'</span>].mean()</span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>        row[<span class="st">'normalized_speed'</span>] <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> row</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>speed_data <span class="op">=</span> speed_data.<span class="bu">apply</span>(normalize_speed,axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="extract-polyline" class="level4" data-number="7.3.5.2">
+<h4 data-number="7.3.5.2" class="anchored" data-anchor-id="extract-polyline"><span class="header-section-number">7.3.5.2</span> Extract Polyline</h4>
+<p>We can extract the polyline to plot on the map.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely.geometry <span class="im">import</span> LineString</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polyline</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Example encoded-poly-line</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="co"># {q{vFrzrcMta@kl@hDiInBiIr@}F\mHOsR</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poly(x):</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Decode Polyline</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>        decoded <span class="op">=</span> polyline.decode(x)</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Create a box for NYC to filter invalid coordinates</span></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>        valid_lat_range <span class="op">=</span> (<span class="fl">40.47</span>, <span class="fl">40.91</span>)</span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>        valid_lon_range <span class="op">=</span> (<span class="op">-</span><span class="fl">74.25</span>, <span class="op">-</span><span class="fl">73.7</span>) </span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Filter coordinates</span></span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>        cleaned_coords <span class="op">=</span> [(lon, lat) <span class="cf">for</span> lat, lon <span class="kw">in</span> decoded</span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> valid_lat_range[<span class="dv">0</span>] <span class="op">&lt;=</span> lat <span class="op">&lt;=</span> valid_lat_range[<span class="dv">1</span>] <span class="kw">and</span> </span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>            valid_lon_range[<span class="dv">0</span>] <span class="op">&lt;=</span> lon <span class="op">&lt;=</span> valid_lon_range[<span class="dv">1</span>]]</span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Return coordinates</span></span>
+<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> cleaned_coords <span class="cf">if</span> cleaned_coords <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb47-24"><a href="#cb47-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> (<span class="pp">IndexError</span>, <span class="pp">TypeError</span>):</span>
+<span id="cb47-25"><a href="#cb47-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb47-26"><a href="#cb47-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-27"><a href="#cb47-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Decode Polyline</span></span>
+<span id="cb47-28"><a href="#cb47-28" aria-hidden="true" tabindex="-1"></a>speed_data[<span class="st">'decoded_polyline'</span>] <span class="op">=</span> speed_data[<span class="st">'ENCODED_POLY_LINE'</span>].<span class="bu">apply</span>(poly)</span>
+<span id="cb47-29"><a href="#cb47-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-30"><a href="#cb47-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Geometry for Geo data frame by processing polylines as linestring</span></span>
+<span id="cb47-31"><a href="#cb47-31" aria-hidden="true" tabindex="-1"></a>geometry <span class="op">=</span> speed_data[<span class="st">'decoded_polyline'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: LineString(x) </span>
+<span id="cb47-32"><a href="#cb47-32" aria-hidden="true" tabindex="-1"></a>                                                                <span class="cf">if</span> x <span class="cf">else</span> <span class="va">None</span>)</span>
+<span id="cb47-33"><a href="#cb47-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-34"><a href="#cb47-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Geo data frame and convert to ESPG 3857</span></span>
+<span id="cb47-35"><a href="#cb47-35" aria-hidden="true" tabindex="-1"></a>speed_gdf <span class="op">=</span> gpd.GeoDataFrame(speed_data,geometry<span class="op">=</span>geometry,crs<span class="op">=</span><span class="st">'EPSG:4326'</span>)</span>
+<span id="cb47-36"><a href="#cb47-36" aria-hidden="true" tabindex="-1"></a>speed_gdf <span class="op">=</span> speed_gdf.to_crs(epsg<span class="op">=</span><span class="dv">3857</span>)</span>
+<span id="cb47-37"><a href="#cb47-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-38"><a href="#cb47-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain data for July 2</span></span>
+<span id="cb47-39"><a href="#cb47-39" aria-hidden="true" tabindex="-1"></a>grouped_speed_gdf <span class="op">=</span> speed_gdf.groupby([<span class="st">'date'</span>])</span>
+<span id="cb47-40"><a href="#cb47-40" aria-hidden="true" tabindex="-1"></a>grouped_speed_gdf <span class="op">=</span> grouped_speed_gdf.get_group(datetime.date(<span class="dv">2024</span>,<span class="dv">7</span>,<span class="dv">2</span>))</span>
+<span id="cb47-41"><a href="#cb47-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-42"><a href="#cb47-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Group Dataframe by hour</span></span>
+<span id="cb47-43"><a href="#cb47-43" aria-hidden="true" tabindex="-1"></a>grouped_speed_gdf <span class="op">=</span> grouped_speed_gdf.groupby([<span class="st">'hour'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="updated-frame-function" class="level4" data-number="7.3.5.3">
+<h4 data-number="7.3.5.3" class="anchored" data-anchor-id="updated-frame-function"><span class="header-section-number">7.3.5.3</span> Updated Frame Function</h4>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.colors <span class="im">import</span> Normalize</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain Crash data for July 2 grouped by hour</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>crash_grouped <span class="op">=</span> crash_gdf.groupby([<span class="st">'date'</span>])</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>crash_grouped <span class="op">=</span> crash_grouped.get_group(datetime.date(<span class="dv">2024</span>,<span class="dv">7</span>,<span class="dv">2</span>))</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>crash_grouped <span class="op">=</span> crash_grouped.groupby([<span class="st">'hour'</span>])</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Get keys to generate frames</span></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>keys <span class="op">=</span> [key <span class="cf">for</span> key <span class="kw">in</span> crash_grouped.groups.keys()]</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize range to make color bar</span></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>norm <span class="op">=</span> Normalize(vmin<span class="op">=</span>speed_gdf[<span class="st">'normalized_speed'</span>].<span class="bu">min</span>(), </span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>                            vmax<span class="op">=</span>speed_gdf[<span class="st">'normalized_speed'</span>].<span class="bu">max</span>())</span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">7</span>))</span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(frame):</span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>    hr <span class="op">=</span> frame</span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get Crash and Traffic Data</span></span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> crash_grouped.get_group((hr))</span>
+<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>    speed_df <span class="op">=</span> grouped_speed_gdf.get_group((hr))</span>
+<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a>    speed_df <span class="op">=</span> speed_df.drop_duplicates(subset<span class="op">=</span><span class="st">'LINK_ID'</span>, </span>
+<span id="cb48-26"><a href="#cb48-26" aria-hidden="true" tabindex="-1"></a>                                    keep<span class="op">=</span><span class="st">'last'</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb48-27"><a href="#cb48-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-28"><a href="#cb48-28" aria-hidden="true" tabindex="-1"></a>    ax.clear()</span>
+<span id="cb48-29"><a href="#cb48-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-30"><a href="#cb48-30" aria-hidden="true" tabindex="-1"></a>    df.plot(ax<span class="op">=</span>ax,color<span class="op">=</span><span class="st">'red'</span>,edgecolor<span class="op">=</span><span class="st">'k'</span>,</span>
+<span id="cb48-31"><a href="#cb48-31" aria-hidden="true" tabindex="-1"></a>                            label<span class="op">=</span><span class="ss">f'Date: 2 July, 2024</span><span class="ch">\n</span><span class="ss">Hour: </span><span class="sc">{</span>hr<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb48-32"><a href="#cb48-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-33"><a href="#cb48-33" aria-hidden="true" tabindex="-1"></a>    speed_df.plot(ax<span class="op">=</span>ax,column<span class="op">=</span><span class="st">'normalized_speed'</span>,cmap<span class="op">=</span><span class="st">'plasma'</span>,norm<span class="op">=</span>norm,</span>
+<span id="cb48-34"><a href="#cb48-34" aria-hidden="true" tabindex="-1"></a>                                    label<span class="op">=</span><span class="st">'Normalized Traffic Speed'</span>)</span>
+<span id="cb48-35"><a href="#cb48-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-36"><a href="#cb48-36" aria-hidden="true" tabindex="-1"></a>    ax.imshow(ny_img,extent<span class="op">=</span>ny_bbox)</span>
+<span id="cb48-37"><a href="#cb48-37" aria-hidden="true" tabindex="-1"></a>    ax.legend(loc<span class="op">=</span><span class="st">'lower right'</span>)</span>
+<span id="cb48-38"><a href="#cb48-38" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">"Crash and Traffic Data by Hour - 2 July, 2024"</span>)</span>
+<span id="cb48-39"><a href="#cb48-39" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">'off'</span>)</span>
+<span id="cb48-40"><a href="#cb48-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb48-41"><a href="#cb48-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-42"><a href="#cb48-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Add Colorbar</span></span>
+<span id="cb48-43"><a href="#cb48-43" aria-hidden="true" tabindex="-1"></a>sm <span class="op">=</span> cm.ScalarMappable(cmap<span class="op">=</span><span class="st">'plasma'</span>, norm<span class="op">=</span>norm)</span>
+<span id="cb48-44"><a href="#cb48-44" aria-hidden="true" tabindex="-1"></a>fig.colorbar(sm, ax<span class="op">=</span>ax,fraction<span class="op">=</span><span class="fl">0.02</span>, pad<span class="op">=</span><span class="fl">0.03</span>, shrink<span class="op">=</span><span class="fl">0.6</span>,aspect<span class="op">=</span><span class="dv">25</span>) </span>
+<span id="cb48-45"><a href="#cb48-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-46"><a href="#cb48-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove Whitespace</span></span>
+<span id="cb48-47"><a href="#cb48-47" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(left<span class="op">=</span><span class="fl">0.04</span>,right<span class="op">=</span><span class="fl">0.95</span>,top<span class="op">=</span><span class="dv">1</span>,bottom<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb48-48"><a href="#cb48-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-49"><a href="#cb48-49" aria-hidden="true" tabindex="-1"></a>anim <span class="op">=</span> FuncAnimation(fig,update,frames<span class="op">=</span>keys)</span>
+<span id="cb48-50"><a href="#cb48-50" aria-hidden="true" tabindex="-1"></a>anim.save(<span class="st">"crash_traffic_7_1_24.gif"</span>, writer<span class="op">=</span><span class="st">'Pillow'</span>, fps<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb48-51"><a href="#cb48-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-52"><a href="#cb48-52" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/animations/crash_traffic_7_2_24.gif" class="img-fluid"></p>
+</section>
+</section>
+<section id="saving-your-animation" class="level3" data-number="7.3.6">
+<h3 data-number="7.3.6" class="anchored" data-anchor-id="saving-your-animation"><span class="header-section-number">7.3.6</span> Saving your Animation</h3>
+<section id="gif" class="level4 smaller" data-number="7.3.6.1">
+<h4 class="smaller anchored" data-number="7.3.6.1" data-anchor-id="gif"><span class="header-section-number">7.3.6.1</span> GIF</h4>
+<p>To save your animation as a <strong>GIF</strong>:</p>
+<ul>
+<li><strong>Writer</strong>: <code>Pillow</code></li>
+<li><strong>Command</strong>: Use <code>anim.save()</code> with the <code>writer='Pillow'</code> option.</li>
+</ul>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>pip install pillow <span class="co"># pip users</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>conda install <span class="op">-</span>c conda<span class="op">-</span>forge pillow <span class="co"># conda users</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Example:</strong></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>anim.save(<span class="st">'animation.gif'</span>, writer<span class="op">=</span><span class="st">'Pillow'</span>, fps<span class="op">=</span><span class="dv">30</span>, dpi<span class="op">=</span><span class="dv">200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="mp4" class="level4 smaller" data-number="7.3.6.2">
+<h4 class="smaller anchored" data-number="7.3.6.2" data-anchor-id="mp4"><span class="header-section-number">7.3.6.2</span> MP4</h4>
+<p>To save your animation as <strong>MP4</strong>:</p>
+<ul>
+<li><strong>Writer</strong>: <code>ffmpeg</code></li>
+<li><strong>Command</strong>: Use <code>anim.save()</code> with the <code>writer='ffmpeg'</code> option.</li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>conda install <span class="op">-</span>c conda<span class="op">-</span>forge ffmpeg <span class="co"># conda users</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Pip Users</strong>:</p>
+<ol type="1">
+<li>Download from <a href="https://www.ffmpeg.org/">ffmeg.org</a></li>
+<li>Extract the folder</li>
+<li>Add the bins folder path to your system variables.</li>
+</ol>
+<p><strong>Example:</strong></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>anim.save(<span class="st">'animation.mp4'</span>, writer<span class="op">=</span><span class="st">'ffmpeg'</span>, fps<span class="op">=</span><span class="dv">30</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="conclusion-2" class="level3 smaller" data-number="7.3.7">
+<h3 class="smaller anchored" data-number="7.3.7" data-anchor-id="conclusion-2"><span class="header-section-number">7.3.7</span> Conclusion</h3>
+<p>Here is what was covered in this section of the book.</p>
+<ul>
+<li>Animating Plots and Maps using <code>FuncAnimation</code>
+<ul>
+<li>Creating a figure and axes object with <code>plt.subplots()</code></li>
+<li>Creating an update function</li>
+<li>Generating Animmation</li>
+<li>Obtaining and adding basemap background for map animations</li>
+<li>Processing geospatial data</li>
+<li>Saving animations</li>
+</ul></li>
+</ul>
+<p>If you have more questions or would like to try it:</p>
+<ul>
+<li><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.FuncAnimation.html">Matplotlib’s FunctionAnimation Documentation</a></li>
+<li><a href="https://matplotlib.org/stable/">Matplotlib Documentation</a></li>
+<li><a href="https://contextily.readthedocs.io/en/latest/index.html">Contextily Documentation</a></li>
+<li><a href="https://geopandas.org/en/stable/index.html">GeoPandas Documentation</a></li>
+</ul>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-eventhorizon2020first" class="csl-entry" role="listitem">
+Collaboration, E. H. T. (2019). First M87 event horizon telescope results. I. The shadow of the supermassive black hole. <em>The Astrophysical Journal Letters</em>, <em>875</em>(1), L1. <a href="https://doi.org/10.3847/2041-8213/ab0c57">https://doi.org/10.3847/2041-8213/ab0c57</a>
+</div>
+<div id="ref-matplotlib" class="csl-entry" role="listitem">
+Hunter, J. D., &amp; Matplotlib Development Team, the. (2023a). <em>Matplotlib: Visualization with python</em>. <a href="https://matplotlib.org/stable/index.html">https://matplotlib.org/stable/index.html</a>
+</div>
+<div id="ref-matplotlib_funcanimation" class="csl-entry" role="listitem">
+Hunter, J. D., &amp; Matplotlib Development Team, the. (2023b). <em>Matplotlib.animation.FuncAnimation</em>. <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.FuncAnimation.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.FuncAnimation.html</a>
+</div>
+<div id="ref-contextily_docs" class="csl-entry" role="listitem">
+Kharlamov, M. (2023). <em>Contextily: Adding basemaps to geospatial data</em>. <a href="https://contextily.readthedocs.io/en/latest/intro_guide.html">https://contextily.readthedocs.io/en/latest/intro_guide.html</a>
+</div>
+<div id="ref-geopandas" class="csl-entry" role="listitem">
+Team, G. D. (2024). <em>GeoPandas documentation</em>. <a href="https://geopandas.org/en/stable/index.html">https://geopandas.org/en/stable/index.html</a>
+</div>
 <div id="ref-wilkinson2012grammar" class="csl-entry" role="listitem">
 Wilkinson, L. (2012). <em>The grammar of graphics</em>. Springer.
 </div>

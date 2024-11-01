@@ -7,9 +7,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jun Yan and Students in Fall 2024:">
-<meta name="author" content="Zachary Blanchard, Sara Clokey">
+<meta name="author" content="Jack Bienveune">
+<meta name="author" content="Zachary Blanchard">
+<meta name="author" content="Sara Clokey">
+<meta name="author" content="Thea Johnson">
+<meta name="author" content="Rahul Manna">
 <meta name="author" content="Julia Mazzola">
-<meta name="dcterms.date" content="2024-10-24">
+<meta name="author" content="Deyu Xu">
+<meta name="dcterms.date" content="2024-11-01">
 
 <title>Introduction to Data Science</title>
 <style>
@@ -187,7 +192,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducibile Data Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Data Science</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -269,6 +274,7 @@ div.csl-indent {
   <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link active" data-scroll-target="#preliminaries">Preliminaries</a>
   <ul class="collapse">
   <li><a href="#sources-at-github" id="toc-sources-at-github" class="nav-link" data-scroll-target="#sources-at-github">Sources at GitHub</a></li>
+  <li><a href="#compiling-the-classnotes" id="toc-compiling-the-classnotes" class="nav-link" data-scroll-target="#compiling-the-classnotes">Compiling the Classnotes</a></li>
   <li><a href="#midterm-project" id="toc-midterm-project" class="nav-link" data-scroll-target="#midterm-project">Midterm Project</a></li>
   <li><a href="#final-project" id="toc-final-project" class="nav-link" data-scroll-target="#final-project">Final Project</a></li>
   <li><a href="#adapting-to-rapid-skill-acquisition" id="toc-adapting-to-rapid-skill-acquisition" class="nav-link" data-scroll-target="#adapting-to-rapid-skill-acquisition">Adapting to Rapid Skill Acquisition</a></li>
@@ -315,15 +321,20 @@ div.csl-indent {
     <div class="quarto-title-meta-heading">Authors</div>
     <div class="quarto-title-meta-contents">
              <p>Jun Yan and Students in Fall 2024: </p>
-             <p>Zachary Blanchard, Sara Clokey </p>
+             <p>Jack Bienveune </p>
+             <p>Zachary Blanchard </p>
+             <p>Sara Clokey </p>
+             <p>Thea Johnson </p>
+             <p>Rahul Manna </p>
              <p>Julia Mazzola </p>
+             <p>Deyu Xu </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 24, 2024</p>
+      <p class="date">November 1, 2024</p>
     </div>
   </div>
   
@@ -344,6 +355,17 @@ div.csl-indent {
 <p>These lecture notes for STAT 3255/5255 in Fall 2024 represent a collaborative effort between Professor Jun Yan and the students enrolled in the course. This cooperative approach to education was facilitated through the use of GitHub, a platform that encourages collaborative coding and content development. To view these contributions and the lecture notes in their entirety, please visit our Spring 2024 repository at <a href="https://github.com/statds/ids-f24" class="uri">https://github.com/statds/ids-f24</a>.</p>
 <p>Students contributed to the lecture notes by submitting pull requests to our dedicated GitHub repository. This method not only enriched the course material but also provided students with practical experience in collaborative software development and version control.</p>
 <p>For those interested in exploring the lecture notes from the previous years, the <a href="https://statds.github.io/ids-s24">Spring 2024</a>, <a href="https://statds.github.io/ids-s23">Spring 2023</a> and <a href="https://statds.github.io/ids-s22/">Spring 2022</a> are also publicly accessible. These archives offer insights into the evolution of the course content and the different perspectives brought by successive student cohorts.</p>
+</section>
+<section id="compiling-the-classnotes" class="level2">
+<h2 class="anchored" data-anchor-id="compiling-the-classnotes">Compiling the Classnotes</h2>
+<p>To reproduce the classnotes output on your own computer, here are the necessary steps:</p>
+<ul>
+<li>Clone the classnotes repository to an appropriate location on your computer.</li>
+<li>Set up a Python virtual environment in the root folder of the source.</li>
+<li>Install all the packages specified in <code>requirements.txt</code>.</li>
+<li>For some chapters that need to interact with Google map services, you need to save your API key in a file named <code>api_key.txt</code> in the root folder of the source.</li>
+<li>Render the book with <code>quarto render</code> from the root folder on a terminal; the rendered book will be stored under <code>_book</code>.</li>
+</ul>
 </section>
 <section id="midterm-project" class="level2">
 <h2 class="anchored" data-anchor-id="midterm-project">Midterm Project</h2>
@@ -500,7 +522,7 @@ div.csl-indent {
 <section id="presentation-orders" class="level2">
 <h2 class="anchored" data-anchor-id="presentation-orders">Presentation Orders</h2>
 <p>The topic presentation order is set up in class.</p>
-<div id="fda9fc3f" class="cell" data-execution_count="1">
+<div id="46ecd851" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'rosters/3255.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    ug <span class="op">=</span> [line.strip() <span class="cf">for</span> line <span class="kw">in</span> <span class="bu">file</span>]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'rosters/5255.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
@@ -746,9 +768,10 @@ div.csl-indent {
 <li>Never “Upload” your files; use the git command lines.</li>
 <li>Make commit message informative (think about the readers).</li>
 </ul></li>
+<li>Make at least 10 commits and form a style of frequent small commits.</li>
 </ul></li>
-<li>Use <code>quarto</code> source only. See <a href="quarto.html" class="quarto-xref"><span>3&nbsp; Reproducibile Data Science</span></a>.</li>
-<li>For the convenience of grading, add your html output to a release in your repo.</li>
+<li>Use <code>quarto</code> source only. See <a href="quarto.html" class="quarto-xref"><span>3&nbsp; Reproducible Data Science</span></a>.</li>
+<li>For the convenience of grading, add your standalone html or pdf output to a release in your repo.</li>
 <li>For standalone pdf output, you will need to have <a href="https://www.latex-project.org/get/">LaTeX</a> installed.</li>
 </ul>
 </section>
@@ -785,7 +808,7 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="sub-topic-1">Sub Topic 1</h3>
 <p>Put materials on topic 1 here</p>
 <p>Python examples can be put into <code>python</code> code chunks:</p>
-<div id="e2ed7db4" class="cell" data-execution_count="2">
+<div id="9395df89" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># do something</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

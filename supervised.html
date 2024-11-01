@@ -179,7 +179,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducibile Data Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reproducible Data Science</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -258,27 +258,31 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#decision-trees" id="toc-decision-trees" class="nav-link active" data-scroll-target="#decision-trees"><span class="header-section-number">10.1</span> Decision Trees</a>
+  <li><a href="#decision-trees-foundation" id="toc-decision-trees-foundation" class="nav-link active" data-scroll-target="#decision-trees-foundation"><span class="header-section-number">10.1</span> Decision Trees: Foundation</a>
   <ul class="collapse">
   <li><a href="#algorithm-formulation" id="toc-algorithm-formulation" class="nav-link" data-scroll-target="#algorithm-formulation"><span class="header-section-number">10.1.1</span> Algorithm Formulation</a></li>
   <li><a href="#search-space-for-possible-splits" id="toc-search-space-for-possible-splits" class="nav-link" data-scroll-target="#search-space-for-possible-splits"><span class="header-section-number">10.1.2</span> Search Space for Possible Splits</a></li>
   <li><a href="#metrics" id="toc-metrics" class="nav-link" data-scroll-target="#metrics"><span class="header-section-number">10.1.3</span> Metrics</a></li>
   </ul></li>
-  <li><a href="#boosted-trees" id="toc-boosted-trees" class="nav-link" data-scroll-target="#boosted-trees"><span class="header-section-number">10.2</span> Boosted Trees</a>
+  <li><a href="#decision-trees-demonstration" id="toc-decision-trees-demonstration" class="nav-link" data-scroll-target="#decision-trees-demonstration"><span class="header-section-number">10.2</span> Decision Trees: Demonstration</a>
   <ul class="collapse">
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">10.2.1</span> Introduction</a></li>
-  <li><a href="#boosting-process" id="toc-boosting-process" class="nav-link" data-scroll-target="#boosting-process"><span class="header-section-number">10.2.2</span> Boosting Process</a></li>
-  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><span class="header-section-number">10.2.3</span> Key Concepts</a></li>
-  <li><a href="#why-boosting-works" id="toc-why-boosting-works" class="nav-link" data-scroll-target="#why-boosting-works"><span class="header-section-number">10.2.4</span> Why Boosting Works</a></li>
-  <li><a href="#applications-and-popular-implementations" id="toc-applications-and-popular-implementations" class="nav-link" data-scroll-target="#applications-and-popular-implementations"><span class="header-section-number">10.2.5</span> Applications and Popular Implementations</a></li>
+  <li><a href="#subsection" id="toc-subsection" class="nav-link" data-scroll-target="#subsection"><span class="header-section-number">10.2.1</span> Subsection</a></li>
   </ul></li>
-  <li><a href="#naive-bayes" id="toc-naive-bayes" class="nav-link" data-scroll-target="#naive-bayes"><span class="header-section-number">10.3</span> Naive Bayes</a>
+  <li><a href="#boosted-trees" id="toc-boosted-trees" class="nav-link" data-scroll-target="#boosted-trees"><span class="header-section-number">10.3</span> Boosted Trees</a>
   <ul class="collapse">
-  <li><a href="#theoretical-foundations" id="toc-theoretical-foundations" class="nav-link" data-scroll-target="#theoretical-foundations"><span class="header-section-number">10.3.1</span> Theoretical Foundations</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">10.3.1</span> Introduction</a></li>
+  <li><a href="#boosting-process" id="toc-boosting-process" class="nav-link" data-scroll-target="#boosting-process"><span class="header-section-number">10.3.2</span> Boosting Process</a></li>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><span class="header-section-number">10.3.3</span> Key Concepts</a></li>
+  <li><a href="#why-boosting-works" id="toc-why-boosting-works" class="nav-link" data-scroll-target="#why-boosting-works"><span class="header-section-number">10.3.4</span> Why Boosting Works</a></li>
+  <li><a href="#applications-and-popular-implementations" id="toc-applications-and-popular-implementations" class="nav-link" data-scroll-target="#applications-and-popular-implementations"><span class="header-section-number">10.3.5</span> Applications and Popular Implementations</a></li>
   </ul></li>
-  <li><a href="#handling-umbalanced-data" id="toc-handling-umbalanced-data" class="nav-link" data-scroll-target="#handling-umbalanced-data"><span class="header-section-number">10.4</span> Handling Umbalanced Data</a>
+  <li><a href="#naive-bayes" id="toc-naive-bayes" class="nav-link" data-scroll-target="#naive-bayes"><span class="header-section-number">10.4</span> Naive Bayes</a>
   <ul class="collapse">
-  <li><a href="#subsection" id="toc-subsection" class="nav-link" data-scroll-target="#subsection"><span class="header-section-number">10.4.1</span> Subsection</a></li>
+  <li><a href="#theoretical-foundations" id="toc-theoretical-foundations" class="nav-link" data-scroll-target="#theoretical-foundations"><span class="header-section-number">10.4.1</span> Theoretical Foundations</a></li>
+  </ul></li>
+  <li><a href="#handling-umbalanced-data" id="toc-handling-umbalanced-data" class="nav-link" data-scroll-target="#handling-umbalanced-data"><span class="header-section-number">10.5</span> Handling Umbalanced Data</a>
+  <ul class="collapse">
+  <li><a href="#subsection-1" id="toc-subsection-1" class="nav-link" data-scroll-target="#subsection-1"><span class="header-section-number">10.5.1</span> Subsection</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -305,8 +309,8 @@ window.Quarto = {
 </header>
 
 
-<section id="decision-trees" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="decision-trees"><span class="header-section-number">10.1</span> Decision Trees</h2>
+<section id="decision-trees-foundation" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="decision-trees-foundation"><span class="header-section-number">10.1</span> Decision Trees: Foundation</h2>
 <p>Decision trees are widely used supervised learning models that predict the value of a target variable by iteratively splitting the dataset based on decision rules derived from input features. The model functions as a piecewise constant approximation of the target function, producing clear, interpretable rules that are easily visualized and analyzed <span class="citation" data-cites="breiman1984classification">(<a href="references.html#ref-breiman1984classification" role="doc-biblioref">Breiman et al., 1984</a>)</span>. Decision trees are fundamental in both classification and regression tasks, serving as the building blocks for more advanced ensemble models such as Random Forests and Gradient Boosting Machines.</p>
 <section id="algorithm-formulation" class="level3" data-number="10.1.1">
 <h3 data-number="10.1.1" class="anchored" data-anchor-id="algorithm-formulation"><span class="header-section-number">10.1.1</span> Algorithm Formulation</h3>
@@ -379,22 +383,30 @@ H(Q_m) = \frac{1}{n_m} \sum_{i=1}^{n_m} |y_i - \bar{y}_m|
 <section id="summary" class="level4" data-number="10.1.3.3">
 <h4 data-number="10.1.3.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">10.1.3.3</span> Summary</h4>
 <p>In decision trees, the choice of splitting criterion depends on the type of task (classification or regression) and the nature of the data. For classification tasks, the Gini index and entropy are the most commonly used, with Gini offering simplicity and speed, and entropy providing a more theoretically grounded approach. Misclassification error can be used for simpler cases. For regression tasks, MSE is the most popular choice, but Poisson deviance and MAE are useful for specific use cases such as count data and robust models, respectively.</p>
+<!-- ## Decision Trees: Demonstration  -->
 </section>
 </section>
 </section>
-<section id="boosted-trees" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="boosted-trees"><span class="header-section-number">10.2</span> Boosted Trees</h2>
+<section id="decision-trees-demonstration" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="decision-trees-demonstration"><span class="header-section-number">10.2</span> Decision Trees: Demonstration</h2>
+<p>This section is presented by ……</p>
+<section id="subsection" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="subsection"><span class="header-section-number">10.2.1</span> Subsection</h3>
+</section>
+</section>
+<section id="boosted-trees" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="boosted-trees"><span class="header-section-number">10.3</span> Boosted Trees</h2>
 <p>Boosted trees are a powerful ensemble technique in machine learning that combine multiple weak learners, typically decision trees, into a strong learner. Unlike bagging methods, which train trees independently, boosting fits models sequentially, with each new model correcting the errors of the previous ensemble. Gradient boosting, one of the most popular variants, optimizes a loss function by iteratively adding trees that reduce the residual errors of the current ensemble.</p>
-<section id="introduction" class="level3" data-number="10.2.1">
-<h3 data-number="10.2.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">10.2.1</span> Introduction</h3>
+<section id="introduction" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">10.3.1</span> Introduction</h3>
 <p>Boosted trees build on the general concept of boosting, which aims to create a strong predictor from a series of weak predictors. In boosted trees, the weak learners are shallow decision trees, often referred to as “stumps,” and they are added sequentially to the model. At each step, a new tree focuses on the training instances that are hardest to predict, improving overall accuracy. This iterative focus on “hard-to- predict” instances is the defining characteristic of boosting.</p>
 <p>The effectiveness of boosted trees has made them popular for various tasks, including classification, regression, and ranking. They also form the foundation for algorithms like XGBoost, LightGBM, and CatBoost, known for their speed and scalability.</p>
 </section>
-<section id="boosting-process" class="level3" data-number="10.2.2">
-<h3 data-number="10.2.2" class="anchored" data-anchor-id="boosting-process"><span class="header-section-number">10.2.2</span> Boosting Process</h3>
+<section id="boosting-process" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="boosting-process"><span class="header-section-number">10.3.2</span> Boosting Process</h3>
 <p>The boosting process in gradient boosted trees builds an ensemble by adding trees iteratively, each designed to minimize the residual errors from the combined predictions of the previous trees. This iterative approach allows the model to refine its predictions by optimizing a loss function, denoted as <span class="math inline">\(L(y, F(x))\)</span>, where <span class="math inline">\(y\)</span> is the true value and <span class="math inline">\(F(x)\)</span> is the model’s prediction.</p>
-<section id="model-iteration" class="level4" data-number="10.2.2.1">
-<h4 data-number="10.2.2.1" class="anchored" data-anchor-id="model-iteration"><span class="header-section-number">10.2.2.1</span> Model Iteration</h4>
+<section id="model-iteration" class="level4" data-number="10.3.2.1">
+<h4 data-number="10.3.2.1" class="anchored" data-anchor-id="model-iteration"><span class="header-section-number">10.3.2.1</span> Model Iteration</h4>
 <p>The boosting process can be delineated as follows:</p>
 <ol type="1">
 <li><p><strong>Initialization</strong>: Start with a base model <span class="math inline">\(F_0(x)\)</span>, which is usually the mean of the target variable in regression or the log odds in classification:</p>
@@ -428,8 +440,8 @@ F_M(x) = F_0(x) + \sum_{m=1}^M \eta \, h_m(x).
 </ol>
 </section>
 </section>
-<section id="key-concepts" class="level3" data-number="10.2.3">
-<h3 data-number="10.2.3" class="anchored" data-anchor-id="key-concepts"><span class="header-section-number">10.2.3</span> Key Concepts</h3>
+<section id="key-concepts" class="level3" data-number="10.3.3">
+<h3 data-number="10.3.3" class="anchored" data-anchor-id="key-concepts"><span class="header-section-number">10.3.3</span> Key Concepts</h3>
 <ol type="1">
 <li><p><strong>Loss Function</strong>: The loss function measures the discrepancy between the actual and predicted values. It guides the model updates. Common choices include:</p>
 <ul>
@@ -445,8 +457,8 @@ F_M(x) = F_0(x) + \sum_{m=1}^M \eta \, h_m(x).
 </ul></li>
 </ol>
 </section>
-<section id="why-boosting-works" class="level3" data-number="10.2.4">
-<h3 data-number="10.2.4" class="anchored" data-anchor-id="why-boosting-works"><span class="header-section-number">10.2.4</span> Why Boosting Works</h3>
+<section id="why-boosting-works" class="level3" data-number="10.3.4">
+<h3 data-number="10.3.4" class="anchored" data-anchor-id="why-boosting-works"><span class="header-section-number">10.3.4</span> Why Boosting Works</h3>
 <p>The iterative approach of boosting, focusing on correcting the errors of the ensemble at each step, distinguishes gradient boosting from other ensemble methods like bagging or random forests. Key reasons for its effectiveness include:</p>
 <ol type="1">
 <li><p><strong>Error Correction</strong>: By focusing on the hardest-to-predict instances, boosting gradually improves model accuracy, leading to better performance than models trained independently.</p></li>
@@ -454,8 +466,8 @@ F_M(x) = F_0(x) + \sum_{m=1}^M \eta \, h_m(x).
 <li><p><strong>Flexibility</strong>: Boosted trees can handle various loss functions, making them suitable for different types of tasks, including regression, classification, and ranking.</p></li>
 </ol>
 </section>
-<section id="applications-and-popular-implementations" class="level3" data-number="10.2.5">
-<h3 data-number="10.2.5" class="anchored" data-anchor-id="applications-and-popular-implementations"><span class="header-section-number">10.2.5</span> Applications and Popular Implementations</h3>
+<section id="applications-and-popular-implementations" class="level3" data-number="10.3.5">
+<h3 data-number="10.3.5" class="anchored" data-anchor-id="applications-and-popular-implementations"><span class="header-section-number">10.3.5</span> Applications and Popular Implementations</h3>
 <p>Boosted trees are widely used in real-world applications, ranging from financial risk modeling to predictive maintenance. They are also favored in machine learning competitions due to their interpretability and robustness. Popular implementations include:</p>
 <ul>
 <li>XGBoost: Known for its speed and performance, with features like regularization, column sampling, and advanced tree pruning.</li>
@@ -464,11 +476,11 @@ F_M(x) = F_0(x) + \sum_{m=1}^M \eta \, h_m(x).
 </ul>
 </section>
 </section>
-<section id="naive-bayes" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="naive-bayes"><span class="header-section-number">10.3</span> Naive Bayes</h2>
+<section id="naive-bayes" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="naive-bayes"><span class="header-section-number">10.4</span> Naive Bayes</h2>
 <p>Naive Bayes is a probabilistic classification algorithm based on Bayes’ Theorem, which is used for both binary and multiclass classification problems. It is particularly effective for high-dimensional datasets and is commonly applied in tasks like text classification, spam detection, and sentiment analysis. The algorithm is called “naive” because it assumes that all features are conditionally independent given the class label, an assumption that rarely holds in real-world data but still performs well in many cases.</p>
-<section id="theoretical-foundations" class="level3" data-number="10.3.1">
-<h3 data-number="10.3.1" class="anchored" data-anchor-id="theoretical-foundations"><span class="header-section-number">10.3.1</span> Theoretical Foundations</h3>
+<section id="theoretical-foundations" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="theoretical-foundations"><span class="header-section-number">10.4.1</span> Theoretical Foundations</h3>
 <p>The foundation of the Naive Bayes classifier is Bayes’ Theorem, which is used to update the probability estimate of a hypothesis given new evidence. Mathematically, Bayes’ Theorem is expressed as:</p>
 <p><span class="math display">\[
 P(y \mid X) = \frac{P(X \mid y) \, P(y)}{P(X)},
@@ -480,8 +492,8 @@ P(y \mid X) = \frac{P(X \mid y) \, P(y)}{P(X)},
 <li><span class="math inline">\(P(y)\)</span>: Prior probability of the class <span class="math inline">\(y\)</span>.</li>
 <li><span class="math inline">\(P(X)\)</span>: Marginal probability of the feature vector <span class="math inline">\(X\)</span>.</li>
 </ul>
-<section id="naive-assumption-and-likelihood-decomposition" class="level4" data-number="10.3.1.1">
-<h4 data-number="10.3.1.1" class="anchored" data-anchor-id="naive-assumption-and-likelihood-decomposition"><span class="header-section-number">10.3.1.1</span> Naive Assumption and Likelihood Decomposition</h4>
+<section id="naive-assumption-and-likelihood-decomposition" class="level4" data-number="10.4.1.1">
+<h4 data-number="10.4.1.1" class="anchored" data-anchor-id="naive-assumption-and-likelihood-decomposition"><span class="header-section-number">10.4.1.1</span> Naive Assumption and Likelihood Decomposition</h4>
 <p>The algorithm makes the simplifying assumption that features in <span class="math inline">\(X\)</span> are conditionally independent given the class <span class="math inline">\(y\)</span>. This assumption enables the likelihood <span class="math inline">\(P(X \mid y)\)</span> to be decomposed as:</p>
 <p><span class="math display">\[
 P(X \mid y) = \prod_{i=1}^n P(x_i \mid y),
@@ -510,8 +522,8 @@ P(x_i \mid y) = \frac{1}{\sqrt{2\pi\sigma_{y,i}^2}} \exp \left(
 </ul></li>
 </ol>
 </section>
-<section id="class-prediction" class="level4" data-number="10.3.1.2">
-<h4 data-number="10.3.1.2" class="anchored" data-anchor-id="class-prediction"><span class="header-section-number">10.3.1.2</span> Class Prediction</h4>
+<section id="class-prediction" class="level4" data-number="10.4.1.2">
+<h4 data-number="10.4.1.2" class="anchored" data-anchor-id="class-prediction"><span class="header-section-number">10.4.1.2</span> Class Prediction</h4>
 <p>The goal of the Naive Bayes classifier is to predict the class <span class="math inline">\(y\)</span> that maximizes the posterior probability <span class="math inline">\(P(y \mid X)\)</span>. After applying Bayes’ Theorem and dropping the constant denominator <span class="math inline">\(P(X)\)</span>, the decision rule becomes:</p>
 <p><span class="math display">\[
 y^* = \arg\max_y \, P(y) \prod_{i=1}^n P(x_i \mid y).
@@ -522,8 +534,8 @@ y^* = \arg\max_y \, P(y) \prod_{i=1}^n P(x_i \mid y).
 \]</span></p>
 <p>The predicted class is the one that maximizes this expression.</p>
 </section>
-<section id="surprisingly-good-performance" class="level4" data-number="10.3.1.3">
-<h4 data-number="10.3.1.3" class="anchored" data-anchor-id="surprisingly-good-performance"><span class="header-section-number">10.3.1.3</span> Surprisingly Good Performance</h4>
+<section id="surprisingly-good-performance" class="level4" data-number="10.4.1.3">
+<h4 data-number="10.4.1.3" class="anchored" data-anchor-id="surprisingly-good-performance"><span class="header-section-number">10.4.1.3</span> Surprisingly Good Performance</h4>
 <p>Although the assumption of conditional independence among features is often unrealistic, Naive Bayes still performs well for several reasons:</p>
 <ol type="1">
 <li><p>Robustness to Violations of Independence: Literature suggests that Naive Bayes can achieve good classification performance even when features are correlated, as long as the dependencies are consistent across classes <span class="citation" data-cites="domingos1997optimality">(<a href="references.html#ref-domingos1997optimality" role="doc-biblioref">Domingos &amp; Pazzani, 1997</a>)</span>. This is because the decision boundaries produced by Naive Bayes are often well-aligned with the true boundaries, despite the imprecise probability estimates.</p></li>
@@ -532,8 +544,8 @@ y^* = \arg\max_y \, P(y) \prod_{i=1}^n P(x_i \mid y).
 <li><p>High-Dimensional Settings: In high-dimensional settings, the conditional independence assumption can act as a form of implicit regularization, preventing overfitting by simplifying the probability model <span class="citation" data-cites="rish2001empirical">(<a href="references.html#ref-rish2001empirical" role="doc-biblioref">Rish, 2001</a>)</span>. This makes Naive Bayes particularly well-suited for text classification and other sparse feature spaces.</p></li>
 </ol>
 </section>
-<section id="advantages-and-limitations" class="level4" data-number="10.3.1.4">
-<h4 data-number="10.3.1.4" class="anchored" data-anchor-id="advantages-and-limitations"><span class="header-section-number">10.3.1.4</span> Advantages and Limitations</h4>
+<section id="advantages-and-limitations" class="level4" data-number="10.4.1.4">
+<h4 data-number="10.4.1.4" class="anchored" data-anchor-id="advantages-and-limitations"><span class="header-section-number">10.4.1.4</span> Advantages and Limitations</h4>
 <p>Advantages:</p>
 <ul>
 <li>Computationally efficient, with linear time complexity in terms of the number of features and data samples.</li>
@@ -546,8 +558,8 @@ y^* = \arg\max_y \, P(y) \prod_{i=1}^n P(x_i \mid y).
 <li>It is sensitive to zero probabilities; if a feature value never appears in the training set for a given class, its likelihood becomes zero. To address this, Laplace smoothing (or add-one smoothing) is often applied.</li>
 </ul>
 </section>
-<section id="laplace-smoothing" class="level4" data-number="10.3.1.5">
-<h4 data-number="10.3.1.5" class="anchored" data-anchor-id="laplace-smoothing"><span class="header-section-number">10.3.1.5</span> Laplace Smoothing</h4>
+<section id="laplace-smoothing" class="level4" data-number="10.4.1.5">
+<h4 data-number="10.4.1.5" class="anchored" data-anchor-id="laplace-smoothing"><span class="header-section-number">10.4.1.5</span> Laplace Smoothing</h4>
 <p>Laplace smoothing is used to handle zero probabilities in the likelihood estimation. It adds a small constant $ $ (usually 1) to the count of each feature value, preventing the probability from becoming zero:</p>
 <p><span class="math display">\[
 P(x_i \mid y) = \frac{\text{count}(x_i, y) + \alpha}
@@ -557,11 +569,11 @@ P(x_i \mid y) = \frac{\text{count}(x_i, y) + \alpha}
 </section>
 </section>
 </section>
-<section id="handling-umbalanced-data" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="handling-umbalanced-data"><span class="header-section-number">10.4</span> Handling Umbalanced Data</h2>
+<section id="handling-umbalanced-data" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="handling-umbalanced-data"><span class="header-section-number">10.5</span> Handling Umbalanced Data</h2>
 <p>This section is presented by Olivia Kashalapov.</p>
-<section id="subsection" class="level3" data-number="10.4.1">
-<h3 data-number="10.4.1" class="anchored" data-anchor-id="subsection"><span class="header-section-number">10.4.1</span> Subsection</h3>
+<section id="subsection-1" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="subsection-1"><span class="header-section-number">10.5.1</span> Subsection</h3>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
