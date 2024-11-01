@@ -177,8 +177,13 @@ anim.save('coin_toss.gif',writer='Pillow',fps=50)
 plt.show()
 ```
 
-
+::: {.content-visible when-format="html"}
 ![](images/animations/coin_toss.gif){fig-align="center"}
+:::
+
+::: {.content-visible when-format="pdf"}
+![](images/animations/coin_toss.png){fig-align="center"}
+:::
 
 
 #### A Step Further - Coin Toss Animation
@@ -213,9 +218,13 @@ anim.save('coin_toss_with_txt.gif',writer='Pillow',fps=50)
 plt.show()
 ```
 
-
+::: {.content-visible when-format="html"}
 ![](images/animations/coin_toss_with_txt.gif){fig-align="center"}
+:::
 
+::: {.content-visible when-format="pdf"}
+![](images/animations/coin_toss_with_txt.png){fig-align="center"}
+:::
 
 #### Bar Chart Animation
 
@@ -263,8 +272,14 @@ anim.save('bar_plot_animation.gif',writer='Pillow',fps=15)
 plt.show()
 ```
 
-
+::: {.content-visible when-format="html"}
 ![](images/animations/bar_plot_animation.gif)
+:::
+
+
+::: {.content-visible when-format="pdf"}
+![](images/animations/bar_plot_animation.png)
+:::
 
 
 #### Relative Bar Plot Animation
@@ -306,7 +321,14 @@ anim = FuncAnimation(fig,update,frames=pd.date_range(start=
 plt.show()
 ```
 
+::: {.content-visible when-format="html"}
 ![](images/animations/relative_bar_plot_animation.gif)
+:::
+
+::: {.content-visible when-format="pdf"}
+![](images/animations/relative_bar_plot_animation.png)
+:::
+
 
 ### Animating Maps
 
@@ -381,8 +403,8 @@ newyork = ctx.Place("New York", source=ctx.providers.OpenStreetMap.Mapnik,zoom=1
 ny_img = newyork.im # Get Map Image
 ny_bbox = newyork.bbox_map # Get Coordinates EPSG 3857
 ```
-![](images/animations/nyc_basemap.png)
 
+![](images/animations/nyc_basemap.png)
 
 #### Step 3: Frame Function
 
@@ -423,12 +445,15 @@ anim.save("crash_maps_nyc_24-6-30_24-7-7_300dpi.gif",writer='Pillow',fps=2,dpi=3
 plt.show()
 ```
 
-
+::: {.content-visible when-format="html"}
 ![](images/animations/crash_maps_nyc_24-6-30_24-7-7_260dpi.gif)
 
+*Note: a lower dpi (265) and size than shown in the chunk above was used for this figure to keep it under GitHub's 100 Mb limit.*
+:::
 
-*Note: a lower dpi (265) and size than shown in the chunk above was used for this figure to keep it GitHub's 100 Mb limit.*
-
+::: {.content-visible when-format="pdf"}
+![](images/animations/crash_maps_nyc_24-6-30_24-7-7_260dpi.png)
+:::
 
 #### Other Basemaps {.smaller}
 
@@ -447,8 +472,13 @@ Source: @contextily_docs
 
 This is an example of the same map animated with a satellite basemap.
 
+::: {.content-visible when-format="html"}
 ![](images/animations/satellite_crash_maps_nyc_24-6-30_24-7-7_300dpi.gif)
+:::
 
+::: {.content-visible when-format="pdf"}
+![](images/animations/satellite_crash_maps_nyc_24-6-30_24-7-7_300dpi.png)
+:::
 
 ### Advance Example - Animating Maps
 
@@ -602,7 +632,13 @@ anim.save("crash_traffic_7_1_24.gif", writer='Pillow', fps=2)
 plt.show()
 ```
 
+::: {.content-visible when-format="html"}
 ![](images/animations/crash_traffic_7_2_24.gif)
+:::
+
+::: {.content-visible when-format="pdf"}
+![](images/animations/crash_traffic_7_2_24.png)
+:::
 
 ### Saving your Animation
 
