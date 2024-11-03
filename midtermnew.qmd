@@ -1,0 +1,565 @@
+---
+title: "Midterm NYC Aansh Jha"
+format:
+  pdf:
+    code-fold: false
+jupyter: python3
+---
+
+# 1. Data Cleaning
+```{python}
+import pandas as pd
+import os
+import pyarrow.feather as feather
+from uszipcode import SearchEngine
+
+# Load the dataset
+noise_311_data = pd.read_csv('data/nypd311w063024noise_by100724.csv')
+print(noise_311_data.info())
+
+# Standardize column names
+noise_311_data.columns = noise_311_data.columns.str.lower().str.replace(' ', '_')
+print(noise_311_data.columns)
+
+# Count missing values in each column
+print(noise_311_data.isnull().sum())
+
+# Display total observations
+print(f"Total observations: {noise_311_data.shape[0]}")
+
+# Remove unnecessary columns
+noise_311_data = noise_311_data.drop('taxi_company_borough', axis=1)
+noise_311_data = noise_311_data.drop('taxi_pick_up_location', axis=1)
+noise_311_data = noise_311_data.drop('bridge_highway_name', axis=1)
+noise_311_data = noise_311_data.drop('bridge_highway_direction', axis=1)
+noise_311_data = noise_311_data.drop('road_ramp', axis=1)
+noise_311_data = noise_311_data.drop('bridge_highway_segment', axis=1)
+noise_311_data = noise_311_data.drop('facility_type', axis=1)
+noise_311_data = noise_311_data.drop('due_date', axis=1)
+
+# Check for duplicate records
+duplicate_count = noise_311_data.duplicated().sum()
+print(f"Number of duplicate records: {duplicate_count}")
+
+# Identify columns with a single unique value
+unique_value_cols = []
+
+for col in noise_311_data.columns:
+    unique_count = noise_311_data[col].nunique()
+    if unique_count == 1:
+        unique_value_cols.append(col)
+
+print(f"Columns with a single unique value: {unique_value_cols}")
+
+
+# Drop columns with all missing values
+noise_311_data = noise_311_data.dropna(axis=1, how='all')
+print(noise_311_data.columns)
+
+# Compare 'agency' and 'agency_name' columns
+print(noise_311_data[['agency', 'agency_name']].head())
+
+csv_file_path = os.path.join('data', 'nypd311w063024noise_by100724.csv')
+
+csv_size_mb = os.path.getsize(csv_file_path) / 1000000
+print(f"CSV file size: {csv_size_mb:.2f} MB")
+
+feather.write_feather(noise_311_data, 'data/noise_311_cleaned.feather')
+
+noise_311_data = pd.read_feather('data/noise_311_cleaned.feather')
+
+# Calculate the size of the Feather file
+feather_size_mb = os.path.getsize('data/noise_311_cleaned.feather') / 1e6
+print(f"Feather file size: {feather_size_mb:.2f} MB")
+
+valid_boroughs = ['QUEENS', 'BROOKLYN', 'BRONX', 'MANHATTAN', 'STATEN ISLAND']
+
+# Identify invalid borough entries
+invalid_borough_entries = noise_311_data[~noise_311_data['borough'].isin(valid_boroughs)]
+print(f"Invalid boroughs found:{invalid_borough_entries['borough'].unique()}")
+
+noise_311_data = noise_311_data[noise_311_data['borough'].isin(valid_boroughs)]
+
+noise_311_data = noise_311_data.dropna(subset=['incident_zip']).copy()
+
+noise_311_data['incident_zip'] = noise_311_data['incident_zip'].astype(int).astype(str)
+
+# Initialize the zip code search engine
+zip_search_engine = SearchEngine()
+
+# Function to validate zip codes
+def is_valid_zipcode(zipcode):
+    zip_info = zip_search_engine.by_zipcode(zipcode)
+    if zip_info:
+        if zip_info.zipcode is not None:
+            return True
+        else:
+            return False
+    else:
+        return False
+
+valid_zip_records = noise_311_data[noise_311_data['incident_zip'].apply(is_valid_zipcode)]
+
+invalid_zip_records = noise_311_data[~noise_311_data['incident_zip'].apply(is_valid_zipcode)]
+
+print(f"Number of records with valid zip codes: {valid_zip_records.shape[0]}")
+
+# Convert date columns to datetime format
+noise_311_data['created_date'] = pd.to_datetime(noise_311_data['created_date'], errors='coerce')
+noise_311_data['closed_date'] = pd.to_datetime(noise_311_data['closed_date'], errors='coerce')
+noise_311_data['resolution_action_updated_date'] = pd.to_datetime(
+    noise_311_data['resolution_action_updated_date'], errors='coerce'
+)
+
+closed_before_created = noise_311_data[noise_311_data['closed_date'] < noise_311_data['created_date']]
+print(f"Records where 'closed_date' is before 'created_date': {closed_before_created.shape[0]}")
+
+same_created_closed = noise_311_data[noise_311_data['created_date'] == noise_311_data['closed_date']]
+print(f"Records where 'created_date' equals 'closed_date': {same_created_closed.shape[0]}")
+
+midnight_noon_records = noise_311_data[
+    noise_311_data['created_date'].dt.time.isin([pd.Timestamp('00:00:00').time(), pd.Timestamp('12:00:00').time()]) |
+    noise_311_data['closed_date'].dt.time.isin([pd.Timestamp('00:00:00').time(), pd.Timestamp('12:00:00').time()])
+]
+print(f"Records with times at exactly midnight or noon: {midnight_noon_records.shape[0]}")
+
+action_after_closed = noise_311_data[
+    noise_311_data['resolution_action_updated_date'] > noise_311_data['closed_date']
+]
+print(f"Records where 'resolution_action_updated_date' is after 'closed_date': {action_after_closed.shape[0]}")
+
+print(
+    "Variables with no entries like 'facility_type' and 'due_date' have been removed. "
+    "Redundant variables such as 'agency' and 'agency_name' have been eliminated. "
+    "Also, we checked for records with times exactly on the hour."
+)
+
+```
+
+# 2. Data Manipulation
+```{python}
+from datetime import time
+from plotnine import *
+from scipy import stats
+from scipy.stats import chi2_contingency
+
+# Calculate the response time in hours
+noise_311_data['response_time'] = (
+    (noise_311_data['closed_date'] - noise_311_data['created_date']).dt.total_seconds() / 3600
+)
+
+# Function to determine the time of day
+def determine_time_of_day(timestamp):
+    if time(7, 0) <= timestamp.time() < time(19, 0):
+        return 'Daytime'
+    else:
+        return 'Nighttime'
+
+# Create 'time_of_day' column
+noise_311_data['time_of_day'] = noise_311_data['created_date'].apply(determine_time_of_day)
+
+# Add 'day_of_week' column
+noise_311_data['day_of_week'] = noise_311_data['created_date'].dt.weekday
+
+# Initialize an empty list to store the weekend or weekday labels
+is_weekend_list = []
+
+# Loop through each value in the 'day_of_week' column
+for day in noise_311_data['day_of_week']:
+    if day >= 5:
+        is_weekend_list.append('Weekend')
+    else:
+        is_weekend_list.append('Weekday')
+
+# Add the 'is_weekend' column to the DataFrame
+noise_311_data['is_weekend'] = is_weekend_list
+
+print(noise_311_data.columns)
+
+# Plot 1: Histogram of response times by time of day and borough
+aes_mapping_1 = aes(x='response_time', fill='time_of_day')
+histogram_1 = geom_histogram(bins=5, position='dodge')
+labels_1 = labs(
+    title='Response Time Distribution by Time of Day',
+    x='Response Time (hours)',
+    y='Count'
+)
+theme_1 = theme(
+    axis_text_x=element_text(rotation=45),
+    legend_position='bottom'
+)
+facet_1 = facet_wrap('~ borough')
+plot_1 = ggplot(noise_311_data, aes_mapping_1) + histogram_1 + labels_1 + theme_1 + facet_1
+print(plot_1)
+
+# Plot 2: Histogram of response times by time of day and complaint type
+aes_mapping_2 = aes(x='response_time', fill='time_of_day')
+histogram_2 = geom_histogram(bins=5, position='dodge')
+labels_2 = labs(
+    title='Response Time Distribution by Time of Day',
+    x='Response Time (hours)',
+    y='Count'
+)
+theme_2 = theme(
+    axis_text_x=element_text(rotation=45),
+    legend_position='bottom'
+)
+facet_2 = facet_wrap('~ complaint_type')
+plot_2 = ggplot(noise_311_data, aes_mapping_2) + histogram_2 + labels_2 + theme_2 + facet_2
+print(plot_2)
+
+
+# Plot 3: Histogram with complaint type and borough facets
+aes_mapping_3 = aes(x='response_time', fill='time_of_day')
+histogram_3 = geom_histogram(bins=5)
+labels_3 = labs(
+    title='Response Time Distribution',
+    x='Response Time (hours)',
+    y='Count'
+)
+theme_3 = theme(
+    axis_text_x=element_text(rotation=45),
+    legend_position='bottom',
+    figure_size=(7, 9)
+)
+facet_3 = facet_grid('complaint_type ~ borough')
+plot_3 = ggplot(noise_311_data, aes_mapping_3) + histogram_3 + labels_3 + theme_3 + facet_3
+print(plot_3)
+
+# ANOVA test for boroughs
+borough_groups = [grp['response_time'].values for _, grp in noise_311_data.groupby('borough')]
+f_stat_borough, p_value_borough = stats.f_oneway(*borough_groups)
+print(f"ANOVA test for boroughs: F-statistic = {f_stat_borough:.5f}, P-value = {p_value_borough:.5f}")
+
+# ANOVA test for complaint types
+complaint_groups = [grp['response_time'].values for _, grp in noise_311_data.groupby('complaint_type')]
+f_stat_complaint, p_value_complaint = stats.f_oneway(*complaint_groups)
+print(f"ANOVA test for complaint types: F-statistic = {f_stat_complaint:.5f}, P-value = {p_value_complaint:.5f}")
+
+# ANOVA test for days of the week
+day_groups = [grp['response_time'].values for _, grp in noise_311_data.groupby('day_of_week')]
+f_stat_day, p_value_day = stats.f_oneway(*day_groups)
+print(f"ANOVA test for days of the week: F-statistic = {f_stat_day:.5f}, P-value = {p_value_day:.5f}")
+
+# Create a binary variable for response times over 2 hours
+noise_311_data['over_two_hours'] = (noise_311_data['response_time'] >= 2).astype(int)
+print(noise_311_data[['created_date', 'closed_date', 'response_time', 'over_two_hours']].head())
+
+# Chi-squared test for 'over_two_hours' vs 'complaint_type'
+complaint_crosstab = pd.crosstab(noise_311_data['over_two_hours'], noise_311_data['complaint_type'])
+print(complaint_crosstab)
+chi2_complaint, p_complaint, _, _ = chi2_contingency(complaint_crosstab)
+print(f"Chi-squared test for 'over_two_hours' vs 'complaint_type': Chi2 = {chi2_complaint:.5f}, P-value = {p_complaint:.5f}")
+
+# Chi-squared test for 'over_two_hours' vs 'borough'
+borough_crosstab = pd.crosstab(noise_311_data['over_two_hours'], noise_311_data['borough'])
+print(borough_crosstab)
+chi2_borough, p_borough, _, _ = chi2_contingency(borough_crosstab)
+print(f"Chi-squared test for 'over_two_hours' vs 'borough': Chi2 = {chi2_borough:.5f}, P-value = {p_borough:.5f}")
+
+# Chi-squared test for 'over_two_hours' vs 'day_of_week'
+day_crosstab = pd.crosstab(noise_311_data['over_two_hours'], noise_311_data['day_of_week'])
+print(day_crosstab)
+chi2_day, p_day, _, _ = chi2_contingency(day_crosstab)
+print(f"Chi-squared test for 'over_two_hours' vs 'day_of_week': Chi2 = {chi2_day:.5f}, P-value = {p_day:.5f}")
+```
+
+# 3. Data Analysis
+```{python}
+from geopy.geocoders import Nominatim
+from time import sleep
+import numpy as np
+from geopy.distance import geodesic
+from uszipcode import SearchEngine
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegressionCV
+from sklearn.impute import SimpleImputer
+from sklearn.metrics import (
+    accuracy_score, precision_score, recall_score, confusion_matrix,
+    f1_score, roc_curve, auc
+)
+
+precinct_addresses = pd.read_csv('data/nypd_precincts.csv', encoding='windows-1252')
+
+geolocator = Nominatim(user_agent="nypd_precincts_geocoder")
+
+# Function to geocode addresses
+def geocode_address(address, max_attempts=3):
+    if pd.isnull(address) or address.strip() == "":
+        return np.nan, np.nan
+    attempts = 0
+    while attempts < max_attempts:
+        try:
+            location = geolocator.geocode(address)
+            if location:
+                return location.latitude, location.longitude
+            else:
+                return np.nan, np.nan
+        except Exception:
+            attempts += 1
+            sleep(1)
+    return np.nan, np.nan
+
+precinct_addresses['latitude'], precinct_addresses['longitude'] = zip(
+    *precinct_addresses['Address'].apply(geocode_address)
+)
+
+precinct_addresses.to_csv('data/nypd_precincts_geocoded.csv', index=False)
+
+print(precinct_addresses.head())
+print(noise_311_data.columns)
+
+geocoded_precincts = pd.read_csv('data/nypd_precincts_geocoded.csv')
+
+noise_311_data = noise_311_data.dropna(subset=['latitude', 'longitude'])
+
+def calculate_min_distance(lat, lon, precincts_df):
+    if pd.isnull(lat) or pd.isnull(lon):
+        return np.nan
+    distances = []
+    i = 0
+    num_precincts = len(precincts_df)
+    while i < num_precincts:
+        precinct = precincts_df.iloc[i]
+        if pd.notnull(precinct['latitude']) and pd.notnull(precinct['longitude']):
+            precinct_location = (precinct['latitude'], precinct['longitude'])
+            incident_location = (lat, lon)
+            distance = geodesic(incident_location, precinct_location).miles
+            distances.append(distance)
+        i += 1
+    if distances:
+        return min(distances)
+    else:
+        return np.nan
+
+noise_311_data['distance_to_precinct'] = noise_311_data.apply(
+    lambda row: calculate_min_distance(row['latitude'], row['longitude'], geocoded_precincts),
+    axis=1
+)
+
+print(noise_311_data[['latitude', 'longitude', 'distance_to_precinct']].head())
+noise_311_data['incident_zip'] = noise_311_data['incident_zip'].astype(str).str.zfill(5)
+
+valid_zip_data = noise_311_data.dropna(subset=['incident_zip']).copy()
+
+unique_zip_codes = valid_zip_data['incident_zip'].unique()
+
+zip_search_engine = SearchEngine()
+
+zip_info_list = []
+for zip_code in unique_zip_codes:
+    zip_result = zip_search_engine.by_zipcode(zip_code)
+    
+    if zip_result:
+        zipcode_type = zip_result.zipcode_type
+    else:
+        zipcode_type = None
+
+    if zip_result:
+        major_city = zip_result.major_city
+    else:
+        major_city = None
+
+    if zip_result:
+        post_office_city = zip_result.post_office_city
+    else:
+        post_office_city = None
+
+    if zip_result:
+        common_city_list = zip_result.common_city_list
+    else:
+        common_city_list = None
+
+    if zip_result:
+        county = zip_result.county
+    else:
+        county = None
+
+    if zip_result:
+        state = zip_result.state
+    else:
+        state = None
+
+    if zip_result:
+        lat = zip_result.lat
+    else:
+        lat = None
+
+    if zip_result:
+        lng = zip_result.lng
+    else:
+        lng = None
+
+    if zip_result:
+        timezone = zip_result.timezone
+    else:
+        timezone = None
+
+    if zip_result:
+        population = zip_result.population
+    else:
+        population = None
+
+    if zip_result:
+        population_density = zip_result.population_density
+    else:
+        population_density = None
+
+    if zip_result:
+        housing_units = zip_result.housing_units
+    else:
+        housing_units = None
+
+    if zip_result:
+        occupied_housing_units = zip_result.occupied_housing_units
+    else:
+        occupied_housing_units = None
+
+    if zip_result:
+        median_home_value = zip_result.median_home_value
+    else:
+        median_home_value = None
+
+    if zip_result:
+        median_household_income = zip_result.median_household_income
+    else:
+        median_household_income = None
+
+    if zip_result:
+        land_area_in_sqmi = zip_result.land_area_in_sqmi
+    else:
+        land_area_in_sqmi = None
+
+    if zip_result:
+        water_area_in_sqmi = zip_result.water_area_in_sqmi
+    else:
+        water_area_in_sqmi = None
+
+    zip_info_list.append({
+        "incident_zip": zip_code,
+        "zipcode_type": zipcode_type,
+        "major_city": major_city,
+        "post_office_city": post_office_city,
+        "common_city_list": common_city_list,
+        "county": county,
+        "state": state,
+        "lat": lat,
+        "lng": lng,
+        "timezone": timezone,
+        "population": population,
+        "population_density": population_density,
+        "housing_units": housing_units,
+        "occupied_housing_units": occupied_housing_units,
+        "median_home_value": median_home_value,
+        "median_household_income": median_household_income,
+        "land_area_in_sqmi": land_area_in_sqmi,
+        "water_area_in_sqmi": water_area_in_sqmi,
+    })
+
+zip_info_df = pd.DataFrame(zip_info_list)
+
+merged_data = pd.merge(valid_zip_data, zip_info_df, on='incident_zip', how='left')
+
+print(merged_data.head())
+
+feather.write_feather(merged_data, 'data/merged_noise_311_data.feather')
+
+merged_data = pd.read_feather('data/merged_noise_311_data.feather')
+
+merged_data_dummies = pd.get_dummies(
+    merged_data,
+    columns=['complaint_type', 'borough', 'time_of_day'],
+    drop_first=True
+)
+
+merged_data_dummies['is_weekend'] = merged_data_dummies['is_weekend'].map({'Weekday': 0, 'Weekend': 1})
+
+feature_columns = [
+    'incident_zip', 'day_of_week', 'distance_to_precinct', 'population', 'population_density',
+    'housing_units', 'occupied_housing_units', 'median_home_value', 'median_household_income', 'land_area_in_sqmi'
+] + \
+list(merged_data_dummies.columns[merged_data_dummies.columns.str.startswith('complaint_type_')]) + \
+list(merged_data_dummies.columns[merged_data_dummies.columns.str.startswith('borough_')]) + \
+list(merged_data_dummies.columns[merged_data_dummies.columns.str.startswith('time_of_day_')]) + \
+['is_weekend']
+
+X = merged_data_dummies[feature_columns]
+y = merged_data_dummies['over_two_hours']
+
+imputer = SimpleImputer(strategy='mean')
+X_imputed = imputer.fit_transform(X)
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X_imputed, y, test_size=0.2, random_state=42
+)
+
+reg_strength_values = np.logspace(-4, 4, 20)
+
+cv_folds = 5
+
+penalty_type = 'l1'
+
+solver_type = 'liblinear'
+
+scoring_metric = 'accuracy'
+
+max_iterations = 10000
+
+rand_state = 42
+
+logistic_cv = LogisticRegressionCV(
+    Cs=reg_strength_values,
+    cv=cv_folds,
+    penalty=penalty_type,
+    solver=solver_type,
+    scoring=scoring_metric,
+    max_iter=max_iterations,
+    random_state=rand_state
+)
+
+logistic_cv.fit(X_train, y_train)
+
+print(f"Best C value: {logistic_cv.C_[0]}")
+
+# Evaluate the model on the test set
+y_pred = logistic_cv.predict(X_test)
+accuracy_test = accuracy_score(y_test, y_pred)
+print(f"Test accuracy: {accuracy_test:.2f}")
+
+# Extract model coefficients
+model_coefficients = logistic_cv.coef_.copy()
+model_coefficients[np.abs(model_coefficients) < 1e-4] = 0
+print("Model coefficients:")
+print(model_coefficients)
+
+# Calculate evaluation metrics
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+conf_matrix = confusion_matrix(y_test, y_pred)
+
+print("Confusion Matrix:")
+print(conf_matrix)
+print(f"Accuracy: {accuracy:.2f}")
+print(f"Precision: {precision:.2f}")
+print(f"Recall: {recall:.2f}")
+
+# Compute ROC curve and AUC
+y_probabilities = logistic_cv.predict_proba(X_test)[:, 1]
+false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, y_probabilities)
+roc_auc_value = auc(false_positive_rate, true_positive_rate)
+print(f"AUC: {roc_auc_value:.2f}")
+
+# Compute F1 scores for different thresholds
+f1_scores = []
+for threshold in thresholds:
+    y_threshold_pred = (y_probabilities >= threshold).astype(int)
+    f1 = f1_score(y_test, y_threshold_pred)
+    f1_scores.append(f1)
+
+# Identify the best threshold
+optimal_threshold = thresholds[np.argmax(f1_scores)]
+optimal_f1_score = max(f1_scores)
+print(f"Optimal threshold: {optimal_threshold:.4f}")
+print(f"Optimal F1 score: {optimal_f1_score:.2f}")
+```
