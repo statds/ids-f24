@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -69,6 +103,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -209,9 +272,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#k-means-clustering" id="toc-k-means-clustering" class="nav-link active" data-scroll-target="#k-means-clustering"><span class="header-section-number">11.1</span> K-Means Clustering</a>
+  <li><a href="#principle-component-analysis" id="toc-principle-component-analysis" class="nav-link active" data-scroll-target="#principle-component-analysis"><span class="header-section-number">11.1</span> Principle Component Analysis</a>
   <ul class="collapse">
-  <li><a href="#subsection" id="toc-subsection" class="nav-link" data-scroll-target="#subsection"><span class="header-section-number">11.1.1</span> Subsection</a></li>
+  <li><a href="#theory" id="toc-theory" class="nav-link" data-scroll-target="#theory"><span class="header-section-number">11.1.1</span> Theory</a></li>
+  <li><a href="#properties-of-pca" id="toc-properties-of-pca" class="nav-link" data-scroll-target="#properties-of-pca"><span class="header-section-number">11.1.2</span> Properties of PCA</a></li>
+  <li><a href="#interpreting-pca-results" id="toc-interpreting-pca-results" class="nav-link" data-scroll-target="#interpreting-pca-results"><span class="header-section-number">11.1.3</span> Interpreting PCA Results</a></li>
+  <li><a href="#example-pca-on-8x8-digit-data" id="toc-example-pca-on-8x8-digit-data" class="nav-link" data-scroll-target="#example-pca-on-8x8-digit-data"><span class="header-section-number">11.1.4</span> Example: PCA on 8x8 Digit Data</a></li>
+  <li><a href="#loading-and-visualizing-the-data" id="toc-loading-and-visualizing-the-data" class="nav-link" data-scroll-target="#loading-and-visualizing-the-data"><span class="header-section-number">11.1.5</span> Loading and Visualizing the Data</a></li>
+  </ul></li>
+  <li><a href="#k-means-clustering" id="toc-k-means-clustering" class="nav-link" data-scroll-target="#k-means-clustering"><span class="header-section-number">11.2</span> K-Means Clustering</a>
+  <ul class="collapse">
+  <li><a href="#subsection" id="toc-subsection" class="nav-link" data-scroll-target="#subsection"><span class="header-section-number">11.2.1</span> Subsection</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -238,11 +309,283 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="k-means-clustering" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="k-means-clustering"><span class="header-section-number">11.1</span> K-Means Clustering</h2>
+<section id="principle-component-analysis" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="principle-component-analysis"><span class="header-section-number">11.1</span> Principle Component Analysis</h2>
+<p>Principal Component Analysis (PCA) is a dimensionality reduction technique that transforms a dataset with potentially correlated features into a set of uncorrelated components. These components are ordered by the amount of variance each one captures, allowing PCA to simplify the data structure while retaining the most informative features. This approach is widely used in unsupervised learning, particularly for data compression and noise reduction.</p>
+<section id="theory" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="theory"><span class="header-section-number">11.1.1</span> Theory</h3>
+<p>PCA works by identifying directions, or “principal components,” along which the variance of the data is maximized. Let <span class="math inline">\(X\)</span> be a dataset with <span class="math inline">\(n\)</span> observations and <span class="math inline">\(p\)</span> features, represented as an <span class="math inline">\(n \times p\)</span> matrix. The principal components are derived from the eigenvectors of the data’s covariance matrix, indicating the directions in which the data exhibits the most variation.</p>
+<ol type="1">
+<li><p>Standardization: To ensure that each feature contributes equally to the analysis, the features in <span class="math inline">\(X\)</span> are often standardized to have zero mean and unit variance. This prevents features with larger scales from dominating the principal components.</p></li>
+<li><p>Covariance Matrix: The covariance matrix <span class="math inline">\(S\)</span> of the dataset is computed as:</p>
+<p><span class="math display">\[
+S = \frac{1}{n-1} X^T X.
+\]</span></p>
+<p>This matrix captures the pairwise covariances between features, showing how they vary together.</p></li>
+<li><p>Eigenvalue Decomposition: PCA proceeds by calculating the eigenvalues and eigenvectors of the covariance matrix <span class="math inline">\(S\)</span>. The eigenvectors represent the principal components, and the eigenvalues measure the amount of variance each component captures.</p></li>
+<li><p>Dimensionality Reduction: By selecting the top <span class="math inline">\(k\)</span> eigenvectors (those with the largest eigenvalues), the data can be projected into a lower-dimensional space that retains the <span class="math inline">\(k\)</span> most significant components:</p>
+<p><span class="math display">\[
+X_{\text{reduced}} = X W_k,
+\]</span></p>
+<p>where <span class="math inline">\(W_k\)</span> is the matrix containing the top <span class="math inline">\(k\)</span> eigenvectors.</p></li>
+</ol>
+</section>
+<section id="properties-of-pca" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="properties-of-pca"><span class="header-section-number">11.1.2</span> Properties of PCA</h3>
+<p>PCA has several important properties that make it valuable for unsupervised learning:</p>
+<ol type="1">
+<li><p>Variance Maximization: The first principal component is the direction that maximizes variance in the data. Each subsequent component maximizes variance under the constraint of being orthogonal to previous components.</p></li>
+<li><p>Orthogonality: Principal components are orthogonal to each other, ensuring that each captures unique information. This property transforms the data into an uncorrelated space, simplifying further analysis.</p></li>
+<li><p>Dimensionality Reduction: By selecting only components with the largest eigenvalues, PCA enables dimensionality reduction while preserving most of the data’s variability. This is especially useful for large datasets.</p></li>
+<li><p>Reconstruction: If all components are retained, the original data can be perfectly reconstructed. When fewer components are used, the reconstruction is approximate but retains the essential structure of the data.</p></li>
+<li><p>Sensitivity to Scaling: PCA is sensitive to the scale of input data, so standardization is often necessary to ensure that each feature contributes equally to the analysis.</p></li>
+</ol>
+</section>
+<section id="interpreting-pca-results" class="level3" data-number="11.1.3">
+<h3 data-number="11.1.3" class="anchored" data-anchor-id="interpreting-pca-results"><span class="header-section-number">11.1.3</span> Interpreting PCA Results</h3>
+<p>The output of PCA provides several insights into the data:</p>
+<ol type="1">
+<li><p>Principal Components: Each principal component represents a linear combination of the original features. The loadings (or weights) for each feature indicate the contribution of that feature to the component. Large weights (positive or negative) suggest that the corresponding feature strongly influences the principal component.</p></li>
+<li><p>Explained Variance: Each principal component captures a specific amount of variance in the data. The proportion of variance explained by each component helps determine how many components are needed to retain the key information in the data. For example, if the first two components explain 90% of the variance, then these two components are likely sufficient to represent the majority of the data’s structure.</p></li>
+<li><p>Selecting the Number of Components: The cumulative explained variance plot indicates the total variance captured as more components are included. A common approach is to choose the number of components such that the cumulative variance reaches an acceptable threshold (e.g., 95%). This helps in balancing dimensionality reduction with information retention.</p></li>
+<li><p>Interpretation of Component Scores: The transformed data points, or “scores,” in the principal component space represent each original observation as a combination of the selected principal components. Observations close together in this space have similar values on the selected components and may indicate similar patterns.</p></li>
+<li><p>Identifying Patterns and Clusters: By visualizing the data in the reduced space, patterns and clusters may become more apparent, especially in cases where there are inherent groupings in the data. These patterns can provide insights into underlying relationships between observations.</p></li>
+</ol>
+<p>PCA thus offers a powerful tool for both reducing data complexity and enhancing interpretability by transforming data into a simplified structure, with minimal loss of information.</p>
+</section>
+<section id="example-pca-on-8x8-digit-data" class="level3" data-number="11.1.4">
+<h3 data-number="11.1.4" class="anchored" data-anchor-id="example-pca-on-8x8-digit-data"><span class="header-section-number">11.1.4</span> Example: PCA on 8x8 Digit Data</h3>
+<p>The 8x8 digit dataset contains grayscale images of handwritten digits (0 through 9), with each image represented by an 8x8 grid of pixel intensities. Each pixel intensity is a feature, so each image has 64 features in total.</p>
+</section>
+<section id="loading-and-visualizing-the-data" class="level3" data-number="11.1.5">
+<h3 data-number="11.1.5" class="anchored" data-anchor-id="loading-and-visualizing-the-data"><span class="header-section-number">11.1.5</span> Loading and Visualizing the Data</h3>
+<p>Let’s start by loading the data and plotting some sample images to get a sense of the dataset.</p>
+<div id="4ed3bef4" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import required libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_digits</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the 8x8 digit dataset</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>digits <span class="op">=</span> load_digits()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> digits.data  <span class="co"># feature matrix with 64 features (8x8 pixel intensities)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> digits.target  <span class="co"># target labels (0-9 digit classes)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the shape of the data</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Feature matrix shape:"</span>, X.shape)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Target vector shape:"</span>, y.shape)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot some sample images from the dataset</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, ax <span class="kw">in</span> <span class="bu">enumerate</span>(axes.flat):</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    ax.imshow(X[i].reshape(<span class="dv">8</span>, <span class="dv">8</span>), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"Digit: </span><span class="sc">{</span>y[i]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">'off'</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">"Sample Images from 8x8 Digit Dataset"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Feature matrix shape: (1797, 64)
+Target vector shape: (1797,)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="unsupervised_files/figure-html/cell-2-output-2.png" width="763" height="350" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>After loading and visualizing the data, we observe the following:</p>
+<ul>
+<li>Each digit is represented by a grid of 8x8 pixels, resulting in a 64-dimensional feature space.</li>
+<li>Since each pixel represents a separate feature, the dataset has high dimensionality relative to its visual simplicity.</li>
+</ul>
+<p>Given the high dimensionality of the data, we may want to address the following research questions using PCA:</p>
+<ul>
+<li>Can we reduce the dimensionality of the dataset while preserving the essential structure of each digit? By reducing dimensions, we aim to simplify the data representation, which can aid in visualization and computational efficiency.</li>
+<li>How many principal components are necessary to capture most of the variance in the data? Identifying this will help us understand how many features are truly informative in distinguishing the digits.</li>
+<li>Are there distinct clusters in the reduced space? Visualizing the data in two or three dimensions could reveal any inherent groupings or patterns related to the different digit classes.</li>
+</ul>
+<section id="performing-pca-and-plotting-variance-contribution" class="level4" data-number="11.1.5.1">
+<h4 data-number="11.1.5.1" class="anchored" data-anchor-id="performing-pca-and-plotting-variance-contribution"><span class="header-section-number">11.1.5.1</span> Performing PCA and Plotting Variance Contribution</h4>
+<p>Let’s proceed by applying PCA to the digits data and plotting the explained variance to understand how much variance each principal component captures. This will help determine the optimal number of components to retain for a good balance between dimensionality reduction and information preservation.</p>
+<p>The primary goal here is to identify the number of components that capture most of the variance. We’ll use a cumulative explained variance plot to visualize how much total variance is captured as we include more principal components.</p>
+<div id="ce97e32b" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the PCA module</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize PCA without specifying the number of components</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>X_pca <span class="op">=</span> pca.fit_transform(X)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the explained variance ratio for each component</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>explained_variance <span class="op">=</span> pca.explained_variance_ratio_</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>cumulative_variance <span class="op">=</span> np.cumsum(explained_variance)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the explained variance and cumulative variance</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot individual explained variance</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="dv">1</span>, <span class="bu">len</span>(explained_variance) <span class="op">+</span> <span class="dv">1</span>), explained_variance, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Principal Component'</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Explained Variance Ratio'</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Variance Contribution of Each Component'</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot cumulative explained variance</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="dv">1</span>, <span class="bu">len</span>(cumulative_variance) <span class="op">+</span> <span class="dv">1</span>), cumulative_variance, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Number of Components'</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Cumulative Explained Variance'</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Cumulative Explained Variance'</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="unsupervised_files/figure-html/cell-3-output-1.png" width="950" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Variance Contribution of Each Component: The left plot shows the amount of variance explained by each individual component. This can help identify which components contribute significantly to capturing the variance in the data.</p>
+<p>Cumulative Explained Variance: The right plot displays the cumulative explained variance as the number of components increases. This plot is useful for determining the number of components to retain. Generally, we look for a “knee” or “elbow” point where the cumulative variance starts to level off.</p>
+<p>To select the number of components:</p>
+<ul>
+<li>Set a Variance Threshold: A typical approach is to select enough components to capture a certain percentage of the total variance (e.g., 90% or 95%).</li>
+<li>Elbow Method: Identify a point on the cumulative variance plot where additional components contribute minimally to the variance. This “elbow” point represents an efficient number of components.</li>
+</ul>
+<p>In this example, we see that the first 10 components contain approximately 75% of the variance; around 50 components are needed to describe close to 100% of the variance.</p>
+</section>
+<section id="pca-in-dimension-reduction" class="level4" data-number="11.1.5.2">
+<h4 data-number="11.1.5.2" class="anchored" data-anchor-id="pca-in-dimension-reduction"><span class="header-section-number">11.1.5.2</span> PCA in Dimension Reduction</h4>
+<p>Let’s continue by projecting the digit data onto the first two and first three principal components, allowing us to visualize the data in a lower-dimensional space. This will help us see how well PCA captures the structure of the data and whether distinct clusters form in the reduced space.</p>
+<div id="5b114b67" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply PCA to reduce data to the first two and three components</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pca_2d <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>X_pca_2d <span class="op">=</span> pca_2d.fit_transform(X)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>pca_3d <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>X_pca_3d <span class="op">=</span> pca_3d.fit_transform(X)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the 2D projection</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>scatter <span class="op">=</span> plt.scatter(X_pca_2d[:, <span class="dv">0</span>], X_pca_2d[:, <span class="dv">1</span>], c<span class="op">=</span>y, cmap<span class="op">=</span><span class="st">'tab10'</span>, s<span class="op">=</span><span class="dv">15</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Principal Component 1"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Principal Component 2"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"2D PCA Projection of Digit Data"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>plt.colorbar(scatter, label<span class="op">=</span><span class="st">'Digit Label'</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the 3D projection</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">'3d'</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>scatter <span class="op">=</span> ax.scatter(X_pca_3d[:, <span class="dv">0</span>], X_pca_3d[:, <span class="dv">1</span>], X_pca_3d[:, <span class="dv">2</span>], </span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                     c<span class="op">=</span>y, cmap<span class="op">=</span><span class="st">'tab10'</span>, s<span class="op">=</span><span class="dv">15</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Principal Component 1"</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Principal Component 2"</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>ax.set_zlabel(<span class="st">"Principal Component 3"</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"3D PCA Projection of Digit Data"</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>fig.colorbar(scatter, ax<span class="op">=</span>ax, label<span class="op">=</span><span class="st">'Digit Label'</span>)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="unsupervised_files/figure-html/cell-4-output-1.png" width="639" height="523" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="unsupervised_files/figure-html/cell-4-output-2.png" width="636" height="565" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This 3D projection of the MNIST digit data shows each image’s position in the space defined by the first three principal components. Here are some key observations:</p>
+<ol type="1">
+<li><p><strong>Cluster Formation</strong>: Distinct clusters of points represent different digits. Digits with similar shapes, such as “1” and “7” (both often vertical), may appear closer to each other in this reduced space. This clustering suggests that PCA effectively captures structural features, even when reducing dimensions.</p></li>
+<li><p><strong>Effectiveness of Dimensionality Reduction</strong>: Despite reducing from 64 dimensions to only three, PCA retains essential variance, allowing for distinction between different digits. This demonstrates PCA’s utility in data compression, providing a simplified representation without losing significant information.</p></li>
+<li><p><strong>Exploring Further Dimensions</strong>: Additional components could capture more variance, if required. However, the first three components often capture most of the meaningful variance, balancing dimensionality reduction with information retention.</p></li>
+</ol>
+<p>This PCA projection shows that the MNIST digit data has underlying patterns well-represented by the first few components. These findings highlight PCA’s usefulness in compressing high-dimensional data while preserving its structure, making it a valuable tool for visualization, noise reduction, and as a pre-processing step in machine learning tasks.</p>
+</section>
+<section id="pca-in-noise-filtering" class="level4" data-number="11.1.5.3">
+<h4 data-number="11.1.5.3" class="anchored" data-anchor-id="pca-in-noise-filtering"><span class="header-section-number">11.1.5.3</span> PCA in Noise Filtering</h4>
+<p>To demonstrate PCA’s use in noise filtering, we’ll follow these steps:</p>
+<ol type="1">
+<li>Add Random Noise: Add random noise to the original digit images.</li>
+<li>Fit PCA to Noisy Data: Apply PCA to the noisy data, selecting enough components to retain 50% of the variance.</li>
+<li>Reconstruct the Digits: Use PCA’s inverse transform to reconstruct the digits from the reduced components, effectively filtering out the noise.</li>
+<li>Display the Results: Show a side-by-side comparison of the original, perturbed, and reconstructed images for visual assessment.</li>
+</ol>
+<div id="a0e305c7" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_digits(datasets, titles):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Plots a 2x5 grid of images for each dataset in datasets,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">    using a compact and uniform layout.</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">    - datasets: list of 2D numpy arrays, each array with shape (n_samples, 64),</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">                representing different versions of the digit data </span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">                (e.g., original, noisy, reconstructed).</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">    - titles: list of strings, titles for each dataset (e.g., ["Original", "Noisy", "Reconstructed"]).</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="bu">len</span>(datasets) <span class="op">*</span> <span class="dv">2</span>, <span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">6</span>),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                             subplot_kw<span class="op">=</span>{<span class="st">'xticks'</span>:[], <span class="st">'yticks'</span>:[]},</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                             gridspec_kw<span class="op">=</span><span class="bu">dict</span>(hspace<span class="op">=</span><span class="fl">0.1</span>, wspace<span class="op">=</span><span class="fl">0.1</span>))</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row, (data, title) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(datasets, titles)):</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, ax <span class="kw">in</span> <span class="bu">enumerate</span>(axes[row <span class="op">*</span> <span class="dv">2</span>: row <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>].flat):</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>            ax.imshow(data[i].reshape(<span class="dv">8</span>, <span class="dv">8</span>), cmap<span class="op">=</span><span class="st">'binary'</span>, interpolation<span class="op">=</span><span class="st">'nearest'</span>, clim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">16</span>))</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        axes[row <span class="op">*</span> <span class="dv">2</span>, <span class="dv">0</span>].set_ylabel(title, rotation<span class="op">=</span><span class="dv">0</span>, labelpad<span class="op">=</span><span class="dv">30</span>, fontsize<span class="op">=</span><span class="dv">12</span>, ha<span class="op">=</span><span class="st">'right'</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    plt.suptitle(<span class="st">"PCA Noise Filtering: Original, Noisy, and Reconstructed Digits"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>   <span class="co"># plt.tight_layout()</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Applying the function to the original, noisy, and reconstructed datasets</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the 8x8 digit dataset</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>digits <span class="op">=</span> load_digits()</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> digits.data  <span class="co"># Original digit data</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Add random noise to the data</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>noise <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">4</span>, X.shape)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>X_noisy <span class="op">=</span> X <span class="op">+</span> noise</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit PCA to retain 50% of the variance</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>pca_50 <span class="op">=</span> PCA(<span class="fl">0.50</span>)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>X_pca_50 <span class="op">=</span> pca_50.fit_transform(X_noisy)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>X_reconstructed_50 <span class="op">=</span> pca_50.inverse_transform(X_pca_50)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the original, noisy, and reconstructed digits using the function</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>plot_digits([X, X_noisy, X_reconstructed_50], [<span class="st">"Original"</span>, <span class="st">"Noisy"</span>, <span class="st">"Reconstructed"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="unsupervised_files/figure-html/cell-5-output-1.png" width="680" height="520" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This visualization demonstrates the noise filtering effect of PCA:</p>
+<ul>
+<li>Original vs.&nbsp;Noisy Images: The second row shows the effect of added random noise, making the digits less recognizable.</li>
+<li>Reconstructed Images: In the third row, PCA has filtered out much of the random noise, reconstructing cleaner versions of the digits while preserving important structural features. This illustrates PCA’s effectiveness in noise reduction by retaining only the principal components that capture meaningful variance.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="k-means-clustering" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="k-means-clustering"><span class="header-section-number">11.2</span> K-Means Clustering</h2>
 <p>This section is presented by ……</p>
-<section id="subsection" class="level3" data-number="11.1.1">
-<h3 data-number="11.1.1" class="anchored" data-anchor-id="subsection"><span class="header-section-number">11.1.1</span> Subsection</h3>
+<section id="subsection" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="subsection"><span class="header-section-number">11.2.1</span> Subsection</h3>
 
 
 </section>
