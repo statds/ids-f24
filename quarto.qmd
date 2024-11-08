@@ -1,4 +1,4 @@
-# Reproducibile Data Science {#sec-quarto}
+# Reproducible Data Science {#sec-quarto}
 
 Data science projects should be reproducible to be trustworthy. Dynamic
 documents facilitate reproducibility. [Quarto](https://quarto.org) is an
@@ -113,7 +113,7 @@ global Python environment.
 ### Clone the Repository
 
 Clone the repository to your own computer. In a terminal (command line),
-go to an appropriate directory (floder), and clone the repo. For example,
+go to an appropriate directory (folder), and clone the repo. For example,
 if you use `ssh` for authentication: 
 
 ```

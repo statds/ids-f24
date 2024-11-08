@@ -1,6 +1,6 @@
 # Supervised Learning
 
-## Decision Trees
+## Decision Trees: Foundation
 
 Decision trees are widely used supervised learning models that predict 
 the value of a target variable by iteratively splitting the dataset 
@@ -180,6 +180,9 @@ approach. Misclassification error can be used for simpler cases. For
 regression tasks, MSE is the most popular choice, but Poisson deviance
 and MAE are useful for specific use cases such as count data and
 robust models, respectively.
+
+<!-- ## Decision Trees: Demonstration  -->
+{{< include _treeDemo.qmd >}}
 
 
 ## Boosted Trees
