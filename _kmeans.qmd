@@ -1,6 +1,135 @@
 ## K-Means Clustering
+This section is presented by Aansh Jha
 
-This section is presented by ......
+### Introduction
+1. Given a set of observations (x1, x2, … ,xn) where each observation is a d-dimensional vector, the goal is to partition these n observations into k clusters, represented by sets  S={S1, S2, …, Sk}.
+2. This partitioning aims to minimize the within-cluster sum of squares (WCSS), which represents the variance within each cluster.
+
+### Within-Cluster Sum of Squares (WCSS)
+1. WCSS Equation
+$$
+\text{WCSS} = \sum_{k=1}^{K} \sum_{i \in C_k} \| x_i - \mu_k \|^2
+$$
+
+- $K$ represents the total number of clusters.
+- The outer summation $\sum_{k=1}^{K}$ iterates over each cluster $k$.
+- The inner summation $\sum_{i \in C_k}$ iterates over each data point $i$ within the cluster $C_k$.
+- $\| x_i - \mu_k \|^2$ calculates the squared distance between each data point $x_i$ and its corresponding cluster centroid $\mu_k$, contributing to the within-cluster sum of squares.
+
+### Algorithim
+1. Initialization (Picking Random Points):
+    - Decide on the number of clusters k (more into next slide)
+    - Example: If k=3 then there will be 3 center points, and 3 clusters/groups to organize the points into
+2. Randomly Selecting Initial Centroids
+    - Start by randomly selecting K distinct points in the data as the initial cluster centroids.
+    - These initial points serve as starting locations for each cluster’s center.
+3. Assigning Points to the Nearest Cluster
+    - For each data point, calculate the distance to each centroid and assign the point to the nearest one.
+    - The most common method for calculating this distance is the Euclidean Distance, similar to the Pythagorean theorem.
+4. Updating the Centroids by Calculating the Mean Position
+    - Once all points are assigned to clusters, calculate the mean (average) position of points in each cluster to update the centroids.
+    - Move each centroid to this new mean position.
+5. Repeat Until Stabilzation
+    - Repeat the process of assigning points to the nearest centroid and recalculating centroids until the clusters stop changing.
+    - K-means clustering may go through multiple iterations, often restarting with different initial centroids, to find the configuration with the lowest total variance within clusters.
+    - Note that K-Means clustering can't see what the best clustering is, so it keeps track of the clustering and the total variances to do the whole thing over again from different starting points, even if the K-means knows or finds the best clustering, it doesn't know if it is the best overall and will do a few more clusters (the max iterations) and then come back and return that best clustering option if it is the best clustering option.
+
+### Determining the K-Value: Distortion, Inertia, and Elbow Method
+1. Distortion:
+    - Measures the average squared distance between each data point and its cluster center, indicating how well clusters represent the data. 
+    - Lower distortion values mean better clustering.
+    $$
+    \text{Distortion} = \frac{1}{n} \sum_{i=1}^{n} (\text{distance}(x_{i}, c_{j}))^2
+    $$
+2. Inertia:
+    - The sum of squared distances of data points to their nearest cluster center, representing total clustering error. 
+    - Lower inertia mean better clustering.
+    $$
+    \text{Inertia} = \sum_{i=1}^{n} (\text{distance}(x_{i}, c_{j}^*))^2
+    $$
+3. Elbow Method: 
+    - To find the optimal number of clusters, plot distortion or inertia values for different k values. 
+    - The "elbow point" on the plot, where the rate of decrease slows, typically suggests the best cluster count.
+
+### Elbow Method in Python to Determine Optimal k
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+# Step 1: Generate random data with three distinct clusters
+np.random.seed(0)
+data = np.vstack([
+    np.random.normal(loc=(2, 2), scale=0.5, size=(50, 2)),
+    np.random.normal(loc=(8, 8), scale=0.5, size=(50, 2)),
+    np.random.normal(loc=(5, 10), scale=0.5, size=(50, 2))
+])
+
+# Step 2: Calculate inertia for different k values
+inertia_values = []
+k_values = range(1, 10)
+
+for k in k_values:
+    kmeans = KMeans(n_clusters=k, random_state=0)
+    kmeans.fit(data)
+    inertia_values.append(kmeans.inertia_)
+
+# Step 3: Plot the inertia values to find the "elbow"
+plt.figure(figsize=(8, 5))
+plt.plot(k_values, inertia_values, marker='o')
+plt.title('Elbow Method to Determine Optimal k')
+plt.xlabel('Number of Clusters (k)')
+plt.ylabel('Inertia')
+plt.show()
+```
+### K-Means Clustering with Different k Values
+```{python}
+# Step 1: Define a function to plot clusters for different k values
+from sklearn.cluster import KMeans
+
+def plot_kmeans_clusters(data, k):
+    kmeans = KMeans(n_clusters=k, random_state=0)
+    labels = kmeans.fit_predict(data)
+    centroids = kmeans.cluster_centers_
+
+    plt.figure(figsize=(8, 5))
+    plt.scatter(data[:, 0], data[:, 1], c=labels, cmap='viridis', s=50, alpha=0.6)
+    plt.scatter(centroids[:, 0], centroids[:, 1], c='red', s=200, marker='X')
+    plt.title(f'K-Means Clustering with k={k}')
+    plt.xlabel('Feature 1')
+    plt.ylabel('Feature 2')
+    plt.show()
 
 
-### Subsection
+for k in [1, 2, 3, 4]:
+    plot_kmeans_clusters(data, k)
+```
+
+
+### Advantages and Disadvantages
+1. Advantages
+    - Simple and easy to implement
+    - Computationally efficient, especially with a smaller dataset
+    - Works well with compact clusters.
+
+2. Disadvantages
+    - Requires specifying the number of clusters (k) in advance.
+    - Sensitive to initial centroids; can lead to different results with different initializations.
+    - Not effective for clusters of varying shapes and densities.
+    - Can be influenced by outliers, potentially leading to inaccurate clusters.
+
+
+### References
+1. Dar, P. (2019, August 6). Comprehensive guide to K-means clustering. Analytics Vidhya. https://www.analyticsvidhya.com/blog/2019/08/comprehensive-guide-k-means-clustering/
+
+2. Gandhe, M. (2019, November 25). All about K-means clustering. DataDrivenInvestor. https://medium.datadriveninvestor.com/all-about-k-means-clustering-7a2a93a3bdf9
+
+3. IBM Cloud Education. (n.d.). K-means clustering. IBM. https://www.ibm.com/topics/k-means-clustering
+
+4. Mailman School of Public Health. (n.d.). K-means cluster analysis. Columbia University. https://www.publichealth.columbia.edu/research/population-health-methods/k-means-cluster-analysis
+
+5. Piyush. (2023, May 17). Elbow method for optimal value of K in KMeans. GeeksforGeeks. https://www.geeksforgeeks.org/elbow-method-for-optimal-value-of-k-in-kmeans/
+
+6. Sharma, P. (2020, February 10). 4 types of distance metrics in machine learning. Analytics Vidhya. https://www.analyticsvidhya.com/blog/2020/02/4-types-of-distance-metrics-in-machine-learning/
+
+7. Suman, S. (2021, January 9). In-depth intuition of K-means clustering algorithm in machine learning. Analytics Vidhya. https://www.analyticsvidhya.com/blog/2021/01/in-depth-intuition-of-k-means-clustering-algorithm-in-machine-learning/
