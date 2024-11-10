@@ -3,3 +3,8 @@
 {{< include _plotnine.qmd >}}
 
 {{< include _spatialvisual.qmd >}}
+
+
+
+
+{{< include _animation.qmd >}}
