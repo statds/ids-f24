@@ -14,7 +14,7 @@
 <meta name="author" content="Rahul Manna">
 <meta name="author" content="Julia Mazzola">
 <meta name="author" content="Deyu Xu">
-<meta name="dcterms.date" content="2024-11-04">
+<meta name="dcterms.date" content="2024-11-11">
 
 <title>Introduction to Data Science</title>
 <style>
@@ -245,14 +245,20 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./reinforcement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reinforcement Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./advanced.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Advanced Topics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Advanced Topics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -334,7 +340,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 4, 2024</p>
+      <p class="date">November 11, 2024</p>
     </div>
   </div>
   
@@ -352,8 +358,8 @@ div.csl-indent {
 <p>This book free and is licensed under a <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/us/">Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States License</a>.</p>
 <section id="sources-at-github" class="level2">
 <h2 class="anchored" data-anchor-id="sources-at-github">Sources at GitHub</h2>
-<p>These lecture notes for STAT 3255/5255 in Fall 2024 represent a collaborative effort between Professor Jun Yan and the students enrolled in the course. This cooperative approach to education was facilitated through the use of GitHub, a platform that encourages collaborative coding and content development. To view these contributions and the lecture notes in their entirety, please visit our Spring 2024 repository at <a href="https://github.com/statds/ids-f24" class="uri">https://github.com/statds/ids-f24</a>.</p>
-<p>Students contributed to the lecture notes by submitting pull requests to our dedicated GitHub repository. This method not only enriched the course material but also provided students with practical experience in collaborative software development and version control.</p>
+<p>These lecture notes for STAT 3255/5255 in Fall 2024 represent a collaborative effort between Professor Jun Yan and the students enrolled in the course. This cooperative approach to education was facilitated through the use of GitHub, a platform that encourages collaborative coding and content development. To view these contributions and the lecture notes in their entirety, please visit our GitHub repository at <a href="https://github.com/statds/ids-f24" class="uri">https://github.com/statds/ids-f24</a>.</p>
+<p>Students contributed to the lecture notes by submitting pull requests to our GitHub repository. This method not only enriched the course material but also provided students with practical experience in collaborative software development and version control.</p>
 <p>For those interested in exploring the lecture notes from the previous years, the <a href="https://statds.github.io/ids-s24">Spring 2024</a>, <a href="https://statds.github.io/ids-s23">Spring 2023</a> and <a href="https://statds.github.io/ids-s22/">Spring 2022</a> are also publicly accessible. These archives offer insights into the evolution of the course content and the different perspectives brought by successive student cohorts.</p>
 </section>
 <section id="compiling-the-classnotes" class="level2">
@@ -522,7 +528,7 @@ div.csl-indent {
 <section id="presentation-orders" class="level2">
 <h2 class="anchored" data-anchor-id="presentation-orders">Presentation Orders</h2>
 <p>The topic presentation order is set up in class.</p>
-<div id="46ecd851" class="cell" data-execution_count="1">
+<div id="af90ff3a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'rosters/3255.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    ug <span class="op">=</span> [line.strip() <span class="cf">for</span> line <span class="kw">in</span> <span class="bu">file</span>]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'rosters/5255.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
@@ -808,7 +814,7 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="sub-topic-1">Sub Topic 1</h3>
 <p>Put materials on topic 1 here</p>
 <p>Python examples can be put into <code>python</code> code chunks:</p>
-<div id="9395df89" class="cell" data-execution_count="2">
+<div id="f5a50a1a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># do something</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
