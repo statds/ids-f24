@@ -32,7 +32,7 @@ Spatial data operations can be time-consuming and the pathway to your desired re
 
 **Stay patient, have fun**
 
-![Map of all the locations in NYC where I have eaten a bagel](images/Bagels_map.png)
+![Map of all the locations in NYC where I have eaten a bagel](images/spatial_data_visualization/Bagels_map.png)
 
 Above is an example of me having fun with spatial data. 
 
@@ -67,7 +67,7 @@ Google offers several products for performing Geographic Information Science (GI
 
 Google MyMaps allows for visualization of line and point data. 
 
-![Image of MyMaps UI. As we can see, there is a very small extent of functionality.](images/MyMap.png)
+![Image of MyMaps UI. As we can see, there is a very small extent of functionality.](images/spatial_data_visualization/MyMap.png)
 
 #### Google Earth Engine
 
@@ -86,7 +86,7 @@ It pairs well with landcover classification to aid in tasks like:
 
 Here's an example of Google Earth Engine being used to identify commercial solar properties to fill in missing data:
 
-![Example of Landcover classifcation model in GEE](images/GEE_example.png)
+![Example of Landcover classifcation model in GEE](images/spatial_data_visualization/GEE_example.png)
 
 #### Google Maps Platform
 
@@ -122,7 +122,7 @@ To access Google Maps Platform, we must enter our Google Cloud Console.
 
 Navigate to console.cloud.google.com to view your console. It should look like this. Press "select project" and create your new project. 
 
-![](images/Select_Project.png)
+![](images/spatial_data_visualization/Select_Project.png)
 
 #### Building Project
 
@@ -156,7 +156,7 @@ An API Key allows us to access our projects **exclusively**
 
 Generate an API key for your Maps project in Google Cloud here:
 
-![Where to navigate to generate API key](images/Make_API_key.png)
+![Where to navigate to generate API key](images/spatial_data_visualization/Make_API_key.png)
 
 #### API: Enabling necessary APIs
 
@@ -250,7 +250,7 @@ gmap.draw(output_path)
 
 You would retrieve this as an html generated in the specified directory, but for this presentation I'll show this as an image:
 
-![Output of example code](images/gmplot_output.png)
+![Output of example code](images/spatial_data_visualization/gmplot_output.png)
 
 #### gmplot: Heat Maps
 
@@ -277,7 +277,7 @@ heatmap.draw(heatmap_output_path)
 
 ### gmplot Heat Map Example
 
-![Heat map output; *Remark: multiple gmplot html outputs might not reliably work for a single script*](images/heatmap_output.png)
+![Heat map output; *Remark: multiple gmplot html outputs might not reliably work for a single script*](images/spatial_data_visualization/heatmap_output.png)
 
 ### Googlemaps
 

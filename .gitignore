@@ -163,3 +163,5 @@ cython_debug/
 /_book/
 /_freeze/
 /.ids-f24-venv/
+
+/templates/
