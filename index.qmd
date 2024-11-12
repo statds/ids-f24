@@ -275,7 +275,7 @@ Please use the following table to sign up.
    11/11 | Aansh Jha              | K-means clustering
    11/11 | Owen Babiec            | Calling R from Python and vice versa
    11/13 | Stef Baptista            |
-   11/13 | Mohammad Parvez   | Developing a Python package
+   11/13 | Mohammad Parvez   | Extracting and Analyzing Census Data
 
 
 ### Final Project Presentation Schedule
