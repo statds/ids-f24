@@ -1,10 +1,15 @@
 ## Web Scraping
 
 This section was written by Melanie Desroches, a senior majoring in statistics and minoring in computer science.
-
+The goal of this section is to introduce web-scraping so that it can be utilized for data science. This will 
+include what web-scraping is, how to web-scrape with Python using examples, and how to web-scrape ethically.
 
 ### What is Web-Scraping
-
+As data scientists, we often want to collect data from a variety of sources. In the age of the internet, a lot 
+of the data we may want to collect is available on a website. However, this data is often times not available 
+in an easily downloadable format. This is where web-scraping becomes valuable. Web-scraping is an automated 
+process used to gather data from websites. This allows us to access and collect large amounts of data directly 
+from web pages if the information is not avalible for download.
 
 ### How to Web-Scrape with Python
 
