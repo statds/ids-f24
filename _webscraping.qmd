@@ -1,9 +1,31 @@
 ## Web Scraping
 
-This section was written by ...
+This section was written by Melanie Desroches, a senior majoring in statistics and minoring in computer science.
 
 
-### Subsection 1
+### What is Web-Scraping
 
 
-### Subsection 2
+### How to Web-Scrape with Python
+
+#### Selenium
+
+#### Beautiful Soup
+
+#### Beautiful Soup vs Selenium
+
+#### A Step-by Step Guide to Web-Scraping
+
+
+### Examples using NYC Open Data
+
+#### Beautiful Soup and NYPD Precincts
+
+#### Selenium and Weather Data
+
+
+### A Note on Data Ethics 
+
+#### Why Web-Scraping can be un-ethical
+
+#### Some Tips to Help You Scrape Ethically
