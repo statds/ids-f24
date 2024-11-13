@@ -1,6 +1,499 @@
 # Reinforcement Learning
 
 
+
+
+## What is Reinforcement Learning?
+
+- Reinforcement learning (RL) is a type of machine learning.
+- Deep Q-Networks (DQN) 
+- Agents learn by interacting with the environment.
+- The goal of it is to maximize cumulative reward over time.
+- Reinforcement Learning (RL) VS Supervised Learning (SL)
+
+Supervised Learning (SL) and Reinforcement Learning (RL) share some similarities in their frameworks, but they differ fundamentally in how they learn and improve over time. In a supervised learning setting, training a neural network, such as learning to play a game, requires a substantial dataset with labeled examples. This involves recording the gameplay process, including inputs like key presses and even eye movements. 
+
+The network learns by observing how certain actions (inputs) lead to specific outcomes (labels), essentially mimicking human actions to predict what to do next. However, it only imitates what it's been taught and does not learn to improve on its own beyond the data it's given.
+
+In contrast, reinforcement learning does not rely on a predefined dataset with target labels. Instead, it uses a policy network that transforms input frames from the game into actions. The training process in RL starts with a network that has no prior knowledge. It receives input frames directly from the game environment and must figure out what actions to take to maximize rewards over time. The simplest way to train this policy network is through policy gradients, where the model learns by interacting with the environment and receiving feedback. 
+
+However, RL has a downside: if the model encounters a failure, it might incorrectly generalize that a certain strategy is bad, leading to what's known as the credit assignment problem—it struggles to properly attribute which actions led to success or failure. This means the network may become overly cautious, reducing its exploration of potentially good strategies that initially resulted in failure.
+
+
+
+
+## What does this note contains
+
+- [Actual usages & Scopes & Limitations](#actual-usages--scopes--limitations)
+- [Q-learning](#q-learning)
+- [An example of simple models](#grid)
+- [Rewards and Penalties](#rewards-and-penalties)
+
+
+
+
+## Actual usages & Scopes & Limitations
+
+### Actual usages
+
+- Gaming and Simulations (AlphaGo)
+- Cooperate with Bayesian Optimization
+- Robotics and Automation
+- Self-driving Cars
+- Finance and Trading
+- Personalization and Recommendations
+
+
+### Scopes & Limitations
+
+- Reinforcement Learning vs. Evolutionary Methods
+
+Evolutionary methods cannot utilize real-time feedback from actions, making them less efficient in dynamic environments where immediate learning is advantageous.
+
+- Policy Gradient Methods
+
+Unlike evolutionary methods, policy gradients interact with the environment to improve performance, allowing more efficient use of detailed feedback from individual interactions.
+
+- Misunderstanding of Optimization
+
+Optimization in RL is about improving performance incrementally, not guaranteeing the best possible outcome in every scenario.
+
+
+
+
+## Q-Learning
+
+
+### Q-learning Overview
+
+- Aims to learn the optimal action-value function $( q_*(s, a) )$, regardless of the policy being followed during learning. 
+- The main objective is to approximate this function through a learning process where the agent interacts with its environment, receiving rewards and updating its knowledge of state-action pairs.
+
+
+### Q-learning Update Rule
+The core formula of Q-learning is based on the Bellman equation for the action-value function:
+
+$$
+[
+Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha \left[ R_{t+1} + \gamma \max_{a} Q(S_{t+1}, a) - Q(S_t, A_t) \right]
+]
+$$
+
+
+- $( Q(s, a) )$: The current Q-value for taking action $( a )$ in state $( s )$.
+
+- $( \alpha )$: The learning rate, set to 0.1 in your code, which controls how much new information overrides the old information.
+
+- $( R )$: The reward received after taking action $( a )$ in state $( s )$.
+
+- $( \gamma )$: The discount factor, set to 0.9 in your code, which determines the importance of future rewards.
+
+- $( \max_{a'} Q(s', a') )$: The maximum Q-value for the next state $( s' )$ across all possible actions $( a' )$. This term represents the best possible future reward from the next state.
+
+- $( Q(s, a) )$ (the initial term on the right side): The old Q-value for the current state-action pair, which is being updated.
+
+
+### Key Components of Q-learning
+
+**Off-policy Learning**:
+
+- Q-learning is an off-policy method, meaning the agent can learn the optimal policy independently. Used to select actions during training (e.g., $( \epsilon )$-greedy strategy).
+
+
+### Common supporting tools 
+
+**Environment and State Management**: 
+
+```python
+Functions get_next_state() and get_reward()
+```
+
+**Q-Table Initialization**: 
+
+```python
+q_table = np.zeros((grid_size, grid_size, 4)) 
+```
+
+
+### Common supporting tools 
+
+**Neural Network**: A computational model inspired by the human brain, consisting of layers of interconnected nodes (neurons). It learns to recognize patterns in data by adjusting weights through multiple training iterations.
+
+**Deep Q-Learning (DQN)**: An algorithm that combines Q-Learning with deep neural networks to approximate the Q-value function, allowing the agent to choose optimal actions in complex environments with high-dimensional state spaces.
+
+**Policy Network**: A neural network designed to output the best action to take in a given state. It maps input states directly to actions, enabling the agent to decide what to do without relying on a value function.
+
+**Policy Gradient**: An optimization technique in reinforcement learning where the agent learns the best policy by directly adjusting its parameters to maximize the cumulative reward, rather than estimating value functions.
+
+
+### Common supporting tools 
+
+**Behavior Policy**: The strategy that the agent uses to explore the environment and collect experiences. It often includes some randomness to encourage exploration of different actions.
+
+**Target Policy**: The policy that the agent is trying to optimize. In some algorithms, like Q-learning, it is used to determine the best action to take based on learned values.
+
+**Epsilon-Greedy Policy**: A strategy used to balance exploration and exploitation. With a small probability (epsilon), the agent chooses a random action to explore, and with the remaining probability (1 - epsilon), it chooses the best-known action based on current knowledge.
+
+
+
+
+## How to use it?
+
+
+### Grid
+
+The environment is a 4×4 grid. 
+The agent starts in (0,0) and aims to reach (3,3).
+
+
+### Environment Setup
+
+```{python}
+## Import packages
+import numpy as np
+import random
+
+## Set the random seed for reproducibility
+
+
+## Define the environment
+grid_size = 4
+start_state = (0, 0)
+goal_state = (3, 3)
+obstacles = []
+```
+
+### Hyperparameters
+
+```{python}
+## Define the hyperparameters for our value function
+alpha = 0.1  # Learning rate
+gamma = 0.9  # Discount factor
+epsilon = 0.2  # Exploration rate
+num_episodes = 1000  # Try 1000 times
+```
+
+### Q-table Initialization
+
+```{python}
+## Initialize the Q-table
+q_table = np.zeros((grid_size, grid_size, 4))  
+## 4 possible actions: up, down, left, right
+## The output Q-table follows thie 4 directions
+
+## Define the action space
+actions = ["up", "down", "left", "right"]
+```
+
+### State Transitions and Reward Calculation
+
+```{python}
+def get_next_state(state, action):
+    i, j = state
+    if action == "up":
+        return (max(i - 1, 0), j)
+    elif action == "down":
+        return (min(i + 1, grid_size - 1), j)
+    elif action == "left":
+        return (i, max(j - 1, 0))
+    elif action == "right":
+        return (i, min(j + 1, grid_size - 1))
+    
+def get_reward(state):
+    if state == goal_state:
+        return 10
+    elif state in obstacles:
+        return -5
+    else:
+        return -1
+```
+
+Move up: decrease row index (i) by 1, but don't go out of bounds (minimum row index is 0)
+Move down: increase row index (i) by 1, but don't go out of bounds (maximum row index is grid_size - 1)
+Move left: decrease column index (j) by 1, but don't go out of bounds (minimum column index is 0)
+Move right: increase column index (j) by 1, but don't go out of bounds (maximum column index is grid_size - 1)
+
+### Action Selection (Epsilon-Greedy Policy)
+
+```{python}
+def choose_action(state):
+    ## Epsilon-greedy action selection
+    if random.uniform(0, 1) < epsilon:
+        return random.choice(actions)  # Explore
+    else:
+        ## Exploit (choose the action with the highest Q-value)
+        state_q_values = q_table[state[0], state[1], :]
+        return actions[np.argmax(state_q_values)]
+```
+
+state represents the agent's current position on the grid (given as a tuple (i, j)). And there are 4 x 4 = 16 possibilities.
+The function uses this state to decide whether to explore (choose a random action) or exploit (choose the best-known action based on the Q-table).
+The Q-values for that particular state are retrieved using q_table[state[0], state[1], :].
+
+
+### Q-L Algorithm (Main Loop)
+
+```{python}
+## Q-learning Algorithm
+for episode in range(num_episodes):
+    state = start_state
+    while state != goal_state:
+        action = choose_action(state)
+        next_state = get_next_state(state, action)
+        
+        ## Get the reward for moving to the next state
+        reward = get_reward(next_state)
+        
+        ## Update Q-value using the Q-learning formula
+        current_q_value = q_table[state[0], state[1], actions.index(action)]
+        max_future_q_value = np.max(q_table[next_state[0], next_state[1], :])
+        new_q_value = current_q_value + alpha * (reward + gamma * max_future_q_value - current_q_value)
+        q_table[state[0], state[1], actions.index(action)] = new_q_value
+        
+        state = next_state
+```
+
+state is initially set to start_state (e.g., (0, 0)).
+Within the loop, the choose_action(state) function is called to select an action based on the agent's current position.
+The agent then moves to a new next_state using the chosen action, and the current state is updated to next_state.
+Throughout this loop, state always represents the agent’s current position on the grid as it progresses toward the goal_state.
+
+
+### Result
+
+```{python}
+## Display the learned Q-values
+print("Learned Q-Table:")
+print(q_table)
+```
+
+This is the directly output of this example, there are three layers of bracket, each of them have different meanings.
+First layer of brackets: Represents the rows of the grid. Each layer represents a row in the Q-table(i.e., a row position in the qrid environment).
+Second layer of brackets: Represents the columns of the grid. Each subarray represents a specificstate in that row (i.e., a specific position in the qrid, such as (0,0), (1,1), etc.).
+Third layer of brackets: Represents the Q-values for each action in that state. Each elementrepresents the Q-value of a specific action in that state (e.g. the four actions: up, down, left, right)
+
+
+### route visualization
+
+```{python}
+import matplotlib.pyplot as plt
+
+# Define directional arrows for actions: up, down, left, right
+directions = {0: '↑', 1: '↓', 2: '←', 3: '→'}
+
+# Visualization of the best actions on the grid
+fig, ax = plt.subplots(figsize=(6, 6))
+ax.set_xticks(np.arange(0.5, grid_size, 1))
+ax.set_yticks(np.arange(0.5, grid_size, 1))
+ax.grid(True, which='both')
+ax.set_xticklabels([])
+ax.set_yticklabels([])
+
+# Highlight Start, Goal, and Obstacles
+ax.add_patch(plt.Rectangle(start_state, 1, 1, fill=True, color='yellow', alpha=0.3))
+ax.add_patch(plt.Rectangle(goal_state, 1, 1, fill=True, color='green', alpha=0.3))
+
+# Highlight obstacles in red
+for obstacle in obstacles:
+    ax.add_patch(plt.Rectangle(obstacle, 1, 1, fill=True, color='red', alpha=0.5))
+
+# Add arrows (text-based) for the best actions
+for i in range(grid_size):
+    for j in range(grid_size):
+        if (i, j) in obstacles:
+            continue  # Skip drawing arrows for obstacle locations
+        q_values = q_table[i, j, :]
+        best_action_idx = np.argmax(q_values)
+        best_action = directions[best_action_idx]  # Text-based direction arrows (↑, ↓, ←, →)
+
+        # Adding text-based arrows at the grid cells
+        ax.text(j + 0.5, i + 0.5, best_action, ha='center', va='center', fontsize=20)
+
+# Draw grid lines and adjust axis
+plt.xlim(0, grid_size)
+plt.ylim(0, grid_size)
+plt.gca().invert_yaxis()  # Invert Y-axis to display it in the correct orientation
+plt.show()
+```
+
+
+### Grid with obstacles
+
+Because of the reusing and stating cause the output become exactly the same. I rewrote the example with obstacles.
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+## Set random seed for reproducibility
+random.seed(3255)
+np.random.seed(3255)
+
+## Define the environment
+grid_size = 4
+start_state = (0, 0)
+goal_state = (3, 3)
+obstacles = [(1, 1), (2, 2)]  # Ensure obstacles are unique
+
+## Define directions for visualization
+directions = {0: '↑', 1: '↓', 2: '←', 3: '→'}
+```
+
+### Run the grid with obstacles
+
+```{python}
+## Function to get reward
+def get_reward(state):
+    if state == goal_state:
+        return 10
+    elif state in obstacles:
+        return -5
+    else:
+        return -1
+
+## Function to get the next state based on the action
+def get_next_state(state, action):
+    i, j = state
+    if action == "up":
+        next_state = (max(i - 1, 0), j)
+    elif action == "down":
+        next_state = (min(i + 1, grid_size - 1), j)
+    elif action == "left":
+        next_state = (i, max(j - 1, 0))
+    elif action == "right":
+        next_state = (i, min(j + 1, grid_size - 1))
+    
+    ## Prevent moving into obstacles
+    if next_state in obstacles:
+        return state  # Stay in the same position if the next state is an obstacle
+    else:
+        return next_state
+
+## Visualization function
+def plot_grid_with_obstacles():
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.clear()  # Clear the plot to avoid overlap
+    ax.set_xticks(np.arange(0.5, grid_size, 1))
+    ax.set_yticks(np.arange(0.5, grid_size, 1))
+    ax.grid(True, which='both')
+    ax.set_xticklabels([])
+    ax.set_yticklabels([])
+
+    ## Highlight Start, Goal, and Obstacles
+    ax.add_patch(plt.Rectangle(start_state, 1, 1, fill=True, color='yellow', alpha=0.3))
+    ax.add_patch(plt.Rectangle(goal_state, 1, 1, fill=True, color='green', alpha=0.3))
+
+    ## Highlight obstacles in red
+    for obstacle in set(obstacles):  # Use a set to ensure uniqueness
+        ax.add_patch(plt.Rectangle(obstacle, 1, 1, fill=True, color='red', alpha=0.5))
+
+    ## Add arrows for the best actions from Q-table
+    for i in range(grid_size):
+        for j in range(grid_size):
+            if (i, j) in obstacles:
+                continue  # Skip arrows for obstacle locations
+            q_values = q_table[i, j, :]
+            best_action_idx = np.argmax(q_values)
+            best_action = directions[best_action_idx]  # Directional arrows (↑, ↓, ←, →)
+            ax.text(j + 0.5, i + 0.5, best_action, ha='center', va='center', fontsize=20)
+
+    ## Draw grid lines and adjust axis
+    plt.xlim(0, grid_size)
+    plt.ylim(0, grid_size)
+    plt.gca().invert_yaxis()  # Invert Y-axis for correct orientation
+    plt.show()
+
+## Call the visualization function
+plot_grid_with_obstacles()
+```
+
+
+
+
+### Rewards and Penalties
+
+```python
+## Initialize list to store cumulative rewards for each episode
+cumulative_rewards = []
+
+for episode in range(num_episodes):
+    state = start_state
+    episode_reward = 0  # Track total reward for the current episode
+    
+    while state != goal_state:
+        action = choose_action(state)
+        next_state = get_next_state(state, action)
+        
+        reward = get_reward(next_state)
+        episode_reward += reward  # Accumulate reward for this episode
+        
+        # Update Q-value
+        current_q_value = q_table[state[0], state[1], actions.index(action)]
+        max_future_q_value = np.max(q_table[next_state[0], next_state[1], :])
+        new_q_value = current_q_value + alpha * 
+                        (reward + gamma * max_future_q_value - current_q_value)
+        q_table[state[0], state[1], actions.index(action)] = new_q_value
+        
+        state = next_state  # Move to the next state
+    
+    cumulative_rewards.append(episode_reward)  
+    # Store cumulative reward for this episode
+
+## Visualization of Cumulative Rewards
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 5))
+plt.plot(range(num_episodes), cumulative_rewards, 
+            label='Cumulative Reward per Episode')
+plt.xlabel("Episode")
+plt.ylabel("Cumulative Reward")
+plt.title("Cumulative Rewards and Penalties Over Episodes")
+plt.legend()
+plt.show()
+```
+
+
+### Track Cumulative Rewards Over Episodes
+
+```{python}
+## Initialize list to store cumulative rewards for each episode
+cumulative_rewards = []
+
+for episode in range(num_episodes):
+    state = start_state
+    episode_reward = 0  # Track total reward for the current episode
+    
+    while state != goal_state:
+        action = choose_action(state)
+        next_state = get_next_state(state, action)
+        
+        reward = get_reward(next_state)
+        episode_reward += reward  # Accumulate reward for this episode
+        
+        # Update Q-value
+        current_q_value = q_table[state[0], state[1], actions.index(action)]
+        max_future_q_value = np.max(q_table[next_state[0], next_state[1], :])
+        new_q_value = current_q_value + alpha * (reward + gamma * max_future_q_value - current_q_value)
+        q_table[state[0], state[1], actions.index(action)] = new_q_value
+        
+        state = next_state  # Move to the next state
+    
+    cumulative_rewards.append(episode_reward)  # Store cumulative reward for this episode
+
+## Visualization of Cumulative Rewards
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 5))
+plt.plot(range(num_episodes), cumulative_rewards, label='Cumulative Reward per Episode')
+plt.xlabel("Episode")
+plt.ylabel("Cumulative Reward")
+plt.title("Cumulative Rewards and Penalties Over Episodes")
+plt.legend()
+plt.show()
+```
+
+
+
+
 ## Demonstration: Tic-Tac-Toe 
 
 In this demonstration, we'll develop a reinforcement learning agent
