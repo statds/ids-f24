@@ -46,15 +46,15 @@ However, RL has a downside: if the model encounters a failure, it might incorrec
 
 ### Scopes & Limitations
 
-- Reinforcement Learning vs. Evolutionary Methods
+- **Reinforcement Learning vs. Evolutionary Methods**
 
 Evolutionary methods cannot utilize real-time feedback from actions, making them less efficient in dynamic environments where immediate learning is advantageous.
 
-- Policy Gradient Methods
+- **Policy Gradient Methods**
 
 Unlike evolutionary methods, policy gradients interact with the environment to improve performance, allowing more efficient use of detailed feedback from individual interactions.
 
-- Misunderstanding of Optimization
+- **Misunderstanding of Optimization**
 
 Optimization in RL is about improving performance incrementally, not guaranteeing the best possible outcome in every scenario.
 
@@ -73,11 +73,7 @@ Optimization in RL is about improving performance incrementally, not guaranteein
 ### Q-learning Update Rule
 The core formula of Q-learning is based on the Bellman equation for the action-value function:
 
-$$
-[
-Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha \left[ R_{t+1} + \gamma \max_{a} Q(S_{t+1}, a) - Q(S_t, A_t) \right]
-]
-$$
+**$$ [Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha \left[ R_{t+1} + \gamma \max_{a} Q(S_{t+1}, a) - Q(S_t, A_t) \right]] $$**
 
 
 - $( Q(s, a) )$: The current Q-value for taking action $( a )$ in state $( s )$.
