@@ -150,7 +150,8 @@ import numpy as np
 import random
 
 ## Set the random seed for reproducibility
-
+random.seed(3255)
+np.random.seed(3255)
 
 ## Define the environment
 grid_size = 4
