@@ -58,6 +58,13 @@ browser version and operating system, such as Edge Driver for Microsoft or Chrom
 
 #### Beautiful Soup vs Selenium
 
+Both Beautiful Soup and Selenium are helpful tools in web-scraping. But they both have their strengths and weaknesses.
+Beautiful Soup is lightweight, easy to learn, and perfect for working with static HTML content. However, Beautiful Soup 
+is more limited when it comes to dynamic websites, which are much more common nowadays. Selenium is better for interacting 
+with dynamic web content that loads JavaScript or requires actions like clicking, scrolling, or filling forms. That said, 
+selenium can be slower and more resource-intensive since it opens a browser window to simulate real user actions.
+
+
 #### A Step-by Step Guide to Web-Scraping
 
 
