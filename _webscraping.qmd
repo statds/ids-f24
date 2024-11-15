@@ -25,9 +25,22 @@ important for web-scraping:
 
 ### How to Web-Scrape with Python
 
-#### Selenium
+There are many ways to web-scrape with Python. We will cover the two main packages, Beautiful Soup 
+and Selenium.
 
 #### Beautiful Soup
+
+The Beautiful Soup Python Library simplifies the process of parsing and navigating HTML and XML documents, making it easier 
+to extract data from websites. Beautiful Soup is ideal for scraping data from static websites. Static websites do not change 
+based on user actions or require server-side interactions to update content dynamically. Basically, what you see is what you get.
+Static websites tend to be pretty simple so scraping from them is relatively easy.
+
+Beautiful Soup can be installed by running
+```
+pip install beautifulsoup4
+```
+
+#### Selenium
 
 #### Beautiful Soup vs Selenium
 
