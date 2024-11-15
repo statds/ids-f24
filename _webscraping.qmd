@@ -39,8 +39,22 @@ Beautiful Soup can be installed by running
 ```
 pip install beautifulsoup4
 ```
+in your terminal.
 
 #### Selenium
+
+Selenium is used for web browser automation and dynamic websites. Dynamic sites often use backend programming to 
+pull data from a database, customize it, and render it in real time based on user requests. This makes Selenium 
+great at performing web-scraping tasks that involve multiple pages or performing actions within those pages.
+Because dynamic websites tend to be a bit more complex, you need to use a package like Selenium that is more
+equiped for the complex structure.
+
+Selenium can be installed by running 
+```
+pip install selenium
+```
+in your terminal. To control a web browser, Selenium also requires a WebDriver. Download the driver that matches your 
+browser version and operating system, such as Edge Driver for Microsoft or Chrome Edge for Google.
 
 #### Beautiful Soup vs Selenium
 
