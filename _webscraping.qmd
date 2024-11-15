@@ -64,9 +64,17 @@ is more limited when it comes to dynamic websites, which are much more common no
 with dynamic web content that loads JavaScript or requires actions like clicking, scrolling, or filling forms. That said, 
 selenium can be slower and more resource-intensive since it opens a browser window to simulate real user actions.
 
-
 #### A Step-by Step Guide to Web-Scraping
 
+1. Find the website URL with the information you want to select
+2. Send an HTTP request to the URL and confirm you have access to the page. Generally, 200-299 means the request has been granted and 
+  400-499 means that your request is not allowed.
+3. Use the "Inspect" tool in your browser to identify the tags, classes, or elements associated with the data you want to extract. This
+  can be done by right-clicking on the web page and pressing select. If you hover your clicker over the different sections of HTML,
+  the parts of the website that section is associated with will become highlighted. Use this to find the element that is associated
+  with the data that you want to scrape.
+4. Use a parsing library like Beautiful Soup or Selenium to process the HTML response
+5. Clean and store the relevant infomation
 
 ### Examples using NYC Open Data
 
