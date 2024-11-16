@@ -73,12 +73,79 @@ selenium can be slower and more resource-intensive since it opens a browser wind
   can be done by right-clicking on the web page and pressing select. If you hover your clicker over the different sections of HTML,
   the parts of the website that section is associated with will become highlighted. Use this to find the element that is associated
   with the data that you want to scrape.
-4. Use a parsing library like Beautiful Soup or Selenium to process the HTML response
-5. Clean and store the relevant infomation
+4. Use a parsing library like Beautiful Soup or Selenium to process the HTML response. Beautiful Soup requires the use of the 
+  requests package in order to send a request. Selenium uses the webdriver to send the request.
+5. Clean and store the relevant infomation.
 
 ### Examples using NYC Open Data
 
+Since this class has used the NYC Open Data, let's build on this data set in order to get some additional information that is
+not already available.
+
 #### Beautiful Soup and NYPD Precincts
+
+Say you want to get the adresses of all of the NYPD Precincts in New York City. This information is available in table format 
+on the [NYPD website](https://www.nyc.gov/site/nypd/bureaus/patrol/precincts-landing.page). 
+
+```{python}
+#| echo: true
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+# URL of the NYPD precincts page
+url = "https://www.nyc.gov/site/nypd/bureaus/patrol/precincts-landing.page"
+
+# Send a GET request to the page
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+}
+response = requests.get(url, headers=headers)
+
+# Check if the request was successful
+print(response.status_code)
+if response.status_code != 200:
+    print(f"Failed to retrieve page: Status code {response.status_code}")
+```
+
+Parsing the Table
+```{python}
+#| echo: true
+# Parse the HTML content
+soup = BeautifulSoup(response.text, 'html.parser')
+
+# Find the table with class "rt" which holds the precinct data
+table = soup.find("table", {"class": "rt"})
+    
+# Lists to hold the extracted data
+precinct_names = []
+addresses = []
+    
+# Extract each row of the table (each row corresponds to one precinct)
+for row in table.find_all("tr"):
+  # Find the "Precinct" and "Address" columns by data-label attribute
+  precinct_cell = row.find("td", {"data-label": "Precinct"})
+  address_cell = row.find("td", {"data-label": "Address"})
+        
+  # If both cells are found, store their text content
+  if precinct_cell and address_cell:
+    precinct_names.append(precinct_cell.get_text(strip=True))
+    addresses.append(address_cell.get_text(strip=True))
+```
+
+Storing the Data
+
+```{python}
+#| echo: true
+# Create a DataFrame with the extracted data
+precincts_df = pd.DataFrame({
+  "Precinct": precinct_names,
+  "Address": addresses
+})
+
+# Display the DataFrame
+print(precincts_df)
+```
 
 #### Selenium and Weather Data
 
