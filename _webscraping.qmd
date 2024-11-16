@@ -80,12 +80,13 @@ selenium can be slower and more resource-intensive since it opens a browser wind
 ### Examples using NYC Open Data
 
 Since this class has used the NYC Open Data, let's build on this data set in order to get some additional information that is
-not already available.
+not already available. 
 
 #### Beautiful Soup and NYPD Precincts
 
 Say you want to get the adresses of all of the NYPD Precincts in New York City. This information is available in table format 
-on the [NYPD website](https://www.nyc.gov/site/nypd/bureaus/patrol/precincts-landing.page). 
+on the [NYPD website](https://www.nyc.gov/site/nypd/bureaus/patrol/precincts-landing.page). Since the NYPD Precincts aren't 
+changed, the website is static, making Beautiful Soup the best package to use to scrape this website.
 
 Start by making sure you have Beautiful Soup and Requests installed. The requests package can be installed using
 
@@ -171,6 +172,146 @@ print(precincts_df)
 
 #### Selenium and Weather Data
 
+Say you want to see if the weather makes an impact of the number or severity of crashes in New York City. Weather data in New York City can
+be found on [Wundergroud](https://www.wunderground.com/history/weekly/us/ny/new-york-city/KLGA/date/2024-6-30). Since information on weather is 
+always being monitored and collected, the data that we want for a specific time period in being held in the websites database. Therefore, 
+the website is dynamic and Selenium cna be used for web scraping.
+
+The first step is to set up Selenium and the WebDriver. In this example, I use Edge Driver (from Microsoft Edge). `edge_options = Options()` 
+initializes options for the Edge browser. The options I used were `--headless` (which allows the browser to run without a visible window)
+and `--disable-gpu` (which can improve performance in headless mode). You then need to provide the path for where the driver is located.
+The driver then can be initialized with the path and driver options.
+
+```{python}
+#| echo: true
+from selenium import webdriver
+from selenium.webdriver.edge.service import Service
+from selenium.webdriver.edge.options import Options
+
+# Configure headless Edge browser
+edge_options = Options()
+edge_options.add_argument("--headless")
+edge_options.add_argument("--disable-gpu")
+
+# Set the path for Edge driver
+edge_driver_path = 'C:/Users/mpdes/Downloads/edgedriver_win64/msedgedriver.exe'
+service = Service(edge_driver_path)
+driver = webdriver.Edge(service=service, options=edge_options)
+```
+
+Once Selenium and the webdriver is set up, go to the page and find the target data. Same as with the Beautiful Soup
+example, go to the url and identify the table that you want to webscrape. In this case, I want the table at the bottom of the page
+that lists the daily observations of the temperature,	dew point, humidity, wind speed, pressure, and precipitation. The table is identified
+as `<table>` with the class `<days>`. In Selenium, `driver.get(url)` opens the webpage in the Edge browser. Once the table has loaded, 
+`(By.CSS_SELECTOR, "table.days")` selects the main data table by its CSS selector "table.days", ensuring we’re targeting the right element.
+```{python}
+#| echo: true
+# Define the target URL
+url = f"https://www.wunderground.com/history/weekly/us/ny/new-york-city/KLGA/date/2024-6-30"
+
+# Load the page
+driver.get(url)
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# Wait for table to load
+wait = WebDriverWait(driver, 15)
+table = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "table.days")))
+```
+
+Within the table, the rows are indentified by `tr` in `tbody`and the columns are in `td`. 
+```{python}
+#| echo: true
+# Initialize lists for each data type
+dates = []
+max_temps = []
+min_temps = []
+humidity_values = []
+wind_speeds = []
+pressure_values = []
+precip_values = []
+
+# Get all rows
+rows = table.find_elements(By.CSS_SELECTOR, "tbody tr")
+for row in rows:
+    # Get all 'td' elements in the row
+    columns = row.find_elements(By.TAG_NAME, "td")  
+    # Extract text from each column
+    row_data = [col.text.strip() for col in columns]  
+    # Print the content of the row
+    print("Row Data:", row_data)  # This will print the content of each row
+```
+
+As you can see the output is pretty messy. From this step, we need to find the important parts and strip it of the text.
+This can be done by identifying the indicies of the rows that we want, using `find_elements` to find the corresponding tag, and then
+stripping the text to add it to the relevant list.
+
+```{python}
+#| echo: true
+# Process the first row which contains all the dates
+date_row = rows[0].text.split('\n')
+dates = [date for date in date_row if date.isdigit()][:7]  # Get first 7 dates
+
+# Find temperature values (rows 10-16 contain the actual temperature data)
+temp_rows = rows[10:17]  # Get rows 10-16
+for row in temp_rows:
+  cells = row.find_elements(By.TAG_NAME, "td")
+  if len(cells) >= 3:
+    max_temps.append(cells[0].text.strip())
+    min_temps.append(cells[2].text.strip())
+
+# Find humidity values (rows 18-24)
+humidity_rows = rows[18:25]
+for row in humidity_rows:
+  cells = row.find_elements(By.TAG_NAME, "td")
+  if len(cells) >= 2:
+    humidity_values.append(cells[1].text.strip())
+
+# Find wind speed values (rows 26-32)
+wind_rows = rows[26:33]
+for row in wind_rows:
+  cells = row.find_elements(By.TAG_NAME, "td")
+  if len(cells) >= 1:
+    wind_speeds.append(cells[0].text.strip())
+
+# Find pressure values (rows 42-48)
+pressure_rows = rows[42:49]
+for row in pressure_rows:
+  cells = row.find_elements(By.TAG_NAME, "td")
+  if len(cells) >= 1:
+    pressure_values.append(cells[0].text.strip())
+
+# Find precipitation values (rows 50-56)
+precip_rows = rows[50:57]
+for row in precip_rows:
+  cells = row.find_elements(By.TAG_NAME, "td")
+  if len(cells) >= 1:
+    precip_values.append(cells[0].text.strip())
+```
+
+Once all the relevant data has been collected and cleaned, it can be added to a new dataframe.
+```{python}
+#| echo: true
+import pandas as pd
+
+# Create DataFrame
+weather_data = pd.DataFrame({
+    'Date': dates,
+    'Max Temperature (°F)': max_temps,
+    'Min Temperature (°F)': min_temps,
+    'Humidity (%)': humidity_values,
+    'Wind Speed (mph)': wind_speeds,
+    'Pressure (in)': pressure_values,
+    'Precipitation (in)': precip_values
+})
+
+print(weather_data)
+driver.quit()
+```
+
+Lastly, `driver.quit()` closes the browser.
 
 ### A Note on Data Ethics 
 
