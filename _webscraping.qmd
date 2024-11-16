@@ -87,6 +87,17 @@ not already available.
 Say you want to get the adresses of all of the NYPD Precincts in New York City. This information is available in table format 
 on the [NYPD website](https://www.nyc.gov/site/nypd/bureaus/patrol/precincts-landing.page). 
 
+Start by making sure you have Beautiful Soup and Requests installed. The requests package can be installed using
+
+```
+pip install requests
+```
+
+Import the requests package, BeautifulSoup from bs4, and pandas (to create a new data frame). We have already identified the 
+url that will be scraping data from. In the code below, there is a dictionary called headers. This is optional. Headers can 
+help make your requests look more like a browser. If you choose to use a header, include it when you send your request to the
+url. Otherwise, the request can be sent to the url using `requests.get()`.
+
 ```{python}
 #| echo: true
 import requests
@@ -108,7 +119,17 @@ if response.status_code != 200:
     print(f"Failed to retrieve page: Status code {response.status_code}")
 ```
 
-Parsing the Table
+Since the response to the request was 200, we are clear to move onto the next step which is parsing the table.
+
+To start parsing, you have to call Beautiful Soup. When you pass `response.text` into Beautiful Soup, it takes
+the raw HTML of the webpage as a string. `html.parser` specifies the parsing engine used by Beautiful Soup to process the HTML.
+It is a built-in Python HTML parser that is fast and works well for most cases.
+
+To identify which parts of the website you want to webscrape, you can right click on the website and click inspect. This will
+show you the HTML of the page. The table can be found under the `<table>` element with the class `rt`. Using this information, have 
+Beautiful Soup find the table using `.find()`. Within the table, the rows are indentifies by `<tr>` within the HTML. In each row,
+the name of the precinct and address is found in the `<td>` element with the data labels `Precinct` and `Address` respectively.
+From this, use `.find_all('tr')` to find all the rows in the table and then within each row, extract the precinct and address.
 ```{python}
 #| echo: true
 # Parse the HTML content
@@ -133,7 +154,8 @@ for row in table.find_all("tr"):
     addresses.append(address_cell.get_text(strip=True))
 ```
 
-Storing the Data
+The extracted information can be stripped so that only the relevant text is included and then added to their relevant list.
+Now that the data has been collected and cleaned, a new dataframe can be created.
 
 ```{python}
 #| echo: true
