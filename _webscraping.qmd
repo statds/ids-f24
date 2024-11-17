@@ -315,6 +315,22 @@ Lastly, `driver.quit()` closes the browser.
 
 ### A Note on Data Ethics 
 
+While web scraping is not explicitly illegal, it can get you in hot water if you are not careful. Web scraping is
+a powerful tool and it should be treated as such. Just because you can web scrape doesn't always mean you should.
+
 #### Why Web-Scraping can be un-ethical
 
+There are several reasons that web scraping may be deemed unethical. 
+
+- The website you are trying to web scrape may not allow it.
+- The information being scraped is considered private information or intellectual property.
+- Sending too many requests at once can overwhelm the server and crash the website.
+
 #### Some Tips to Help You Scrape Ethically
+
+- You can check if a website allows web scraping in either the terms of use section of the website or
+  by checking the websites `.robots.txt` to see who is allowed to use the website and what parts are available for scraping.
+- Always be mindful of what kind of information you are trying to collect and if it is private information/intellectual property
+- Never scrape from a website that requires login or payment
+- Spread out the time of the requests in order to prevent the website from crashing. If using Selenium, use `WebDriverWait` from
+  `selenium.webdriver.support.ui` to wait for the page to load. Otherwise, use the `time` package to space out the requests.
