@@ -1,0 +1,392 @@
+# Reinforcement Learning
+
+
+## Demonstration: Tic-Tac-Toe 
+
+In this demonstration, we'll develop a reinforcement learning agent
+that learns to play Tic-Tac-Toe using the Q-learning algorithm. We'll
+start with an overview of the work plan and then present the code step
+by step, explaining each part in detail.
+
+
+
+### Work Plan Overview
+
+1. **Import Required Libraries**: Import necessary Python libraries for the implementation.
+
+2. **Define the Default Q-Value Function**: Create a function to initialize default Q-values for unseen states.
+
+3. **Implement the `TicTacToe` Game Class**: Define the game environment, including the board, moves, and win conditions.
+
+4. **Implement the `QLearningAgent` Class**: Develop the agent that will learn optimal strategies using Q-learning.
+
+5. **Define the Game Playing Function**: Write a function to simulate games between the agent and an opponent.
+
+6. **Define the Training Function**: Create a function to train the agent over multiple episodes.
+
+7. **Define the Evaluation Function**: Assess the agent's performance after training.
+
+8. **Enable Human Interaction**: Allow a human player to play against the trained agent.
+
+9. **Main Function**: Tie all components together and provide a user interface.
+
+### Code Implementation
+
+Let's go through the code step by step.
+
+#### Import Required Libraries
+
+We start by importing the necessary libraries.
+
+```{python}
+import numpy as np
+import random
+from collections import defaultdict
+```
+
+#### Define the Default Q-Value Function
+
+We define a function that returns a NumPy array of zeros, which
+initializes the Q-values for new states.
+
+```{python}
+def default_q_value():
+    return np.zeros(9)
+```
+
+This function ensures that every new state encountered by the agent
+has an initial Q-value of zero for all possible actions.
+
+
+#### Implement the `TicTacToe` Game Class
+
+We create a class to represent the Tic-Tac-Toe game environment.
+```{python}
+class TicTacToe:
+    def __init__(self):
+        self.board = [' '] * 9
+        self.current_winner = None
+
+    def reset(self):
+        self.board = [' '] * 9
+        self.current_winner = None
+        return self.get_state()
+
+    def available_actions(self):
+        return [i for i, spot in enumerate(self.board) if spot == ' ']
+
+    def get_state(self):
+        return tuple(self.board)
+
+    def make_move(self, square, letter):
+        if self.board[square] == ' ':
+            self.board[square] = letter
+            if self.winner(square, letter):
+                self.current_winner = letter
+            return True
+        return False
+
+    def winner(self, square, letter):
+        # Check rows, columns, and diagonals for a win
+        row_ind = square // 3
+        row = self.board[row_ind*3:(row_ind+1)*3]
+        if all(s == letter for s in row):
+            return True
+
+        col_ind = square % 3
+        col = [self.board[col_ind+i*3] for i in range(3)]
+        if all(s == letter for s in col):
+            return True
+
+        # Check diagonals
+        if square % 2 == 0:
+            diag1 = [self.board[i] for i in [0,4,8]]
+            if all(s == letter for s in diag1):
+                return True
+            diag2 = [self.board[i] for i in [2,4,6]]
+            if all(s == letter for s in diag2):
+                return True
+
+        return False
+
+    def is_full(self):
+        return ' ' not in self.board
+
+    def print_board(self):
+        # Helper function to print the board
+        for row in [self.board[i*3:(i+1)*3] for i in range(3)]:
+            print('| ' + ' | '.join(row) + ' |')
+
+    def print_board_nums(self):
+        # Helper function to show the number mapping to board positions
+        number_board = [str(i) for i in range(9)]
+        for row in [number_board[i*3:(i+1)*3] for i in range(3)]:
+            print('| ' + ' | '.join(row) + ' |')
+```
+
+
+Explanation:
+
++ `__init__`: Initializes the game board and sets the current winner to `None`.
++ `reset`: Resets the board for a new game and returns the initial state.
++ `available_actions`: Returns a list of indices where moves can be
+  made.
++ `get_state`: Returns a tuple representing the current state of the
+  board.
++ `make_move`: Places a letter ('X' or 'O') on the board if the move
+  is valid.
++ `winner`: Checks if the last move resulted in a win.
++ `is_full`: Checks if the board is full, indicating a draw.
++ `print_board` and `print_board_nums`: Helper methods to display the
+  board and the numbering for positions.
+  
+  
+#### Implement the QLearningAgent Class
+
+We define a class for the agent that will learn using Q-learning.
+```{python}
+class QLearningAgent:
+    def __init__(self, alpha=0.1, gamma=0.9, epsilon=1.0, epsilon_decay=0.9995):
+        self.q_table = defaultdict(default_q_value)
+        self.alpha = alpha          # Learning rate
+        self.gamma = gamma          # Discount factor
+        self.epsilon = epsilon      # Exploration rate
+        self.epsilon_decay = epsilon_decay
+        self.epsilon_min = 0.01     # Minimum exploration rate
+
+    def choose_action(self, state, available_actions):
+        # ε-greedy action selection
+        if np.random.rand() < self.epsilon:
+            return random.choice(available_actions)
+        else:
+            state_values = self.q_table[state]
+            # Select action with highest Q-value among available actions
+            q_values = [(action, state_values[action]) for action in available_actions]
+            max_value = max(q_values, key=lambda x: x[1])[1]
+            max_actions = [action for action, value in q_values if value == max_value]
+            return random.choice(max_actions)
+
+    def learn(self, state, action, reward, next_state, done):
+        old_value = self.q_table[state][action]
+        next_max = np.max(self.q_table[next_state]) if not done else 0
+        # Q-learning update rule
+        new_value = (1 - self.alpha) * old_value + self.alpha * (reward + self.gamma * next_max)
+        self.q_table[state][action] = new_value
+
+        # Decay the exploration rate
+        if self.epsilon > self.epsilon_min:
+            self.epsilon *= self.epsilon_decay
+```
+
+Explanation:
+
++ `__init__`: Initializes the Q-table and sets the hyperparameters for
+  learning.
++ `choose_action`: Implements the ε-greedy policy for choosing
+  actions.
+    -  With probability $\epsilon$, the agent explores by selecting a
+       random action.
+    - Otherwise, it exploits by choosing the action with the highest
+      estimated Q-value.
++ `learn`: Updates the Q-values based on the reward received and the
+  maximum Q-value of the next state.
+
+
+#### Define the Game Playing Function
+
+We create a function to simulate a game between the agent and an
+opponent.
+
+```{python}
+def play_game(agent, env, human_vs_agent=False):
+    state = env.reset()
+    done = False
+    if human_vs_agent:
+        print("Positions are as follows:")
+        env.print_board_nums()
+    current_player = 'X'  # Agent always plays 'X'
+
+    while not done:
+        if current_player == 'X':
+            available_actions = env.available_actions()
+            action = agent.choose_action(state, available_actions)
+            env.make_move(action, 'X')
+            next_state = env.get_state()
+            if human_vs_agent:
+                print("\nAgent's Move:")
+                env.print_board()
+            if env.current_winner == 'X':
+                agent.learn(state, action, 1, next_state, True)
+                if human_vs_agent:
+                    print("Agent wins!")
+                return 1  # Agent wins
+            elif env.is_full():
+                agent.learn(state, action, 0.5, next_state, True)
+                if human_vs_agent:
+                    print("It's a draw.")
+                return 0.5  # Draw
+            else:
+                agent.learn(state, action, 0, next_state, False)
+                state = next_state
+                current_player = 'O'
+        else:
+            available_actions = env.available_actions()
+            if human_vs_agent:
+                valid_square = False
+                while not valid_square:
+                    user_input = input("Your move (0-8): ")
+                    try:
+                        action = int(user_input)
+                        if action not in available_actions:
+                            raise ValueError
+                        valid_square = True
+                    except ValueError:
+                        print("Invalid move. Try again.")
+                env.make_move(action, 'O')
+                state = env.get_state()
+            else:
+                action = random.choice(available_actions)
+                env.make_move(action, 'O')
+            if env.current_winner == 'O':
+                agent.learn(state, action, -1, env.get_state(), True)
+                if human_vs_agent:
+                    env.print_board()
+                    print("You win!")
+                return -1  # Agent loses
+            elif env.is_full():
+                agent.learn(state, action, 0.5, env.get_state(), True)
+                if human_vs_agent:
+                    print("It's a draw.")
+                return 0.5  # Draw
+            else:
+                current_player = 'X'
+```
+
+Explanation:
+
++ Game Loop: Alternates turns between the agent and the opponent (or
+  human player).
++ Agent's Turn:
+    - Chooses an action using the ε-greedy policy.
+	- Updates the Q-table based on the outcome.
++ Opponent's/Human's Turn:
+    - If `human_vs_agent` is `True`, prompts the human for input.
+	- Otherwise, the opponent makes a random move.
+	- The agent updates its Q-table based on the outcome.
+	
+#### Define the Training Function
+
+We define a function to train the agent over multiple episodes.
+
+```{python}
+def train_agent(episodes=50000):
+    agent = QLearningAgent()
+    env = TicTacToe()
+    for episode in range(episodes):
+        play_game(agent, env)
+        if (episode + 1) % 10000 == 0:
+            print(f"Episode {episode + 1}/{episodes} completed.")
+    return agent
+```
+
+Explanation:
+
++ Initialization: Creates a new agent and game environment.
++ Training Loop: The agent plays the game repeatedly to learn from
+  experience.
++ Progress Updates: Prints a message every 10,000 episodes to track
+  training progress.
+
+
+#### Define the Evaluation Function
+We create a function to evaluate the agent's performance after
+training.
+```{python}
+def evaluate_agent(agent, games=1000):
+    env = TicTacToe()
+    wins = 0
+    draws = 0
+    losses = 0
+    for _ in range(games):
+        result = play_game(agent, env)
+        if result == 1:
+            wins += 1
+        elif result == 0.5:
+            draws += 1
+        else:
+            losses += 1
+    print(f"Out of {games} games: {wins} wins, {draws} draws, {losses} losses.")
+```
+
+Explanation:
+
++ Evaluation Loop: The agent plays a specified number of games without
+  learning.
++ Outcome Tracking: Records the number of wins, draws, and losses.
++ Performance Display: Prints the results after evaluation.
+
+#### Enable Human Interaction
+We create a function to allow a human to play against the agent.
+
+```{python}
+def play_against_agent(agent):
+    env = TicTacToe()
+    play_game(agent, env, human_vs_agent=True)
+```
+
+#### Main Function
+We define the main function to provide a user interface.
+```{python}
+def main():
+    print("Tic-Tac-Toe with Reinforcement Learning Agent")
+    print("1. Train Agent")
+    print("2. Evaluate Agent")
+    print("3. Play Against Agent")
+    choice = input("Select an option (1-3): ")
+
+    if choice == '1':
+        episodes = int(input("Enter number of training episodes: "))
+        agent = train_agent(episodes)
+        # Save the trained agent
+        import pickle
+        with open('trained_agent.pkl', 'wb') as f:
+            pickle.dump(agent, f)
+        print("Agent trained and saved as 'trained_agent.pkl'.")
+    elif choice == '2':
+        # Load the trained agent
+        import pickle
+        try:
+            with open('trained_agent.pkl', 'rb') as f:
+                agent = pickle.load(f)
+            evaluate_agent(agent)
+        except FileNotFoundError:
+            print("No trained agent found. Please train the agent first.")
+    elif choice == '3':
+        # Load the trained agent
+        import pickle
+        try:
+            with open('trained_agent.pkl', 'rb') as f:
+                agent = pickle.load(f)
+            play_against_agent(agent)
+        except FileNotFoundError:
+            print("No trained agent found. Please train the agent first.")
+    else:
+        print("Invalid option selected.")
+```
+
+
+#### Example Session
+
+Training and Evaluating the Agent:
+```{pythopn}
+agent = train_agent(50000)
+
+evaluate_agent(agent, games=1000)
+```
+
+Playing Against the Agent:
+```{python}
+# play_against_agent(agent)
+```
+
+

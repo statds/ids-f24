@@ -14,11 +14,11 @@ enrolled in the course. This cooperative approach to education was
 facilitated through the use of GitHub, a platform that encourages
 collaborative coding and content development. To view
 these contributions and the lecture notes in their entirety, please
-visit our Spring 2024 repository at <https://github.com/statds/ids-f24>.
+visit our GitHub repository at <https://github.com/statds/ids-f24>.
 
 
 Students contributed to the lecture notes by submitting pull requests
-to our dedicated GitHub repository. This method not only enriched the
+to our GitHub repository. This method not only enriched the
 course material but also provided students with practical experience
 in collaborative software development and version control. 
 
@@ -28,9 +28,26 @@ years, the
 [Spring 2024](https://statds.github.io/ids-s24),
 [Spring 2023](https://statds.github.io/ids-s23) and
 [Spring 2022](https://statds.github.io/ids-s22/)
-are both publicly accessible. These archives offer
-valuable insights into the evolution of the course content and the
+are also publicly accessible. These archives offer
+insights into the evolution of the course content and the
 different perspectives brought by successive student cohorts.
+
+
+## Compiling the Classnotes
+To reproduce the classnotes output on your own computer, here are the
+necessary steps:
+
++ Clone the classnotes repository to an appropriate location on your
+  computer.
++ Set up a Python virtual environment in the root folder of the
+  source.
++ Install all the packages specified in `requirements.txt`.
++ For some chapters that need to interact with Google map services,
+  you need to save your API key in a file named `api_key.txt` in the
+  root folder of the source.
++ Render the book with `quarto render` from the root folder on a
+  terminal; the rendered book will be stored under `_book`.
+
 
 ## Midterm Project
 
@@ -239,26 +256,26 @@ Please use the following table to sign up.
 
    Date  | Presenter              | Topic
   ------ | ---------------------- | ------
-   09/11 | Zachary Blanchard    | Making presentation with Quarto
+   09/11 | Zachary Blanchard    | Presentation with Quarto
    09/16 | Deyu Xu                | Import/Export data
-   09/18 | Sara Clokey            | Communications in data science
+   09/18 | Sara Clokey            | Communications in Data Science
    09/23 | Dorathea Johnson       | Database with SQL
    09/25 | Xavier Febles           | Statistical tests
-   09/30 | Jack Bienvenue         | Visualizing spatial data in a Google Map
-   10/02 | Julia Mazzola          | Data Visualization with Plotnine
+   09/30 | Jack Bienvenue         | Visualizing Spatial Data in a Google Map
+   10/02 | Julia Mazzola          | Data VisualiZation with Plotnine
    10/07 | Suha Akach             | Naive Bayes classifier
    10/09 | Rahul Manna            | Animation
-   10/23 | Jaden Astle            | Classification and regression trees 
+   10/23 | Jaden Astle            | Classification and Regression Trees 
    10/23 | Olivia Kashalapov      | Synthetic Minority Oversampling Technique (SMOTE)
    10/28 | Data science alumni panel |
    10/30 | Emily Borowski         | Random Forest
    10/30 | Aditya Paricharak      | Neural Networks
-   11/04 | Melanie Desroches      |
+   11/04 | Melanie Desroches      | Web Scraping
    11/06 | Qianruo Tan            | Reinforcement Learning
-   11/11 | Aansh Jha              |
-   11/11 | Owen Babiec            | Calling R from Python and vice versa
+   11/11 | Aansh Jha              | K-means Clustering
+   11/11 | Owen Babiec            | Calling R from Python and Vice Versa
    11/13 | Stef Baptista            |
-   11/13 | Mohammad Parvez   | Developing a Python package
+   11/13 | Mohammad Parvez   | Extracting and Analyzing Census Data
 
 
 ### Final Project Presentation Schedule
@@ -297,7 +314,7 @@ writing](https://statds.github.io/stat-writing/using-the-right-tools-for-writing
 
 
 Plagiarism is to be prevented. Remember that these class notes are publicly
-available online with your names attached.  Here are some resources on []how to
+available online with your names attached.  Here are some resources on [how to
 avoid plagiarism](https://usingsources.fas.harvard.edu/how-avoid-plagiarism). 
 In particular, in our course, one convenient way to avoid plagiarism is to use
 our own data (e.g., NYC Open Data). Combined with your own explanation of the
@@ -310,9 +327,10 @@ code chunks, it would be hard to plagiarize.
     - Keep the repo clean (no tracking generated files).
         - Never "Upload" your files; use the git command lines.
         - Make commit message informative (think about the readers).
+    - Make at least 10 commits and form a style of frequent small commits.
 + Use `quarto` source only. See @sec-quarto.
-+ For the convenience of grading, add your html output to a release in your
-  repo.
++ For the convenience of grading, add your standalone html or pdf
+  output to a release in your repo.
 + For standalone pdf output, you will need to have
   [LaTeX](https://www.latex-project.org/get/) installed.
 
