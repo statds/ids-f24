@@ -194,7 +194,8 @@ edge_options.add_argument("--headless")
 edge_options.add_argument("--disable-gpu")
 
 # Set the path for Edge driver
-edge_driver_path = 'C:/Users/mpdes/Downloads/edgedriver_win64/msedgedriver.exe'
+# edge_driver_path = 'C:/Users/mpdes/Downloads/edgedriver_win64/msedgedriver.exe'
+edge_driver_path = 'path/to/driver'
 service = Service(edge_driver_path)
 driver = webdriver.Edge(service=service, options=edge_options)
 ```
