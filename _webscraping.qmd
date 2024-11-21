@@ -177,26 +177,33 @@ be found on [Wundergroud](https://www.wunderground.com/history/weekly/us/ny/new-
 always being monitored and collected, the data that we want for a specific time period in being held in the websites database. Therefore, 
 the website is dynamic and Selenium cna be used for web scraping.
 
-The first step is to set up Selenium and the WebDriver. In this example, I use Edge Driver (from Microsoft Edge). `edge_options = Options()` 
-initializes options for the Edge browser. The options I used were `--headless` (which allows the browser to run without a visible window)
+The first step is to set up Selenium and the WebDriver. In this example, I use Chrome Driver. `chrome_options = Options()` 
+initializes options for the Chrome browser. The options I used were `--headless` (which allows the browser to run without a visible window)
 and `--disable-gpu` (which can improve performance in headless mode). You then need to provide the path for where the driver is located.
 The driver then can be initialized with the path and driver options.
 
 ```{python}
-#| echo: true
 from selenium import webdriver
-from selenium.webdriver.edge.service import Service
-from selenium.webdriver.edge.options import Options
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+import time
 
-# Configure headless Edge browser
-edge_options = Options()
-edge_options.add_argument("--headless")
-edge_options.add_argument("--disable-gpu")
+# Set up ChromeDriver
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # Run in headless mode (no browser UI)
+chrome_options.add_argument("--disable-gpu")  # Disable GPU acceleration
+chrome_options.add_argument("--no-sandbox")  # Required for some environments
 
-# Set the path for Edge driver
-edge_driver_path = 'path/to/driver' # use your own
-service = Service(edge_driver_path)
-driver = webdriver.Edge(service=service, options=edge_options)
+# Path to your ChromeDriver executable
+config_file_path = "config.txt"
+with open(config_file_path, 'r') as file:
+        chrome_driver_path = file.read().strip()
+service = Service(chrome_driver_path)
+
+# Initialize the ChromeDriver
+driver = webdriver.Chrome(service=service, options=chrome_options)
+
 ```
 
 Once Selenium and the webdriver is set up, go to the page and find the target data. Same as with the Beautiful Soup
