@@ -326,9 +326,12 @@ for episode in range(num_episodes):
 ```
 
 state is initially set to start_state (e.g., (0, 0)).
-Within the loop, the choose_action(state) function is called to select an action based on the agent's current position.
-The agent then moves to a new next_state using the chosen action, and the current state is updated to next_state.
-Throughout this loop, state always represents the agent’s current position on the grid as it progresses toward the goal_state.
+Within the loop, the choose_action(state) function is called to
+select an action based on the agent's current position.
+The agent then moves to a new next_state using the chosen action,
+and the current state is updated to next_state.
+Throughout this loop, state always represents the agent’s current
+position on the grid as it progresses toward the goal_state.
 
 
 ### Result
