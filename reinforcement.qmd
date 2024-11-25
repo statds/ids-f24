@@ -1,6 +1,6 @@
 # Reinforcement Learning
 
-
+This chapter was written by Qianruo Tan.
 
 
 ## What is Reinforcement Learning?
