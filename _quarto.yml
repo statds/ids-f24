@@ -33,6 +33,7 @@ book:
     - unsupervised.qmd
     - reinforcement.qmd
     - advanced.qmd
+    - censustract.qmd
     - exercises.qmd
     - references.qmd
 
