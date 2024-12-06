@@ -56,14 +56,30 @@
     GitHub. Make sure you have clear messages to document the changes.
 
 1. **Monty Hall**
-   Write a function to demonstrate the Monty Hall problem through
+   Consider a generalized Monty Hall experiment. Suppose that the game
+   start with $n$ doors; after you pick one, the host opens
+   $m \le n - 2$ doors, that show no award.  Include sufficient text
+   around the code chunks to explain them.
+    a.  Write a function to simulate the experiment once. The function
+   takes two arguments `ndoors` and `nempty`, which represent the
+   number of doors and the number of empty doors showed by the host,
+   respectively, It returns the result of two strategies, switch and
+   no-switch, from playing this game. 
+    a.  Play this game with 3 doors and 1 empty a few times.
+	a.  Play this game with 10 doors and 8 empty a few times.
+	a.  Write a function to play this game `ntrial` times and return
+   the proportion of wins for both strategies.
+    a.  Apply your function to play this game 1000 times, with 3 doors
+   and 10 doors, and summarize your results.
+   
+
+Write a function to demonstrate the Monty Hall problem through
    simulation. The function takes two arguments `ndoors` and
    `ntrials`, representing the number of doors in the experiment and
    the number of trials in a simulation, respectively. The function
    should return the proportion of wins for both the switch and
    no-switch strategy. Apply your function with 3 doors and 5 doors,
-   both with 1000 trials. Include sufficient text around the code to
-   explain your them.
+   both with 1000 trials
 
 1.  **Approximating $\pi$**
    Write a function to do a Monte Carlo approximation of $\pi$. The
