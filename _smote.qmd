@@ -330,8 +330,8 @@ Galli, S. (2023). [Overcoming class imbalance with SMOTE: How to tackle imbalanc
 
 Imbalanced data : [How to handle imbalanced classification problems. (2023)](https://www.analyticsvidhya.com/blog/2017/03/imbalanced-data-classification/#h-approach-to-handling-imbalanced-data)
 
-Maklin, C. (2022). [Synthetic minority over-sampling technique (smote)]("https://medium.com/@corymaklin/synthetic-minority-over-sampling-technique-smote-7d419696b88c")
+Maklin, C. (2022). [Synthetic minority over-sampling technique (smote)](https://medium.com/@corymaklin/synthetic-minority-over-sampling-technique-smote-7d419696b88c)
 
 Or, D. B. (2024). [Solving the class imbalance problem](https://medium.com/metaor-artificial-intelligence/solving-the-class-imbalance-problem-58cb926b5a0f#:~:text=Class%20imbalance%20is%20a%20common%20problem%20in%20machine%20learning%20that,can%20negatively%20impact%20its%20performance)
 
-Smote, [Package Imbalanced Learning Manual]("https://imbalanced-learn.org/stable/references/generated/imblearn.over_sampling.SMOTE.html")
+Smote, [Package Imbalanced Learning Manual](https://imbalanced-learn.org/stable/references/generated/imblearn.over_sampling.SMOTE.html)
