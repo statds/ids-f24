@@ -1,5 +1,7 @@
 ## Naive Bayes
 
+This section was contributed by Suha Akach.
+
 Naive Bayes is a probabilistic classification algorithm based on Bayes' 
 Theorem, which is used for both binary and multiclass classification 
 problems. It is particularly effective for high-dimensional datasets 
@@ -173,28 +175,63 @@ $$
 This adjustment ensures that even unseen features in the training data 
 do not lead to zero probabilities, thus improving the model’s robustness.
 
-#### Types of Naive Bayes:
+### Types of Naive Bayes:
 There are 5 types of Naive Bayes classifiers:
 
-  - **Gaussian Naive Bayes**: This type of Naive Bayes is used when the dataset consists of numerical features. It assumes that the features follow a Gaussian (normal) distribution. This model is fitted by finding the mean and standard deviation of each class. [@ibm2024naivebayes]
+- **Gaussian Naive Bayes**: This type of Naive Bayes is used when the
+  dataset consists of numerical features. It assumes that the features
+  follow a Gaussian (normal) distribution. This model is fitted by
+  finding the mean and standard deviation of each
+  class [@ibm2024naivebayes].
+  
 
-  - **Categorical Naive Bayes**: When the dataset contains categorical features, we use Categorical Naive Bayes. It assumes that each feature follows a categorical distribution. 
+- **Categorical Naive Bayes**: When the dataset contains categorical
+  features, we use Categorical Naive Bayes. It assumes that each
+  feature follows a categorical distribution. 
+  
 
-  - **Bernoulli Naive Bayes**: Bernoulli Naive Bayes is applied when the features are binary or follow a Bernoulli distribution. That is, variables with two values, such as True and False or 1 and 0. [@ibm2024naivebayes]
+- **Bernoulli Naive Bayes**: Bernoulli Naive Bayes is applied when the
+  features are binary or follow a Bernoulli distribution. That is,
+  variables with two values, such as True and False or 1
+  and 0. [@ibm2024naivebayes].
+  
 
-  - **Multinomial Naive Bayes**: Multinomial Naive Bayes is commonly used for text classification tasks. It assumes that features represent the frequencies or occurrences of different words in the text. 
+- **Multinomial Naive Bayes**: Multinomial Naive Bayes is commonly
+  used for text classification tasks. It assumes that features
+  represent the frequencies or occurrences of different words in the
+  text. 
+  
 
-  - **Complement Naive Bayes**: Complement Naive Bayes is a variation of Naive Bayes that is designed to address imbalanced datasets. It is particularly useful when the majority class overwhelms the minority class in the dataset. It aims to correct the imbalance by considering the complement of each class when making predictions. [@cnb2023]
+- **Complement Naive Bayes**: Complement Naive Bayes is a variation of
+  Naive Bayes that is designed to address imbalanced datasets. It is
+  particularly useful when the majority class overwhelms the minority
+  class in the dataset. It aims to correct the imbalance by
+  considering the complement of each class when making predictions
+  [@cnb2023].
+  
 
-Each type of Naive Bayes classifier is suitable for different types of datasets based on the nature of the features and their distribution. By selecting the appropriate Naive Bayes algorithm, we can effectively model and classify data based on the given features.
+Each type of Naive Bayes classifier is suitable for different types of
+datasets based on the nature of the features and their
+distribution. By selecting the appropriate Naive Bayes algorithm, we
+can effectively model and classify data based on the given features.
 
-#### Naive Bayes w/ NYC Crash Data
 
-Since we have an imbalanced dataset where there are more non severe crashes than severe, we will use Complement Naive Bayes classifier to predict severe crashes based on our predictors. 
+### Naive Bayes w/ NYC Crash Data
 
-Our assumed independent predictors after feature engineering are: borough, location, household_median_income, crash_date, crash_time, time_category, contributing_factor_vehicle_1, vehicle_type_code_1.
+Since we have an imbalanced dataset where there are more non severe
+crashes than severe, we will use Complement Naive Bayes classifier to
+predict severe crashes based on our predictors. 
 
-We assume a crash is severe if there are more than 0 persons killed and/or injured. 
+
+Our assumed independent predictors after feature engineering are:
+`borough`, `location`, `household_median_income`, `crash_date,
+crash_time`, `time_category`, `contributing_factor_vehicle_1`,
+`vehicle_type_code_1`
+.
+
+We assume a crash is severe if there are more than 0 persons killed
+and/or injured. 
+
 
 ```{python}
 import pandas as pd
@@ -245,7 +282,7 @@ def get_median_income(zipcode):
 df['household_median_income'] = df['zip_code'].apply(get_median_income)
 ```
 
-##### Defining predictors and target variable. 
+#### Defining predictors and target variable. 
 
 ```{python}
 #| echo: true
@@ -272,9 +309,18 @@ X.fillna(0, inplace=True)
 y = df['severe_crash']
 ```
 
-##### Fitting Our Model
+#### Fitting Our Model
 
-After accounting for imbalanced data using SMOTE, we find the k nearest neighbors in the minority class to generate synthetic points between the chosen point and its neighbors. In this case, 7 nearest neighbors are considered to generate synthetic samples. We also use alpha 0.5 for our laplace smoothing to apply an equal level of smoothing across all feature probabilities. Finally, we apply a threshold to check if the probability for class 1 (positive class) is greater than 0.4, and if so, assigns the sample to class 1, otherwise to class 0.
+After accounting for imbalanced data using SMOTE, we find the k
+nearest neighbors in the minority class to generate synthetic points
+between the chosen point and its neighbors. In this case, 7 nearest
+neighbors are considered to generate synthetic samples. We also use
+alpha 0.5 for our laplace smoothing to apply an equal level of
+smoothing across all feature probabilities. Finally, we apply a
+threshold to check if the probability for class 1 (positive class) is
+greater than 0.4, and if so, assigns the sample to class 1, otherwise
+to class 0.
+
 
 ```{python}
 #| echo: true
@@ -311,10 +357,25 @@ print(report)
 
 #### Interpreting our Results:
 
-Recall vs. Precision: Our model is better at identifying severe crashes (higher recall of 0.62) but is less accurate when it does so (lower precision of 0.52). This means that while the model catches a good portion of the severe crashes, it also misidentifies a fair number of non-severe crashes as severe.
+Recall vs. Precision: Our model is better at identifying severe
+crashes (higher recall of 0.62) but is less accurate when it does so
+(lower precision of 0.52). This means that while the model catches a
+good portion of the severe crashes, it also misidentifies a fair
+number of non-severe crashes as severe.
 
-F1-Score: The F1-score of 0.57 for severe crashes is a balanced measure, showing that our model is moderately effective at distinguishing severe crashes from non-severe ones.
 
-Improvement Opportunities: The overall accuracy of 58% is moderate, so there’s potential for further optimization. 
+F1-Score: The F1-score of 0.57 for severe crashes is a balanced
+measure, showing that our model is moderately effective at
+distinguishing severe crashes from non-severe ones.
 
-In conclusion, our CNB model is fairly good at predicting severe crashes with an accuracy of 58% but may benefit from more tuning to improve precision and reduce false positives, especially in the context of an imbalanced dataset where we don't have many instances of people injured or killed. 
+
+Improvement Opportunities: The overall accuracy of 58% is moderate, so
+there’s potential for further optimization. 
+
+
+In conclusion, our CNB model is fairly good at predicting severe
+crashes with an accuracy of 58% but may benefit from more tuning to
+improve precision and reduce false positives, especially in the
+context of an imbalanced dataset where we don't have many instances of
+people injured or killed. 
+
