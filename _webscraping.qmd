@@ -3,8 +3,8 @@
 This section was written by Melanie Desroches, a senior majoring in statistics 
 and minoring in computer science. The goal of this section is to introduce 
 web-scraping so that it can be utilized for data science. This will include what 
-web-scraping is, how to web-scrape with Python using examples, and how to web-scrape 
-ethically.
+web-scraping is, how to web-scrape with Python using examples, and how
+to web-scrape ethically.
 
 ### What is Web-Scraping
 
@@ -29,8 +29,8 @@ that are important for web-scraping:
 
 ### How to Web-Scrape with Python
 
-There are many ways to web-scrape with Python. We will cover the two main packages, Beautiful Soup 
-and Selenium.
+There are many ways to web-scrape with Python. We will cover the two
+main packages, Beautiful Soup and Selenium.
 
 #### Beautiful Soup
 
@@ -59,9 +59,33 @@ Selenium can be installed by running
 ```
 pip install selenium
 ```
-in your terminal. To control a web browser, Selenium also requires a WebDriver. Download the 
-driver that matches your browser version and operating system, such as Edge Driver for Microsoft 
-or Chrome Edge for Google.
+in your terminal.
+
+#### Web Driver
+
+To control a web browser, Selenium also requires a
+WebDriver. We recommend Chrome Driver because it is cross-platform;
+follow the [instructions for developers to set up your Chrome
+Driver](https://developer.chrome.com/docs/chromedriver/get-started).
+
+
+After setting up Chrome Driver, you can check its availability from a
+terminal:
+``` shell
+chromedriver --version
+```
+A commonly seen error on Mac is
+
+> Error: “chromedriver” cannot be opened because the developer cannot
+> be verified. Unable to launch the chrome browser
+
+This can be fixed by running:
+``` bash
+xattr -d com.apple.quarantine $(which chromedriver)
+```
+See [explanation from
+StackOverflow](https://stackoverflow.com/questions/60362018/macos-catalinav-10-15-3-error-chromedriver-cannot-be-opened-because-the-de).
+
 
 #### Beautiful Soup vs Selenium
 
@@ -107,7 +131,8 @@ package can be installed using
 pip install requests
 ```
 
-Import the requests package, BeautifulSoup from bs4, and pandas (to create a new data frame). 
+Import the `requests` package, `BeautifulSoup` from `bs4`, and
+`pandas` (to create a new data frame). 
 We have already identified the url that will be scraping data from. In the code below, there 
 is a dictionary called headers. This is optional. Headers can help make your requests look 
 more like a browser. If you choose to use a header, include it when you send your request to the
@@ -134,7 +159,8 @@ if response.status_code != 200:
     print(f"Failed to retrieve page: Status code {response.status_code}")
 ```
 
-Since the response to the request was 200, we are clear to move onto the next step 
+Since the response to the request was 200, which means the request was
+successful, we are clear to move onto the next step 
 which is parsing the table.
 
 To start parsing, you have to call Beautiful Soup. When you pass `response.text` into 
@@ -197,12 +223,13 @@ Since information on weather is always being monitored and collected, the data t
 for a specific time period in being held in the websites database. Therefore, the website is 
 dynamic and Selenium cna be used for web scraping.
 
-The first step is to set up Selenium and the WebDriver. In this example, I use Chrome Driver. 
-`chrome_options = Options()` initializes options for the Chrome browser. The options I used 
-were `--headless` (which allows the browser to run without a visible window) and `--disable-gpu` 
-(which can improve performance in headless mode). You then need to provide the path for where 
-the driver is located on your computer. The driver then can be initialized with the path and 
-driver options.
+
+The first step is to set up Selenium and the WebDriver. In this
+example, I use Chrome Driver. Options can be initialized with
+`chrome_options = Options()` for the Chrome browser. The options I
+used were `--headless` (which allows the browser to run without a
+visible window) and `--disable-gpu`  (which can improve performance in
+headless mode). 
 
 ```{python}
 from selenium import webdriver
@@ -215,16 +242,35 @@ chrome_options = Options()
 chrome_options.add_argument("--headless")  # Run in headless mode (no browser UI)
 chrome_options.add_argument("--disable-gpu")  # Disable GPU acceleration
 chrome_options.add_argument("--no-sandbox")  # Required for some environments
+```
 
+
+Next we need find the path of the Chrome Driver. The following code is
+a cross-platform solution.
+```{python}
 # Path to your ChromeDriver executable
-config_file_path = "config.txt"
-with open(config_file_path, 'r') as file:
-        chrome_driver_path = file.read().strip()
+# config_file_path = "config.txt"
+# with open(config_file_path, 'r') as file:
+#         chrome_driver_path = file.read().strip()
+
+import os
+
+def find_application_path(app_name):
+    for path in os.environ["PATH"].split(os.pathsep):
+        full_path = os.path.join(path, app_name)
+        if os.path.isfile(full_path) and os.access(full_path, os.X_OK):
+            return full_path
+    return None
+
+chrome_driver_path = find_application_path("chromedriver")
+```
+
+The driver then can be initialized with the path and driver options.
+```
 service = Service(chrome_driver_path)
 
 # Initialize the ChromeDriver
 driver = webdriver.Chrome(service=service, options=chrome_options)
-
 ```
 
 Once Selenium and the webdriver is set up, go to the page and find the target data. Same 
