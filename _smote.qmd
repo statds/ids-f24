@@ -4,13 +4,14 @@ This section is presented by Olivia Kashalapov.
 
 ### Introduction
 
-- This presentation on SMOTE will cover the following topics:
-    - What is class imbalance and why is it important?
-    - What is SMOTE?
-    - Why do we use it and how does it work?
-    - Why is SMOTE better than other traditional methods for handling class imbalance?
-    - Using SMOTE in data visualization, analysis, model training, and evaluation.
-    - The downsides and limitations of SMOTE.
+This presentation on SMOTE will cover the following topics:
+
+- What is class imbalance and why is it important?
+- What is SMOTE?
+- Why do we use it and how does it work?
+- Why is SMOTE better than other traditional methods for handling class imbalance?
+- Using SMOTE in data visualization, analysis, model training, and evaluation.
+- The downsides and limitations of SMOTE.
 
 ### Class Imbalance
 **Before we can learn about SMOTE, we have to understand class imbalance and why it is important.**
@@ -52,7 +53,7 @@ from imblearn.over_sampling import SMOTE
 ```
 Just like that, you are ready to use SMOTE!
 
-## Data Preparation
+### Data Preparation
 Here I am creating a simple data set in which there is an extremely apparent class imbalance. I am doing this rather than using past data sets so that you can truly see the work of SMOTE without other factors that can make the process confusing.
 
 ```{python}
@@ -230,7 +231,7 @@ from sklearn.impute import SimpleImputer
 from imblearn.over_sampling import SMOTE
 
 # Identify merged data
-merged_df = pd.read_csv("merged_data.csv")
+merged_df = pd.read_feather("data/nyccrashes_merged.feather")
 
 merged_df['Severe Crash'] = ((merged_df['number_of_persons_killed'] > 0) | 
                         (merged_df['number_of_persons_injured'] > 1)).astype(int)
@@ -319,18 +320,18 @@ This predictive model correctly determined whether a NYC car crash was severe or
 - It creates synthetic data points utilizing instances already in the minority class
 - This creates a balanced data set which can improve model prediction and be used for a variety of machine learning applications
 
-### References
+### Further Readings
 
-Brownlee, J. (2020). A gentle introduction to imbalanced classification. Retrieved from https://www.machinelearningmastery.com/what-is-imbalanced-classification/ 
+Brownlee, J. (2020). [A gentle introduction to imbalanced classification](https://www.machinelearningmastery.com/what-is-imbalanced-classification/)
 
-Brownlee, J. (2021). Smote for imbalanced classification with python. Retrieved from https://www.machinelearningmastery.com/smote-oversampling-for-imbalanced-classification/ 
+Brownlee, J. (2021). [Smote for imbalanced classification with python](https://www.machinelearningmastery.com/smote-oversampling-for-imbalanced-classification/)
 
-Galli, S. (2023). Overcoming class imbalance with SMOTE: How to tackle imbalanced datasets in Machine Learning. Retrieved from https://www.blog.trainindata.com/overcoming-class-imbalance-with-smote/#:~:text=Limitations%20of%20SMOTE&text=No%20consideration%20for%20the%20quality,of%20the%20synthetic%20samples%20generated. 
+Galli, S. (2023). [Overcoming class imbalance with SMOTE: How to tackle imbalanced datasets in Machine Learning](https://www.blog.trainindata.com/overcoming-class-imbalance-with-smote/#:~:text=Limitations%20of%20SMOTE&text=No%20consideration%20for%20the%20quality,of%20the%20synthetic%20samples%20generated)
 
-Imbalanced data : How to handle imbalanced classification problems. (2023). Retrieved from https://www.analyticsvidhya.com/blog/2017/03/imbalanced-data-classification/#h-approach-to-handling-imbalanced-data 
+Imbalanced data : [How to handle imbalanced classification problems. (2023)](https://www.analyticsvidhya.com/blog/2017/03/imbalanced-data-classification/#h-approach-to-handling-imbalanced-data)
 
-Maklin, C. (2022). Synthetic minority over-sampling technique (smote). Retrieved from https://medium.com/@corymaklin/synthetic-minority-over-sampling-technique-smote-7d419696b88c 
+Maklin, C. (2022). [Synthetic minority over-sampling technique (smote)]("https://medium.com/@corymaklin/synthetic-minority-over-sampling-technique-smote-7d419696b88c")
 
-Or, D. B. (2024). Solving the class imbalance problem. Retrieved from https://medium.com/metaor-artificial-intelligence/solving-the-class-imbalance-problem-58cb926b5a0f#:~:text=Class%20imbalance%20is%20a%20common%20problem%20in%20machine%20learning%20that,can%20negatively%20impact%20its%20performance. 
+Or, D. B. (2024). [Solving the class imbalance problem](https://medium.com/metaor-artificial-intelligence/solving-the-class-imbalance-problem-58cb926b5a0f#:~:text=Class%20imbalance%20is%20a%20common%20problem%20in%20machine%20learning%20that,can%20negatively%20impact%20its%20performance)
 
-Smote#. (n.d.). Retrieved from https://imbalanced-learn.org/stable/references/generated/imblearn.over_sampling.SMOTE.html 
+Smote, [Package Imbalanced Learning Manual]("https://imbalanced-learn.org/stable/references/generated/imblearn.over_sampling.SMOTE.html")
