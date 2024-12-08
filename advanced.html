@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>13&nbsp; Advanced Topics – Introduction to Data Science</title>
+<title>12&nbsp; Advanced Topics – Introduction to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./exercises.html" rel="next">
-<link href="./reinforcement.html" rel="prev">
+<link href="./unsupervised.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./advanced.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Advanced Topics</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./advanced.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Advanced Topics</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -183,20 +217,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./reinforcement.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reinforcement Learning</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./advanced.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Advanced Topics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Advanced Topics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -215,20 +243,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#web-scraping" id="toc-web-scraping" class="nav-link active" data-scroll-target="#web-scraping"><span class="header-section-number">13.1</span> Web Scraping</a>
+  <li><a href="#web-scraping" id="toc-web-scraping" class="nav-link active" data-scroll-target="#web-scraping"><span class="header-section-number">12.1</span> Web Scraping</a>
   <ul class="collapse">
-  <li><a href="#subsection-1" id="toc-subsection-1" class="nav-link" data-scroll-target="#subsection-1"><span class="header-section-number">13.1.1</span> Subsection 1</a></li>
-  <li><a href="#subsection-2" id="toc-subsection-2" class="nav-link" data-scroll-target="#subsection-2"><span class="header-section-number">13.1.2</span> Subsection 2</a></li>
-  </ul></li>
-  <li><a href="#interfacing-with-r" id="toc-interfacing-with-r" class="nav-link" data-scroll-target="#interfacing-with-r"><span class="header-section-number">13.2</span> Interfacing with R</a>
-  <ul class="collapse">
-  <li><a href="#subsection-1-1" id="toc-subsection-1-1" class="nav-link" data-scroll-target="#subsection-1-1"><span class="header-section-number">13.2.1</span> Subsection 1</a></li>
-  <li><a href="#subsection-2-1" id="toc-subsection-2-1" class="nav-link" data-scroll-target="#subsection-2-1"><span class="header-section-number">13.2.2</span> Subsection 2</a></li>
-  </ul></li>
-  <li><a href="#python-package-development" id="toc-python-package-development" class="nav-link" data-scroll-target="#python-package-development"><span class="header-section-number">13.3</span> Python Package Development</a>
-  <ul class="collapse">
-  <li><a href="#subsection-1-2" id="toc-subsection-1-2" class="nav-link" data-scroll-target="#subsection-1-2"><span class="header-section-number">13.3.1</span> Subsection 1</a></li>
-  <li><a href="#subsection-2-2" id="toc-subsection-2-2" class="nav-link" data-scroll-target="#subsection-2-2"><span class="header-section-number">13.3.2</span> Subsection 2</a></li>
+  <li><a href="#what-is-web-scraping" id="toc-what-is-web-scraping" class="nav-link" data-scroll-target="#what-is-web-scraping"><span class="header-section-number">12.1.1</span> What is Web-Scraping</a></li>
+  <li><a href="#how-to-web-scrape-with-python" id="toc-how-to-web-scrape-with-python" class="nav-link" data-scroll-target="#how-to-web-scrape-with-python"><span class="header-section-number">12.1.2</span> How to Web-Scrape with Python</a></li>
+  <li><a href="#examples-using-nyc-open-data" id="toc-examples-using-nyc-open-data" class="nav-link" data-scroll-target="#examples-using-nyc-open-data"><span class="header-section-number">12.1.3</span> Examples using NYC Open Data</a></li>
+  <li><a href="#a-note-on-data-ethics" id="toc-a-note-on-data-ethics" class="nav-link" data-scroll-target="#a-note-on-data-ethics"><span class="header-section-number">12.1.4</span> A Note on Data Ethics</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -238,7 +258,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Advanced Topics</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Advanced Topics</span></h1>
 </div>
 
 
@@ -255,36 +275,393 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="web-scraping" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="web-scraping"><span class="header-section-number">13.1</span> Web Scraping</h2>
-<p>This section was written by …</p>
-<section id="subsection-1" class="level3" data-number="13.1.1">
-<h3 data-number="13.1.1" class="anchored" data-anchor-id="subsection-1"><span class="header-section-number">13.1.1</span> Subsection 1</h3>
+<section id="web-scraping" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="web-scraping"><span class="header-section-number">12.1</span> Web Scraping</h2>
+<p>This section was written by Melanie Desroches, a senior majoring in statistics and minoring in computer science. The goal of this section is to introduce web-scraping so that it can be utilized for data science. This will include what web-scraping is, how to web-scrape with Python using examples, and how to web-scrape ethically.</p>
+<section id="what-is-web-scraping" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="what-is-web-scraping"><span class="header-section-number">12.1.1</span> What is Web-Scraping</h3>
+<p>As data scientists, we often want to collect data from a variety of sources. In the age of the internet, a lot of the data we may want to collect is available on a website. However, this data is often times not available in an easily downloadable format. This is where web-scraping becomes valuable. Web-scraping is an automated process used to gather data from websites. This allows us to access and collect large amounts of data directly from web pages if the information is not avalible for download.</p>
+<p>Websites are primarily structured with HTML (Hypertext Markup Language), which organizes and displays content. Web scrapers parse through this HTML code to identify and extract relevant information. Therefore, it important to have a basic understanding of HTML in order to identify what part of the website you are trying to scrape. The contents of a web page are broken up and identified by elements. Here are some examples of common elements that are important for web-scraping:</p>
+<ul>
+<li><code>&lt;body&gt;</code> : identifies the website body</li>
+<li><code>&lt;table&gt;</code> : identifies a table</li>
+<li><code>&lt;tbody&gt;</code> : identifies the body of the table</li>
+<li><code>&lt;tr&gt;</code> : indentifies the row of a table</li>
+</ul>
 </section>
-<section id="subsection-2" class="level3" data-number="13.1.2">
-<h3 data-number="13.1.2" class="anchored" data-anchor-id="subsection-2"><span class="header-section-number">13.1.2</span> Subsection 2</h3>
+<section id="how-to-web-scrape-with-python" class="level3" data-number="12.1.2">
+<h3 data-number="12.1.2" class="anchored" data-anchor-id="how-to-web-scrape-with-python"><span class="header-section-number">12.1.2</span> How to Web-Scrape with Python</h3>
+<p>There are many ways to web-scrape with Python. We will cover the two main packages, Beautiful Soup and Selenium.</p>
+<section id="beautiful-soup" class="level4" data-number="12.1.2.1">
+<h4 data-number="12.1.2.1" class="anchored" data-anchor-id="beautiful-soup"><span class="header-section-number">12.1.2.1</span> Beautiful Soup</h4>
+<p>The Beautiful Soup Python Library simplifies the process of parsing and navigating HTML and XML documents, making it easier to extract data from websites. Beautiful Soup is ideal for scraping data from static websites. Static websites do not change based on user actions or require server-side interactions to update content dynamically. Basically, what you see is what you get. Static websites tend to be pretty simple so scraping from them is relatively easy.</p>
+<p>Beautiful Soup can be installed by running</p>
+<pre><code>pip install beautifulsoup4</code></pre>
+<p>in your terminal.</p>
+</section>
+<section id="selenium" class="level4" data-number="12.1.2.2">
+<h4 data-number="12.1.2.2" class="anchored" data-anchor-id="selenium"><span class="header-section-number">12.1.2.2</span> Selenium</h4>
+<p>Selenium is used for web browser automation and dynamic websites. Dynamic sites often use backend programming to pull data from a database, customize it, and render it in real time based on user requests. This makes Selenium great at performing web-scraping tasks that involve multiple pages or performing actions within those pages. Because dynamic websites tend to be a bit more complex, you need to use a package like Selenium that is more equiped for the complex structure.</p>
+<p>Selenium can be installed by running</p>
+<pre><code>pip install selenium</code></pre>
+<p>in your terminal.</p>
+</section>
+<section id="web-driver" class="level4" data-number="12.1.2.3">
+<h4 data-number="12.1.2.3" class="anchored" data-anchor-id="web-driver"><span class="header-section-number">12.1.2.3</span> Web Driver</h4>
+<p>To control a web browser, Selenium also requires a WebDriver. We recommend Chrome Driver because it is cross-platform; follow the <a href="https://developer.chrome.com/docs/chromedriver/get-started">instructions for developers to set up your Chrome Driver</a>.</p>
+<p>After setting up Chrome Driver, you can check its availability from a terminal:</p>
+<pre class="shell"><code>chromedriver --version</code></pre>
+<p>A commonly seen error on Mac is</p>
+<blockquote class="blockquote">
+<p>Error: “chromedriver” cannot be opened because the developer cannot be verified. Unable to launch the chrome browser</p>
+</blockquote>
+<p>This can be fixed by running:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xattr</span> <span class="at">-d</span> com.apple.quarantine <span class="va">$(</span><span class="fu">which</span> chromedriver<span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>See <a href="https://stackoverflow.com/questions/60362018/macos-catalinav-10-15-3-error-chromedriver-cannot-be-opened-because-the-de">explanation from StackOverflow</a>.</p>
+</section>
+<section id="beautiful-soup-vs-selenium" class="level4" data-number="12.1.2.4">
+<h4 data-number="12.1.2.4" class="anchored" data-anchor-id="beautiful-soup-vs-selenium"><span class="header-section-number">12.1.2.4</span> Beautiful Soup vs Selenium</h4>
+<p>Both Beautiful Soup and Selenium are helpful tools in web-scraping. But they both have their strengths and weaknesses. Beautiful Soup is lightweight, easy to learn, and perfect for working with static HTML content. However, Beautiful Soup is more limited when it comes to dynamic websites, which are much more common nowadays. Selenium is better for interacting with dynamic web content that loads JavaScript or requires actions like clicking, scrolling, or filling forms. That said, Selenium can be slower and more resource-intensive since it opens a browser window to simulate real user actions.</p>
+</section>
+<section id="a-step-by-step-guide-to-web-scraping" class="level4" data-number="12.1.2.5">
+<h4 data-number="12.1.2.5" class="anchored" data-anchor-id="a-step-by-step-guide-to-web-scraping"><span class="header-section-number">12.1.2.5</span> A Step-by Step Guide to Web-Scraping</h4>
+<ol type="1">
+<li>Find the website URL with the information you want to select</li>
+<li>Send an HTTP request to the URL and confirm you have access to the page. Generally, 200-299 means the request has been granted and 400-499 means that your request is not allowed.</li>
+<li>Use the “Inspect” tool in your browser to identify the tags, classes, or elements associated with the data you want to extract. This can be done by right-clicking on the web page and pressing select. If you hover your clicker over the different sections of HTML, the parts of the website that section is associated with will become highlighted. Use this to find the element that is associated with the data that you want to scrape.</li>
+<li>Use a parsing library like Beautiful Soup or Selenium to process the HTML response. Beautiful Soup requires the use of the requests package in order to send a request. Selenium uses the webdriver to send the request.</li>
+<li>Clean and store the relevant infomation.</li>
+</ol>
 </section>
 </section>
-<section id="interfacing-with-r" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="interfacing-with-r"><span class="header-section-number">13.2</span> Interfacing with R</h2>
-<p>This section was written by …</p>
-<section id="subsection-1-1" class="level3" data-number="13.2.1">
-<h3 data-number="13.2.1" class="anchored" data-anchor-id="subsection-1-1"><span class="header-section-number">13.2.1</span> Subsection 1</h3>
+<section id="examples-using-nyc-open-data" class="level3" data-number="12.1.3">
+<h3 data-number="12.1.3" class="anchored" data-anchor-id="examples-using-nyc-open-data"><span class="header-section-number">12.1.3</span> Examples using NYC Open Data</h3>
+<p>Since this class has used the NYC Open Data, let’s build on this data set in order to get some additional information that is not already available.</p>
+<section id="beautiful-soup-and-nypd-precincts" class="level4" data-number="12.1.3.1">
+<h4 data-number="12.1.3.1" class="anchored" data-anchor-id="beautiful-soup-and-nypd-precincts"><span class="header-section-number">12.1.3.1</span> Beautiful Soup and NYPD Precincts</h4>
+<p>Say you want to get the adresses of all of the NYPD Precincts in New York City. This information is available in table format on the <a href="https://www.nyc.gov/site/nypd/bureaus/patrol/precincts-landing.page">NYPD website</a>. Since the NYPD Precincts aren’t changed, the website is static, making Beautiful Soup the best package to use to scrape this website.</p>
+<p>Start by making sure you have Beautiful Soup and Requests installed. The requests package can be installed using</p>
+<pre><code>pip install requests</code></pre>
+<p>Import the <code>requests</code> package, <code>BeautifulSoup</code> from <code>bs4</code>, and <code>pandas</code> (to create a new data frame). We have already identified the url that will be scraping data from. In the code below, there is a dictionary called headers. This is optional. Headers can help make your requests look more like a browser. If you choose to use a header, include it when you send your request to the url. Otherwise, the request can be sent to the url using <code>requests.get()</code>.</p>
+<div id="f76f4a13" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># URL of the NYPD precincts page</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.nyc.gov/site/nypd/bureaus/patrol/precincts-landing.page"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Send a GET request to the page</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>headers <span class="op">=</span> {</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"User-Agent"</span>: <span class="st">"Mozilla/5.0 Chrome/87.0"</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url, headers<span class="op">=</span>headers)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the request was successful</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.status_code)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> response.status_code <span class="op">!=</span> <span class="dv">200</span>:</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Failed to retrieve page: Status code </span><span class="sc">{</span>response<span class="sc">.</span>status_code<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>200</code></pre>
+</div>
+</div>
+<p>Since the response to the request was 200, which means the request was successful, we are clear to move onto the next step which is parsing the table.</p>
+<p>To start parsing, you have to call Beautiful Soup. When you pass <code>response.text</code> into Beautiful Soup, it takesthe raw HTML of the webpage as a string. <code>html.parser</code> specifies the parsing engine used by Beautiful Soup to process the HTML. It is a built-in Python HTML parser that is fast and works well for most cases.</p>
+<p>To identify which parts of the website you want to webscrape, you can right click on the website and click inspect. This will show you the HTML of the page. The table can be found under the <code>&lt;table&gt;</code> element with the class <code>rt</code>. Using this information, have Beautiful Soup find the table using <code>.find()</code>. Within the table, the rows are indentifies by <code>&lt;tr&gt;</code> within the HTML. In each row, the name of the precinct and address is found in the <code>&lt;td&gt;</code> element with the data labels <code>Precinct</code> and <code>Address</code> respectively. From this, use <code>.find_all('tr')</code> to find all the rows in the table and then within each row, extract the precinct and address.</p>
+<div id="1d17f9ad" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parse the HTML content</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> BeautifulSoup(response.text, <span class="st">'html.parser'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the table with class "rt" which holds the precinct data</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> soup.find(<span class="st">"table"</span>, {<span class="st">"class"</span>: <span class="st">"rt"</span>})</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lists to hold the extracted data</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>precinct_names <span class="op">=</span> []</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>addresses <span class="op">=</span> []</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract each row of the table (each row corresponds to one precinct)</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> table.find_all(<span class="st">"tr"</span>):</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find the "Precinct" and "Address" columns by data-label attribute</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  precinct_cell <span class="op">=</span> row.find(<span class="st">"td"</span>, {<span class="st">"data-label"</span>: <span class="st">"Precinct"</span>})</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  address_cell <span class="op">=</span> row.find(<span class="st">"td"</span>, {<span class="st">"data-label"</span>: <span class="st">"Address"</span>})</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># If both cells are found, store their text content</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> precinct_cell <span class="kw">and</span> address_cell:</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    precinct_names.append(precinct_cell.get_text(strip<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    addresses.append(address_cell.get_text(strip<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The extracted information can be stripped so that only the relevant text is included and then added to their relevant list. Now that the data has been collected and cleaned, a new dataframe can be created.</p>
+<div id="c5864231" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame with the extracted data</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>precincts_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Precinct"</span>: precinct_names,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Address"</span>: addresses</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the DataFrame</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(precincts_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Precinct                   Address
+0     1st Precinct         16 Ericsson Place
+1     5th Precinct       19 Elizabeth Street
+2     6th Precinct        233 West 10 Street
+3     7th Precinct        19 1/2 Pitt Street
+4     9th Precinct         321 East 5 Street
+..             ...                       ...
+72  115th Precinct  92-15 Northern Boulevard
+73  120th Precinct       78 Richmond Terrace
+74  121st Precinct       970 Richmond Avenue
+75  122nd Precinct      2320 Hylan Boulevard
+76  123rd Precinct           116 Main Street
+
+[77 rows x 2 columns]</code></pre>
+</div>
+</div>
 </section>
-<section id="subsection-2-1" class="level3" data-number="13.2.2">
-<h3 data-number="13.2.2" class="anchored" data-anchor-id="subsection-2-1"><span class="header-section-number">13.2.2</span> Subsection 2</h3>
+<section id="selenium-and-weather-data" class="level4" data-number="12.1.3.2">
+<h4 data-number="12.1.3.2" class="anchored" data-anchor-id="selenium-and-weather-data"><span class="header-section-number">12.1.3.2</span> Selenium and Weather Data</h4>
+<p>Say you want to see if the weather makes an impact of the number or severity of crashes in New York City. Weather data in New York City can be found on <a href="https://www.wunderground.com/history/weekly/us/ny/new-york-city/KLGA/date/2024-6-30">Wundergroud</a>. Since information on weather is always being monitored and collected, the data that we want for a specific time period in being held in the websites database. Therefore, the website is dynamic and Selenium cna be used for web scraping.</p>
+<p>The first step is to set up Selenium and the WebDriver. In this example, I use Chrome Driver. Options can be initialized with <code>chrome_options = Options()</code> for the Chrome browser. The options I used were <code>--headless</code> (which allows the browser to run without a visible window) and <code>--disable-gpu</code> (which can improve performance in headless mode).</p>
+<div id="e035a3e4" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> selenium.webdriver.chrome.service <span class="im">import</span> Service</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> selenium.webdriver.common.by <span class="im">import</span> By</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> selenium.webdriver.chrome.options <span class="im">import</span> Options</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up ChromeDriver</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>chrome_options <span class="op">=</span> Options()</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>chrome_options.add_argument(<span class="st">"--headless"</span>)  <span class="co"># Run in headless mode (no browser UI)</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>chrome_options.add_argument(<span class="st">"--disable-gpu"</span>)  <span class="co"># Disable GPU acceleration</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>chrome_options.add_argument(<span class="st">"--no-sandbox"</span>)  <span class="co"># Required for some environments</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next we need find the path of the Chrome Driver. The following code is a cross-platform solution.</p>
+<div id="be4356b9" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Path to your ChromeDriver executable</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># config_file_path = "config.txt"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># with open(config_file_path, 'r') as file:</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#         chrome_driver_path = file.read().strip()</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_application_path(app_name):</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> path <span class="kw">in</span> os.environ[<span class="st">"PATH"</span>].split(os.pathsep):</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        full_path <span class="op">=</span> os.path.join(path, app_name)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> os.path.isfile(full_path) <span class="kw">and</span> os.access(full_path, os.X_OK):</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> full_path</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>chrome_driver_path <span class="op">=</span> find_application_path(<span class="st">"chromedriver"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The driver then can be initialized with the path and driver options.</p>
+<div id="44a71295" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>service <span class="op">=</span> Service(chrome_driver_path)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the ChromeDriver</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>driver <span class="op">=</span> webdriver.Chrome(service<span class="op">=</span>service, options<span class="op">=</span>chrome_options)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once Selenium and the webdriver is set up, go to the page and find the target data. Same as with the Beautiful Soup example, go to the url and identify the table that you want to webscrape. In this case, I want the table at the bottom of the page that lists the daily observations of the temperature, dew point, humidity, wind speed, pressure, and precipitation. The table is identified as <code>&lt;table&gt;</code> with the class <code>&lt;days&gt;</code>. In Selenium, <code>driver.get(url)</code> opens the webpage in the Edge browser. Once the table has loaded, <code>(By.CSS_SELECTOR, "table.days")</code> selects the main data table by its CSS selector “table.days”, ensuring we’re targeting the right element.</p>
+<div id="4eb7566d" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the target URL</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="ss">f"https://www.wunderground.com/history/weekly/us/ny/new-york-city/KLGA/date/2024-6-30"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the page</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>driver.get(url)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> selenium.webdriver.common.by <span class="im">import</span> By</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> selenium.webdriver.support.ui <span class="im">import</span> WebDriverWait</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> selenium.webdriver.support <span class="im">import</span> expected_conditions <span class="im">as</span> EC</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Wait for table to load</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>wait <span class="op">=</span> WebDriverWait(driver, <span class="dv">15</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, <span class="st">"table.days"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Within the table, the rows are indentified by <code>tr</code> in <code>tbody</code>and the columns are in <code>td</code>.</p>
+<div id="0cf88856" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize lists for each data type</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> []</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>max_temps <span class="op">=</span> []</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>min_temps <span class="op">=</span> []</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>humidity_values <span class="op">=</span> []</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>wind_speeds <span class="op">=</span> []</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>pressure_values <span class="op">=</span> []</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>precip_values <span class="op">=</span> []</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Get all rows</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> table.find_elements(By.CSS_SELECTOR, <span class="st">"tbody tr"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> rows:</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get all 'td' elements in the row</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> row.find_elements(By.TAG_NAME, <span class="st">"td"</span>)  </span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract text from each column</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    row_data <span class="op">=</span> [col.text.strip() <span class="cf">for</span> col <span class="kw">in</span> columns]  </span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Print the content of the row</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Row Data:"</span>, row_data)  <span class="co"># This will print the content of each row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Row Data: ['Jun\n30\n1\n2\n3\n4\n5\n6', 'Jun', '30', '1', '2', '3', '4', '5', '6', 'Max Avg Min\n101 79.7 73\n79 72.7 65\n83 75.1 67\n83 75.8 68\n85 77.3 72\n90 81.0 74\n92 78.7 72', 'Max', 'Avg', 'Min', '101', '79.7', '73', '79', '72.7', '65', '83', '75.1', '67', '83', '75.8', '68', '85', '77.3', '72', '90', '81.0', '74', '92', '78.7', '72', 'Max Avg Min\n74 70.3 59\n56 53.1 46\n56 49.5 45\n58 51.5 47\n69 63.0 52\n73 70.8 69\n73 70.9 69', 'Max', 'Avg', 'Min', '74', '70.3', '59', '56', '53.1', '46', '56', '49.5', '45', '58', '51.5', '47', '69', '63.0', '52', '73', '70.8', '69', '73', '70.9', '69', 'Max Avg Min\n91 74.9 36\n65 50.9 38\n55 41.3 29\n70 43.9 28\n85 61.8 48\n87 72.1 55\n91 78.0 54', 'Max', 'Avg', 'Min', '91', '74.9', '36', '65', '50.9', '38', '55', '41.3', '29', '70', '43.9', '28', '85', '61.8', '48', '87', '72.1', '55', '91', '78.0', '54', 'Max Avg Min\n20 10.2 5\n23 14.5 8\n12 8.7 6\n18 10.3 0\n15 9.3 3\n14 7.4 0\n17 7.6 0', 'Max', 'Avg', 'Min', '20', '10.2', '5', '23', '14.5', '8', '12', '8.7', '6', '18', '10.3', '0', '15', '9.3', '3', '14', '7.4', '0', '17', '7.6', '0', 'Max Avg Min\n30.0 29.9 29.8\n30.1 30.0 29.9\n30.2 30.2 30.1\n30.2 30.1 30.0\n30.0 29.9 29.8\n29.8 29.8 29.7\n29.9 29.8 29.8', 'Max', 'Avg', 'Min', '30.0', '29.9', '29.8', '30.1', '30.0', '29.9', '30.2', '30.2', '30.1', '30.2', '30.1', '30.0', '30.0', '29.9', '29.8', '29.8', '29.8', '29.7', '29.9', '29.8', '29.8', 'Total\n0.06\n0.11\n0.00\n0.00\n0.00\n0.03\n0.11', 'Total', '0.06', '0.11', '0.00', '0.00', '0.00', '0.03', '0.11']
+Row Data: ['Jun']
+Row Data: ['30']
+Row Data: ['1']
+Row Data: ['2']
+Row Data: ['3']
+Row Data: ['4']
+Row Data: ['5']
+Row Data: ['6']
+Row Data: ['Max', 'Avg', 'Min']
+Row Data: ['101', '79.7', '73']
+Row Data: ['79', '72.7', '65']
+Row Data: ['83', '75.1', '67']
+Row Data: ['83', '75.8', '68']
+Row Data: ['85', '77.3', '72']
+Row Data: ['90', '81.0', '74']
+Row Data: ['92', '78.7', '72']
+Row Data: ['Max', 'Avg', 'Min']
+Row Data: ['74', '70.3', '59']
+Row Data: ['56', '53.1', '46']
+Row Data: ['56', '49.5', '45']
+Row Data: ['58', '51.5', '47']
+Row Data: ['69', '63.0', '52']
+Row Data: ['73', '70.8', '69']
+Row Data: ['73', '70.9', '69']
+Row Data: ['Max', 'Avg', 'Min']
+Row Data: ['91', '74.9', '36']
+Row Data: ['65', '50.9', '38']
+Row Data: ['55', '41.3', '29']
+Row Data: ['70', '43.9', '28']
+Row Data: ['85', '61.8', '48']
+Row Data: ['87', '72.1', '55']
+Row Data: ['91', '78.0', '54']
+Row Data: ['Max', 'Avg', 'Min']
+Row Data: ['20', '10.2', '5']
+Row Data: ['23', '14.5', '8']
+Row Data: ['12', '8.7', '6']
+Row Data: ['18', '10.3', '0']
+Row Data: ['15', '9.3', '3']
+Row Data: ['14', '7.4', '0']
+Row Data: ['17', '7.6', '0']
+Row Data: ['Max', 'Avg', 'Min']
+Row Data: ['30.0', '29.9', '29.8']
+Row Data: ['30.1', '30.0', '29.9']
+Row Data: ['30.2', '30.2', '30.1']
+Row Data: ['30.2', '30.1', '30.0']
+Row Data: ['30.0', '29.9', '29.8']
+Row Data: ['29.8', '29.8', '29.7']
+Row Data: ['29.9', '29.8', '29.8']
+Row Data: ['Total']
+Row Data: ['0.06']
+Row Data: ['0.11']
+Row Data: ['0.00']
+Row Data: ['0.00']
+Row Data: ['0.00']
+Row Data: ['0.03']
+Row Data: ['0.11']</code></pre>
+</div>
+</div>
+<p>As you can see the output is pretty messy. From this step, we need to find the important parts and strip it of the text. This can be done by identifying the indicies of the rows that we want, using <code>find_elements</code> to find the corresponding tag, and then stripping the text to add it to the relevant list.</p>
+<div id="79be41a1" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Process the first row which contains all the dates</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>date_row <span class="op">=</span> rows[<span class="dv">0</span>].text.split(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> [date <span class="cf">for</span> date <span class="kw">in</span> date_row <span class="cf">if</span> date.isdigit()][:<span class="dv">7</span>]  <span class="co"># Get first 7 dates</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Find temperature values (rows 10-16 contain the actual temperature data)</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>temp_rows <span class="op">=</span> rows[<span class="dv">10</span>:<span class="dv">17</span>]  <span class="co"># Get rows 10-16</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> temp_rows:</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  cells <span class="op">=</span> row.find_elements(By.TAG_NAME, <span class="st">"td"</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="bu">len</span>(cells) <span class="op">&gt;=</span> <span class="dv">3</span>:</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    max_temps.append(cells[<span class="dv">0</span>].text.strip())</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    min_temps.append(cells[<span class="dv">2</span>].text.strip())</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Find humidity values (rows 18-24)</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>humidity_rows <span class="op">=</span> rows[<span class="dv">18</span>:<span class="dv">25</span>]</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> humidity_rows:</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  cells <span class="op">=</span> row.find_elements(By.TAG_NAME, <span class="st">"td"</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="bu">len</span>(cells) <span class="op">&gt;=</span> <span class="dv">2</span>:</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    humidity_values.append(cells[<span class="dv">1</span>].text.strip())</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Find wind speed values (rows 26-32)</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>wind_rows <span class="op">=</span> rows[<span class="dv">26</span>:<span class="dv">33</span>]</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> wind_rows:</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>  cells <span class="op">=</span> row.find_elements(By.TAG_NAME, <span class="st">"td"</span>)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="bu">len</span>(cells) <span class="op">&gt;=</span> <span class="dv">1</span>:</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    wind_speeds.append(cells[<span class="dv">0</span>].text.strip())</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Find pressure values (rows 42-48)</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>pressure_rows <span class="op">=</span> rows[<span class="dv">42</span>:<span class="dv">49</span>]</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> pressure_rows:</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>  cells <span class="op">=</span> row.find_elements(By.TAG_NAME, <span class="st">"td"</span>)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="bu">len</span>(cells) <span class="op">&gt;=</span> <span class="dv">1</span>:</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>    pressure_values.append(cells[<span class="dv">0</span>].text.strip())</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Find precipitation values (rows 50-56)</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>precip_rows <span class="op">=</span> rows[<span class="dv">50</span>:<span class="dv">57</span>]</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> precip_rows:</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>  cells <span class="op">=</span> row.find_elements(By.TAG_NAME, <span class="st">"td"</span>)</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="bu">len</span>(cells) <span class="op">&gt;=</span> <span class="dv">1</span>:</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>    precip_values.append(cells[<span class="dv">0</span>].text.strip())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once all the relevant data has been collected and cleaned, it can be added to a new dataframe.</p>
+<div id="9b9e28c1" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DataFrame</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>weather_data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Date'</span>: dates,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Max Temperature (°F)'</span>: max_temps,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Min Temperature (°F)'</span>: min_temps,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Humidity (%)'</span>: humidity_values,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Wind Speed (mph)'</span>: wind_speeds,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Pressure (in)'</span>: pressure_values,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Precipitation (in)'</span>: precip_values</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(weather_data)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>driver.quit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Date Max Temperature (°F) Min Temperature (°F) Humidity (%)  \
+0   30                  101                   73         70.3   
+1    1                   79                   65         53.1   
+2    2                   83                   67         49.5   
+3    3                   83                   68         51.5   
+4    4                   85                   72         63.0   
+5    5                   90                   74         70.8   
+6    6                   92                   72         70.9   
+
+  Wind Speed (mph) Pressure (in) Precipitation (in)  
+0               91          30.0               0.06  
+1               65          30.1               0.11  
+2               55          30.2               0.00  
+3               70          30.2               0.00  
+4               85          30.0               0.00  
+5               87          29.8               0.03  
+6               91          29.9               0.11  </code></pre>
+</div>
+</div>
+<p>Lastly, <code>driver.quit()</code> closes the browser.</p>
 </section>
 </section>
-<section id="python-package-development" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="python-package-development"><span class="header-section-number">13.3</span> Python Package Development</h2>
-<p>This section was written by …</p>
-<section id="subsection-1-2" class="level3" data-number="13.3.1">
-<h3 data-number="13.3.1" class="anchored" data-anchor-id="subsection-1-2"><span class="header-section-number">13.3.1</span> Subsection 1</h3>
+<section id="a-note-on-data-ethics" class="level3" data-number="12.1.4">
+<h3 data-number="12.1.4" class="anchored" data-anchor-id="a-note-on-data-ethics"><span class="header-section-number">12.1.4</span> A Note on Data Ethics</h3>
+<p>While web scraping is not explicitly illegal, it can get you in hot water if you are not careful. Web scraping is a powerful tool and it should be treated as such. Just because you can web scrape doesn’t always mean you should.</p>
+<section id="why-web-scraping-can-be-un-ethical" class="level4" data-number="12.1.4.1">
+<h4 data-number="12.1.4.1" class="anchored" data-anchor-id="why-web-scraping-can-be-un-ethical"><span class="header-section-number">12.1.4.1</span> Why Web-Scraping can be un-ethical</h4>
+<p>There are several reasons that web scraping may be deemed unethical.</p>
+<ul>
+<li>The website you are trying to web scrape may not allow it.</li>
+<li>The information being scraped is considered private information or intellectual property.</li>
+<li>Sending too many requests at once can overwhelm the server and crash the website.</li>
+</ul>
 </section>
-<section id="subsection-2-2" class="level3" data-number="13.3.2">
-<h3 data-number="13.3.2" class="anchored" data-anchor-id="subsection-2-2"><span class="header-section-number">13.3.2</span> Subsection 2</h3>
+<section id="some-tips-to-help-you-scrape-ethically" class="level4" data-number="12.1.4.2">
+<h4 data-number="12.1.4.2" class="anchored" data-anchor-id="some-tips-to-help-you-scrape-ethically"><span class="header-section-number">12.1.4.2</span> Some Tips to Help You Scrape Ethically</h4>
+<ul>
+<li>You can check if a website allows web scraping in either the terms of use section of the website or by checking the websites <code>.robots.txt</code> to see who is allowed to use the website and what parts are available for scraping.</li>
+<li>Always be mindful of what kind of information you are trying to collect and if it is private information/intellectual property</li>
+<li>Never scrape from a website that requires login or payment</li>
+<li>Spread out the time of the requests in order to prevent the website from crashing. If using Selenium, use <code>WebDriverWait</code> from <code>selenium.webdriver.support.ui</code> to wait for the page to load. Otherwise, use the <code>time</code> package to space out the requests.</li>
+</ul>
+<!-- {{< include _interface2R.qmd >}} -->
+<!-- {{< include _pythonpackage.qmd >}} -->
 
 
+</section>
 </section>
 </section>
 
@@ -711,13 +1088,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./reinforcement.html" class="pagination-link" aria-label="Reinforcement Learning">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reinforcement Learning</span></span>
+      <a href="./unsupervised.html" class="pagination-link" aria-label="Unsupervised Learning">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./exercises.html" class="pagination-link" aria-label="Exercises">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Exercises</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Exercises</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
