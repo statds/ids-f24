@@ -266,7 +266,7 @@ chrome_driver_path = find_application_path("chromedriver")
 ```
 
 The driver then can be initialized with the path and driver options.
-```
+```{python}
 service = Service(chrome_driver_path)
 
 # Initialize the ChromeDriver
