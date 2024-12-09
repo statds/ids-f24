@@ -3,3 +3,487 @@
 This section is presented by ......
 
 ### Subsection
+## Decision Trees: Demonstration
+
+This section is presented by Jaden Astle
+
+### About the Trees
+
+- Supervised learning algorithm
+- Both classification & regression methods
+- Goal is to sort data into specific groups, one characteristic at a time
+- Splitting follows a tree-like structure with binary splits
+
+::: footer
+https://www.geeksforgeeks.org/decision-tree/
+:::
+
+### Classification Trees Overview
+
+- Splits observations based on binary classifications (categorical variables)
+- ex. Contains "Congratulations!", has fur, has a pool, etc.
+- Note: categorical variables that are *not* binary need to be processed with One-Hot Encoding before training
+
+::: footer
+https://www.geeksforgeeks.org/decision-tree/
+:::
+
+### Structure of the Algorithm
+
+---
+
+![**Tree Example**](./images/decision_trees/Slide1.jpg){width=100% length=100%}
+
+---
+
+![**Decision Tree Process**](./images/decision_trees/Slide3.jpg){width=100% length=100%}
+
+---
+
+- Three features: floppy ears, round face, and whiskers.
+- We need to find the split with the least entropy:
+
+$$
+\text{Entropy} = -p_1 \log_2(p_1) - p_0 \log_2(p_0)
+$$
+
+where:  
+- \( p_1 \) is the proportion of "dog" values,
+- \( p_0 \) is the proportion of "cat" values.
+
+---
+**With floppy ears**: Total = 4, Dogs = 3, Cats = 1
+
+   $$
+   Entropy = -\frac{3}{4} \log_2\left(\frac{3}{4}\right) - \frac{1}{4} \log_2\left(\frac{1}{4}\right) \approx 0.81
+   $$
+
+**Without floppy ears**: Total = 2, Dogs = 0, Cats = 2
+
+   $$
+   Entropy = -1 \times \log_2(1) = 0
+   $$
+
+**Overall Entropy for floppy ears**:
+   $$
+   Entropy = \left(\frac{4}{6} \times 0.81\right) + \left(\frac{2}{6} \times 0\right) = 0.54
+   $$
+
+---
+
+**With round face**: Total = 4, Dogs = 2, Cats = 2
+   $$
+   Entropy = -\frac{2}{4} \log_2\left(\frac{2}{4}\right) - \frac{2}{4} \log_2\left(\frac{2}{4}\right) = 1.0
+   $$
+
+**Without round face**: Total = 2, Dogs = 1, Cats = 1
+
+   $$
+   Entropy = -\frac{1}{2} \log_2\left(\frac{1}{2}\right) - \frac{1}{2} \log_2\left(\frac{1}{2}\right) = 1.0
+   $$
+
+**Overall Entropy for round face**:
+   $$
+   Entropy = \left(\frac{4}{6} \times 1\right) + \left(\frac{2}{6} \times 1\right) = 1.0
+   $$
+
+---
+
+**With whiskers**: Total = 2, Dogs = 1, Cats = 1
+   $$
+   Entropy = -\frac{1}{2} \log_2\left(\frac{1}{2}\right) - \frac{1}{2} \log_2\left(\frac{1}{2}\right) = 1.0
+   $$
+
+**Without whiskers**: Total = 4, Dogs = 2, Cats = 2
+   $$
+   Entropy = -\frac{2}{4} \log_2\left(\frac{2}{4}\right) - \frac{2}{4} \log_2\left(\frac{2}{4}\right) = 1.0
+   $$
+
+**Overall Entropy for whiskers**:
+   $$
+   Entropy = \left(\frac{2}{6} \times 1\right) + \left(\frac{4}{6} \times 1\right) = 1.0
+   $$
+
+- So, we split on floppy ears.
+
+---
+
+![**Decision Tree Process**](./images/decision_trees/Slide2.png){width=100% length=100%}
+
+---
+
+- Since the subset **without floppy ears** has an entropy of 0, it requires no further splitting. We now evaluate the next possible split in the **with floppy ears** subset using the features **round face** and **whiskers**.
+
+---
+
+### Split on Round Face 
+
+- **With round face**: Total = 3, Dogs = 2, Cats = 1
+
+  $$
+  \text{Entropy} = -\frac{2}{3} \log_2\left(\frac{2}{3}\right) - \frac{1}{3} \log_2\left(\frac{1}{3}\right) \approx 0.918
+  $$
+
+- **Without round face**: Total = 1, Dogs = 1, Cats = 0
+
+  $$
+  \text{Entropy} = -1 \times \log_2(1) = 0
+  $$
+
+- **Overall Entropy for round face**:
+  
+$$
+\text{Entropy}_{\text{round face}} = \left(\frac{3}{4} \times 0.918\right) + \left(\frac{1}{4} \times 0\right) \approx 0.689
+$$
+
+---
+
+### Split on Whiskers 
+
+- **With whiskers**: Total = 1, Dogs = 1, Cats = 0
+
+  $$
+  \text{Entropy} = -1 \times \log_2(1) = 0
+  $$
+
+- **Without whiskers**: Total = 3, Dogs = 2, Cats = 1
+
+  $$
+  \text{Entropy} = -\frac{2}{3} \log_2\left(\frac{2}{3}\right) - \frac{1}{3} \log_2\left(\frac{1}{3}\right) \approx 0.918
+  $$
+
+- **Overall Entropy for whiskers:**
+
+$$
+\text{Entropy}_{\text{whiskers}} = \left(\frac{1}{4} \times 0\right) + \left(\frac{3}{4} \times 0.918\right) \approx 0.689
+$$
+
+Both **round face** and **whiskers** result in the same overall entropy of approximately 0.689. Therefore, either feature could be chosen for the next split. We will go with whiskers.
+
+---
+
+![**Decision Tree Process**](./images/decision_trees/Slide5.png){width=100% length=100%}
+
+---
+
+- Now, the right node is pure. Therefore, we only split on the left node. The only feature we have left to split with is round face.
+
+---
+
+![**Decision Tree Process**](./images/decision_trees/Slide6.png){width=100% length=100%}
+
+---
+
+![**Decision Tree Process**](./images/decision_trees/Slide7.png){width=100% length=100%}
+
+---
+
+![**Decision Tree Process**](./images/decision_trees/Slide7.png){width=100% length=100%}
+
+How exactly are these splits chosen?
+
+### Splitting the Variables at Each Node
+
+---
+
+#### Entropy
+- **Measure of randomness** or disorder in the given environment.
+- Observes **uncertainty** of data based on distribution of classes at any given step.
+- A lower entropy value means less disorder, therefore a **better split**.
+
+::: footer
+https://www.geeksforgeeks.org/decision-tree/
+:::
+
+#### Gini Index
+- Utilizes the **probability** that a random element is incorrectly labeled based on labeling from the original dataset distribution.
+- A lower Gini index means a **better split**.
+
+::: footer
+https://www.geeksforgeeks.org/decision-tree/
+:::
+
+---
+
+### Classification Tree Implementation
+
+---
+
+### Data Preparation
+
+```{python, echo=TRUE}
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+df = pd.read_feather('data/nyccrashes_cleaned.feather')
+
+vehicle_columns = ['vehicle_type_code_1', 'vehicle_type_code_2',
+ 'vehicle_type_code_3', 'vehicle_type_code_4', 'vehicle_type_code_5']
+df['number_of_vehicles_involved'] = df[vehicle_columns].notna().sum(axis=1)
+
+scaler = StandardScaler()
+df[['latitude', 'longitude']] = scaler.fit_transform(
+    df[['latitude', 'longitude']])
+
+df['contributing_factor_vehicle_1'] = df['contributing_factor_vehicle_1'].str.lower().str.replace(' ', '_')
+df = pd.get_dummies(df, 
+columns=['borough', 'contributing_factor_vehicle_1'],
+drop_first=True)
+
+```
+
+---
+
+### Data Preparation 
+
+```{python}
+features = ['latitude', 'longitude', 'number_of_vehicles_involved'] 
+features += [col for col in df.columns if 'borough_' in col] 
+features += [col for col in df.columns if 'contributing_factor_vehicle_1_' in col]
+
+df['severe'] = (
+    (df['number_of_persons_killed'] >= 1) | (df['number_of_persons_injured'] >= 1)).astype(int)
+
+df = df.dropna(subset=features)
+
+X = df[features]
+y = df['severe']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1234)
+```
+
+---
+
+### Entropy-based Model
+
+```{python}
+from sklearn.tree import DecisionTreeClassifier as DTC
+from sklearn.metrics import classification_report, confusion_matrix
+
+tree = DTC(criterion='entropy', max_depth=15)
+tree.fit(X_train, y_train)
+
+y_pred = tree.predict(X_test)
+
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))
+```
+
+::: footer
+https://scikit-learn.org/1.5/modules/tree.html
+:::
+
+---
+
+### Gini-based Model
+
+```{python}
+from sklearn.tree import DecisionTreeClassifier as DTC
+from sklearn.metrics import classification_report, confusion_matrix
+
+tree = DTC(criterion='gini', max_depth=15)
+tree.fit(X_train, y_train)
+
+y_pred = tree.predict(X_test)
+
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))
+```
+
+::: footer
+https://scikit-learn.org/1.5/modules/tree.html
+:::
+
+---
+
+### Regression Trees Overview
+
+---
+
+### Regression Trees Overview
+
+- Built for continuous variables; predicts continuous values
+- Rather than have the split based on Gini or Entropy, the split is based on MSE
+- Calculate all possible splits of all features; minimize total MSE
+
+$$
+\text{MSE} = \frac{1}{n} \sum (y_i - \bar{y})^2
+$$
+
+$$
+\text{Total MSE} = \frac{n_{\text{total}}}{n_{\text{left}}} \cdot \text{MSE}_{\text{left}} + \frac{n_{\text{total}}}{n_{\text{right}}} \cdot \text{MSE}_{\text{right}}
+$$
+
+::: footer
+https://towardsdatascience.com/decision-tree-regressor-explained-a-visual-guide-with-code-examples-fbd2836c3bef
+:::
+
+---
+
+### Regression Trees Overview 
+
+- What about leaf nodes? What are the final classifications?
+- Average y of all remaining observations in that node becomes prediction for future observations
+
+::: footer
+https://towardsdatascience.com/decision-tree-regressor-explained-a-visual-guide-with-code-examples-fbd2836c3bef
+:::
+
+---
+
+### Regression Tree Implementation
+
+---
+
+### Data Preparation
+
+```{python, echo=TRUE}
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+df = pd.read_csv('data/nypd311w063024noise_by100724.csv')
+df.columns = df.columns.str.lower().str.replace(' ', '_')
+
+df['created_date'] = pd.to_datetime(df['created_date'])
+df['closed_date'] = pd.to_datetime(df['closed_date'])
+
+df['hour'] = df['created_date'].dt.hour
+
+df['tod'] = np.where((df['hour'] >= 20) | (df['hour'] < 6), 'Nighttime', 'Daytime')
+
+df['dow'] = df['created_date'].dt.weekday
+df['day_type'] = np.where(df['dow'] < 5, 'Weekday', 'Weekend')
+
+df['response_time'] = (df['closed_date'] - df['created_date']).dt.total_seconds() / 3600 #this will be the y-variable
+
+df.columns
+```
+
+---
+
+### Data Preparation
+
+```{python, echo=TRUE}
+from sklearn.preprocessing import StandardScaler
+
+df = pd.get_dummies(df, columns=['complaint_type', 'borough', 'location_type', 'address_type', 'tod', 'day_type'], drop_first=True)
+
+df['sin_hour'] = np.sin(2 * np.pi * df['hour'] / 24)
+df['cos_hour'] = np.cos(2 * np.pi * df['hour'] / 24)
+
+scaler = StandardScaler()
+df[['latitude', 'longitude']] = scaler.fit_transform(df[['latitude', 'longitude']])
+
+features = ['sin_hour', 'cos_hour', 'latitude', 'longitude', 'dow', 'tod_Nighttime', 'day_type_Weekend']
+
+features += [col for col in df.columns if 'complaint_type_' in col]
+features += [col for col in df.columns if 'borough_' in col]
+features += [col for col in df.columns if 'location_type_' in col]
+features += [col for col in df.columns if 'address_type_' in col]
+
+df = df.dropna(subset=['latitude', 'longitude'])
+
+training_df = df[features]
+
+training_df.head()
+```
+
+---
+
+### Data Preparation
+
+```{python}
+X = df[features]
+y = df['response_time']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234)
+```
+
+---
+
+### Model Training
+
+```{python, echo=TRUE}
+from sklearn.tree import DecisionTreeRegressor as DTR
+from sklearn.metrics import mean_squared_error, r2_score
+
+tree = DTR(max_depth=20, min_samples_split=15)
+tree.fit(X_train, y_train)
+
+y_pred = tree.predict(X_test)
+
+print(mean_squared_error(y_test, y_pred))
+print(r2_score(y_test, y_pred))
+```
+
+::: footer
+https://scikit-learn.org/1.5/modules/tree.html
+:::
+
+---
+
+### Residual plot
+
+```{python, echo=TRUE}
+import matplotlib.pyplot as plt
+
+residuals = y_test - y_pred
+plt.scatter(y_pred, residuals)
+plt.hlines(0, min(y_pred), max(y_pred), colors='r')
+plt.xlabel("Predicted Values (response time)")
+plt.ylabel("Residuals")
+plt.title("Residual Plot")
+plt.show()
+```
+
+---
+
+### Tree Visualization
+
+```{python}
+from sklearn.tree import plot_tree
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(9, 6)) 
+plot_tree(tree, feature_names=X_train.columns, filled=True, rounded=True)
+plt.show()
+```
+
+::: footer
+https://scikit-learn.org/1.5/modules/tree.html
+:::
+
+---
+
+### Export Tree to Text
+
+```{python}
+from sklearn.tree import export_text
+
+tree_structure = export_text(tree, feature_names=list(X_train.columns))
+tree_structure
+```
+
+::: footer
+https://scikit-learn.org/1.5/modules/tree.html
+:::
+
+---
+
+### Conclusion
+
+- Decision trees are effective for both classification & regression tasks
+    - classification vs. regression trees
+- Very flexible & easy to interpret
+- Easily adjustable parameters to help prevent overfitting (max tree depth, min sample split) 
+
+---
+
+### References
+
+1. 1.10. Decision Trees. (n.d.). Scikit-learn. https://scikit-learn.org/1.5/modules/tree.html
+2. Baladram, S. (2024, October 11). Decision Tree Regressor, Explained: A Visual Guide with Code Examples. Medium. https://towardsdatascience.com/decision-tree-regressor-explained-a-visual-guide-with-code-examples-fbd2836c3bef
+3. GeeksforGeeks. (2024, May 17). Decision tree. GeeksforGeeks. https://www.geeksforgeeks.org/decision-tree/

@@ -182,7 +182,7 @@ and MAE are useful for specific use cases such as count data and
 robust models, respectively.
 
 <!-- ## Decision Trees: Demonstration  -->
-{{< include _treeDemo.qmd >}}
+<!-- {{< include _treeDemo.qmd >}} -->
 
 
 ## Boosted Trees
@@ -233,8 +233,8 @@ The boosting process can be delineated as follows:
    target variable in regression or the log odds in classification:
 
    - For regression: $F_0(x) = \text{mean}(y_i)$.
-   - For classification: $F_0(x) = \log \left( 
-     \frac{P(y=1)}{1-P(y=1)} \right)$.
+   - For classification: 
+   $F_0(x) = \log \left( \frac{P(y=1)}{1-P(y=1)} \right)$.
 
 2. **Iterative Boosting**:
    

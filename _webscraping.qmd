@@ -1,9 +1,417 @@
 ## Web Scraping
 
-This section was written by ...
+This section was written by Melanie Desroches, a senior majoring in statistics 
+and minoring in computer science. The goal of this section is to introduce 
+web-scraping so that it can be utilized for data science. This will include what 
+web-scraping is, how to web-scrape with Python using examples, and how
+to web-scrape ethically.
+
+### What is Web-Scraping
+
+As data scientists, we often want to collect data from a variety of sources. In 
+the age of the internet, a lot of the data we may want to collect is available 
+on a website. However, this data is often times not available in an easily downloadable 
+format. This is where web-scraping becomes valuable. Web-scraping is an automated 
+process used to gather data from websites. This allows us to access and collect large 
+amounts of data directly from web pages if the information is not avalible for download.
+
+Websites are primarily structured with HTML (Hypertext Markup Language), which organizes 
+and displays content. Web scrapers parse through this HTML code to identify and extract 
+relevant information. Therefore, it important to have a basic understanding of HTML in 
+order to identify what part of the website you are trying to scrape. The contents of a 
+web page are broken up and identified by elements. Here are some examples of common elements 
+that are important for web-scraping:
+
+- `<body>` : identifies the website body
+- `<table>` : identifies a table
+- `<tbody>` : identifies the body of the table
+- `<tr>` : indentifies the row of a table
+
+### How to Web-Scrape with Python
+
+There are many ways to web-scrape with Python. We will cover the two
+main packages, Beautiful Soup and Selenium.
+
+#### Beautiful Soup
+
+The Beautiful Soup Python Library simplifies the process of parsing and navigating HTML and 
+XML documents, making it easier to extract data from websites. Beautiful Soup is ideal for scraping 
+data from static websites. Static websites do not change based on user actions or require 
+server-side interactions to update content dynamically. Basically, what you see is what you get.
+Static websites tend to be pretty simple so scraping from them is relatively easy.
+
+Beautiful Soup can be installed by running
+```
+pip install beautifulsoup4
+```
+in your terminal.
+
+#### Selenium
+
+Selenium is used for web browser automation and dynamic websites. Dynamic sites often use 
+backend programming to pull data from a database, customize it, and render it in real time 
+based on user requests. This makes Selenium great at performing web-scraping tasks that 
+involve multiple pages or performing actions within those pages. Because dynamic websites 
+tend to be a bit more complex, you need to use a package like Selenium that is more equiped 
+for the complex structure.
+
+Selenium can be installed by running 
+```
+pip install selenium
+```
+in your terminal.
+
+#### Web Driver
+
+To control a web browser, Selenium also requires a
+WebDriver. We recommend Chrome Driver because it is cross-platform;
+follow the [instructions for developers to set up your Chrome
+Driver](https://developer.chrome.com/docs/chromedriver/get-started).
 
 
-### Subsection 1
+After setting up Chrome Driver, you can check its availability from a
+terminal:
+``` shell
+chromedriver --version
+```
+A commonly seen error on Mac is
+
+> Error: “chromedriver” cannot be opened because the developer cannot
+> be verified. Unable to launch the chrome browser
+
+This can be fixed by running:
+``` bash
+xattr -d com.apple.quarantine $(which chromedriver)
+```
+See [explanation from
+StackOverflow](https://stackoverflow.com/questions/60362018/macos-catalinav-10-15-3-error-chromedriver-cannot-be-opened-because-the-de).
 
 
-### Subsection 2
+#### Beautiful Soup vs Selenium
+
+Both Beautiful Soup and Selenium are helpful tools in web-scraping. But they both have 
+their strengths and weaknesses. Beautiful Soup is lightweight, easy to learn, and perfect 
+for working with static HTML content. However, Beautiful Soup is more limited when it comes 
+to dynamic websites, which are much more common nowadays. Selenium is better for interacting 
+with dynamic web content that loads JavaScript or requires actions like clicking, scrolling, or 
+filling forms. That said, Selenium can be slower and more resource-intensive since it opens a 
+browser window to simulate real user actions.
+
+#### A Step-by Step Guide to Web-Scraping
+
+1. Find the website URL with the information you want to select
+2. Send an HTTP request to the URL and confirm you have access to the page. Generally, 
+  200-299 means the request has been granted and 400-499 means that your request is not allowed.
+3. Use the "Inspect" tool in your browser to identify the tags, classes, or elements associated 
+  with the data you want to extract. This can be done by right-clicking on the web page and 
+  pressing select. If you hover your clicker over the different sections of HTML, the parts of the 
+  website that section is associated with will become highlighted. Use this to find the element that 
+  is associated with the data that you want to scrape.
+4. Use a parsing library like Beautiful Soup or Selenium to process the HTML response. 
+  Beautiful Soup requires the use of the requests package in order to send a request. Selenium 
+  uses the webdriver to send the request.
+5. Clean and store the relevant infomation.
+
+### Examples using NYC Open Data
+
+Since this class has used the NYC Open Data, let's build on this data set in order to 
+get some additional information that is not already available. 
+
+#### Beautiful Soup and NYPD Precincts
+
+Say you want to get the adresses of all of the NYPD Precincts in New York City. This 
+information is available in table format on the [NYPD website](https://www.nyc.gov/site/nypd/bureaus/patrol/precincts-landing.page). 
+Since the NYPD Precincts aren't changed, the website is static, making Beautiful Soup 
+the best package to use to scrape this website.
+
+Start by making sure you have Beautiful Soup and Requests installed. The requests 
+package can be installed using
+
+```
+pip install requests
+```
+
+Import the `requests` package, `BeautifulSoup` from `bs4`, and
+`pandas` (to create a new data frame). 
+We have already identified the url that will be scraping data from. In the code below, there 
+is a dictionary called headers. This is optional. Headers can help make your requests look 
+more like a browser. If you choose to use a header, include it when you send your request to the
+url. Otherwise, the request can be sent to the url using `requests.get()`.
+
+```{python}
+#| echo: true
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+# URL of the NYPD precincts page
+url = "https://www.nyc.gov/site/nypd/bureaus/patrol/precincts-landing.page"
+
+# Send a GET request to the page
+headers = {
+    "User-Agent": "Mozilla/5.0 Chrome/87.0"
+}
+response = requests.get(url, headers=headers)
+
+# Check if the request was successful
+print(response.status_code)
+if response.status_code != 200:
+    print(f"Failed to retrieve page: Status code {response.status_code}")
+```
+
+Since the response to the request was 200, which means the request was
+successful, we are clear to move onto the next step 
+which is parsing the table.
+
+To start parsing, you have to call Beautiful Soup. When you pass `response.text` into 
+Beautiful Soup, it takesthe raw HTML of the webpage as a string. `html.parser` specifies 
+the parsing engine used by Beautiful Soup to process the HTML. It is a built-in Python 
+HTML parser that is fast and works well for most cases.
+
+To identify which parts of the website you want to webscrape, you can right click on the 
+website and click inspect. This will show you the HTML of the page. The table can be found 
+under the `<table>` element with the class `rt`. Using this information, have Beautiful Soup 
+find the table using `.find()`. Within the table, the rows are indentifies by `<tr>` within 
+the HTML. In each row, the name of the precinct and address is found in the `<td>` element 
+with the data labels `Precinct` and `Address` respectively. From this, use `.find_all('tr')` 
+to find all the rows in the table and then within each row, extract the precinct and address.
+```{python}
+#| echo: true
+# Parse the HTML content
+soup = BeautifulSoup(response.text, 'html.parser')
+
+# Find the table with class "rt" which holds the precinct data
+table = soup.find("table", {"class": "rt"})
+    
+# Lists to hold the extracted data
+precinct_names = []
+addresses = []
+    
+# Extract each row of the table (each row corresponds to one precinct)
+for row in table.find_all("tr"):
+  # Find the "Precinct" and "Address" columns by data-label attribute
+  precinct_cell = row.find("td", {"data-label": "Precinct"})
+  address_cell = row.find("td", {"data-label": "Address"})
+        
+  # If both cells are found, store their text content
+  if precinct_cell and address_cell:
+    precinct_names.append(precinct_cell.get_text(strip=True))
+    addresses.append(address_cell.get_text(strip=True))
+```
+
+The extracted information can be stripped so that only the relevant text is included 
+and then added to their relevant list. Now that the data has been collected and cleaned, 
+a new dataframe can be created.
+
+```{python}
+#| echo: true
+# Create a DataFrame with the extracted data
+precincts_df = pd.DataFrame({
+  "Precinct": precinct_names,
+  "Address": addresses
+})
+
+# Display the DataFrame
+print(precincts_df)
+```
+
+#### Selenium and Weather Data
+
+Say you want to see if the weather makes an impact of the number or severity of crashes in 
+New York City. Weather data in New York City can be found on [Wundergroud](https://www.wunderground.com/history/weekly/us/ny/new-york-city/KLGA/date/2024-6-30). 
+Since information on weather is always being monitored and collected, the data that we want 
+for a specific time period in being held in the websites database. Therefore, the website is 
+dynamic and Selenium cna be used for web scraping.
+
+
+The first step is to set up Selenium and the WebDriver. In this
+example, I use Chrome Driver. Options can be initialized with
+`chrome_options = Options()` for the Chrome browser. The options I
+used were `--headless` (which allows the browser to run without a
+visible window) and `--disable-gpu`  (which can improve performance in
+headless mode). 
+
+```{python}
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+
+# Set up ChromeDriver
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # Run in headless mode (no browser UI)
+chrome_options.add_argument("--disable-gpu")  # Disable GPU acceleration
+chrome_options.add_argument("--no-sandbox")  # Required for some environments
+```
+
+
+Next we need find the path of the Chrome Driver. The following code is
+a cross-platform solution.
+```{python}
+# Path to your ChromeDriver executable
+# config_file_path = "config.txt"
+# with open(config_file_path, 'r') as file:
+#         chrome_driver_path = file.read().strip()
+
+import os
+
+def find_application_path(app_name):
+    for path in os.environ["PATH"].split(os.pathsep):
+        full_path = os.path.join(path, app_name)
+        if os.path.isfile(full_path) and os.access(full_path, os.X_OK):
+            return full_path
+    return None
+
+chrome_driver_path = find_application_path("chromedriver")
+```
+
+The driver then can be initialized with the path and driver options.
+```{python}
+service = Service(chrome_driver_path)
+
+# Initialize the ChromeDriver
+driver = webdriver.Chrome(service=service, options=chrome_options)
+```
+
+Once Selenium and the webdriver is set up, go to the page and find the target data. Same 
+as with the Beautiful Soup example, go to the url and identify the table that you want to 
+webscrape. In this case, I want the table at the bottom of the page that lists the daily 
+observations of the temperature,	dew point, humidity, wind speed, pressure, and precipitation. 
+The table is identified as `<table>` with the class `<days>`. In Selenium, `driver.get(url)` opens 
+the webpage in the Edge browser. Once the table has loaded, `(By.CSS_SELECTOR, "table.days")` selects 
+the main data table by its CSS selector "table.days", ensuring we’re targeting the right element.
+```{python}
+#| echo: true
+# Define the target URL
+url = f"https://www.wunderground.com/history/weekly/us/ny/new-york-city/KLGA/date/2024-6-30"
+
+# Load the page
+driver.get(url)
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# Wait for table to load
+wait = WebDriverWait(driver, 15)
+table = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "table.days")))
+```
+
+Within the table, the rows are indentified by `tr` in `tbody`and the columns are in `td`. 
+```{python}
+#| echo: true
+# Initialize lists for each data type
+dates = []
+max_temps = []
+min_temps = []
+humidity_values = []
+wind_speeds = []
+pressure_values = []
+precip_values = []
+
+# Get all rows
+rows = table.find_elements(By.CSS_SELECTOR, "tbody tr")
+for row in rows:
+    # Get all 'td' elements in the row
+    columns = row.find_elements(By.TAG_NAME, "td")  
+    # Extract text from each column
+    row_data = [col.text.strip() for col in columns]  
+    # Print the content of the row
+    print("Row Data:", row_data)  # This will print the content of each row
+```
+
+As you can see the output is pretty messy. From this step, we need to find the important 
+parts and strip it of the text. This can be done by identifying the indicies of the rows 
+that we want, using `find_elements` to find the corresponding tag, and then stripping the 
+text to add it to the relevant list.
+
+```{python}
+#| echo: true
+# Process the first row which contains all the dates
+date_row = rows[0].text.split('\n')
+dates = [date for date in date_row if date.isdigit()][:7]  # Get first 7 dates
+
+# Find temperature values (rows 10-16 contain the actual temperature data)
+temp_rows = rows[10:17]  # Get rows 10-16
+for row in temp_rows:
+  cells = row.find_elements(By.TAG_NAME, "td")
+  if len(cells) >= 3:
+    max_temps.append(cells[0].text.strip())
+    min_temps.append(cells[2].text.strip())
+
+# Find humidity values (rows 18-24)
+humidity_rows = rows[18:25]
+for row in humidity_rows:
+  cells = row.find_elements(By.TAG_NAME, "td")
+  if len(cells) >= 2:
+    humidity_values.append(cells[1].text.strip())
+
+# Find wind speed values (rows 26-32)
+wind_rows = rows[26:33]
+for row in wind_rows:
+  cells = row.find_elements(By.TAG_NAME, "td")
+  if len(cells) >= 1:
+    wind_speeds.append(cells[0].text.strip())
+
+# Find pressure values (rows 42-48)
+pressure_rows = rows[42:49]
+for row in pressure_rows:
+  cells = row.find_elements(By.TAG_NAME, "td")
+  if len(cells) >= 1:
+    pressure_values.append(cells[0].text.strip())
+
+# Find precipitation values (rows 50-56)
+precip_rows = rows[50:57]
+for row in precip_rows:
+  cells = row.find_elements(By.TAG_NAME, "td")
+  if len(cells) >= 1:
+    precip_values.append(cells[0].text.strip())
+```
+
+Once all the relevant data has been collected and cleaned, it can be added to a new dataframe.
+```{python}
+#| echo: true
+import pandas as pd
+
+# Create DataFrame
+weather_data = pd.DataFrame({
+    'Date': dates,
+    'Max Temperature (°F)': max_temps,
+    'Min Temperature (°F)': min_temps,
+    'Humidity (%)': humidity_values,
+    'Wind Speed (mph)': wind_speeds,
+    'Pressure (in)': pressure_values,
+    'Precipitation (in)': precip_values
+})
+
+print(weather_data)
+driver.quit()
+```
+
+Lastly, `driver.quit()` closes the browser.
+
+### A Note on Data Ethics 
+
+While web scraping is not explicitly illegal, it can get you in hot water if you are 
+not careful. Web scraping is a powerful tool and it should be treated as such. Just 
+because you can web scrape doesn't always mean you should.
+
+#### Why Web-Scraping can be un-ethical
+
+There are several reasons that web scraping may be deemed unethical. 
+
+- The website you are trying to web scrape may not allow it.
+- The information being scraped is considered private information or intellectual property.
+- Sending too many requests at once can overwhelm the server and crash the website.
+
+#### Some Tips to Help You Scrape Ethically
+
+- You can check if a website allows web scraping in either the terms of use section of the 
+  website or by checking the websites `.robots.txt` to see who is allowed to use the website 
+  and what parts are available for scraping.
+- Always be mindful of what kind of information you are trying to collect and if it is private 
+  information/intellectual property
+- Never scrape from a website that requires login or payment
+- Spread out the time of the requests in order to prevent the website from crashing. If using Selenium, 
+  use `WebDriverWait` from `selenium.webdriver.support.ui` to wait for the page to load. Otherwise, use 
+  the `time` package to space out the requests.

@@ -1,5 +1,7 @@
 ## Naive Bayes
 
+This section was contributed by Suha Akach.
+
 Naive Bayes is a probabilistic classification algorithm based on Bayes' 
 Theorem, which is used for both binary and multiclass classification 
 problems. It is particularly effective for high-dimensional datasets 
@@ -172,4 +174,208 @@ $$
 
 This adjustment ensures that even unseen features in the training data 
 do not lead to zero probabilities, thus improving the model’s robustness.
+
+### Types of Naive Bayes:
+There are 5 types of Naive Bayes classifiers:
+
+- **Gaussian Naive Bayes**: This type of Naive Bayes is used when the
+  dataset consists of numerical features. It assumes that the features
+  follow a Gaussian (normal) distribution. This model is fitted by
+  finding the mean and standard deviation of each
+  class [@ibm2024naivebayes].
+  
+
+- **Categorical Naive Bayes**: When the dataset contains categorical
+  features, we use Categorical Naive Bayes. It assumes that each
+  feature follows a categorical distribution. 
+  
+
+- **Bernoulli Naive Bayes**: Bernoulli Naive Bayes is applied when the
+  features are binary or follow a Bernoulli distribution. That is,
+  variables with two values, such as True and False or 1
+  and 0. [@ibm2024naivebayes].
+  
+
+- **Multinomial Naive Bayes**: Multinomial Naive Bayes is commonly
+  used for text classification tasks. It assumes that features
+  represent the frequencies or occurrences of different words in the
+  text. 
+  
+
+- **Complement Naive Bayes**: Complement Naive Bayes is a variation of
+  Naive Bayes that is designed to address imbalanced datasets. It is
+  particularly useful when the majority class overwhelms the minority
+  class in the dataset. It aims to correct the imbalance by
+  considering the complement of each class when making predictions
+  [@cnb2023].
+  
+
+Each type of Naive Bayes classifier is suitable for different types of
+datasets based on the nature of the features and their
+distribution. By selecting the appropriate Naive Bayes algorithm, we
+can effectively model and classify data based on the given features.
+
+
+### Naive Bayes w/ NYC Crash Data
+
+Since we have an imbalanced dataset where there are more non severe
+crashes than severe, we will use Complement Naive Bayes classifier to
+predict severe crashes based on our predictors. 
+
+
+Our assumed independent predictors after feature engineering are:
+`borough`, `location`, `household_median_income`, `crash_date,
+crash_time`, `time_category`, `contributing_factor_vehicle_1`,
+`vehicle_type_code_1`
+.
+
+We assume a crash is severe if there are more than 0 persons killed
+and/or injured. 
+
+
+```{python}
+import pandas as pd
+import numpy as np
+import warnings
+import uszipcode as us
+
+# Disable warnings
+warnings.filterwarnings("ignore")
+
+# Load the dataset
+df = pd.read_feather('data/nyccrashes_cleaned.feather')
+
+# 1. Separate crash_datetime into date and time (convert datetime into numeric features)
+df['crash_datetime'] = pd.to_datetime(df['crash_datetime'])
+df['crash_date'] = df['crash_datetime'].dt.date
+df['crash_time'] = df['crash_datetime'].dt.time
+
+# Extract relevant features from datetime (for example: hour)
+df['hour'] = df['crash_datetime'].dt.hour
+
+# 2. Create time_category column with updated time intervals
+def categorize_time(hour):
+    if 0 <= hour < 6:
+        return 'midnight'  # 12:00 AM to 5:59 AM
+    elif 6 <= hour < 12:
+        return 'morning'  # 6:00 AM to 11:59 AM
+    elif 12 <= hour < 18:
+        return 'afternoon'  # 12:00 PM to 5:59 PM
+    elif 18 <= hour < 21:
+        return 'evening'  # 6:00 PM to 8:59 PM
+    else:
+        return 'night'  # 9:00 PM to 11:59 PM
+
+df['time_category'] = df['hour'].apply(categorize_time)
+
+# 3. Add median household income for each zip code using the uszip package
+def get_median_income(zipcode):
+    try:
+        z = us.search.by_zipcode(str(zipcode))
+        if z:
+            return z.median_income
+        else:
+            return np.nan
+    except:
+        return np.nan
+
+df['household_median_income'] = df['zip_code'].apply(get_median_income)
+```
+
+#### Defining predictors and target variable. 
+
+```{python}
+#| echo: true
+from imblearn.over_sampling import SMOTE
+from sklearn.naive_bayes import ComplementNB  # Complement Naive Bayes
+from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.model_selection import train_test_split
+
+# Target variable for severe crashes based on number of persons killed and injured
+df['severe_crash'] = (df['number_of_persons_killed'] > 0) | (df['number_of_persons_injured'] > 0).astype(int)
+
+# Selected predictors
+predictors = ['borough', 'location', 'household_median_income', 
+              'crash_date', 'crash_time', 'time_category',
+              'contributing_factor_vehicle_1', 'vehicle_type_code_1']
+
+# Convert categorical columns into dummy variables
+X = pd.get_dummies(df[predictors], drop_first=True)
+
+# Handle NaN or missing values in numeric columns if necessary
+X.fillna(0, inplace=True)
+
+# Target variable
+y = df['severe_crash']
+```
+
+#### Fitting Our Model
+
+After accounting for imbalanced data using SMOTE, we find the k
+nearest neighbors in the minority class to generate synthetic points
+between the chosen point and its neighbors. In this case, 7 nearest
+neighbors are considered to generate synthetic samples. We also use
+alpha 0.5 for our laplace smoothing to apply an equal level of
+smoothing across all feature probabilities. Finally, we apply a
+threshold to check if the probability for class 1 (positive class) is
+greater than 0.4, and if so, assigns the sample to class 1, otherwise
+to class 0.
+
+
+```{python}
+#| echo: true
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=3255)
+
+# Resample to balance the classes (SMOTE)
+smote = SMOTE(random_state=3255, k_neighbors=7)
+X_train_res, y_train_res = smote.fit_resample(X_train, y_train)
+
+# Initialize the Complement Naive Bayes model with Laplace smoothing
+model = ComplementNB(alpha=0.5)
+
+# Fit the model
+model.fit(X_train_res, y_train_res)
+
+# Get the probabilities for each class
+y_prob = model.predict_proba(X_test)
+
+# Apply threshold to the predicted probabilities
+y_pred = (y_prob[:, 1] > 0.4).astype(int)
+
+# Evaluate the model with the new threshold
+conf_matrix = confusion_matrix(y_test, y_pred)
+report = classification_report(y_test, y_pred)
+
+print("Confusion Matrix:")
+print(conf_matrix)
+print("\nClassification Report:")
+print(report)
+
+```
+
+#### Interpreting our Results:
+
+Recall vs. Precision: Our model is better at identifying severe
+crashes (higher recall of 0.62) but is less accurate when it does so
+(lower precision of 0.52). This means that while the model catches a
+good portion of the severe crashes, it also misidentifies a fair
+number of non-severe crashes as severe.
+
+
+F1-Score: The F1-score of 0.57 for severe crashes is a balanced
+measure, showing that our model is moderately effective at
+distinguishing severe crashes from non-severe ones.
+
+
+Improvement Opportunities: The overall accuracy of 58% is moderate, so
+there’s potential for further optimization. 
+
+
+In conclusion, our CNB model is fairly good at predicting severe
+crashes with an accuracy of 58% but may benefit from more tuning to
+improve precision and reduce false positives, especially in the
+context of an imbalanced dataset where we don't have many instances of
+people injured or killed. 
 
