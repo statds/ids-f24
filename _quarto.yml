@@ -13,6 +13,7 @@ book:
     - name: Rahul Manna
     - name: Julia Mazzola
     - name: Deyu Xu
+    - name: Mohammad Shahriyar Parvez
   date: today
 
   sidebar:
@@ -33,7 +34,6 @@ book:
     - unsupervised.qmd
     - reinforcement.qmd
     - advanced.qmd
-    - censustract.qmd
     - exercises.qmd
     - references.qmd
 
