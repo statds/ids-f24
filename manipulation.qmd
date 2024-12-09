@@ -349,6 +349,7 @@ zip_info_df = pd.DataFrame(zip_data)
 
 # Merge this info back into the original DataFrame based on 'zip_code'
 merged_df = pd.merge(valid_zip_df, zip_info_df, how="left", on="zip_code")
+merged_df.to_feather('data/nyccrashes_merged.feather')
 
 merged_df.head()
 ```

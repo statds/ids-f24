@@ -1,5 +1,337 @@
-## Handling Umbalanced Data
+## Handling Imbalanced Data with SMOTE
 
 This section is presented by Olivia Kashalapov.
 
-### Subsection
+### Introduction
+
+This presentation on SMOTE will cover the following topics:
+
+- What is class imbalance and why is it important?
+- What is SMOTE?
+- Why do we use it and how does it work?
+- Why is SMOTE better than other traditional methods for handling class imbalance?
+- Using SMOTE in data visualization, analysis, model training, and evaluation.
+- The downsides and limitations of SMOTE.
+
+### Class Imbalance
+**Before we can learn about SMOTE, we have to understand class imbalance and why it is important.**
+- Class imbalance is a common issue in many datasets in which the distribution of examples within the dataset are either biased or skewed.
+    - Let’s say there is a dataset for a rare medical diagnosis and there are two classes, with disease and without disease. The data can be taken to explore if there is a certain variable that makes it more likely for an individual to be diagnosed with this rare disease. Since the disease is rare, the class of people with the disease is going to be significantly smaller than the class of those without. In this case, the data will be skewed towards the class of people without the disease and this may skew the findings of the predictive model.
+- Addressing class imbalance improves the performance of models and increases model accuracy.
+- Unfortunately, “most of the machine learning algorithms used for classification were designed around the assumption of an equal number of examples for each class.” – this is where SMOTE comes in!
+
+### Synthetic Model Oversampling Technique
+- Synthetic Model Oversampling Technique, better known as SMOTE, is an algorithm that focuses on the feature space (already existing data points) in the minority class to generate new data points to create balance between the majority and minority classes.
+- Here is how it works:
+    1. It identifies imbalance in the dataset and recognizes the minority class.
+    2.	Using an existing data point in the minority class, it takes the difference between the point and a nearest neighbor.
+    3.	It then multiplies the difference by random number between 1 and 0.
+    4.	This difference is then added to the sample to generate new synthetic example in the featured space (minority class).
+    5.	This continues with next nearest neighbor up to user-defined number (k), In other words, there are k synthetic points created between the selected existing point and its k nearest neighbors.
+    6.	This is repeated for all data points within the minority class
+- In simpler terms, it creates synthetic data points in the minority class by creating points that lie in between pre-existing ones
+- SMOTE works well because it attempts to remove bias on skewed distributions and balances the data using pre-existing data points within the dataset. It uses the data already being used to create realistic randomized data points.
+
+### SMOTE versus Traditional Methods
+- There are other ways to handle class imbalance within data sets, other than SMOTE
+- One method of this is random under sampling the majority class where random points are chosen in the majority class to be discarded. This often leaves out too much data which could be important for training the predictive model and there are chances that the remaining sample ends up being biased.
+- Another option is random oversampling the minority class which is done by randomly duplicating points within the minority class. Although this fixes the class imbalance, it could also lead to overfitting of the model, making it less accurate to the true population.
+- SMOTE mitigates the problems of random oversampling and under sampling since the generated data points are not replications of already occurring instances and the majority class keeps all of its existing instances. It is much more unlikely for there to be a case of overfitting the model and no useful information will be left out of the model either.
+
+### Installation and Setup
+To install SMOTE, you can type one of two commands into your terminal:
+
+```python
+pip install imbalanced-learn
+# OR
+conda install imbalanced-learn
+```
+
+To import SMOTE on Python, you use this command:
+```{python}
+from imblearn.over_sampling import SMOTE
+```
+Just like that, you are ready to use SMOTE!
+
+### Data Preparation
+Here I am creating a simple data set in which there is an extremely apparent class imbalance. I am doing this rather than using past data sets so that you can truly see the work of SMOTE without other factors that can make the process confusing.
+
+```{python}
+import pandas as pd
+import numpy as np
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# Generate synthetic dataset
+data_size = 1000
+class_0_size = int(data_size * 0.9)  # 90% for class 0
+class_1_size = data_size - class_0_size  # 10% for class 1
+
+# Class 0: Majority class
+feature1_class_0 = np.random.normal(0, 1, class_0_size)
+feature2_class_0 = np.random.normal(1, 1, class_0_size)
+target_class_0 = np.zeros(class_0_size)
+
+# Class 1: Minority class
+feature1_class_1 = np.random.normal(2, 1, class_1_size)
+feature2_class_1 = np.random.normal(2, 1, class_1_size)
+target_class_1 = np.ones(class_1_size)
+
+# Combine the majority and minority class
+feature1 = np.concatenate([feature1_class_0, feature1_class_1])
+feature2 = np.concatenate([feature2_class_0, feature2_class_1])
+target = np.concatenate([target_class_0, target_class_1])
+
+# Create a DataFrame
+data = pd.DataFrame({
+    'feature1': feature1,
+    'feature2': feature2,
+    'target': target
+})
+
+# Display the first few rows
+print(data.head())
+
+# Save the dataset as CSV for further use
+data.to_csv('synthetic_class_imbalance_dataset.csv', index=False)
+```
+
+### Data Visualization
+Before using SMOTE to balance the classes, we can view the distribution of the minority and majority classes. It is quite evident that class 0 has many more instances when compared to class 1. This means any predictive models made with this exact data are likely to be skewed towards class 0.
+
+```{python}
+import matplotlib.pyplot as plt
+
+# Visualize the class distribution
+data['target'].value_counts().plot(kind='bar', color=['blue', 'orange'])
+plt.title('Class Distribution')
+plt.xlabel('Class')
+plt.ylabel('Count')
+plt.show()
+```
+
+### Implementing SMOTE
+Now we can use SMOTE on the dataset I created to handle the imbalance between the classes.
+
+```{python}
+# Split the dataset into features (X) and target (y)
+X = data[['feature1', 'feature2']]
+y = data['target']
+
+# Check the initial class distribution
+print(y.value_counts())
+
+from imblearn.over_sampling import SMOTE
+
+# Initialize SMOTE with custom parameters
+smote = SMOTE(
+    sampling_strategy=1,  # Resample minority to 100% of majority class
+    k_neighbors=5,          # Use 5 nearest neighbors to generate synthetic samples
+    random_state=42,        # Set a random state for reproducibility
+)
+
+# Apply SMOTE to the dataset
+X_resampled, y_resampled = smote.fit_resample(X, y)
+print(pd.Series(y_resampled).value_counts())
+```
+
+In this example of SMOTE application, I am utilizing multiple customized parameters. Without these specifications, the SMOTE() command will resample the minority to have the same number of instances as the majority class and utilize the 5 nearest neighbors to generate these samples. **Without a specified random state, SMOTE will choose one so it is recommended to include that paramter for reproducibility.**
+
+### Visualization after SMOTE
+*Keep in mind, the minority class will remain smaller than the majority due to the sampling_strategy parameter included in the previous slide.*
+
+```{python}
+import matplotlib.pyplot as plt
+
+# Visualize the class distribution after SMOTE
+pd.Series(y_resampled).value_counts().plot(kind='bar', color=['blue', 'orange'])
+plt.title('Class Distribution After SMOTE')
+plt.xlabel('Class')
+plt.ylabel('Count')
+plt.show()
+```
+
+Much better!
+
+### Model Training using SMOTE
+Now that the dataset is balanced, we can train the machine learning model. In this case, I am using logistic regression, which works well in many binary cases.
+
+```{python}
+from imblearn.over_sampling import SMOTE
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, confusion_matrix
+
+# Split the resampled data into training and testing sets (70% train, 30% test)
+X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size=0.3, random_state=42)
+
+# Initialize and train a Logistic Regression model
+log_reg = LogisticRegression(random_state=42)
+log_reg.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = log_reg.predict(X_test)
+
+# Print the confusion matrix
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+
+# Print the classification report (includes precision, recall, F1-score)
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
+```
+
+There were 227 cases in which the model correctly predicted class 1 (true positive) and 244 cases in which the model correctly predicted class 0 (true negative). There were 40 cases in which class 1 was predicted, but it was class 0. Lastly, there were 29 cases in which class 0 was predicted, but it was class 1. 
+
+**The accuracy of this model is 87%, which means it correctly predicts the class 87% of the time.**
+
+### Model Evaluation
+So how good is this model actually? Here I am going to use the ROC curve and AUC, since the last slide already touched on accuracy and confusion matrix results.
+
+```{python}
+from sklearn.metrics import roc_curve, roc_auc_score
+import matplotlib.pyplot as plt
+
+# Compute predicted probabilities for ROC curve
+y_prob = log_reg.predict_proba(X_test)[:, 1]
+
+# Generate ROC curve values
+fpr, tpr, thresholds = roc_curve(y_test, y_prob)
+
+# Plot ROC curve
+plt.figure()
+plt.plot(fpr, tpr, label='Logistic Regression (AUC = {:.2f})'.format(roc_auc_score(y_test, y_prob)))
+plt.plot([0, 1], [0, 1], linestyle='--', label='Random Guessing')
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate (Recall)')
+plt.title('ROC Curve')
+plt.legend()
+plt.show()
+
+# Compute AUC
+auc = roc_auc_score(y_test, y_prob)
+print("AUC:", auc)
+```
+
+The area under the curve (AUC) determines how good a model is at distinguishing between the positive and negative classes, with a score of 1 being perfect. In this case, with an AUC of 0.941, the model is extremely good at making these distinguishments.
+
+### Another Example Using NYC Crash Data
+For the NYC Crash Severity Prediction homework we did, SMOTE came in helpful when it came to creating synthetic data in our model predictors. Classes like 'contributing_factor_vehicle_4' and 'vehicle_type_code_5' were missing a lot of data, making our prediction models very skewed. 
+
+**Here is how I used SMOTE to fix this issue.**
+
+```{python}
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, f1_score
+from sklearn.impute import SimpleImputer
+from imblearn.over_sampling import SMOTE
+
+# Identify merged data
+merged_df = pd.read_feather("data/nyccrashes_merged.feather")
+
+merged_df['Severe Crash'] = ((merged_df['number_of_persons_killed'] > 0) | 
+                        (merged_df['number_of_persons_injured'] > 1)).astype(int)
+
+# Select predictors
+predictors = ['borough', 'on_street_name', 'cross_street_name', 
+              'off_street_name', 'contributing_factor_vehicle_1',
+              'contributing_factor_vehicle_2', 
+              'contributing_factor_vehicle_3',
+              'contributing_factor_vehicle_4', 
+              'contributing_factor_vehicle_5',
+              'vehicle_type_code_1', 'vehicle_type_code_2', 
+              'vehicle_type_code_3', 'vehicle_type_code_4', 
+              'vehicle_type_code_5', 
+              'median_home_value', 'median_household_income']
+
+# Initialize data
+X = pd.get_dummies(merged_df[predictors], drop_first=True)
+y = merged_df['Severe Crash']
+
+# Impute any missing values
+imputer = SimpleImputer(strategy='mean')
+X_imputed = imputer.fit_transform(X)
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(X_imputed, 
+                                                    y, test_size=0.2, 
+                                                    random_state=1234)
+
+# Apply SMOTE to the training data
+smote = SMOTE(random_state=1234)
+X_train_resampled, y_train_resampled = smote.fit_resample(X_train, y_train)
+```
+
+### NYC Crash Data Part 2
+Now we can continue on to logistic regression modeling and evaluating the accuracy of our predictive model with a balanced dataset!
+
+```{python}
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import (
+    accuracy_score, precision_score, recall_score, confusion_matrix,
+    f1_score, roc_curve, auc
+)
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_classification
+
+# Fit the logistic regression model
+model = LogisticRegression()
+model.fit(X_train_resampled, y_train_resampled)
+
+# Predict labels on the test set
+y_pred = model.predict(X_test)
+
+# Get predicted probabilities for ROC curve and AUC
+# Probability for the positive class
+y_scores = model.predict_proba(X_test)[:, 1]
+
+# Compute confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+
+# Calculate accuracy, precision, and recall
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+
+# Print confusion matrix and metrics
+print("Confusion Matrix:\n", cm)
+print(f"Accuracy: {accuracy:.2f}")
+print(f"Precision: {precision:.2f}")
+print(f"Recall: {recall:.2f}")
+```
+
+This predictive model correctly determined whether a NYC car crash was severe or not 83% of the time, which is decently accurate. Without the use of SMOTE, this number would have been much lower.
+
+### Limitations and Challenges of SMOTE
+- It does not take into consideration other neighboring classes, which can cause overlap between classes
+- It is also not the most effective for high-dimensional data (another reason I made a sample dataset rather than using one with many predicitors)
+- There is no consideration of the quality of the synthetic samples
+- It is only suitable for continuous variables
+- Your choice of k can severely impact the quality of the synthetic data
+
+### Conclusion
+- SMOTE is a tool used to handle class imbalance in datasets
+- It creates synthetic data points utilizing instances already in the minority class
+- This creates a balanced data set which can improve model prediction and be used for a variety of machine learning applications
+
+### Further Readings
+
+Brownlee, J. (2020). [A gentle introduction to imbalanced classification](https://www.machinelearningmastery.com/what-is-imbalanced-classification/)
+
+Brownlee, J. (2021). [Smote for imbalanced classification with python](https://www.machinelearningmastery.com/smote-oversampling-for-imbalanced-classification/)
+
+Galli, S. (2023). [Overcoming class imbalance with SMOTE: How to tackle imbalanced datasets in Machine Learning](https://www.blog.trainindata.com/overcoming-class-imbalance-with-smote/#:~:text=Limitations%20of%20SMOTE&text=No%20consideration%20for%20the%20quality,of%20the%20synthetic%20samples%20generated)
+
+Imbalanced data : [How to handle imbalanced classification problems. (2023)](https://www.analyticsvidhya.com/blog/2017/03/imbalanced-data-classification/#h-approach-to-handling-imbalanced-data)
+
+Maklin, C. (2022). [Synthetic minority over-sampling technique (smote)](https://medium.com/@corymaklin/synthetic-minority-over-sampling-technique-smote-7d419696b88c)
+
+Or, D. B. (2024). [Solving the class imbalance problem](https://medium.com/metaor-artificial-intelligence/solving-the-class-imbalance-problem-58cb926b5a0f#:~:text=Class%20imbalance%20is%20a%20common%20problem%20in%20machine%20learning%20that,can%20negatively%20impact%20its%20performance)
+
+Smote, [Package Imbalanced Learning Manual](https://imbalanced-learn.org/stable/references/generated/imblearn.over_sampling.SMOTE.html)
