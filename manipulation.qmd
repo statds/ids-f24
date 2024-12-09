@@ -403,8 +403,8 @@ level (`C17002_002E`), income between 0.50 and 0.99 of the
 poverty level (`C17002_003E`), and total population 
 (`B01003_001E`). For details on why these variables are 
 relevant to poverty analysis, refer to the 
-[Census Bureau’s guidelines on poverty measurement](https://www.census.gov/topics/income-poverty/poverty/guidance/poverty-measures.html) and the [ACS variable](https://api.census.gov/data/2022/acs/acs5/variables.html) 
-documentation.
+[Census Bureau’s guidelines on poverty measurement](https://www.census.gov/topics/income-poverty/poverty/guidance/poverty-measures.html) 
+and the [ACS variable](https://api.census.gov/data/2022/acs/acs5/variables.html) documentation.
 
 Use the census package’s convenience methods to pull data 
 for different geographic levels. The FIPS code for 
