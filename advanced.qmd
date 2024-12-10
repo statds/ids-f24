@@ -3,6 +3,6 @@
 
 {{< include _webscraping.qmd >}}
 
-{{< include _interface2R.qmd >}}
+<!-- {{< include _interface2R.qmd >}} -->
 
-{{< include _pythonpackage.qmd >}}
+<!-- {{< include _pythonpackage.qmd >}} -->
