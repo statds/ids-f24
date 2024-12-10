@@ -1,0 +1,273 @@
+# Topics to be covered:
+::: {.incremental}
+
+- What is Plotly
+- How does it compare to Matplotlib 
+- Testing Plotly with travelers data in Python.
+:::
+
+# What is Plotly?
+- A data visualization library that provides interactive and manipulable graphs which allows for 
+better creativity and visual appeal.
+- Can provide more complex plots (3D vs 2D) in one package, versus potentially using more difficult or library based code.
+
+## Why should I use Plotly instead of Matplotlib?
+- Documentation is simpler than Matplotlib, despite the fact that it is technically more "complex" and is more user friendly
+- In a professional setting, having a library be primarily browser based and more accessible makes presenting much easier (ex: projects, reports, etc)
+- Visually accessible, and more enticing than the static formatting of Matplotlib
+
+:::
+
+# Examples Using Random Data
+## {.scrollable}
+
+### Generate Random Data
+```{python}
+
+#creating random data points just to demonstrate graph functions
+import numpy as np 
+
+#creates a bunch of points that follow a generate pattern
+X = np.linspace(0, 1, 250)
+Y = 8 * X + 10 + 1.5 * np.random.randn(250)
+
+```
+
+### Histogram
+
+```{python eval=FALSE} {.scrollable}
+
+import plotly.express as px
+
+#creating histogram with premade variables above
+px.histogram(X, Y)
+
+
+```
+
+
+### Same graph in Matplotlib
+
+```{python eval=FALSE} {.scrollable}
+
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 6))
+plt.hist(Y, bins=20, edgecolor='black')
+
+#Adding labels and title
+plt.xlabel('Y values')
+plt.ylabel('Frequency')
+plt.title('Histogram of Y values')
+
+```
+
+### Scatterplot
+
+```{python eval=FALSE} {.scrollable}
+
+import plotly.express as px
+
+#scatterplot, chose OLS as line of best fit
+px.scatter(X, Y, trendline = "ols")
+
+```
+
+```{python}
+
+```
+### Scatterplot in Matplotlib
+
+```{python eval=FALSE} {.scrollable}
+
+plt.scatter(X, Y)
+
+```
+
+##### Lack of simplicity when adding additional features (multiple lines versus one). Would need more lines and additions to get the same results.
+
+
+### Residual Plot
+
+```{python eval=FALSE} {.scrollable}
+
+import plotly.express as px
+import pandas as pd
+import numpy as np
+
+# Sample data
+np.random.seed(1234)
+x = np.arange(1, 250)
+y = 2 * x + np.random.normal(0, 2, 249)
+
+# Create a DataFrame
+df = pd.DataFrame({'x': x, 'y': y})
+
+# Fit a linear regression model
+model = np.polyfit(df['x'], df['y'], 1)
+df['predicted'] = np.polyval(model, df['x'])
+df['residuals'] = df['y'] - df['predicted']
+
+# Create the residual plot
+fig = px.scatter(df, x='predicted', y='residuals', title="Residual Plot")
+fig.add_hline(y=0, line_color="red")
+
+```
+
+### Matplotlib Residual Plot
+
+```{python eval=FALSE} {.scrollable}
+
+#creating sample data
+np.random.seed(1234)
+x = np.arange(1, 250)
+y = 2 * x + np.random.normal(0, 2, 249)
+
+#data frame
+df = pd.DataFrame({'x': x, 'y': y})
+
+#fitting model
+model = np.polyfit(df['x'], df['y'], 1)
+df['predicted'] = np.polyval(model, df['x'])
+df['residuals'] = df['y'] - df['predicted']
+
+#residual plot
+plt.figure(figsize=(10, 6))
+plt.scatter(df['predicted'], df['residuals'], alpha=0.5)
+plt.axhline(y=0, color='red', linestyle='--')
+
+#additional details
+plt.title("Residual Plot")
+plt.xlabel("Predicted Values")
+plt.ylabel("Residuals")
+
+
+```
+
+:::
+
+# What Does This Mean?
+## {.scrollable}
+::: {.incremental}
+
+### Why Plots are Important in Data Science
+- Using simplistic and limited graphs with random data provides examples and shows
+  syntax (how to use basic functions)
+- In addition, it keeps the examples general and ensures that we can get both 
+  reproducible and reliable results.
+- How Plotly helped create plots
+:::
+
+# Traveler's Insurance Competition Analysis
+## {.scrollable}
+##### 1. Importing packages and data set
+```{python eval=FALSE} {.scrollable}
+
+#previously installed using pip install plotly
+import pandas as pd
+import plotly.express as px
+
+traveler_data = pd.read_csv("train_data.csv")
+
+traveler_data.head()
+
+```
+
+##### 2. Plotly Graphs
+```{python eval=FALSE} {.scrollable}
+
+# Histogram of hourly call history vs overall call counts
+hist = px.histogram(traveler_data,x = '12m_call_history', y ='call_counts', 
+                   title='Distribution of Call Counts',)
+
+hist
+
+```
+
+```{python eval=FALSE} {.scrollable}
+
+# Scatterplot of hourly call history vs overall call counts
+
+scatter = px.scatter(traveler_data, x = '12m_call_history', y = 'call_counts')
+
+scatter
+
+```
+
+```{python eval=FALSE} {.scrollable}}
+
+# Box plot of hourly call history vs overall call counts
+
+box = px.box(traveler_data, x = '12m_call_history', y = 'call_counts')
+
+box
+```
+
+```{python eval=FALSE} {.scrollable}
+
+# Line Plot of hourly call history vs overall call counts
+
+line = px.line(traveler_data, x = '12m_call_history', y='call_counts', title='How time call history affects call counts')
+
+line
+
+```
+
+```{python eval=FALSE} {.scrollable}
+
+# Heat map of hourly call history vs overall call counts
+
+heatmap = px.density_heatmap(traveler_data,  x = '12m_call_history', y='call_counts')
+
+heatmap
+
+```
+
+:::
+
+
+# Summary of Results
+## {.scrollable}
+- Checking for normality through Histograms 
+- Checking for Potential Outliers
+- Making sure that the data presented is clean and accessible
+- Interactive aspect allowing to understand and pinpoint specific data points.
+
+# Conclusion
+::: {.incremental}
+- Defined Plotly and its uses
+- Implemented with Traveler's data
+- Tested various functions within Python.
+- Analyzed the results
+:::
+
+# References
+<p style="font-size: 25px;"></p>
+<ul style="font-size: 25px;">
+
+@website{datacamp.com,
+  title = {Python Plotly Express Tutorial: Unlock Beautiful Visualizations},
+  author = {Bekhruz Tuychiev},
+  year = {2023},
+  url = {https://www.datacamp.com/tutorial/python-plotly-express-tutorial},
+  note = {Accessed: 2024-11-12}
+}
+
+@website{Plotly.com,
+  title = {plotly.express},
+  author = {Plotly},
+  year = {2020},
+  url = {https://plotly.com/python-api-reference/plotly.express.html},
+  note = {Accessed: 2024-11-12}
+}
+
+@website{kaggle,
+  title = {Guide to Normality Tests in Python},
+  author = {Tiwari},
+  year = {2020},
+  url = {https://www.kaggle.com/code/shashwatwork/guide-to-normality-tests-in-python},
+  note = {Accessed: 2024-11-12}
+}
+</ul>
+
+# THANK YOU!
