@@ -1,1 +1,700 @@
+## scipy.stats
 
+### Getting started
+
+- First let's start by installing scipy using one of the following commands
+
+```
+pip install scipy
+```
+or
+```
+conda install scipy
+```
+- Let's now import scipy.stats
+
+```{.python}
+# Import the scipy.stats module as stats
+import scipy.stats as stats
+
+import pandas as pd
+```
+
+```{python}
+# Import the scipy.stats module as stats
+import scipy.stats as stats
+
+import pandas as pd
+
+df=pd.read_csv('data/nyccrashes_2024w0630_by20240916.csv')
+```
+
+## Key Features of `scipy.stats`
+
+    - Probability Distributions: Both continuous and discrete distributions are available for modeling different types of random variables.
+
+    - Descriptive Statistics: Includes functions for calculating various statistical measures like mean, variance, and standard deviation.
+
+    - Statistical Tests: scipy.stats provides various statistical tests, including t-tests, ANOVA, correlation tests (Pearson and Spearman), and normality tests.
+  
+### Probability Distributions in `scipy.stats`
+
+### Normal Distribution:  
+  Used to model naturally occurring phenomena like height or test scores. The probability density function (PDF) and cumulative distribution function (CDF) in Scipy are:
+  
+  - **PDF**: `scipy.stats.norm.pdf(x, loc=0, scale=1)`
+  
+  - **CDF**: `scipy.stats.norm.cdf(x, loc=0, scale=1)`
+
+### Parameters for Normal Distribution: 
+- x: This is the value at which you want to evaluate the PDF or CDF. It represents a point on the normal distribution.
+
+- loc: This is the mean (or center) of the normal distribution. By default, it is set to 0, which makes it a standard normal distribution with a mean of 0. Changing this shifts the center of the distribution.
+
+- scale: This is the standard deviation of the normal distribution. By default, it is set to 1, corresponding to the standard normal distribution. Changing this value stretches or compresses the distribution, altering the spread of the values
+
+
+### Example of Normal Distribution
+```{.python}
+import numpy as np
+from scipy import stats
+
+# Generate 10 observations from a normal distribution
+x = np.random.normal(loc=0, scale=1, size=10)
+
+# Calculate PDF and CDF for each observation
+pdf = stats.norm.pdf(x, loc=0, scale=1)
+cdf = stats.norm.cdf(x, loc=0, scale=1)
+
+pdf, cdf
+```
+
+```{python}
+
+import numpy as np
+from scipy import stats
+
+# Generate 10 observations from a normal distribution
+x = np.random.normal(loc=5, scale=1, size=10)
+
+# Calculate PDF and CDF for each observation
+pdf = stats.norm.pdf(x, loc=5, scale=1)
+cdf = stats.norm.cdf(x, loc=5, scale=1)
+
+# Print the results
+for i in range(len(x)):
+    print(f"x: {x[i]:.4f}, PDF: {pdf[i]:.4f}, CDF: {cdf[i]:.4f}")
+
+```
+
+ 
+### Exponential Distribution:  
+  Useful for modeling the time between events in a Poisson process, such as customer arrival times.
+  
+  - **PDF**: `scipy.stats.expon.pdf(x, scale=1)`
+  
+  - **CDF**: `scipy.stats.expon.cdf(x, scale=1)`
+
+### Parameters:
+- x: The point at which you want to evaluate the PDF or CDF. It represents the time or event duration.
+
+- scale: The inverse of the rate parameter λ in the exponential distribution. By default, it's set to 1, meaning the average time between events is 1. Changing this value adjusts the rate of occurrence of events.
+
+
+### Example of exponential distribution
+
+```{.python}
+# Example: Exponential Distribution PDF and CDF
+x = 2.0
+pdf = stats.expon.pdf(x, scale=1)
+cdf = stats.expon.cdf(x, scale=1)
+pdf, cdf
+```
+
+```{python}
+# Example: Exponential Distribution PDF and CDF
+x = 2.0
+pdf = stats.expon.pdf(x, scale=1)
+cdf = stats.expon.cdf(x, scale=1)
+pdf, cdf
+```
+
+    - PDF Value (0.1353):This value indicates the likelihood of an event occurring at exactly 2.0 units of time. In this case, the probability density at this specific time is approximately 0.1353. 
+    - CDF Value (0.8647): This value indicates the probability that the time until the next event is less than or equal to x=2.0. In this case, it is approximately 0.8647 or 86.47%. 
+
+### Binomial Distribution:  
+  Commonly used to model the number of successes in a fixed number of independent trials, such as flipping a coin.
+  
+  - **PMF (Probability Mass Function)**: `scipy.stats.binom.pmf(k, n, p)`
+  
+  - **CDF**: `scipy.stats.binom.cdf(k, n, p)`
+
+### Parameters
+- n: This represents the number of trials or experiments. It is a non-negative integer (e.g., the number of times an event occurs).
+- p: This is the probability of success on each trial. It must be a value between 0 and 1(inclusive), representing the likelihood of a successful outcome in a single trial.
+- k: This is the number of successes for which we want to calculate the probability. It can take values from 0 to n.
+
+
+### Example of Binomial Distribution
+
+For this example we could use coin flips. 
+
+We will get the pdf and cdf from a sample of 10 trials with 5 successes
+
+```{.python}
+# Example: Binomial Distribution PMF and CDF
+n, p = 10, 0.5  # 10 trials, probability of success 0.5
+k = 5  # number of successes
+pmf = stats.binom.pmf(k, n, p)
+cdf = stats.binom.cdf(k, n, p)
+pmf, cdf
+```
+
+```{python}
+# Example: Binomial Distribution PMF and CDF
+n, p = 10, 0.5  # 10 trials, probability of success 0.5
+k = 5  # number of successes
+pmf = stats.binom.pmf(k, n, p)
+cdf = stats.binom.cdf(k, n, p)
+pmf, cdf
+```
+
+    - The pmf tells us the odds of getting exactly 5 succeses is 0.2461
+
+    - The cdf tells us that the chances of getting 5 or less is 0.6230
+
+
+### Poisson Distribution:  
+  Models the number of times an event occurs in a fixed interval of time or space.
+  
+  - **PMF**: `scipy.stats.poisson.pmf(k, mu)`
+  
+  - **CDF**: `scipy.stats.poisson.cdf(k, mu)`
+
+### Parameters:
+- mu: The average number of events in a fixed time interval
+- k: the number of events for which we are calculating probability
+
+
+### Example Poisson Distribution
+
+```{.python}
+
+# Example: Poisson Distribution PMF and CDF
+mu = 3  # mean number of events
+k = 4  # number of events
+pmf = stats.poisson.pmf(k, mu)
+cdf = stats.poisson.cdf(k, mu)
+pmf, cdf
+
+```
+
+```{python}
+
+# Example: Poisson Distribution PMF and CDF
+mu = 3  # mean number of events
+k = 4  # number of events
+pmf = stats.poisson.pmf(k, mu)
+cdf = stats.poisson.cdf(k, mu)
+pmf, cdf
+
+```
+
+    - The pmf value of 0.1680 indicates the probability of exactly 4 events occuring
+
+    - The CDF value of 0.8153 indicates the probability of 4 or fewer events occuring
+
+
+### Other Distributions in `scipy.stats`
+- **Uniform Distribution (uniform)**
+    - Functions: `uniform.pdf`, `uniform.cdf`, `uniform.rvs`
+- **Gamma Distribution (gamma)**
+    - Functions: `gamma.pdf`, `gamma.cdf`, `gamma.rvs`
+- **Beta Distribution (beta)**
+    - Functions: `beta.pdf`, `beta.cdf`, `beta.rvs`
+- **Chi-Squared Distribution (chi2)**
+    - Functions: `chi2.pdf`, `chi2.cdf`, `chi2.rvs`
+- **T-Distribution (t)**
+    - Functions: `t.pdf`, `t.cdf`, `t.rvs`
+- **F-Distribution (f)**
+    - Functions: `f.pdf`, `f.cdf`, `f.rvs`
+
+
+## Descriptive Statistics with `scipy.stats`
+
+
+### **Summary Statistics**: The average value of a dataset.
+  
+  - **Function**: `scipy.stats.describe(a)`
+
+
+```{.python} 
+import pandas as pd
+from scipy import stats
+
+# Clean up the variable names
+df.columns = df.columns.str.lower().str.replace(' ', '_')
+
+# Example: Descriptive statistics summary for the number of pedestrians injured
+pedestrians_injured = df['number_of_pedestrians_injured']
+
+# Calculate descriptive statistics
+summary = stats.describe(pedestrians_injured.dropna())  # Drop NA values for valid statistics
+print(summary)
+```
+
+```{python} 
+import pandas as pd
+from scipy import stats
+
+# Clean up the variable names
+df.columns = df.columns.str.lower().str.replace(' ', '_')
+
+# Example: Descriptive statistics summary for the number of pedestrians injured
+pedestrians_injured = df['number_of_pedestrians_injured']
+
+# Calculate descriptive statistics
+summary = stats.describe(pedestrians_injured.dropna())  # Drop NA values for valid statistics
+print(summary)
+```
+
+- This code outputs outputs a summary of a given variable and is very easily expandable to any variable(s)
+
+
+## Key Statistical Tests with `scipy.stats`
+
+### t-tests
+T-tests help compare the means of two groups to see if they are statistically different.
+
+- **Independent Samples t-test**: Used when comparing the means of two independent groups, such as test scores of two different classes.
+  
+  - **Function**: `scipy.stats.ttest_ind(a, b)`
+
+- **Paired Samples t-test**: Used when comparing the means of two related groups, such as test scores of the same students before and after a training program.
+
+  - **Function**: `scipy.stats.ttest_rel(a, b)`
+
+
+### Independent t-test Null and Alternative Hypotheses
+- **Null Hypothesis ($H_0$)**: The means of the two independent groups are equal ($\mu_1 = \mu_2$), where $\mu_1$ and $\mu_2$ represent the means of the two groups.
+- **Alternative Hypothesis ($H_1$)**: The means of the two independent groups are not equal ($\mu_1 \neq \mu_2$).
+
+
+### Assumptions for Independent samples t-test:
+Before conducting an Independent Samples t-test, several assumptions must be satisfied:
+- Independence: The two samples must be independent of each other.
+- Normality: The data in each group should be approximately normally distributed.
+- Homogeneity of Variances: The variances of the two groups should be equal (this can be tested using Levene's test).
+
+
+
+
+### Optional Parameters:
+- The `ttest_ind` function from `scipy.stats` has several optional parameters that can be used:
+- `equal_var`: A boolean value that specifies whether to assume equal variances for the two groups. If `False`, Welch’s t-test is performed, which is more reliable when variances are unequal.
+- `alternative`: This parameter can specify the direction of the test: "two-sided" (default), "less", or "greater".
+
+
+### Example of Independent t-test
+```{.python}
+# Set a random seed for reproducibility
+np.random.seed(42)
+
+# Generate random data for two independent samples
+sample_size = 30
+data1 = np.random.normal(loc=50, scale=10, size=sample_size)  # Sample 1 with mean=50 and std=10
+data2 = np.random.normal(loc=55, scale=10, size=sample_size)  # Sample 2 with mean=55 and std=10
+
+# Perform the independent t-test
+t_statistic, p_value = stats.ttest_ind(data1, data2)
+``` 
+
+```{python}
+import numpy as np
+from scipy import stats
+
+# Set a random seed for reproducibility
+np.random.seed(42)
+
+# Generate random data for two independent samples
+sample_size = 30
+data1 = np.random.normal(loc=50, scale=10, size=sample_size)  # Sample 1 with mean=50 and std=10
+data2 = np.random.normal(loc=55, scale=10, size=sample_size)  # Sample 2 with mean=55 and std=10
+
+# Perform the independent t-test
+t_statistic, p_value = stats.ttest_ind(data1, data2)
+
+# Print the results
+print(f"Independent t-test results:\nT-statistic: {t_statistic:.4f}\nP-value: {p_value:.4f}")
+
+# Interpret the p-value
+alpha = 0.05
+if p_value < alpha:
+    print(f"At an alpha value of 0.05, there is a significant difference between the two samples.")
+else:
+    print(f"At an alpha value of 0.05, there is no significant difference between the two samples.")
+
+``` 
+
+.
+
+### Assumptions for Paired samples t-test
+Before conducting a Paired Samples t-test, several assumptions must be satisfied:
+-  Paired Observations: The data must consist of pairs of related observations (e.g., measurements taken before and after treatment).
+-  Normality of Differences: The differences between the paired observations should be approximately normally distributed. This can be assessed using normality tests such as the Shapiro-Wilk test.
+
+
+### Optional Parameters
+The `ttest_rel` function from `scipy.stats` has the following optional parameter:
+
+- `alternative`: This parameter can specify the direction of the test: "two-sided" (default), "less", or "greater".
+
+### Example of paired t-test
+
+```{.python}
+# Generate random data for the "before" measurements
+sample_size = 30
+before = np.random.normal(loc=50, scale=10, size=sample_size)  # "Before" with mean=50 and std=10
+
+# Generate "after" measurements by adding a consistent change
+# Ensure that the after values are lower
+change = 5  # Example change
+after = before + change + np.random.normal(loc=0, scale=5, size=sample_size)  # Add some noise
+
+# Perform the paired t-test
+t_statistic, p_value = stats.ttest_rel(before, after)
+```
+
+```{python}
+import numpy as np
+from scipy import stats
+
+# Set a random seed for reproducibility
+np.random.seed(44)
+
+# Generate random data for the "before" measurements
+sample_size = 30
+before = np.random.normal(loc=50, scale=10, size=sample_size)  # "Before" with mean=50 and std=10
+
+# Generate "after" measurements by adding a consistent change
+# Ensure that the after values are lower
+change = 5  # Example change
+after = before + change + np.random.normal(loc=0, scale=5, size=sample_size)  # Add some noise
+
+# Perform the paired t-test
+t_statistic, p_value = stats.ttest_rel(before, after)
+
+# Print the results
+print(f"Paired t-test results:\nT-statistic: {t_statistic:.4f}\nP-value: {p_value:.4f}")
+
+# Interpret the p-value
+alpha = 0.05
+if p_value < alpha:
+    print(f"At an alpha value of 0.05, there is a significant difference between the before and after measurements.")
+else:
+    print(f"At an alpha value of 0.05, there is no significant difference between the before and after measurements.")
+
+```
+
+    - The t-statistic (-5.630) shows that there is a significant difference between the data before and after . 
+
+### One-way ANOVA
+Analysis of Variance (ANOVA) is used to compare the means of three or more groups..
+
+- **Function**: `scipy.stats.f_oneway(*args)`
+
+
+### Example of One-way ANOVA
+- Using the NYC Crash data, we can test for significant differnces between the means of cyclist, pedestrian, and motorist injuries
+
+```{.python}
+# Define the groups for ANOVA (Injuries for different categories)
+motorist_injuries = df['number_of_motorists_injured'].dropna()
+pedestrian_injuries = df['number_of_pedestrians_injured'].dropna()
+cyclist_injuries = df['number_of_cyclist_injured'].dropna()
+
+# Perform one-way ANOVA
+f_stat, p_val = stats.f_oneway(motorist_injuries, pedestrian_injuries, cyclist_injuries)
+```
+
+```{python}
+
+from scipy import stats
+import pandas as pd
+
+
+# Define the groups for ANOVA (Injuries for different categories)
+motorist_injuries = df['number_of_motorist_injured'].dropna()
+pedestrian_injuries = df['number_of_pedestrians_injured'].dropna()
+cyclist_injuries = df['number_of_cyclist_injured'].dropna()
+
+# Perform one-way ANOVA
+f_stat, p_val = stats.f_oneway(motorist_injuries, pedestrian_injuries, cyclist_injuries)
+
+# Print the results
+print("One-way ANOVA results:")
+print("F-statistic:", f_stat)
+print("p-value:", p_val)
+
+# Interpretation of results
+if p_val < 0.05:
+    print("There is a significant difference in the number of injuries among motorists, pedestrians, and cyclists.")
+else:
+    print("There is no significant difference in the number of injuries among motorists, pedestrians, and cyclists.")
+
+
+```
+
+    - Since the p-value is so small, we can confidently say that there is a statistically significant difference in the number of injuries among motorists, pedestrians, and cyclists.
+
+### Example of Pearson Correlation
+    - Let's again return to the NYC crash data
+    - The two variables being chosen will be pedestrians injured and cyclsits injured.
+
+```{.python}
+# Extract the relevant columns
+pedestrian_injured = df['number_of_pedestrians_injured']
+cyclist_injured = df['number_of_cyclist_injured']
+
+# Drop NA values to ensure valid pairs
+valid_pairs = df.dropna(subset=['number_of_pedestrians_injured', 'number_of_cyclist_injured'])
+
+# Calculate Pearson correlation
+corr, p_val = stats.pearsonr(valid_pairs['number_of_pedestrians_injured'], valid_pairs['number_of_cyclist_injured'])
+```
+
+```{python}
+
+from scipy import stats
+import pandas as pd
+
+# Extract the relevant columns
+pedestrian_injured = df['number_of_pedestrians_injured']
+cyclist_injured = df['number_of_cyclist_injured']
+
+# Drop NA values to ensure valid pairs
+valid_pairs = df.dropna(subset=['number_of_pedestrians_injured', 'number_of_cyclist_injured'])
+
+# Calculate Pearson correlation
+corr, p_val = stats.pearsonr(valid_pairs['number_of_pedestrians_injured'], valid_pairs['number_of_cyclist_injured'])
+
+print("Pearson correlation results:")
+print("Correlation coefficient:", corr)
+print("p-value:", p_val)
+
+# Interpretation of results
+if p_val < 0.05:
+    print("There is a significant correlation between the number of pedestrians and cyclists injured.")
+else:
+    print("There is no significant correlation between the number of pedestrians and cyclists injured.")
+
+
+```
+
+    - The correlation is very close to 0, indicating a very weak negative correlation between the number of pedestrians injured and the number of cyclists injured. This suggests that there is almost no linear relationship between these two variables.
+
+
+### Spearman's Rank Correlation Analysis
+
+- Measures the strength and direction of the monotonic relationship between two variables. It is particularly useful for assessing relationships that do not follow a normal distribution or when dealing with ordinal data.
+
+  - **Function**: `scipy.stats.spearmanr(x, y)`  
+  
+  - **Outputs**: Spearman correlation coefficient and p-value.
+
+### Example of Spearman's Rank correlation
+We will use the same data as the Peasron correlation test for this
+
+```{.python}
+# Extract data for pedestrian and cyclist injuries
+pedestrian_injured = df['number_of_pedestrians_injured']
+cyclist_injured = df['number_of_cyclist_injured']
+
+# Perform Spearman's rank correlation test
+spearman_corr, spearman_p_val = stats.spearmanr(pedestrian_injured, cyclist_injured)
+```
+
+```{python}
+
+from scipy import stats
+import pandas as pd
+
+
+# Extract data for pedestrian and cyclist injuries
+pedestrian_injured = df['number_of_pedestrians_injured']
+cyclist_injured = df['number_of_cyclist_injured']
+
+# Perform Spearman's rank correlation test
+spearman_corr, spearman_p_val = stats.spearmanr(pedestrian_injured, cyclist_injured)
+
+print("Spearman's rank correlation results:")
+print("Correlation coefficient:", spearman_corr)
+print("p-value:", spearman_p_val)
+
+# Interpretation of results
+if spearman_p_val < 0.05:
+    print("There is a significant correlation between the number of pedestrians and cyclists injured (Spearman).")
+else:
+    print("There is no significant correlation between the number of pedestrians and cyclists injured (Spearman).")
+
+```
+ 
+
+    - This test verifies what was found in the Pearson correlation function. The correlation is very close to 0, indicating a very weak negative correlation between the number of pedestrians injured and the number of cyclists injured. This suggests that there is almost no linear relationship between these two variables.
+
+
+
+### Shapiro-Wilk Normality Test
+ - Shapiro-Wilk Test: Tests whether a sample comes from a normally distributed population. This is useful in determining if your data follows the assumption of normality, which is required for certain parametric tests.
+
+- Function: scipy.stats.shapiro(data)
+
+- Outputs: Test statistic and p-value.
+
+### Shapiro Wilk Example
+
+Again we will use the same variables for clarity
+
+```{.python}
+# Extracting relevant data from your DataFrame
+pedestrian_injured = df['number_of_pedestrians_injured'].dropna()
+cyclist_injured = df['number_of_cyclist_injured'].dropna()
+
+# Performing Shapiro-Wilk test on pedestrians injured
+stat_ped, p_val_ped = stats.shapiro(pedestrian_injured)
+
+# Performing Shapiro-Wilk test on cyclists injured
+stat_cyc, p_val_cyc = stats.shapiro(cyclist_injured)
+```
+
+
+```{python}
+
+import scipy.stats as stats
+
+# Extracting relevant data from your DataFrame
+pedestrian_injured = df['number_of_pedestrians_injured'].dropna()
+cyclist_injured = df['number_of_cyclist_injured'].dropna()
+
+# Performing Shapiro-Wilk test on pedestrians injured
+stat_ped, p_val_ped = stats.shapiro(pedestrian_injured)
+
+# Performing Shapiro-Wilk test on cyclists injured
+stat_cyc, p_val_cyc = stats.shapiro(cyclist_injured)
+
+# Print the results with p-values formatted to 4 decimal places
+print("Shapiro-Wilk Test Results (Pedestrians Injured):")
+print(f"Statistic: {stat_ped:.4f}, p-value: {p_val_ped:.4f}")
+
+print("\nShapiro-Wilk Test Results (Cyclists Injured):")
+print(f"Statistic: {stat_cyc:.4f}, p-value: {p_val_cyc:.4f}")
+
+```
+
+    - Since the p-values for both groups are below any conventional significance threshold (e.g., 0.05), we reject the null hypothesis that the data follows a normal distribution. This suggests that the injury data for both pedestrians and cyclists is non-normal.
+
+
+## Non-paramteric Tests
+- Non-parametric tests are statistical methods that do not assume a specific distribution for the data. 
+- Unlike parametric tests, which rely on assumptions about the underlying population (such as normality), non-parametric tests are more flexible and can be used with data that do not meet these assumptions.
+
+### Mann-Whitney U Test
+
+- The Mann-Whitney U test is used to determine whether there is a significant difference between the distributions of two independent samples.
+
+
+```{.python}
+# Select two vehicle types to compare (e.g., Sedan and Bus)
+vehicle_type1 = 'Sedan'
+vehicle_type2 = 'Pick-up Truck'
+
+# Extract the number of persons injured for each vehicle type
+injuries_vehicle_type1 = df[df['vehicle_type_code_1'] == vehicle_type1]['number_of_persons_injured'].dropna().values
+injuries_vehicle_type2 = df[df['vehicle_type_code_1'] == vehicle_type2]['number_of_persons_injured'].dropna().values
+
+# Perform the Mann-Whitney U test
+u_statistic, p_value = stats.mannwhitneyu(injuries_vehicle_type1, injuries_vehicle_type2)
+```
+
+```{python}
+import pandas as pd
+from scipy import stats
+
+df.columns = df.columns.str.lower().str.replace(' ', '_')
+
+# Select two vehicle types to compare (e.g., Sedan and Bus)
+vehicle_type1 = 'Sedan'
+vehicle_type2 = 'Pick-up Truck'
+
+# Extract the number of persons injured for each vehicle type
+injuries_vehicle_type1 = df[df['vehicle_type_code_1'] == vehicle_type1]['number_of_persons_injured'].dropna().values
+injuries_vehicle_type2 = df[df['vehicle_type_code_1'] == vehicle_type2]['number_of_persons_injured'].dropna().values
+
+# Perform the Mann-Whitney U test
+u_statistic, p_value = stats.mannwhitneyu(injuries_vehicle_type1, injuries_vehicle_type2)
+
+# Print the results
+print(f"Mann-Whitney U statistic: {u_statistic:.4f}, p-value: {p_value:.4f}")
+
+# Interpret the p-value
+alpha = 0.05
+if p_value < alpha:
+    print(f"At an alpha value of 0.05, there is a significant difference in the number of injuries between {vehicle_type1} and {vehicle_type2}.")
+else:
+    print(f"At an alpha value of 0.05, there is no significant difference in the number of injuries between {vehicle_type1} and {vehicle_type2}.")
+```
+
+### Kruskal-Wallis H Test
+- The Kruskal-Wallis H test is a non-parametric statistical method used to determine if there are significant differences between two or more independent groups. 
+- It is an extension of the Mann-Whitney U test, which is limited to comparing two groups. The Kruskal-Wallis test can be applied when the data does not meet the assumptions of normality required for parametric tests, such as ANOVA
+
+```{.python}
+# Select boroughs to compare (e.g., Brooklyn, Manhattan, and Bronx)
+boroughs = ['BROOKLYN', 'MANHATTAN', 'BRONX']
+
+# Extract the number of persons injured for each borough
+injuries_samples = [df[df['borough'] == borough]['number_of_persons_injured'].dropna().values for borough in boroughs]
+
+# Perform the Kruskal-Wallis H test
+h_statistic, p_value = stats.kruskal(*injuries_samples)
+```
+
+```{python}
+import pandas as pd
+from scipy import stats
+
+# Clean up the variable names
+df.columns = df.columns.str.lower().str.replace(' ', '_')
+
+# Select boroughs to compare (e.g., Brooklyn, Manhattan, and Bronx)
+boroughs = ['BROOKLYN', 'MANHATTAN', 'BRONX']
+
+# Extract the number of persons injured for each borough
+injuries_samples = [df[df['borough'] == borough]['number_of_persons_injured'].dropna().values for borough in boroughs]
+
+# Perform the Kruskal-Wallis H test
+h_statistic, p_value = stats.kruskal(*injuries_samples)
+
+# Print the results
+print(f"Kruskal-Wallis H statistic: {h_statistic:.4f}, p-value: {p_value:.4f}")
+
+# Interpret the p-value
+alpha = 0.05
+if p_value < alpha:
+    print(f"At an alpha value of 0.05, there is a significant difference in the number of injuries among the selected boroughs: {', '.join(boroughs)}.")
+else:
+    print(f"At an alpha value of 0.05, there is no significant difference in the number of injuries among the selected boroughs: {', '.join(boroughs)}.")
+```
+
+## Conclusion
+
+### Summary
+- We explored various statistical tests and distributions using the scipy.stats module, including correlation tests (Pearson and Spearman), normality tests (Shapiro-Wilk), and one-way ANOVA to analyze injury data from NYC. 
+- We examined different statistical metrics such as descriptive statistics, variance, and percentiles, providing interpretations and insights for each test's results. 
+- Additionally, we discussed key features of scipy.stats, highlighting its capabilities in modeling probability distributions and performing statistical analyses.
+
+### References
+    - [Scipy Offical Documentation](https://docs.scipy.org/doc/scipy/reference/stats.html)
+    - [Real Python: NumPy, SciPy, and pandas: Correlation With Python](https://realpython.com/numpy-scipy-pandas-correlation-python/#example-scipy-correlation-calculation)
+    - [Towards Data Science: Intro to Probability Distributions and Distribution Fitting with Python’s SciPy](https://towardsdatascience.com/probability-distributions-with-pythons-scipy-3da89bf60565)
+    - [GeeksForGeeks Documentation](https://www.geeksforgeeks.org/scipy-stats/)
