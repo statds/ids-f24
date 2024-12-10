@@ -1,9 +1,425 @@
-## Interfacing with R
+## Calling R From Python
 
-This section was written by ...
+Hello, my name is Owen Babiec. 
+
+I'm a Junior majoring in Statistical Data Science and minoring in Computer Science.
+
+In this presentation, I will be showing you how to call R from Python and vice-versa. 
+
+### Introduction
+
+Calling R from Python and Python from R can be extremely useful. 
+
+|           R           |      Python              |
+|:---------------------:|:------------------------:|
+| Statistical Language  | General Purpose Language |
+|  Data Visualization   | Data Analysis            |
+|   Data Exploration    |   Machine Learning       |
+
+While you could perform similar techniques of R through advanced Python functions, integrating R with Python expands the capabilities of Python developers. Access to R's functions and visualizations is a great tool to learn. 
+
+### Installing rpy2
+
+Before we begin with using R in Python, you must first have some version of R installed on your computer.
+
+Downloads for Windows, Mac, and Linux can be found in the following link:
+
+- [R Downloads](https://cran.r-project.org/)
+
+Keep track of where R installs on your personal device, as you will need it to import packages.
+
+After downloading R, to begin using R in Python, we must install `rpy2`. 
+
+- This package is extremely useful. It acts as a messenger between the two languages and allows communication between the two environments. 
+
+You can do this using the following commands:
+
+- For pip: `pip install rpy2`
+
+- For conda: `conda install r::rpy2`
+
+Now, we will move on to **importing rpy2** in our Python chunks
+
+Before importing rpy2, you must first `import os` and specify R's home in your program files. 
+
+```{python}
+import os
+
+# You would need to find where R is installed and replace it
+# This should not be a relative path as it is dependent on your system
+os.environ['R_HOME'] = "C:\Program Files\R\R-4.3.1"
+
+# Next we can import pandas and rpy2 as well as rpy2.robjects
+import pandas as pd
+import rpy2
+import rpy2.robjects as robjects
+```
+
+### rpy2 features
+
+`rpy2.robjects`
+
+- Ability to create, call, and handle R objects, functions, and other data frames 
+- Allows us to use R packages which are not previously available in Python
+
+`rpy2.ipython`
+
+- A Jupyter Notebook integration which allows for inline R code execution
+
+`rpy2.robjects.pandas2ri`
+
+- This module converts data from Pandas DataFrames and R's data frames
+- It effectively communicates the changes between R and Python and allows for easier handling of data
+
+`rpy2.robjects.packages`
+
+- This module makes it easy to manage and load R packages from Python
+- Easy access to R's package library, making it very similar to calling a Python package
+
+In order to do data manipulation using R in Python, consider the following R packages. 
+
+1. `Utils`
+
+- Utils reads in a variety of utility functions useful for installing packages
+
+2. `stats`
+
+- stats package provides functions for conducting tests, fitting models, and performing analyses
+- Includes R's `lm()`, `t.test`, and `anova()` functions
+
+3. `lme4`
+
+- lme4 fits generalized and linear mixed-effects models on data
+- Provides powerful tools like `lmer()` and `glmer()` to analyze data with both fixed and random effects
+
+```{python}
+#| echo: false
+from rpy2.robjects.packages import importr, data
+import rpy2.ipython
+
+# Importing utils using import r
+utils = importr('utils')
+
+# From utils, install stats and lme4
+utils.install_packages('stats')
+utils.install_packages('lme4')
+
+# Finally, import them
+stats = importr('stats')
+lme4 = importr('lme4')
+```
+
+### Data Reading/Manipulation
+
+We can load in built in R datasets and perform manipulations of that data in Python. First load in our imports. 
+We will then call pandas2ri.activate() to initiate the link between R and Python. You can load 
+
+```{python}
+# Importing pandas2ri and importr
+from rpy2.robjects import pandas2ri
+from rpy2.robjects.packages import importr
+
+pandas2ri.activate()
+
+# Simple example using a built in R dataset
+robjects.r('data(iris)')
+
+# Then we can code in R through Python
+# Specify a code chunk starting and ending with '''
+robjects.r('''
+library(dplyr)
+iris_summary <- iris %>%
+group_by(Species) %>%
+summarise(
+    Avg_Sepal.Length = mean(Sepal.Length),
+    Avg_Sepal.Width = mean(Sepal.Width)
+)
+''')
+
+# Then we can convert this dataframe back to Python
+iris_summary = pandas2ri.rpy2py(robjects.r['iris_summary'])
+
+print(iris_summary)
+print(type(iris_summary))
+print(iris_summary['Avg_Sepal.Length'])
+```
+
+Here's another example of data manipulation with R's built in dataset 'mtcars'. We first load in the data.
+Then we can perform simple data manipulation on the R data using 'dplyr'. This code chunk filters the data to only include 
+cars with MPG greater than 20. It then creates a new column called 'kpl', which converts miles per gallon to kilometers per liter.
+Finally, it then arranges the data in descending order of our newly created column, kpl. We then pass the manipulated data
+back to Python where we could perform additional analysis of the dataset. 
+
+```{python}
+# Load built-in R dataset (mtcars)
+robjects.r('data(mtcars)')
+mtcars = robjects.r('mtcars')
+
+# Print the first few rows of the R dataframe
+print("Original R DataFrame:")
+print(mtcars)
+
+# Perform data manipulation in R
+robjects.r('''
+library(dplyr)
+mtcars_modified <- mtcars %>%
+  filter(mpg > 20) %>%
+  mutate(kpl = mpg * 0.425144) %>%
+  arrange(desc(kpl))
+''')
+
+# Retrieve the modified dataframe from R to Python
+mtcars_modified = robjects.r('mtcars_modified')
+
+# Convert to Pandas DataFrame
+mtcars_modified_df = pandas2ri.rpy2py(mtcars_modified)
+
+print("\nModified DataFrame in Python:")
+print(mtcars_modified_df)
+```
+
+### Data Visualization
+
+To create visualizations of data, you can use R's built in functions like plot, histogram, or ggplot2 to create easier visualizations of data. It is most helpful to become familiar with these packages in their respective languages before trying to learn them combined. 
+
+```{python}
+import rpy2.robjects as ro
+from rpy2.robjects.packages import importr
+from rpy2.robjects.lib import grdevices
+
+# Import R libraries
+ggplot2 = importr('ggplot2')
+
+# Define the data in R
+ro.r('''
+data <- data.frame(
+    x = rnorm(100, mean = 5, sd = 2),
+    y = rnorm(100, mean = 3, sd = 1),
+    category = sample(c("A", "B"), 100, replace = TRUE)
+)
+''')
+
+# Create the ggplot2 plot in R
+ro.r('''
+library(ggplot2)
+
+plot <- ggplot(data, aes(x = x, y = y, color = category)) +
+  geom_point(size = 3) +
+  labs(title = "Scatter Plot Example", x = "X-Axis", y = "Y-Axis") +
+  theme_minimal()
+''')
+
+# Displaying the image in Python
+ro.r('print(plot)')
+```
+
+## Calling Python from R
+
+Whether you are planning on using R through Quarto (.qmd) or through RStudio, Python can be an indispensable tool in calculations and general purpose programming. 
+
+In order to use Python from R, you can first code in R through Quarto by doing:
+```` markdown
+``` r
+code code code
+```
+````
+
+Now that we're coding in R, we must first install the package `reticulate`. 
+
+- Similarly to when we called R from Python, we will have to specify our system's path to Python.
+
+``` r
+# Install.packages is similar to Python's pip
+install.packages("reticulate")
+
+# Use library() to load the package
+library(reticulate)
+
+# Specifying path to Python on your computer
+# Set required = TRUE to avoid errors as it will search for Python 
+use_python("C:/Users/OwenB/AppData/Local/Programs/Python/Python312/python.exe", 
+    required = TRUE)
+
+```
+
+### Importing Python Libraries
+
+Similarly to Python, we can import Python packages using the `import()` function, however we will need to assign them to a variable for use. 
+
+```{r}
+# Importing Python specific libraries
+math <- import("math")
+
+print(math$sqrt(16))
+print(math$exp2(3))
+print(math$isnan(NaN))
+```
+
+### Converting DataFrames
+
+To convert dataframes from R and Python, we will use the r_to_py() function. You can create a dataframe in R and convert it to Python, and then perform any manipulation or exploration if you want. We can also read in csv files using read.csv(). You can also convert this file to Python using the same r_to_py() function.
+
+```{r}
+# Setting seed for reproducibility
+set.seed(3255)
+
+# Creating our own dataframe example
+r_df <- data.frame(
+    Name = c("Alex", "Emma", "Tyler", "Mira", "Nate"),
+    Grade = rnorm(n=5, mean=80, sd = 15),
+    GPA = rnorm(n=5, mean=3.3, sd=0.5)
+)
+
+# Importing Pandas in Python
+pd <- import("pandas")
+
+# Convert to a Python DataFrame
+py_df <- r_to_py(r_df)
+print(py_df)
+print(class(py_df))
+```
+
+```{r}
+# Reading in csvs
+# We can read in the 311 requests
+serv_req <- read.csv("nypd311w063024noise_by100724.csv")
+head(serv_req, 3)
+```
+
+If you want to run a Python script directly in R, you can use the `source_python()` function:
+
+``` r
+# Run a Python script from a file
+source_python("path.py")
+source_python("example.py")
+```
+
+Since R and Python are two different languages with different pros and cons, it is important to see the ways in which we can use them together to enhance our ability as Data Scientists. 
+
+This code uses scikit learn's Linear Regression import. We first import the model we want to use, and then assign it to some variable. Just like in Python, we can then use this package to perform analysis, based on a given data.
+
+```{r}
+sklearn <- import("sklearn.linear_model")
+LinearRegression <- sklearn$LinearRegression
+
+# Create and train a simple model
+model <- LinearRegression()
+model$fit(matrix(1:10, ncol = 1), 1:10)
+predictions <- model$predict(matrix(c(11, 12), ncol = 1))
+print(predictions)
+```
+
+Here's an example of a Data Visualization technique by calling Python from R. We will assign packages like pandas and matplotlib to pd and plt, respectively. Then using some data, we will convert it from R to Python, and use built in functions like describe() and corr() to obtain information about this data.
+
+Just like in Python, we can change different settings about matplotlib, just make sure to use the `$` operand to signify which parts of plt you would like to change.
+
+```{r}
+# Load the reticulate package
+library(reticulate)
+
+# Import Python libraries
+pd <- import("pandas")
+plt <- import("matplotlib.pyplot")
+
+# Create a sample dataset in R
+data <- data.frame(
+  x = rnorm(100, mean = 50, sd = 10),
+  y = rnorm(100, mean = 30, sd = 5),
+  category = sample(c("A", "B"), 100, replace = TRUE)
+)
+
+# Convert R dataframe to Python dataframe
+py_data <- r_to_py(data)
+
+# Perform exploration in Python
+# Summary statistics
+summary_stats <- py_data$describe()
+
+# Correlation matrix
+correlation_matrix <- py_data$corr()
+
+# Visualization by using matplotlib
+plt$scatter(py_data$x, py_data$y, c = ifelse(py_data$category == "A", 'red', 'blue'), alpha = 0.6)
+plt$title("Scatter Plot of X vs Y")
+plt$xlabel("X Values")
+plt$ylabel("Y Values")
+plt$show()
+
+# Print Python results in R
+print("Summary Statistics:")
+print(summary_stats)
+
+print("Correlation Matrix:")
+print(correlation_matrix)
+
+```
+
+We can also perform Data Manipulation using pandas from R. Make sure to import pandas, and convert the data from R to Python, of which you can perform manipulations. This shows the endless capabilities of calling Python from R, and really helps cement our skills as data scientists. 
+
+```{r}
+# Load reticulate package
+library(reticulate)
+
+# Import Python's pandas library
+pd <- import("pandas")
+
+# Create a sample dataset in R
+data <- data.frame(
+  name = c("Alice", "Bob", "Charlie", "Diana"),
+  age = c(25, 30, 35, 40),
+  salary = c(50000, 60000, 70000, 80000)
+)
+
+# Convert R dataframe to Python dataframe
+py_data <- r_to_py(data)
+
+# Manipulate the data in Python
+py_data <- py_data %>%
+  pd$DataFrame() %>%
+  `[`( , list('name', 'age', 'salary')) %>%
+  pd$DataFrame()
+
+# Add a new column in python named adjusted_salary.
+# Manipulate the data in Python: add adjusted_salary column
+py_data$adjusted_salary <- py_data$salary * 1.1  # Add 10% to salary
+
+# Filter rows where age > 30
+filtered_data <- py_data[py_data$age > 30, ]
+
+# Sort by adjusted_salary in descending order
+sorted_data <- filtered_data$sort_values("adjusted_salary", ascending = FALSE)
+
+# Convert Python dataframe back to R
+final_data <- py_to_r(sorted_data)
+
+# Print final R dataframe
+print(final_data)
+```
 
 
-### Subsection 1
+This is the simplest example of calling Python code from R. It should allow for any chunks of Python code to be run directly in R.
 
+````{r}
+```{python}
+# Any code you would like to run
+```
+````
 
-### Subsection 2
+### Tips
+
+Here are some of the most important functions for using Python in R:
+
+- `py_run_string()` - executes Python Code inline
+- `py$` - accesses Python's variables and functions
+- `import()` - imports Python's libraries
+- `source_python()` - runs a specified Python script
+
+### References
+
+Baiju, Nevin. “Calling R from Python: Magic of RPY2.” Medium, March 15, 2024. https://medium.com/analytics-vidhya/calling-r-from-python-magic-of-rpy2-d8cbbf991571. 
+
+“Calling Python from R.” CRAN - r project. Accessed December 9, 2024. https://cran.r-project.org/web/packages/reticulate/vignettes/calling_python.html. 
+
+Radečić, Dario. “How to Use R and Python Together? Try These 2 Packages.” Appsilon, March 22, 2022. https://www.appsilon.com/post/use-r-and-python-together. 
+
+Velasquez, Isabella. “Calling R from Python with RPY2.” *R Views*, May 25, 2022. https://rviews.rstudio.com/2022/05/25/calling-r-from-python-with-rpy2/. 
