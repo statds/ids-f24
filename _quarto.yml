@@ -16,7 +16,7 @@ book:
     - name: Rahul Manna
     - name: Julia Mazzola
     - name: Deyu Xu
-    - name: Qianruo Tan
+    - name: Qianruo Tan 
   date: today
 
   sidebar:
@@ -35,7 +35,6 @@ book:
     - machinelearning.qmd
     - supervised.qmd
     - unsupervised.qmd
-#    - reinforcement.qmd
     - advanced.qmd
     - exercises.qmd
     - references.qmd
