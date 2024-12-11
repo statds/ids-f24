@@ -1,11 +1,6 @@
 ## Decision Trees: Demonstration
 
-This section is presented by ......
-
-### Subsection
-## Decision Trees: Demonstration
-
-This section is presented by Jaden Astle
+This section is presented by Jaden Astle.
 
 ### About the Trees
 
