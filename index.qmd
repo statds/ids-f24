@@ -256,26 +256,26 @@ Please use the following table to sign up.
 
    Date  | Presenter              | Topic
   ------ | ---------------------- | ------
-   09/11 | Zachary Blanchard    | Making presentation with Quarto
+   09/11 | Zachary Blanchard    | Presentation with Quarto
    09/16 | Deyu Xu                | Import/Export data
-   09/18 | Sara Clokey            | Communications in data science
+   09/18 | Sara Clokey            | Communications in Data Science
    09/23 | Dorathea Johnson       | Database with SQL
    09/25 | Xavier Febles           | Statistical tests
-   09/30 | Jack Bienvenue         | Visualizing spatial data in a Google Map
-   10/02 | Julia Mazzola          | Data Visualization with Plotnine
+   09/30 | Jack Bienvenue         | Visualizing Spatial Data in a Google Map
+   10/02 | Julia Mazzola          | Data VisualiZation with Plotnine
    10/07 | Suha Akach             | Naive Bayes classifier
    10/09 | Rahul Manna            | Animation
-   10/23 | Jaden Astle            | Classification and regression trees 
+   10/23 | Jaden Astle            | Classification and Regression Trees 
    10/23 | Olivia Kashalapov      | Synthetic Minority Oversampling Technique (SMOTE)
    10/28 | Data science alumni panel |
    10/30 | Emily Borowski         | Random Forest
    10/30 | Aditya Paricharak      | Neural Networks
-   11/04 | Melanie Desroches      |
+   11/04 | Melanie Desroches      | Web Scraping
    11/06 | Qianruo Tan            | Reinforcement Learning
-   11/11 | Aansh Jha              | K-means clustering
-   11/11 | Owen Babiec            | Calling R from Python and vice versa
+   11/11 | Aansh Jha              | K-means Clustering
+   11/11 | Owen Babiec            | Calling R from Python and Vice Versa
    11/13 | Stef Baptista            |
-   11/13 | Mohammad Parvez   | Developing a Python package
+   11/13 | Mohammad Parvez   | Extracting and Analyzing Census Data
 
 
 ### Final Project Presentation Schedule
