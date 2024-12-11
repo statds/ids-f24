@@ -36,7 +36,7 @@ https://www.geeksforgeeks.org/decision-tree/
 
 ---
 
-![**Decision Tree Process**](./images/decision_trees/Slide3.jpg){width=100% length=100%}
+![**Decision Tree Process**](./images/decision_trees/Slide3.jpg){width=80% length=80%}
 
 ---
 
@@ -52,6 +52,7 @@ where:
 - \( p_0 \) is the proportion of "cat" values.
 
 ---
+
 **With floppy ears**: Total = 4, Dogs = 3, Cats = 1
 
    $$
@@ -464,7 +465,7 @@ https://scikit-learn.org/1.5/modules/tree.html
 from sklearn.tree import export_text
 
 tree_structure = export_text(tree, feature_names=list(X_train.columns))
-tree_structure
+print(tree_structure)
 ```
 
 ::: footer
