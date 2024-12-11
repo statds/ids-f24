@@ -6,10 +6,13 @@ book:
   subtitle: "STAT 3255/5255 @ UConn, Fall 2024"
   author:
     - name: "Jun Yan and Students in Fall 2024:"
+    - name: Suha Akach
     - name: Jack Bienveune
     - name: Zachary Blanchard
     - name: Sara Clokey
+    - name: Melanie Desrochesk
     - name: Thea Johnson
+    - name: Olivia Kashlapov
     - name: Rahul Manna
     - name: Julia Mazzola
     - name: Deyu Xu
@@ -31,7 +34,7 @@ book:
     - machinelearning.qmd
     - supervised.qmd
     - unsupervised.qmd
-    - reinforcement.qmd
+#    - reinforcement.qmd
     - advanced.qmd
     - exercises.qmd
     - references.qmd
