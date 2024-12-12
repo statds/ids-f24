@@ -7,11 +7,8 @@ This section is presented by Jaden Astle.
 - Supervised learning algorithm
 - Both classification & regression methods
 - Goal is to sort data into specific groups, one characteristic at a time
-- Splitting follows a tree-like structure with binary splits
-
-::: footer
-https://www.geeksforgeeks.org/decision-tree/
-:::
+- Splitting follows a tree-like structure with binary splits  
+[@geeksforgeeks_decision_tree]
 
 ### Classification Trees Overview
 
@@ -19,185 +16,23 @@ https://www.geeksforgeeks.org/decision-tree/
 - ex. Contains "Congratulations!", has fur, has a pool, etc.
 - Note: categorical variables that are *not* binary need to be processed with One-Hot Encoding before training
 
-::: footer
-https://www.geeksforgeeks.org/decision-tree/
-:::
-
-### Structure of the Algorithm
+**How exactly are these splits chosen?**
 
 ---
-
-![**Tree Example**](./images/decision_trees/Slide1.jpg){width=100% length=100%}
-
----
-
-![**Decision Tree Process**](./images/decision_trees/Slide3.jpg){width=80% length=80%}
-
----
-
-- Three features: floppy ears, round face, and whiskers.
-- We need to find the split with the least entropy:
-
-$$
-\text{Entropy} = -p_1 \log_2(p_1) - p_0 \log_2(p_0)
-$$
-
-where:  
-- \( p_1 \) is the proportion of "dog" values,
-- \( p_0 \) is the proportion of "cat" values.
-
----
-
-**With floppy ears**: Total = 4, Dogs = 3, Cats = 1
-
-   $$
-   Entropy = -\frac{3}{4} \log_2\left(\frac{3}{4}\right) - \frac{1}{4} \log_2\left(\frac{1}{4}\right) \approx 0.81
-   $$
-
-**Without floppy ears**: Total = 2, Dogs = 0, Cats = 2
-
-   $$
-   Entropy = -1 \times \log_2(1) = 0
-   $$
-
-**Overall Entropy for floppy ears**:
-   $$
-   Entropy = \left(\frac{4}{6} \times 0.81\right) + \left(\frac{2}{6} \times 0\right) = 0.54
-   $$
-
----
-
-**With round face**: Total = 4, Dogs = 2, Cats = 2
-   $$
-   Entropy = -\frac{2}{4} \log_2\left(\frac{2}{4}\right) - \frac{2}{4} \log_2\left(\frac{2}{4}\right) = 1.0
-   $$
-
-**Without round face**: Total = 2, Dogs = 1, Cats = 1
-
-   $$
-   Entropy = -\frac{1}{2} \log_2\left(\frac{1}{2}\right) - \frac{1}{2} \log_2\left(\frac{1}{2}\right) = 1.0
-   $$
-
-**Overall Entropy for round face**:
-   $$
-   Entropy = \left(\frac{4}{6} \times 1\right) + \left(\frac{2}{6} \times 1\right) = 1.0
-   $$
-
----
-
-**With whiskers**: Total = 2, Dogs = 1, Cats = 1
-   $$
-   Entropy = -\frac{1}{2} \log_2\left(\frac{1}{2}\right) - \frac{1}{2} \log_2\left(\frac{1}{2}\right) = 1.0
-   $$
-
-**Without whiskers**: Total = 4, Dogs = 2, Cats = 2
-   $$
-   Entropy = -\frac{2}{4} \log_2\left(\frac{2}{4}\right) - \frac{2}{4} \log_2\left(\frac{2}{4}\right) = 1.0
-   $$
-
-**Overall Entropy for whiskers**:
-   $$
-   Entropy = \left(\frac{2}{6} \times 1\right) + \left(\frac{4}{6} \times 1\right) = 1.0
-   $$
-
-- So, we split on floppy ears.
-
----
-
-![**Decision Tree Process**](./images/decision_trees/Slide2.png){width=100% length=100%}
-
----
-
-- Since the subset **without floppy ears** has an entropy of 0, it requires no further splitting. We now evaluate the next possible split in the **with floppy ears** subset using the features **round face** and **whiskers**.
-
----
-
-### Split on Round Face 
-
-- **With round face**: Total = 3, Dogs = 2, Cats = 1
-
-  $$
-  \text{Entropy} = -\frac{2}{3} \log_2\left(\frac{2}{3}\right) - \frac{1}{3} \log_2\left(\frac{1}{3}\right) \approx 0.918
-  $$
-
-- **Without round face**: Total = 1, Dogs = 1, Cats = 0
-
-  $$
-  \text{Entropy} = -1 \times \log_2(1) = 0
-  $$
-
-- **Overall Entropy for round face**:
-  
-$$
-\text{Entropy}_{\text{round face}} = \left(\frac{3}{4} \times 0.918\right) + \left(\frac{1}{4} \times 0\right) \approx 0.689
-$$
-
----
-
-### Split on Whiskers 
-
-- **With whiskers**: Total = 1, Dogs = 1, Cats = 0
-
-  $$
-  \text{Entropy} = -1 \times \log_2(1) = 0
-  $$
-
-- **Without whiskers**: Total = 3, Dogs = 2, Cats = 1
-
-  $$
-  \text{Entropy} = -\frac{2}{3} \log_2\left(\frac{2}{3}\right) - \frac{1}{3} \log_2\left(\frac{1}{3}\right) \approx 0.918
-  $$
-
-- **Overall Entropy for whiskers:**
-
-$$
-\text{Entropy}_{\text{whiskers}} = \left(\frac{1}{4} \times 0\right) + \left(\frac{3}{4} \times 0.918\right) \approx 0.689
-$$
-
-Both **round face** and **whiskers** result in the same overall entropy of approximately 0.689. Therefore, either feature could be chosen for the next split. We will go with whiskers.
-
----
-
-![**Decision Tree Process**](./images/decision_trees/Slide5.png){width=100% length=100%}
-
----
-
-- Now, the right node is pure. Therefore, we only split on the left node. The only feature we have left to split with is round face.
-
----
-
-![**Decision Tree Process**](./images/decision_trees/Slide6.png){width=100% length=100%}
-
----
-
-![**Decision Tree Process**](./images/decision_trees/Slide7.png){width=100% length=100%}
-
----
-
-![**Decision Tree Process**](./images/decision_trees/Slide7.png){width=100% length=100%}
-
-How exactly are these splits chosen?
 
 ### Splitting the Variables at Each Node
-
----
 
 #### Entropy
 - **Measure of randomness** or disorder in the given environment.
 - Observes **uncertainty** of data based on distribution of classes at any given step.
-- A lower entropy value means less disorder, therefore a **better split**.
-
-::: footer
-https://www.geeksforgeeks.org/decision-tree/
-:::
+- A lower entropy value means less disorder, therefore a **better split**.  
+[@geeksforgeeks_decision_tree]
 
 #### Gini Index
-- Utilizes the **probability** that a random element is incorrectly labeled based on labeling from the original dataset distribution.
-- A lower Gini index means a **better split**.
 
-::: footer
-https://www.geeksforgeeks.org/decision-tree/
-:::
+- Utilizes the **probability** that a random element is incorrectly labeled based on labeling from the original dataset distribution.
+- A lower Gini index means a **better split**.  
+[@geeksforgeeks_decision_tree]
 
 ---
 
@@ -266,9 +101,7 @@ print(confusion_matrix(y_test, y_pred))
 print(classification_report(y_test, y_pred))
 ```
 
-::: footer
-https://scikit-learn.org/1.5/modules/tree.html
-:::
+[@sklearn_decision_tree]
 
 ---
 
@@ -287,9 +120,7 @@ print(confusion_matrix(y_test, y_pred))
 print(classification_report(y_test, y_pred))
 ```
 
-::: footer
-https://scikit-learn.org/1.5/modules/tree.html
-:::
+[@sklearn_decision_tree]
 
 ---
 
@@ -311,20 +142,15 @@ $$
 \text{Total MSE} = \frac{n_{\text{total}}}{n_{\text{left}}} \cdot \text{MSE}_{\text{left}} + \frac{n_{\text{total}}}{n_{\text{right}}} \cdot \text{MSE}_{\text{right}}
 $$
 
-::: footer
-https://towardsdatascience.com/decision-tree-regressor-explained-a-visual-guide-with-code-examples-fbd2836c3bef
-:::
+[@baladram2024]
 
 ---
 
 ### Regression Trees Overview 
 
 - What about leaf nodes? What are the final classifications?
-- Average y of all remaining observations in that node becomes prediction for future observations
-
-::: footer
-https://towardsdatascience.com/decision-tree-regressor-explained-a-visual-guide-with-code-examples-fbd2836c3bef
-:::
+- Average y of all remaining observations in that node becomes prediction for future observations  
+[@baladram2024]
 
 ---
 
@@ -415,9 +241,7 @@ print(mean_squared_error(y_test, y_pred))
 print(r2_score(y_test, y_pred))
 ```
 
-::: footer
-https://scikit-learn.org/1.5/modules/tree.html
-:::
+[@sklearn_decision_tree]
 
 ---
 
@@ -448,24 +272,21 @@ plot_tree(tree, feature_names=X_train.columns, filled=True, rounded=True)
 plt.show()
 ```
 
-::: footer
-https://scikit-learn.org/1.5/modules/tree.html
-:::
+[@sklearn_decision_tree]
 
 ---
 
 ### Export Tree to Text
 
-```{python}
+```python
 from sklearn.tree import export_text
 
 tree_structure = export_text(tree, feature_names=list(X_train.columns))
 print(tree_structure)
 ```
 
-::: footer
-https://scikit-learn.org/1.5/modules/tree.html
-:::
+This will print a text version of the decision tree in a tree-like format, with each indent representing a new split.  
+[@sklearn_decision_tree]
 
 ---
 
@@ -480,6 +301,6 @@ https://scikit-learn.org/1.5/modules/tree.html
 
 ### References
 
-1. 1.10. Decision Trees. (n.d.). Scikit-learn. https://scikit-learn.org/1.5/modules/tree.html
-2. Baladram, S. (2024, October 11). Decision Tree Regressor, Explained: A Visual Guide with Code Examples. Medium. https://towardsdatascience.com/decision-tree-regressor-explained-a-visual-guide-with-code-examples-fbd2836c3bef
-3. GeeksforGeeks. (2024, May 17). Decision tree. GeeksforGeeks. https://www.geeksforgeeks.org/decision-tree/
+1. 1.10. Decision Trees. (n.d.). Scikit-learn. https://scikit-learn.org/1.5/modules/tree.html [@sklearn_decision_tree].
+2. Baladram, S. (2024, October 11). Decision Tree Regressor, Explained: A Visual Guide with Code Examples. Medium. https://towardsdatascience.com/decision-tree-regressor-explained-a-visual-guide-with-code-examples-fbd2836c3bef [@baladram2024].
+3. GeeksforGeeks. (2024, May 17). Decision tree. GeeksforGeeks. https://www.geeksforgeeks.org/decision-tree/ [@geeksforgeeks_decision_tree].
