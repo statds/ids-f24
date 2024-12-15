@@ -15,7 +15,9 @@ book:
     - name: Olivia Kashlapov
     - name: Rahul Manna
     - name: Julia Mazzola
-    - name: Deyu Xu
+    - name: Mohammad Shahriyar Parvez
+    - name: Qianruo Tan
+    - name: Deyu Xuo
   date: today
 
   sidebar:
@@ -34,7 +36,6 @@ book:
     - machinelearning.qmd
     - supervised.qmd
     - unsupervised.qmd
-#    - reinforcement.qmd
     - advanced.qmd
     - exercises.qmd
     - references.qmd

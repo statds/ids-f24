@@ -353,3 +353,306 @@ merged_df.to_feather('data/nyccrashes_merged.feather')
 
 merged_df.head()
 ```
+
+## Extracting and Analyzing Census Tract Data
+
+This section was authored by **Mohammad Shahriyar Parvez**, 
+a Ph.D. scholar in the Department of Geography, 
+Sustainability, and Urban Studies at the University of 
+Connecticut. For any questions or difficulties in 
+executing the content of this section, please feel free to 
+reach out at [shahriyar@uconn.edu](mailto:shahriyar@uconn.edu).
+
+This section explains how to access data from the US 
+Decennial Census and the American Community Survey (ACS). 
+Basic operations will be applied to calculate and map 
+poverty rates in Storrs, CT. Data will be retrieved from 
+the US Census Bureau’s 2022 [American Community Survey (ACS)](https://www.census.gov/programs-surveys/acs) 
+(refer to this [page](https://www.census.gov/data/developers/data-sets/acs-5year.html) 
+for the dataset).
+
+```{python}
+# Import modules
+import matplotlib.pyplot as plt
+import pandas as pd
+import geopandas as gpd
+from census import Census
+from us import states
+import os
+```
+
+### Accessing the cencus Data
+#### Import census data
+Importing census data into Python requires a [Census API](https://api.census.gov/data/key_signup.html) 
+key. A key can be obtained from Census API Key. You have 
+to provide your Institution name and email address. A 
+unique 40 digit text string API will be sent to you. You 
+have to keep track of this number and store it in a safe 
+place.
+
+```{python}
+# Set up the API key for accessing Census data
+with open("CencusAPI.txt") as f:
+    api_key = f.read().strip()
+c = Census(api_key)
+```
+
+Once the Census API key is configured, access census data 
+at the tract level for Connecticut using the 2022 ACS. 
+Focus on these variables: total income-to-poverty ratio 
+(`C17002_001E`), income less than 0.50 of the poverty 
+level (`C17002_002E`), income between 0.50 and 0.99 of the 
+poverty level (`C17002_003E`), and total population 
+(`B01003_001E`). For details on why these variables are 
+relevant to poverty analysis, refer to the 
+[Census Bureau’s guidelines on poverty measurement](https://www.census.gov/topics/income-poverty/poverty/guidance/poverty-measures.html) 
+and the [ACS variable](https://api.census.gov/data/2022/acs/acs5/variables.html) documentation.
+
+Use the census package’s convenience methods to pull data 
+for different geographic levels. The FIPS code for 
+Connecticu is 09, but if necessary, use the `us` library 
+to identify FIPS codes for other states.
+
+```{python}
+# Obtain Census variables from the ACS at the tract level for Storrs, CT
+ct_census = c.acs5.state_county_tract(
+    fields=('NAME', 'C17002_001E', 'C17002_002E', 'C17002_003E', 'B01003_001E'),
+    state_fips=states.CT.fips,
+    county_fips="*",
+    tract="*",
+    year=2022
+)
+
+```
+
+With the data retrieved and assigned to a variable, load 
+it into a DataFrame using the `pandas` library. This will 
+allow for easy manipulation and analysis of the data.
+
+```{python}
+# Create a dataframe from the census data
+ct_df = pd.DataFrame(ct_census)
+
+# Show the dataframe
+print(ct_df.head(20))
+print('Shape: ', ct_df.shape)
+```
+
+Displaying the DataFrame reveals 884 rows, indicating 884 
+census tracts, along with 8 columns. This structure 
+provides a comprehensive view of the data across all 
+selected tracts.
+
+#### Import Shapefile
+Read the Connecticut census tracts shapefile into Python 
+and reproject it to the UTM Zone 18N projection. The 
+shapefile is available for download from the Census 
+Bureau’s website, specifically on the 
+[Cartographic Boundary Files](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html) page or the 
+[TIGER/Line Shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html) page.
+
+```{python}
+# Access shapefile of Connecticut census tracts
+ct_tract = gpd.read_file("https://www2.census.gov/geo/tiger/TIGER2024/TRACT/"
+                         "tl_2024_09_tract.zip")
+
+# Reproject shapefile to UTM Zone 18N
+ct_tract = ct_tract.to_crs(epsg=32618)
+
+# Print GeoDataFrame of shapefile
+print(ct_tract.head(2))
+print('Shape: ', ct_tract.shape)
+print("\nThe shapefile projection is: {}".format(ct_tract.crs))
+
+```
+
+Printing the shapefile confirms it also contains 884 rows, 
+representing 884 census tracts. This matches the number of 
+census records, which is a good start!
+
+However, there’s a potential issue: while we have the 
+census data and the shapefile of corresponding census 
+tracts, they are currently stored in two separate 
+variables (`ct_df` and `ct_tract`). This separation 
+complicates mapping, as the datasets are not yet linked.
+
+### Performing Dataframe Operations
+#### Create new column from old columns
+To address this issue, join the two DataFrames using a 
+shared field, or "key," that is common to both datasets.
+
+After reviewing the two datasets, the `GEOID` column in 
+`ct_tract` and the combination of the `state`, `county`, 
+and `tract` columns in `ct_df` can serve as a unique key 
+for joining. Currently, these columns are not in a format 
+that can be directly matched, so the `state`, `county`, 
+and `tract` columns from `ct_df` will need to be merged 
+into a single column to align with the `GEOID` column in 
+`ct_tract`. 
+
+To create this new column—or access any existing column in 
+a DataFrame—use indexing with `[]` and the column name as 
+a string. (Alternatively, columns can be accessed by index 
+position; see the 
+[pandas documentation on indexing and selecting data](https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html) for more details.)
+
+```{python}
+# Combine state, county, and tract columns together
+ct_df["GEOID"] = ct_df["state"] + ct_df["county"] + ct_df["tract"]
+
+# Print head of dataframe
+ct_df.head(10)
+```
+
+By printing the first few rows of the DataFrame, the newly 
+created `GEOID` column is visible, showing the combined 
+values from the `state`, `county`, and `tract` columns. 
+This new column now matches the format of the `GEOID` 
+column in `ct_tract`, setting up the data for a successful 
+join.
+
+#### Remove dataframe columns that are no longer needed
+To minimize clutter, delete the `state`, `county`, and 
+`tract` columns from `ct_df`, as they’re no longer needed 
+after creating the `GEOID` column. When modifying a 
+DataFrame, reassign the modified DataFrame back to the 
+original variable (or a new variable if preferred) to save 
+the changes. Alternatively, use `inplace=True` within the 
+`drop` function to apply changes directly without 
+reassignment. For additional details, refer to the 
+[pandas documentation on `drop`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop.html).
+
+```{python}
+# Remove columns
+ct_df = ct_df.drop(columns = ["state", "county", "tract"])
+
+# Show updated dataframe
+ct_df.head(2)
+```
+
+#### Check column data types
+Ensure that the key column (`GEOID`) in both DataFrames is 
+of the same data type to allow for a successful join. 
+Start by checking the data type of the `GEOID` column in 
+each DataFrame. If the data types differ, adjust one or 
+both columns as needed to make them consistent.
+
+```{python}
+# Check column data types for census data
+print(ct_df.dtypes)
+
+# Check column data types for census shapefile
+print(ct_tract.dtypes)
+
+```
+
+#### Merge dataframes
+Now it’s time to merge the two DataFrames using the 
+`GEOID` columns as the primary key. Use the `merge` method 
+in GeoPandas, applying it to the `va_tract` shapefile 
+dataset to combine the data based on the `GEOID` column.
+
+```{python}
+# Join the attributes of the dataframes together
+ct_merge = ct_tract.merge(ct_df, on = "GEOID")
+
+# Show result
+print(ct_merge.head(2))
+print('Shape: ', ct_merge.shape)
+```
+
+The merged DataFrame still has 884 rows, indicating that 
+all (or nearly all) rows were matched correctly. The 
+census data has now been appended to the shapefile data 
+within the DataFrame.
+
+***Additional Notes on Joining DataFrames***
+
+- The columns used as keys do not need to have the same 
+name, as long as they contain matching data.
+- This join was a **one-to-one relationship**, where each 
+attribute in one DataFrame matched exactly one attribute 
+in the other. Joins with **many-to-one**, **one-to-many**, 
+or **many-to-many** relationships are also possible, 
+though they may require additional considerations. 
+For more details, refer to the 
+[Esri ArcGIS documentation on joins and relates](https://desktop.arcgis.com/en/arcmap/latest/manage-data/tables/about-joining-and-relating-tables.htm).
+
+
+#### Subset dataframe
+With the DataFrames merged, further clean up the data by 
+removing unnecessary columns. Instead of using the `drop` 
+method, select only the columns needed and create a new 
+DataFrame containing just those selected columns. This 
+approach streamlines the DataFrame and keeps only the 
+relevant data for analysis.
+
+```{python}
+# Create new dataframe from select columns
+ct_poverty_tract = ct_merge[["STATEFP", "COUNTYFP", "TRACTCE", 
+                            "GEOID", "geometry", "C17002_001E", 
+                            "C17002_002E", "C17002_003E", 
+                            "B01003_001E"]]
+
+# Show dataframe
+print(ct_poverty_tract.head(2))
+print('Shape: ', ct_poverty_tract.shape)
+```
+
+The number of columns has reduced from 19 to 9, 
+streamlining the data for analysis.
+
+#### Calculate Poverty Rates Using Column Math
+
+To estimate the poverty rate, divide the sum of 
+`C17002_002E` (ratio of income to poverty in the past 12 
+months, < 0.50) and `C17002_003E` (ratio of income to 
+poverty in the past 12 months, 0.50 - 0.99) by 
+`B01003_001E` (total population). This calculation 
+provides the proportion of the population below the 
+poverty line.
+
+**Note:** `C17002_001E` (ratio of income to poverty in the 
+past 12 months, total) should theoretically represent the 
+entire population, but it does not exactly match 
+`B01003_001E` (total population). This discrepancy is 
+minor, so it will be disregarded for the purpose of this 
+calculation.
+
+```{python}
+# Get poverty rate and store ctlues in new column
+ct_poverty_tract["Poverty_Rate"] = (
+    (ct_poverty_tract["C17002_002E"] + ct_poverty_tract["C17002_003E"])
+    / ct_poverty_tract["B01003_001E"] * 100
+)
+
+# Show dataframe
+ct_poverty_tract.head(2)
+```
+
+#### Plotting the Results
+
+With the spatial component linked to the census data, the 
+results can now be visualized on a map. Plot the data to 
+display poverty rates across counties, taking advantage of 
+the merged spatial information for a clear geographic 
+representation of poverty distribution.
+
+```{python}
+# Create subplots
+fig, ax = plt.subplots(1, 1, figsize = (12, 8))
+
+# Plot data
+ct_poverty_tract.plot(column = "Poverty_Rate",
+                       ax = ax,
+                       cmap = "plasma",
+                       legend = True)
+
+# Stylize plots
+plt.style.use('bmh')
+
+# Set title
+ax.set_title('Poverty Rates (%) in Connecticut', fontdict = {
+    'fontsize': '25', 'fontweight' : '3'})
+```
+
