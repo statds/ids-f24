@@ -277,6 +277,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#nyc-crash-data" id="toc-nyc-crash-data" class="nav-link" data-scroll-target="#nyc-crash-data"><span class="header-section-number">6.4</span> NYC Crash Data</a></li>
   <li><a href="#cross-platform-data-format-arrow" id="toc-cross-platform-data-format-arrow" class="nav-link" data-scroll-target="#cross-platform-data-format-arrow"><span class="header-section-number">6.5</span> Cross-platform Data Format <code>Arrow</code></a></li>
   <li><a href="#using-the-census-data" id="toc-using-the-census-data" class="nav-link" data-scroll-target="#using-the-census-data"><span class="header-section-number">6.6</span> Using the Census Data</a></li>
+  <li><a href="#extracting-and-analyzing-census-tract-data" id="toc-extracting-and-analyzing-census-tract-data" class="nav-link" data-scroll-target="#extracting-and-analyzing-census-tract-data"><span class="header-section-number">6.7</span> Extracting and Analyzing Census Tract Data</a>
+  <ul class="collapse">
+  <li><a href="#accessing-the-cencus-data" id="toc-accessing-the-cencus-data" class="nav-link" data-scroll-target="#accessing-the-cencus-data"><span class="header-section-number">6.7.1</span> Accessing the cencus Data</a></li>
+  <li><a href="#performing-dataframe-operations" id="toc-performing-dataframe-operations" class="nav-link" data-scroll-target="#performing-dataframe-operations"><span class="header-section-number">6.7.2</span> Performing Dataframe Operations</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -340,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="import-the-cleaned-crashes-data-at-first" class="level4" data-number="6.2.3.1">
 <h4 data-number="6.2.3.1" class="anchored" data-anchor-id="import-the-cleaned-crashes-data-at-first"><span class="header-section-number">6.2.3.1</span> Import the cleaned crashes data at first</h4>
 <p>Fisrtly, we need to import the file named “nyccrashes_cleaned.feather” <a href="https://github.com/statds/ids-f24/tree/main/data">data source</a>. ‌<code>.feather</code> file is a binary file format for storing and sharing data. It is especially suitable for large-scale data analysis and data science workflows. ‌ It uses Apache Arrow’s columnar storage format, which can store data in binary form. The advantage of using this format of file is elvaluating the standard of reading and writing. We need to choose the function <code>read_feather</code> from <code>Pandas</code> to import the crashes data.</p>
-<div id="f219d211" class="cell" data-execution_count="1">
+<div id="ac2f6abb" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the Package Pandas</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -412,7 +417,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="export-the-crashes-data-to-a-.csv-file" class="level4" data-number="6.2.3.2">
 <h4 data-number="6.2.3.2" class="anchored" data-anchor-id="export-the-crashes-data-to-a-.csv-file"><span class="header-section-number">6.2.3.2</span> Export the crashes data to a <code>.csv</code> file</h4>
 <p>It is easy to export the data. The fucntion that helps us to complete this goal is <code>to_csv</code> from <code>Pandas</code>.</p>
-<div id="6e8a64b2" class="cell" data-execution_count="2">
+<div id="b0eeddc8" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the Package Pandas</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the function "to_csv" from Pandas</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Use the argument, "df_feather" storing the data</span></span>
@@ -431,7 +436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="csv-files" class="level4" data-number="6.2.4.1">
 <h4 data-number="6.2.4.1" class="anchored" data-anchor-id="csv-files"><span class="header-section-number">6.2.4.1</span> <code>.csv</code> files</h4>
 <p>We are familiar with <code>.csv</code> files as utilizing them to print some charts by R in the past courses. Now let us import this generated <code>.csv</code> file. We are supposed to choose the function <code>read_csv</code> from <code>Pandas</code>. The following code shows how to import it.</p>
-<div id="495ac6f6" class="cell" data-execution_count="3">
+<div id="fb86c6a7" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the Package Pandas</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the function "read_csv"</span></span>
@@ -472,7 +477,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="xlsx-files" class="level4" data-number="6.2.4.2">
 <h4 data-number="6.2.4.2" class="anchored" data-anchor-id="xlsx-files"><span class="header-section-number">6.2.4.2</span> <code>.xlsx</code> files</h4>
 <p>We want to import <code>.xlsx</code> files but there are not suitable <code>.xlsx</code> files. We can transfer the CSV file to a <code>.xlsx</code> file by the fucntion <code>to_excel</code> from <code>Pandas</code>. Let’s see how to achieve this goal according to the following code.</p>
-<div id="ce25f080" class="cell" data-execution_count="4">
+<div id="87187dc9" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the Package Pandas</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Use the function "to_excel"</span></span>
@@ -486,7 +491,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>The latest version of <code>Pandas</code> corresponds to the following code.</li>
 </ul>
-<div id="f52baa25" class="cell" data-execution_count="5">
+<div id="a0a905d7" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the function "read_excel"</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Add the command "engine" to read the file smoothly</span></span>
@@ -528,7 +533,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="txt-files" class="level4" data-number="6.2.4.3">
 <h4 data-number="6.2.4.3" class="anchored" data-anchor-id="txt-files"><span class="header-section-number">6.2.4.3</span> <code>.txt</code> files</h4>
 <p>The last common kind of file is <code>.txt</code> files. We are able to generate the <code>.txt</code> file in the similar way as generatng the <code>.xlsx</code> file. We choose the function <code>to_csv</code> from <code>Pandas</code>. It is necessary to add the command <code>sep="\t"</code>. At the same time, we are supposed to add <code>index=False</code> to avoid the index of Dataframe. The specific code is following.</p>
-<div id="c1e76081" class="cell" data-execution_count="6">
+<div id="da572905" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"foreign/nyccrashes_cleaned.csv"</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the function "to_csv"</span></span>
@@ -538,7 +543,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>df_csv.to_csv(<span class="st">"foreign/nyccrashes_cleaned.txt"</span>, sep <span class="op">=</span> <span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, index <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we get the corresponding <code>.txt</code> file successfully. The next step is to determine the correct encoding of this <code>.txt</code> file. This is because the computer will not read the file successfully without correct encoding. I have listed the code helping us to obtain the correct encoding. We use <code>with</code> statement to deal with data. And then we use the function <code>detect</code> from Package <code>Chardet</code>. The intention of <code>detect</code> is to detect character encoding of text files.</p>
-<div id="cb4671aa" class="cell" data-execution_count="7">
+<div id="14c04289" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chardet</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Use "with" statement </span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"foreign/nyccrashes_cleaned.txt"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
@@ -556,7 +561,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Warning: It is possible to generate the encoding which is not “utf-8”.</li>
 </ul>
 <p>Now we own the <code>.txt</code> file and its correct encoding. The last step is to use the function <code>read_table</code> to import the <code>.txt</code> file. We need to insert the correct encoding too. The corresponding code is following.</p>
-<div id="93ccba71" class="cell" data-execution_count="8">
+<div id="34e6df0a" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Choose the function "read_table"</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Add the encoding behind the relative address</span></span>
@@ -642,7 +647,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="import-the-generated-.xpt-file" class="level5" data-number="6.2.5.1.2">
 <h5 data-number="6.2.5.1.2" class="anchored" data-anchor-id="import-the-generated-.xpt-file"><span class="header-section-number">6.2.5.1.2</span> Import the generated <code>.xpt</code> file</h5>
 <p>We use the package <code>pyreadstat</code> too. We choose the function <code>read_xport</code> to import the data. Here is the code.</p>
-<div id="87d34060" class="cell" data-execution_count="9">
+<div id="32beb1a6" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Define the Dataframe and metadata</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>df_1, meta <span class="op">=</span> pyreadstat.read_xport(<span class="st">"foreign/SAS.xpt"</span>)</span>
@@ -680,7 +685,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 1                                                              
 
 [2 rows x 28 columns]
-&lt;pyreadstat._readstat_parser.metadata_container object at 0x1156e1c10&gt;</code></pre>
+&lt;pyreadstat._readstat_parser.metadata_container object at 0x115625400&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -715,7 +720,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="import-the-generated-.rdata-file" class="level5" data-number="6.2.5.2.2">
 <h5 data-number="6.2.5.2.2" class="anchored" data-anchor-id="import-the-generated-.rdata-file"><span class="header-section-number">6.2.5.2.2</span> Import the generated <code>.Rdata</code> file</h5>
 <p>We also use the Package <code>rpy2</code>. We need the function <code>pandas2ri</code> too. The code is following</p>
-<div id="a91587bc" class="cell" data-execution_count="10">
+<div id="bd6318c8" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> ro</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Load the .Rdata file</span></span>
@@ -858,7 +863,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="import-the-.dta-file" class="level5" data-number="6.2.5.3.2">
 <h5 data-number="6.2.5.3.2" class="anchored" data-anchor-id="import-the-.dta-file"><span class="header-section-number">6.2.5.3.2</span> Import the <code>.dta</code> file</h5>
 <p>We use the function <code>read_stata</code> from <code>Pandas</code>. And here is the specific code.</p>
-<div id="acecec5c" class="cell" data-execution_count="11">
+<div id="c23de67e" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>df_3 <span class="op">=</span> pd.read_stata(<span class="st">"foreign/stata.dta"</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_3.head(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -907,7 +912,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="import-the-generated-.sav-file" class="level5" data-number="6.2.5.4.2">
 <h5 data-number="6.2.5.4.2" class="anchored" data-anchor-id="import-the-generated-.sav-file"><span class="header-section-number">6.2.5.4.2</span> Import the generated <code>.sav</code> file</h5>
 <p>We also use the Package <code>pyreadstat</code>. We utilize the function <code>read_sav</code> from <code>pyreadstat</code>. The following code helps us import the <code>.sav</code> file.</p>
-<div id="b8dd4fd2" class="cell" data-execution_count="12">
+<div id="6c07c166" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>df_4, meta <span class="op">=</span> pyreadstat.read_sav(<span class="st">"foreign/SPSS.sav"</span>)</span>
@@ -943,7 +948,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 1                                                              
 
 [2 rows x 28 columns]
-&lt;pyreadstat._readstat_parser.metadata_container object at 0x11da15c40&gt;</code></pre>
+&lt;pyreadstat._readstat_parser.metadata_container object at 0x118b65af0&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -969,7 +974,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="import-the-generated-.mat-file" class="level5" data-number="6.2.5.5.2">
 <h5 data-number="6.2.5.5.2" class="anchored" data-anchor-id="import-the-generated-.mat-file"><span class="header-section-number">6.2.5.5.2</span> Import the generated <code>.mat</code> file</h5>
 <p>We use the Package <code>scipy.io</code> too. We choose the function <code>loadmat</code> from <code>spicy.io</code> And the corresponding code is following.</p>
-<div id="1c80f8e0" class="cell" data-execution_count="13">
+<div id="84e03b34" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.io <span class="im">import</span> loadmat</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>df_csv <span class="op">=</span> pd.read_csv(<span class="st">"foreign/nyccrashes_cleaned.csv"</span>)</span>
@@ -1081,7 +1086,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="import-the-generated-.h5-file" class="level5" data-number="6.2.5.6.2">
 <h5 data-number="6.2.5.6.2" class="anchored" data-anchor-id="import-the-generated-.h5-file"><span class="header-section-number">6.2.5.6.2</span> Import the generated <code>.h5</code> file</h5>
 <p>We only use <code>Pandas</code> too. We need the function <code>read_h5</code>. The code of importing .h5 file is following.</p>
-<div id="2a35f569" class="cell" data-execution_count="14">
+<div id="42bbd0c6" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>df_6 <span class="op">=</span> pd.read_hdf(<span class="st">"foreign/HDF5.h5"</span>, key <span class="op">=</span> <span class="st">"data"</span>)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_6.head(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1121,7 +1126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Install Package Glob</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>pip install glob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The effect of Package <code>glob</code> is to find files and directories that match the specified pattern. We use the function <code>glob</code> from Package <code>glob</code>. The intention of function <code>glob</code> is to find all file paths that match a specitic pattern and return a list of file paths. The following fucntion is the corresponding code.</p>
-<div id="54198172" class="cell" data-execution_count="15">
+<div id="bca33f99" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Use the package globe and the package pandas</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob </span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -1172,7 +1177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="6.2.6" class="anchored" data-anchor-id="view-data-information"><span class="header-section-number">6.2.6</span> View data information</h3>
 <p>It is natural for us to be interested in the fundamental information of the data we have imported. As a result, I have listed some useful functions to get the basic knowledge of the data.</p>
 <p>The following code helps us know how much the data is. We choose the basic function <code>shape</code> from <code>pandas</code>.</p>
-<div id="6cddbdeb" class="cell" data-execution_count="16">
+<div id="00a2f11b" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">## How much is the crashes data is</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>df_csv.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
@@ -1183,7 +1188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>There are 1875 data and 29 columns in the file.</li>
 </ul>
 <p>The following code helps us check the type of each variable in data. The fucntion is <code>dtypes</code> from <code>Pandas</code></p>
-<div id="0c3566cc" class="cell" data-execution_count="17">
+<div id="30d7cc3f" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show all types of the crashes' variables</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>df_csv.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
@@ -1223,7 +1228,7 @@ dtype: object</code></pre>
 <li>Our computer has listed 29 variables and their corresponding types.</li>
 </ul>
 <p>The following code is suitable for viewing overall data information. We use the basic function <code>info</code> from <code>Pandas</code></p>
-<div id="8bcfa018" class="cell" data-execution_count="18">
+<div id="1880a5d6" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df_csv.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -1268,7 +1273,7 @@ memory usage: 424.9+ KB</code></pre>
 <li>The basic information of crashes data has been listed.</li>
 </ul>
 <p>The function <code>describe</code> from <code>Pandas</code> helps generate descriptive statistics.</p>
-<div id="70841c8f" class="cell" data-execution_count="19">
+<div id="758d4bd8" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show the basic descriptive statistics of crashes data</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>df_csv.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
@@ -1430,7 +1435,7 @@ memory usage: 424.9+ KB</code></pre>
 </div>
 </div>
 <p>If we want to summarize the names of all columns, it is a good choice to use the function <code>columns</code> from <code>Pandas</code></p>
-<div id="22537c12" class="cell" data-execution_count="20">
+<div id="3c5cae18" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Get all columns' names of crashes data</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>df_csv.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
@@ -1449,7 +1454,7 @@ memory usage: 424.9+ KB</code></pre>
 </div>
 </div>
 <p>The function <code>tail</code> from <code>Pandas</code> allow us to view the last rows.</p>
-<div id="05f9ed2f" class="cell" data-execution_count="21">
+<div id="31dd8c89" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show the last 2 rows of crashes data</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>df_csv.tail(n <span class="op">=</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
@@ -1540,7 +1545,7 @@ memory usage: 424.9+ KB</code></pre>
 </div>
 </div>
 <p>The function <code>unique</code> from <code>Pandas</code> dedicates in unique values ​​of one column.</p>
-<div id="7b3045b2" class="cell" data-execution_count="22">
+<div id="2f51db0d" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show the unique values in the column named "crash_datetime"</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>df_csv[<span class="st">"crash_datetime"</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
@@ -1550,7 +1555,7 @@ memory usage: 424.9+ KB</code></pre>
 </div>
 </div>
 <p>We can get the values of one column(without deduplication). The choose of function is <code>values</code> from <code>Pandas</code> instead of <code>unique</code></p>
-<div id="44fe757b" class="cell" data-execution_count="23">
+<div id="28037f29" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Show all values of the column named "crash_datetime"</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>df_csv[<span class="st">"crash_datetime"</span>].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
@@ -1569,7 +1574,7 @@ memory usage: 424.9+ KB</code></pre>
 <ul>
 <li>Determine whether there are missing values in columns</li>
 </ul>
-<div id="3ecefc15" class="cell" data-execution_count="24">
+<div id="b2e02c4c" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Determine whether there are missing values in columns of crashes data</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>df_csv.isnull().<span class="bu">any</span>(axis <span class="op">=</span> <span class="dv">0</span>) <span class="co"># "axis=0" means columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
@@ -1608,7 +1613,7 @@ dtype: bool</code></pre>
 <ul>
 <li>Determine whether there are missing values ​​in rows.</li>
 </ul>
-<div id="08a4147b" class="cell" data-execution_count="25">
+<div id="7e33aa17" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Determine whether there are missing values in rows of crashes data</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>df_csv.isnull().<span class="bu">any</span>(axis <span class="op">=</span> <span class="dv">1</span>) <span class="co"># "axis=1" means rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
@@ -1633,7 +1638,7 @@ Length: 1875, dtype: bool</code></pre>
 <ul>
 <li>Locate the missing values of rows</li>
 </ul>
-<div id="cedd44ae" class="cell" data-execution_count="26">
+<div id="b8a2346f" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Locate the missing values in crashes data rows</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>df_csv.loc[df_csv.isnull().<span class="bu">any</span>(axis <span class="op">=</span> <span class="dv">1</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
@@ -1943,7 +1948,7 @@ Length: 1875, dtype: bool</code></pre>
 <section id="determine-the-number-of-missing-values." class="level4" data-number="6.2.7.3">
 <h4 data-number="6.2.7.3" class="anchored" data-anchor-id="determine-the-number-of-missing-values."><span class="header-section-number">6.2.7.3</span> Determine the number of missing values.</h4>
 <p>We also use the function <code>isnull</code>. But this time we add the command <code>sum</code> rather than <code>any</code>.</p>
-<div id="050779e8" class="cell" data-execution_count="27">
+<div id="bd41e3e1" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Calculate the number of missing values in crashes data columns</span></span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>df_csv.isnull().<span class="bu">sum</span>(axis <span class="op">=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
@@ -2012,7 +2017,7 @@ dtype: int64</code></pre>
 </section>
 <section id="example-relational-database" class="level3" data-number="6.3.3">
 <h3 data-number="6.3.3" class="anchored" data-anchor-id="example-relational-database"><span class="header-section-number">6.3.3</span> Example Relational Database</h3>
-<div id="57754262" class="cell" data-execution_count="28">
+<div id="14f88b03" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2188,7 +2193,7 @@ dtype: int64</code></pre>
 </section>
 <section id="section" class="level3" data-number="6.3.9">
 <h3 data-number="6.3.9" class="anchored" data-anchor-id="section"><span class="header-section-number">6.3.9</span> </h3>
-<div id="4d7b42b2" class="cell" data-execution_count="29">
+<div id="cef263fa" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2284,7 +2289,7 @@ dtype: int64</code></pre>
 <span id="cb70-11"><a href="#cb70-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb70-12"><a href="#cb70-12" aria-hidden="true" tabindex="-1"></a><span class="co"># automatically converts data to an SQL table</span></span>
 <span id="cb70-13"><a href="#cb70-13" aria-hidden="true" tabindex="-1"></a>data.to_sql(<span class="st">'nyccrashes'</span>, conn, if_exists<span class="op">=</span><span class="st">'replace'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="b3e64940" class="cell" data-execution_count="30">
+<div id="24b5e160" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2334,7 +2339,7 @@ dtype: int64</code></pre>
 </section>
 <section id="queries-output" class="level3" data-number="6.3.12">
 <h3 data-number="6.3.12" class="anchored" data-anchor-id="queries-output"><span class="header-section-number">6.3.12</span> Queries Output</h3>
-<div id="a27744e8" class="cell" data-execution_count="31">
+<div id="a76d0a1f" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Query for everythin in the table</span></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="co"># query1 = pd.read_sql_query("SELECT * FROM nyccrashes;", conn)</span></span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print(query1.head(3))</span></span>
@@ -2406,7 +2411,7 @@ Here's the output for the specific columns query.
 <section id="nyc-crash-data" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="nyc-crash-data"><span class="header-section-number">6.4</span> NYC Crash Data</h2>
 <p>Consider a subset of the NYC Crash Data, which contains all NYC motor vehicle collisions data with documentation from <a href="https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95">NYC Open Data</a>. We downloaded the crash data for the week of June 30, 2024, on September 16, 2024, in CSC format.</p>
-<div id="ec3bd59a" class="cell" data-execution_count="32">
+<div id="a68df2f8" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dataset</span></span>
@@ -2578,7 +2583,7 @@ Here's the output for the specific columns query.
 </div>
 </div>
 <p>Now we can do some cleaning after a quick browse.</p>
-<div id="e4f28492" class="cell" data-execution_count="33">
+<div id="fe5c8a1c" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace invalid coordinates (latitude=0, longitude=0 or NaN) with NaN</span></span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>df.loc[(df[<span class="st">'latitude'</span>] <span class="op">==</span> <span class="dv">0</span>) <span class="op">&amp;</span> (df[<span class="st">'longitude'</span>] <span class="op">==</span> <span class="dv">0</span>), </span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>       [<span class="st">'latitude'</span>, <span class="st">'longitude'</span>]] <span class="op">=</span> pd.NA</span>
@@ -2600,7 +2605,7 @@ Here's the output for the specific columns query.
 <span id="cb77-19"><a href="#cb77-19" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'crash_date'</span>, <span class="st">'crash_time'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Are missing in zip code and borough always co-occur?</p>
-<div id="33b419a2" class="cell" data-execution_count="34">
+<div id="ce160bb5" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if missing values in 'zip_code' and 'borough' always co-occur</span></span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Count rows where both are missing</span></span>
 <span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>missing_cooccur <span class="op">=</span> df[[<span class="st">'zip_code'</span>, <span class="st">'borough'</span>]].isnull().<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>).<span class="bu">sum</span>()</span>
@@ -2619,7 +2624,7 @@ Here's the output for the specific columns query.
 <p>First make sure <code>geopy</code> is installed.</p>
 <pre class="shell"><code>pip install geopy</code></pre>
 <p>Now we use model <code>Nominatim</code> in package <code>geopy</code> to reverse geocode.</p>
-<div id="49298a2e" class="cell" data-execution_count="35">
+<div id="c7ff3c69" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> geopy.geocoders <span class="im">import</span> Nominatim</span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2629,7 +2634,7 @@ Here's the output for the specific columns query.
 <span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>geolocator <span class="op">=</span> Nominatim(user_agent<span class="op">=</span><span class="st">"jyGeopyTry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We write a function to do the reverse geocoding given lattitude and longitude.</p>
-<div id="5bda7d37" class="cell" data-execution_count="36">
+<div id="51ce5790" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to fill missing zip_code</span></span>
 <span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_zip_code(latitude, longitude):</span>
 <span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
@@ -2647,7 +2652,7 @@ Here's the output for the specific columns query.
 <span id="cb82-15"><a href="#cb82-15" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="dv">1</span>)  <span class="co"># Delay to avoid overwhelming the service</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s try it out:</p>
-<div id="406fc372" class="cell" data-execution_count="37">
+<div id="32754532" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>latitude <span class="op">=</span> <span class="fl">40.730610</span></span>
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>longitude <span class="op">=</span> <span class="op">-</span><span class="fl">73.935242</span></span>
@@ -2668,7 +2673,7 @@ Here's the output for the specific columns query.
 <p>First, ensure you have <code>pyarrow</code> installed on your computer (and preferrably, in your current virtual environment):</p>
 <pre class="shell"><code>pip install pyarrow</code></pre>
 <p>Feather is a fast, lightweight, and easy-to-use binary file format for storing data frames, optimized for speed and efficiency, particularly for IPC and data sharing between Python and R or Julia.</p>
-<div id="d79b2dea" class="cell" data-execution_count="38">
+<div id="be93c033" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>df.to_feather(<span class="st">'data/nyccrashes_cleaned.feather'</span>)</span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare the file sizes of the feather format and the CSV format</span></span>
@@ -2691,7 +2696,7 @@ Here's the output for the specific columns query.
 <span id="cb85-20"><a href="#cb85-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Feather file size: </span><span class="sc">{</span>feather_size_mb<span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Read the feather file back in:</p>
-<div id="46fc8148" class="cell" data-execution_count="39">
+<div id="b755ab2a" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>dff <span class="op">=</span> pd.read_feather(<span class="st">"data/nyccrashes_cleaned.feather"</span>)</span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>dff.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -2700,7 +2705,7 @@ Here's the output for the specific columns query.
 <h2 data-number="6.6" class="anchored" data-anchor-id="using-the-census-data"><span class="header-section-number">6.6</span> Using the Census Data</h2>
 <p>The <a href="data.census.gov">US Census</a> provides a lot of useful data that could be merged with the NYC crash data for further analytics.</p>
 <p>First, ensure the DataFrame (df) is ready for merging with census data. Specifically, check that the <code>zip_code</code> column is clean and consistent.and consistent.</p>
-<div id="2481b387" class="cell" data-execution_count="40">
+<div id="57ab0de2" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_feather(<span class="st">"data/nyccrashes_cleaned.feather"</span>)</span>
 <span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2755,7 +2760,7 @@ Here's the output for the specific columns query.
 <span id="cb88-12"><a href="#cb88-12" aria-hidden="true" tabindex="-1"></a><span class="va">valid_zip_df</span><span class="op">[</span><span class="st">'zip_code'</span><span class="op">]</span> <span class="ex">=</span> valid_zip_df<span class="pp">[</span><span class="st">'zip_code'</span><span class="pp">]</span>.astype<span class="er">(</span><span class="ex">str</span><span class="kw">)</span><span class="ex">.str.zfill</span><span class="er">(</span><span class="ex">5</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Since <code>uszipcode</code> doesn’t valid_zip_dfrently support vectorized operations for multiple ZIP code queries, we’ll optimize the process by querying each unique ZIP code once, then merging the results with the original <code>DataFrame</code>. This approach minimizes redundant queries for ZIP codes that appear multiple</p>
 <p>times.</p>
-<div id="a02648ad" class="cell" data-execution_count="41">
+<div id="9f32043a" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> uszipcode <span class="im">import</span> SearchEngine</span>
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the SearchEngine</span></span>
@@ -2945,8 +2950,564 @@ Here's the output for the specific columns query.
 </div>
 </div>
 </div>
+</section>
+<section id="extracting-and-analyzing-census-tract-data" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="extracting-and-analyzing-census-tract-data"><span class="header-section-number">6.7</span> Extracting and Analyzing Census Tract Data</h2>
+<p>This section was authored by <strong>Mohammad Shahriyar Parvez</strong>, a Ph.D.&nbsp;scholar in the Department of Geography, Sustainability, and Urban Studies at the University of Connecticut. For any questions or difficulties in executing the content of this section, please feel free to reach out at <a href="mailto:shahriyar@uconn.edu">shahriyar@uconn.edu</a>.</p>
+<p>This section explains how to access data from the US Decennial Census and the American Community Survey (ACS). Basic operations will be applied to calculate and map poverty rates in Storrs, CT. Data will be retrieved from the US Census Bureau’s 2022 <a href="https://www.census.gov/programs-surveys/acs">American Community Survey (ACS)</a> (refer to this <a href="https://www.census.gov/data/developers/data-sets/acs-5year.html">page</a> for the dataset).</p>
+<div id="cadc8ee1" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import modules</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> census <span class="im">import</span> Census</span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> us <span class="im">import</span> states</span>
+<span id="cb90-7"><a href="#cb90-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="accessing-the-cencus-data" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="accessing-the-cencus-data"><span class="header-section-number">6.7.1</span> Accessing the cencus Data</h3>
+<section id="import-census-data" class="level4" data-number="6.7.1.1">
+<h4 data-number="6.7.1.1" class="anchored" data-anchor-id="import-census-data"><span class="header-section-number">6.7.1.1</span> Import census data</h4>
+<p>Importing census data into Python requires a <a href="https://api.census.gov/data/key_signup.html">Census API</a> key. A key can be obtained from Census API Key. You have to provide your Institution name and email address. A unique 40 digit text string API will be sent to you. You have to keep track of this number and store it in a safe place.</p>
+<div id="2d6e7514" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the API key for accessing Census data</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"CencusAPI.txt"</span>) <span class="im">as</span> f:</span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>    api_key <span class="op">=</span> f.read().strip()</span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> Census(api_key)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once the Census API key is configured, access census data at the tract level for Connecticut using the 2022 ACS. Focus on these variables: total income-to-poverty ratio (<code>C17002_001E</code>), income less than 0.50 of the poverty level (<code>C17002_002E</code>), income between 0.50 and 0.99 of the poverty level (<code>C17002_003E</code>), and total population (<code>B01003_001E</code>). For details on why these variables are relevant to poverty analysis, refer to the <a href="https://www.census.gov/topics/income-poverty/poverty/guidance/poverty-measures.html">Census Bureau’s guidelines on poverty measurement</a> and the <a href="https://api.census.gov/data/2022/acs/acs5/variables.html">ACS variable</a> documentation.</p>
+<p>Use the census package’s convenience methods to pull data for different geographic levels. The FIPS code for Connecticu is 09, but if necessary, use the <code>us</code> library to identify FIPS codes for other states.</p>
+<div id="5ab960e3" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain Census variables from the ACS at the tract level for Storrs, CT</span></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>ct_census <span class="op">=</span> c.acs5.state_county_tract(</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>    fields<span class="op">=</span>(<span class="st">'NAME'</span>, <span class="st">'C17002_001E'</span>, <span class="st">'C17002_002E'</span>, <span class="st">'C17002_003E'</span>, <span class="st">'B01003_001E'</span>),</span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>    state_fips<span class="op">=</span>states.CT.fips,</span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>    county_fips<span class="op">=</span><span class="st">"*"</span>,</span>
+<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a>    tract<span class="op">=</span><span class="st">"*"</span>,</span>
+<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a>    year<span class="op">=</span><span class="dv">2022</span></span>
+<span id="cb92-8"><a href="#cb92-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>With the data retrieved and assigned to a variable, load it into a DataFrame using the <code>pandas</code> library. This will allow for easy manipulation and analysis of the data.</p>
+<div id="4d0d7740" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dataframe from the census data</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>ct_df <span class="op">=</span> pd.DataFrame(ct_census)</span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the dataframe</span></span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ct_df.head(<span class="dv">20</span>))</span>
+<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Shape: '</span>, ct_df.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                 NAME  C17002_001E  \
+0   Census Tract 4001.01; Capitol Planning Region;...       2916.0   
+1   Census Tract 4001.02; Capitol Planning Region;...       4266.0   
+2   Census Tract 4002; Capitol Planning Region; Co...       6213.0   
+3   Census Tract 4003; Capitol Planning Region; Co...       6677.0   
+4   Census Tract 4153; Capitol Planning Region; Co...       2615.0   
+5   Census Tract 4154; Capitol Planning Region; Co...       6046.0   
+6   Census Tract 4155; Capitol Planning Region; Co...       3245.0   
+7   Census Tract 4156; Capitol Planning Region; Co...       4201.0   
+8   Census Tract 4157; Capitol Planning Region; Co...       3284.0   
+9   Census Tract 4158; Capitol Planning Region; Co...       2606.0   
+10  Census Tract 4159; Capitol Planning Region; Co...       1427.0   
+11  Census Tract 4160; Capitol Planning Region; Co...       4738.0   
+12  Census Tract 4161; Capitol Planning Region; Co...       4995.0   
+13  Census Tract 4162; Capitol Planning Region; Co...       2839.0   
+14  Census Tract 4163; Capitol Planning Region; Co...       4533.0   
+15  Census Tract 4164; Capitol Planning Region; Co...       3180.0   
+16  Census Tract 4165; Capitol Planning Region; Co...       4364.0   
+17  Census Tract 4166; Capitol Planning Region; Co...       3110.0   
+18  Census Tract 4167; Capitol Planning Region; Co...       6364.0   
+19  Census Tract 4168; Capitol Planning Region; Co...       3394.0   
+
+    C17002_002E  C17002_003E  B01003_001E state county   tract  
+0          41.0         22.0       2945.0    09    110  400101  
+1          73.0        305.0       4266.0    09    110  400102  
+2          55.0        136.0       6250.0    09    110  400200  
+3         135.0        197.0       6688.0    09    110  400300  
+4         465.0        360.0       2621.0    09    110  415300  
+5         431.0        318.0       6046.0    09    110  415400  
+6         408.0        353.0       3245.0    09    110  415500  
+7         300.0        667.0       4303.0    09    110  415600  
+8         134.0        169.0       3290.0    09    110  415700  
+9         459.0        313.0       2775.0    09    110  415800  
+10        131.0        405.0       1437.0    09    110  415900  
+11        382.0        646.0       4738.0    09    110  416000  
+12        509.0        992.0       5017.0    09    110  416100  
+13        133.0        633.0       2911.0    09    110  416200  
+14        373.0        796.0       4533.0    09    110  416300  
+15         50.0        110.0       3185.0    09    110  416400  
+16        350.0        180.0       4404.0    09    110  416500  
+17        403.0        196.0       3171.0    09    110  416600  
+18        424.0       1109.0       6481.0    09    110  416700  
+19        401.0         13.0       3394.0    09    110  416800  
+Shape:  (884, 8)</code></pre>
+</div>
+</div>
+<p>Displaying the DataFrame reveals 884 rows, indicating 884 census tracts, along with 8 columns. This structure provides a comprehensive view of the data across all selected tracts.</p>
+</section>
+<section id="import-shapefile" class="level4" data-number="6.7.1.2">
+<h4 data-number="6.7.1.2" class="anchored" data-anchor-id="import-shapefile"><span class="header-section-number">6.7.1.2</span> Import Shapefile</h4>
+<p>Read the Connecticut census tracts shapefile into Python and reproject it to the UTM Zone 18N projection. The shapefile is available for download from the Census Bureau’s website, specifically on the <a href="https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html">Cartographic Boundary Files</a> page or the <a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">TIGER/Line Shapefiles</a> page.</p>
+<div id="35da198f" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access shapefile of Connecticut census tracts</span></span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>ct_tract <span class="op">=</span> gpd.read_file(<span class="st">"https://www2.census.gov/geo/tiger/TIGER2024/TRACT/"</span></span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"tl_2024_09_tract.zip"</span>)</span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproject shapefile to UTM Zone 18N</span></span>
+<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a>ct_tract <span class="op">=</span> ct_tract.to_crs(epsg<span class="op">=</span><span class="dv">32618</span>)</span>
+<span id="cb95-7"><a href="#cb95-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-8"><a href="#cb95-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print GeoDataFrame of shapefile</span></span>
+<span id="cb95-9"><a href="#cb95-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ct_tract.head(<span class="dv">2</span>))</span>
+<span id="cb95-10"><a href="#cb95-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Shape: '</span>, ct_tract.shape)</span>
+<span id="cb95-11"><a href="#cb95-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">The shapefile projection is: </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(ct_tract.crs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  STATEFP COUNTYFP TRACTCE        GEOID               GEOIDFQ  NAME  \
+0      09      110  535200  09110535200  1400000US09110535200  5352   
+1      09      110  881200  09110881200  1400000US09110881200  8812   
+
+            NAMELSAD  MTFCC FUNCSTAT     ALAND   AWATER     INTPTLAT  \
+0  Census Tract 5352  G5020        S  43206583  1355239  +41.9294855   
+1  Census Tract 8812  G5020        S   2273066    28584  +41.8089384   
+
+       INTPTLON                                           geometry  
+0  -072.4062911  POLYGON ((710429.8 4638466.647, 710437.611 463...  
+1  -072.2516171  POLYGON ((727399.183 4633086.018, 727416.326 4...  
+Shape:  (884, 14)
+
+The shapefile projection is: EPSG:32618</code></pre>
+</div>
+</div>
+<p>Printing the shapefile confirms it also contains 884 rows, representing 884 census tracts. This matches the number of census records, which is a good start!</p>
+<p>However, there’s a potential issue: while we have the census data and the shapefile of corresponding census tracts, they are currently stored in two separate variables (<code>ct_df</code> and <code>ct_tract</code>). This separation complicates mapping, as the datasets are not yet linked.</p>
+</section>
+</section>
+<section id="performing-dataframe-operations" class="level3" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="performing-dataframe-operations"><span class="header-section-number">6.7.2</span> Performing Dataframe Operations</h3>
+<section id="create-new-column-from-old-columns" class="level4" data-number="6.7.2.1">
+<h4 data-number="6.7.2.1" class="anchored" data-anchor-id="create-new-column-from-old-columns"><span class="header-section-number">6.7.2.1</span> Create new column from old columns</h4>
+<p>To address this issue, join the two DataFrames using a shared field, or “key,” that is common to both datasets.</p>
+<p>After reviewing the two datasets, the <code>GEOID</code> column in <code>ct_tract</code> and the combination of the <code>state</code>, <code>county</code>, and <code>tract</code> columns in <code>ct_df</code> can serve as a unique key for joining. Currently, these columns are not in a format that can be directly matched, so the <code>state</code>, <code>county</code>, and <code>tract</code> columns from <code>ct_df</code> will need to be merged into a single column to align with the <code>GEOID</code> column in <code>ct_tract</code>.</p>
+<p>To create this new column—or access any existing column in a DataFrame—use indexing with <code>[]</code> and the column name as a string. (Alternatively, columns can be accessed by index position; see the <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html">pandas documentation on indexing and selecting data</a> for more details.)</p>
+<div id="9224bb25" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine state, county, and tract columns together</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>ct_df[<span class="st">"GEOID"</span>] <span class="op">=</span> ct_df[<span class="st">"state"</span>] <span class="op">+</span> ct_df[<span class="st">"county"</span>] <span class="op">+</span> ct_df[<span class="st">"tract"</span>]</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print head of dataframe</span></span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>ct_df.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="45">
+<div>
 
 
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">NAME</th>
+<th data-quarto-table-cell-role="th">C17002_001E</th>
+<th data-quarto-table-cell-role="th">C17002_002E</th>
+<th data-quarto-table-cell-role="th">C17002_003E</th>
+<th data-quarto-table-cell-role="th">B01003_001E</th>
+<th data-quarto-table-cell-role="th">state</th>
+<th data-quarto-table-cell-role="th">county</th>
+<th data-quarto-table-cell-role="th">tract</th>
+<th data-quarto-table-cell-role="th">GEOID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Census Tract 4001.01; Capitol Planning Region;...</td>
+<td>2916.0</td>
+<td>41.0</td>
+<td>22.0</td>
+<td>2945.0</td>
+<td>09</td>
+<td>110</td>
+<td>400101</td>
+<td>09110400101</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Census Tract 4001.02; Capitol Planning Region;...</td>
+<td>4266.0</td>
+<td>73.0</td>
+<td>305.0</td>
+<td>4266.0</td>
+<td>09</td>
+<td>110</td>
+<td>400102</td>
+<td>09110400102</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Census Tract 4002; Capitol Planning Region; Co...</td>
+<td>6213.0</td>
+<td>55.0</td>
+<td>136.0</td>
+<td>6250.0</td>
+<td>09</td>
+<td>110</td>
+<td>400200</td>
+<td>09110400200</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Census Tract 4003; Capitol Planning Region; Co...</td>
+<td>6677.0</td>
+<td>135.0</td>
+<td>197.0</td>
+<td>6688.0</td>
+<td>09</td>
+<td>110</td>
+<td>400300</td>
+<td>09110400300</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Census Tract 4153; Capitol Planning Region; Co...</td>
+<td>2615.0</td>
+<td>465.0</td>
+<td>360.0</td>
+<td>2621.0</td>
+<td>09</td>
+<td>110</td>
+<td>415300</td>
+<td>09110415300</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Census Tract 4154; Capitol Planning Region; Co...</td>
+<td>6046.0</td>
+<td>431.0</td>
+<td>318.0</td>
+<td>6046.0</td>
+<td>09</td>
+<td>110</td>
+<td>415400</td>
+<td>09110415400</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Census Tract 4155; Capitol Planning Region; Co...</td>
+<td>3245.0</td>
+<td>408.0</td>
+<td>353.0</td>
+<td>3245.0</td>
+<td>09</td>
+<td>110</td>
+<td>415500</td>
+<td>09110415500</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Census Tract 4156; Capitol Planning Region; Co...</td>
+<td>4201.0</td>
+<td>300.0</td>
+<td>667.0</td>
+<td>4303.0</td>
+<td>09</td>
+<td>110</td>
+<td>415600</td>
+<td>09110415600</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>Census Tract 4157; Capitol Planning Region; Co...</td>
+<td>3284.0</td>
+<td>134.0</td>
+<td>169.0</td>
+<td>3290.0</td>
+<td>09</td>
+<td>110</td>
+<td>415700</td>
+<td>09110415700</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>Census Tract 4158; Capitol Planning Region; Co...</td>
+<td>2606.0</td>
+<td>459.0</td>
+<td>313.0</td>
+<td>2775.0</td>
+<td>09</td>
+<td>110</td>
+<td>415800</td>
+<td>09110415800</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>By printing the first few rows of the DataFrame, the newly created <code>GEOID</code> column is visible, showing the combined values from the <code>state</code>, <code>county</code>, and <code>tract</code> columns. This new column now matches the format of the <code>GEOID</code> column in <code>ct_tract</code>, setting up the data for a successful join.</p>
+</section>
+<section id="remove-dataframe-columns-that-are-no-longer-needed" class="level4" data-number="6.7.2.2">
+<h4 data-number="6.7.2.2" class="anchored" data-anchor-id="remove-dataframe-columns-that-are-no-longer-needed"><span class="header-section-number">6.7.2.2</span> Remove dataframe columns that are no longer needed</h4>
+<p>To minimize clutter, delete the <code>state</code>, <code>county</code>, and <code>tract</code> columns from <code>ct_df</code>, as they’re no longer needed after creating the <code>GEOID</code> column. When modifying a DataFrame, reassign the modified DataFrame back to the original variable (or a new variable if preferred) to save the changes. Alternatively, use <code>inplace=True</code> within the <code>drop</code> function to apply changes directly without reassignment. For additional details, refer to the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop.html">pandas documentation on <code>drop</code></a>.</p>
+<div id="8661221a" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove columns</span></span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>ct_df <span class="op">=</span> ct_df.drop(columns <span class="op">=</span> [<span class="st">"state"</span>, <span class="st">"county"</span>, <span class="st">"tract"</span>])</span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show updated dataframe</span></span>
+<span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a>ct_df.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">NAME</th>
+<th data-quarto-table-cell-role="th">C17002_001E</th>
+<th data-quarto-table-cell-role="th">C17002_002E</th>
+<th data-quarto-table-cell-role="th">C17002_003E</th>
+<th data-quarto-table-cell-role="th">B01003_001E</th>
+<th data-quarto-table-cell-role="th">GEOID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Census Tract 4001.01; Capitol Planning Region;...</td>
+<td>2916.0</td>
+<td>41.0</td>
+<td>22.0</td>
+<td>2945.0</td>
+<td>09110400101</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Census Tract 4001.02; Capitol Planning Region;...</td>
+<td>4266.0</td>
+<td>73.0</td>
+<td>305.0</td>
+<td>4266.0</td>
+<td>09110400102</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="check-column-data-types" class="level4" data-number="6.7.2.3">
+<h4 data-number="6.7.2.3" class="anchored" data-anchor-id="check-column-data-types"><span class="header-section-number">6.7.2.3</span> Check column data types</h4>
+<p>Ensure that the key column (<code>GEOID</code>) in both DataFrames is of the same data type to allow for a successful join. Start by checking the data type of the <code>GEOID</code> column in each DataFrame. If the data types differ, adjust one or both columns as needed to make them consistent.</p>
+<div id="2c572509" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check column data types for census data</span></span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ct_df.dtypes)</span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check column data types for census shapefile</span></span>
+<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ct_tract.dtypes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NAME            object
+C17002_001E    float64
+C17002_002E    float64
+C17002_003E    float64
+B01003_001E    float64
+GEOID           object
+dtype: object
+STATEFP       object
+COUNTYFP      object
+TRACTCE       object
+GEOID         object
+GEOIDFQ       object
+NAME          object
+NAMELSAD      object
+MTFCC         object
+FUNCSTAT      object
+ALAND          int64
+AWATER         int64
+INTPTLAT      object
+INTPTLON      object
+geometry    geometry
+dtype: object</code></pre>
+</div>
+</div>
+</section>
+<section id="merge-dataframes" class="level4" data-number="6.7.2.4">
+<h4 data-number="6.7.2.4" class="anchored" data-anchor-id="merge-dataframes"><span class="header-section-number">6.7.2.4</span> Merge dataframes</h4>
+<p>Now it’s time to merge the two DataFrames using the <code>GEOID</code> columns as the primary key. Use the <code>merge</code> method in GeoPandas, applying it to the <code>va_tract</code> shapefile dataset to combine the data based on the <code>GEOID</code> column.</p>
+<div id="51f9ca0e" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Join the attributes of the dataframes together</span></span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>ct_merge <span class="op">=</span> ct_tract.merge(ct_df, on <span class="op">=</span> <span class="st">"GEOID"</span>)</span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show result</span></span>
+<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ct_merge.head(<span class="dv">2</span>))</span>
+<span id="cb101-6"><a href="#cb101-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Shape: '</span>, ct_merge.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  STATEFP COUNTYFP TRACTCE        GEOID               GEOIDFQ NAME_x  \
+0      09      110  535200  09110535200  1400000US09110535200   5352   
+1      09      110  881200  09110881200  1400000US09110881200   8812   
+
+            NAMELSAD  MTFCC FUNCSTAT     ALAND   AWATER     INTPTLAT  \
+0  Census Tract 5352  G5020        S  43206583  1355239  +41.9294855   
+1  Census Tract 8812  G5020        S   2273066    28584  +41.8089384   
+
+       INTPTLON                                           geometry  \
+0  -072.4062911  POLYGON ((710429.8 4638466.647, 710437.611 463...   
+1  -072.2516171  POLYGON ((727399.183 4633086.018, 727416.326 4...   
+
+                                              NAME_y  C17002_001E  \
+0  Census Tract 5352; Capitol Planning Region; Co...       6650.0   
+1  Census Tract 8812; Capitol Planning Region; Co...        502.0   
+
+   C17002_002E  C17002_003E  B01003_001E  
+0        102.0        213.0       6664.0  
+1        318.0         15.0      10590.0  
+Shape:  (884, 19)</code></pre>
+</div>
+</div>
+<p>The merged DataFrame still has 884 rows, indicating that all (or nearly all) rows were matched correctly. The census data has now been appended to the shapefile data within the DataFrame.</p>
+<p><strong><em>Additional Notes on Joining DataFrames</em></strong></p>
+<ul>
+<li>The columns used as keys do not need to have the same name, as long as they contain matching data.</li>
+<li>This join was a <strong>one-to-one relationship</strong>, where each attribute in one DataFrame matched exactly one attribute in the other. Joins with <strong>many-to-one</strong>, <strong>one-to-many</strong>, or <strong>many-to-many</strong> relationships are also possible, though they may require additional considerations. For more details, refer to the <a href="https://desktop.arcgis.com/en/arcmap/latest/manage-data/tables/about-joining-and-relating-tables.htm">Esri ArcGIS documentation on joins and relates</a>.</li>
+</ul>
+</section>
+<section id="subset-dataframe" class="level4" data-number="6.7.2.5">
+<h4 data-number="6.7.2.5" class="anchored" data-anchor-id="subset-dataframe"><span class="header-section-number">6.7.2.5</span> Subset dataframe</h4>
+<p>With the DataFrames merged, further clean up the data by removing unnecessary columns. Instead of using the <code>drop</code> method, select only the columns needed and create a new DataFrame containing just those selected columns. This approach streamlines the DataFrame and keeps only the relevant data for analysis.</p>
+<div id="98963131" class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create new dataframe from select columns</span></span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>ct_poverty_tract <span class="op">=</span> ct_merge[[<span class="st">"STATEFP"</span>, <span class="st">"COUNTYFP"</span>, <span class="st">"TRACTCE"</span>, </span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"GEOID"</span>, <span class="st">"geometry"</span>, <span class="st">"C17002_001E"</span>, </span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"C17002_002E"</span>, <span class="st">"C17002_003E"</span>, </span>
+<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"B01003_001E"</span>]]</span>
+<span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-7"><a href="#cb103-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Show dataframe</span></span>
+<span id="cb103-8"><a href="#cb103-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ct_poverty_tract.head(<span class="dv">2</span>))</span>
+<span id="cb103-9"><a href="#cb103-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Shape: '</span>, ct_poverty_tract.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  STATEFP COUNTYFP TRACTCE        GEOID  \
+0      09      110  535200  09110535200   
+1      09      110  881200  09110881200   
+
+                                            geometry  C17002_001E  \
+0  POLYGON ((710429.8 4638466.647, 710437.611 463...       6650.0   
+1  POLYGON ((727399.183 4633086.018, 727416.326 4...        502.0   
+
+   C17002_002E  C17002_003E  B01003_001E  
+0        102.0        213.0       6664.0  
+1        318.0         15.0      10590.0  
+Shape:  (884, 9)</code></pre>
+</div>
+</div>
+<p>The number of columns has reduced from 19 to 9, streamlining the data for analysis.</p>
+</section>
+<section id="calculate-poverty-rates-using-column-math" class="level4" data-number="6.7.2.6">
+<h4 data-number="6.7.2.6" class="anchored" data-anchor-id="calculate-poverty-rates-using-column-math"><span class="header-section-number">6.7.2.6</span> Calculate Poverty Rates Using Column Math</h4>
+<p>To estimate the poverty rate, divide the sum of <code>C17002_002E</code> (ratio of income to poverty in the past 12 months, &lt; 0.50) and <code>C17002_003E</code> (ratio of income to poverty in the past 12 months, 0.50 - 0.99) by <code>B01003_001E</code> (total population). This calculation provides the proportion of the population below the poverty line.</p>
+<p><strong>Note:</strong> <code>C17002_001E</code> (ratio of income to poverty in the past 12 months, total) should theoretically represent the entire population, but it does not exactly match <code>B01003_001E</code> (total population). This discrepancy is minor, so it will be disregarded for the purpose of this calculation.</p>
+<div id="191dfc0a" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get poverty rate and store ctlues in new column</span></span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>ct_poverty_tract[<span class="st">"Poverty_Rate"</span>] <span class="op">=</span> (</span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>    (ct_poverty_tract[<span class="st">"C17002_002E"</span>] <span class="op">+</span> ct_poverty_tract[<span class="st">"C17002_003E"</span>])</span>
+<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">/</span> ct_poverty_tract[<span class="st">"B01003_001E"</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb105-5"><a href="#cb105-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb105-6"><a href="#cb105-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-7"><a href="#cb105-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Show dataframe</span></span>
+<span id="cb105-8"><a href="#cb105-8" aria-hidden="true" tabindex="-1"></a>ct_poverty_tract.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/junyan/work/teaching/ids-f24/ids-f24/.ids-f24-venv/lib/python3.12/site-packages/geopandas/geodataframe.py:1819: SettingWithCopyWarning:
+
+
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="50">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">STATEFP</th>
+<th data-quarto-table-cell-role="th">COUNTYFP</th>
+<th data-quarto-table-cell-role="th">TRACTCE</th>
+<th data-quarto-table-cell-role="th">GEOID</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">C17002_001E</th>
+<th data-quarto-table-cell-role="th">C17002_002E</th>
+<th data-quarto-table-cell-role="th">C17002_003E</th>
+<th data-quarto-table-cell-role="th">B01003_001E</th>
+<th data-quarto-table-cell-role="th">Poverty_Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>09</td>
+<td>110</td>
+<td>535200</td>
+<td>09110535200</td>
+<td>POLYGON ((710429.8 4638466.647, 710437.611 463...</td>
+<td>6650.0</td>
+<td>102.0</td>
+<td>213.0</td>
+<td>6664.0</td>
+<td>4.726891</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>09</td>
+<td>110</td>
+<td>881200</td>
+<td>09110881200</td>
+<td>POLYGON ((727399.183 4633086.018, 727416.326 4...</td>
+<td>502.0</td>
+<td>318.0</td>
+<td>15.0</td>
+<td>10590.0</td>
+<td>3.144476</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="plotting-the-results" class="level4" data-number="6.7.2.7">
+<h4 data-number="6.7.2.7" class="anchored" data-anchor-id="plotting-the-results"><span class="header-section-number">6.7.2.7</span> Plotting the Results</h4>
+<p>With the spatial component linked to the census data, the results can now be visualized on a map. Plot the data to display poverty rates across counties, taking advantage of the merged spatial information for a clear geographic representation of poverty distribution.</p>
+<div id="03b82d68" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create subplots</span></span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize <span class="op">=</span> (<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot data</span></span>
+<span id="cb107-5"><a href="#cb107-5" aria-hidden="true" tabindex="-1"></a>ct_poverty_tract.plot(column <span class="op">=</span> <span class="st">"Poverty_Rate"</span>,</span>
+<span id="cb107-6"><a href="#cb107-6" aria-hidden="true" tabindex="-1"></a>                       ax <span class="op">=</span> ax,</span>
+<span id="cb107-7"><a href="#cb107-7" aria-hidden="true" tabindex="-1"></a>                       cmap <span class="op">=</span> <span class="st">"plasma"</span>,</span>
+<span id="cb107-8"><a href="#cb107-8" aria-hidden="true" tabindex="-1"></a>                       legend <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb107-9"><a href="#cb107-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-10"><a href="#cb107-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Stylize plots</span></span>
+<span id="cb107-11"><a href="#cb107-11" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'bmh'</span>)</span>
+<span id="cb107-12"><a href="#cb107-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-13"><a href="#cb107-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Set title</span></span>
+<span id="cb107-14"><a href="#cb107-14" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Poverty Rates (%) in Connecticut'</span>, fontdict <span class="op">=</span> {</span>
+<span id="cb107-15"><a href="#cb107-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'fontsize'</span>: <span class="st">'25'</span>, <span class="st">'fontweight'</span> : <span class="st">'3'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
+<pre><code>Text(0.5, 1.0, 'Poverty Rates (%) in Connecticut')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="manipulation_files/figure-html/cell-54-output-2.png" width="873" height="624" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
