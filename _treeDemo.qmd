@@ -299,8 +299,8 @@ This will print a text version of the decision tree in a tree-like format, with 
 
 ---
 
-### References
+### For further reading, please check out these resources:
 
-1. 1.10. Decision Trees. (n.d.). Scikit-learn. https://scikit-learn.org/1.5/modules/tree.html [@sklearn_decision_tree].
-2. Baladram, S. (2024, October 11). Decision Tree Regressor, Explained: A Visual Guide with Code Examples. Medium. https://towardsdatascience.com/decision-tree-regressor-explained-a-visual-guide-with-code-examples-fbd2836c3bef [@baladram2024].
-3. GeeksforGeeks. (2024, May 17). Decision tree. GeeksforGeeks. https://www.geeksforgeeks.org/decision-tree/ [@geeksforgeeks_decision_tree].
+1. [Scikit-Learn Decision Tree Documentation](https://scikit-learn.org/1.5/modules/tree.html) 
+2. ["Decision Tree Regressor, Explained: A Visual Guide with Code Examples" by Samy Baladram](https://towardsdatascience.com/decision-tree-regressor-explained-a-visual-guide-with-code-examples-fbd2836c3bef)
+3. [GeeksforGeeks Decision Tree Overview](https://www.geeksforgeeks.org/decision-tree/) 
