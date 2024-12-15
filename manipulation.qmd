@@ -355,14 +355,15 @@ merged_df.head()
 ```
 
 ## Extracting and Analyzing Census Tract Data
-This chapter was authored by **Mohammad Shahriyar Parvez**, 
+
+This section was authored by **Mohammad Shahriyar Parvez**, 
 a Ph.D. scholar in the Department of Geography, 
 Sustainability, and Urban Studies at the University of 
 Connecticut. For any questions or difficulties in 
 executing the content of this section, please feel free to 
 reach out at [shahriyar@uconn.edu](mailto:shahriyar@uconn.edu).
 
-This chapter explains how to access data from the US 
+This section explains how to access data from the US 
 Decennial Census and the American Community Survey (ACS). 
 Basic operations will be applied to calculate and map 
 poverty rates in Storrs, CT. Data will be retrieved from 
