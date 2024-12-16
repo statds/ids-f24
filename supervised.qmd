@@ -181,8 +181,8 @@ regression tasks, MSE is the most popular choice, but Poisson deviance
 and MAE are useful for specific use cases such as count data and
 robust models, respectively.
 
-<!-- ## Decision Trees: Demonstration  -->
-<!-- {{< include _treeDemo.qmd >}} -->
+## Decision Trees: Demonstration
+{{< include _treeDemo.qmd >}}
 
 
 ## Boosted Trees

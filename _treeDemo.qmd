@@ -1,6 +1,6 @@
 ## Decision Trees: Demonstration
 
-This section is presented by Jaden Astle.
+This section was presented by Jaden Astle.
 
 ### About the Trees
 
@@ -8,7 +8,7 @@ This section is presented by Jaden Astle.
 - Both classification & regression methods
 - Goal is to sort data into specific groups, one characteristic at a time
 - Splitting follows a tree-like structure with binary splits  
-[@geeksforgeeks_decision_tree]
+
 
 ### Classification Trees Overview
 
@@ -18,7 +18,7 @@ This section is presented by Jaden Astle.
 
 **How exactly are these splits chosen?**
 
----
+
 
 ### Splitting the Variables at Each Node
 
@@ -26,19 +26,18 @@ This section is presented by Jaden Astle.
 - **Measure of randomness** or disorder in the given environment.
 - Observes **uncertainty** of data based on distribution of classes at any given step.
 - A lower entropy value means less disorder, therefore a **better split**.  
-[@geeksforgeeks_decision_tree]
+
 
 #### Gini Index
 
 - Utilizes the **probability** that a random element is incorrectly labeled based on labeling from the original dataset distribution.
 - A lower Gini index means a **better split**.  
-[@geeksforgeeks_decision_tree]
 
----
+
 
 ### Classification Tree Implementation
 
----
+
 
 ### Data Preparation
 
@@ -64,7 +63,7 @@ drop_first=True)
 
 ```
 
----
+
 
 ### Data Preparation 
 
@@ -84,7 +83,7 @@ y = df['severe']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1234)
 ```
 
----
+
 
 ### Entropy-based Model
 
@@ -101,10 +100,6 @@ print(confusion_matrix(y_test, y_pred))
 print(classification_report(y_test, y_pred))
 ```
 
-[@sklearn_decision_tree]
-
----
-
 ### Gini-based Model
 
 ```{python}
@@ -120,14 +115,6 @@ print(confusion_matrix(y_test, y_pred))
 print(classification_report(y_test, y_pred))
 ```
 
-[@sklearn_decision_tree]
-
----
-
-### Regression Trees Overview
-
----
-
 ### Regression Trees Overview
 
 - Built for continuous variables; predicts continuous values
@@ -142,21 +129,17 @@ $$
 \text{Total MSE} = \frac{n_{\text{total}}}{n_{\text{left}}} \cdot \text{MSE}_{\text{left}} + \frac{n_{\text{total}}}{n_{\text{right}}} \cdot \text{MSE}_{\text{right}}
 $$
 
-[@baladram2024]
 
----
 
 ### Regression Trees Overview 
 
 - What about leaf nodes? What are the final classifications?
 - Average y of all remaining observations in that node becomes prediction for future observations  
-[@baladram2024]
 
----
 
 ### Regression Tree Implementation
 
----
+
 
 ### Data Preparation
 
@@ -184,7 +167,7 @@ df['response_time'] = (df['closed_date'] - df['created_date']).dt.total_seconds(
 df.columns
 ```
 
----
+
 
 ### Data Preparation
 
@@ -213,7 +196,7 @@ training_df = df[features]
 training_df.head()
 ```
 
----
+
 
 ### Data Preparation
 
@@ -224,7 +207,7 @@ y = df['response_time']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234)
 ```
 
----
+
 
 ### Model Training
 
@@ -241,9 +224,6 @@ print(mean_squared_error(y_test, y_pred))
 print(r2_score(y_test, y_pred))
 ```
 
-[@sklearn_decision_tree]
-
----
 
 ### Residual plot
 
@@ -259,7 +239,7 @@ plt.title("Residual Plot")
 plt.show()
 ```
 
----
+
 
 ### Tree Visualization
 
@@ -272,9 +252,6 @@ plot_tree(tree, feature_names=X_train.columns, filled=True, rounded=True)
 plt.show()
 ```
 
-[@sklearn_decision_tree]
-
----
 
 ### Export Tree to Text
 
@@ -285,10 +262,9 @@ tree_structure = export_text(tree, feature_names=list(X_train.columns))
 print(tree_structure)
 ```
 
-This will print a text version of the decision tree in a tree-like format, with each indent representing a new split.  
-[@sklearn_decision_tree]
+This will print a text version of the decision tree in a tree-like format, with each indent representing a new split.
 
----
+
 
 ### Conclusion
 
@@ -297,9 +273,9 @@ This will print a text version of the decision tree in a tree-like format, with 
 - Very flexible & easy to interpret
 - Easily adjustable parameters to help prevent overfitting (max tree depth, min sample split) 
 
----
 
-### For further reading, please check out these resources:
+
+###  Further Readings
 
 1. [Scikit-Learn Decision Tree Documentation](https://scikit-learn.org/1.5/modules/tree.html) 
 2. ["Decision Tree Regressor, Explained: A Visual Guide with Code Examples" by Samy Baladram](https://towardsdatascience.com/decision-tree-regressor-explained-a-visual-guide-with-code-examples-fbd2836c3bef)
