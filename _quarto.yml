@@ -7,17 +7,18 @@ book:
   author:
     - name: "Jun Yan and Students in Fall 2024:"
     - name: Suha Akach
+    - name: Jaden Astle
     - name: Jack Bienveune
     - name: Zachary Blanchard
     - name: Sara Clokey
     - name: Melanie Desrochesk
-    - name: Thea Johnson
+    - name: Dorothea Johnson
     - name: Olivia Kashlapov
     - name: Rahul Manna
     - name: Julia Mazzola
     - name: Mohammad Shahriyar Parvez
     - name: Qianruo Tan
-    - name: Deyu Xuo
+    - name: Deyu Xu
   date: today
 
   sidebar:
