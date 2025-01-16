@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -259,13 +259,13 @@ window.Quarto = {
 
 
 <ol type="1">
-<li><strong>Quarto and Git setup</strong> Quarto and Git are two important tools for data science. Get familiar with them through the following tasks. Please use the <a href="https://github.com/statds/ids-f24/blob/main/templates/hw.qmd"><code>templates/hw.qmd</code></a> template.
+<li><p><strong>Quarto and Git setup</strong> Quarto and Git are two important tools for data science. Get familiar with them through the following tasks. Please use the <a href="https://github.com/statds/ids-f24/blob/main/templates/hw.qmd"><code>templates/hw.qmd</code></a> template.</p>
 <ol type="a">
 <li>Install Quarto onto your computer following the instructions of <a href="https://quarto.org/docs/get-started/">Get Started</a>. Document the obstacles you encountered and how you overcame them.</li>
 <li>Pick a tool of your choice (e.g., VS Code, Jupyter Notebook, Emacs, etc.), follow the instructions to reproduce the example of line plot on polar axis.</li>
 <li>Render the homework into a pdf file and put the file into a release in your GitHub repo. Document any obstacles you have and how you overcome them.</li>
 </ol></li>
-<li><strong>Git basics and GitHub setup</strong> Learn the Git basics and set up an account on GitHub if you do not already have one. Practice the tips on Git in the notes. By going through the following tasks, ensure your repo has at least 10 commits, each with an informative message. Regularly check the status of your repo using <code>git status</code>. The specific tasks are:
+<li><p><strong>Git basics and GitHub setup</strong> Learn the Git basics and set up an account on GitHub if you do not already have one. Practice the tips on Git in the notes. By going through the following tasks, ensure your repo has at least 10 commits, each with an informative message. Regularly check the status of your repo using <code>git status</code>. The specific tasks are:</p>
 <ol type="a">
 <li>Clone the class notes repo to an appropriate folder on your computer.</li>
 <li>Add all the files to your designated homework repo from GitHub Classroom and work on that repo for the rest of the problem.</li>
@@ -277,7 +277,7 @@ window.Quarto = {
 <li>Change one word in the long line and one word in the short line; use <code>git diff</code> to see the difference from the last commit; commit.</li>
 <li>Play with other git operations and commit.</li>
 </ol></li>
-<li><strong>Contributing to the Class Notes</strong> To contribute to the classnotes, you need to have a working copy of the sources on your computer. Document the following steps in a <code>qmd</code> file as if you are explaining them to someone who want to contribute too.
+<li><p><strong>Contributing to the Class Notes</strong> To contribute to the classnotes, you need to have a working copy of the sources on your computer. Document the following steps in a <code>qmd</code> file as if you are explaining them to someone who want to contribute too.</p>
 <ol type="a">
 <li>Create a fork of the notes repo into your own GitHub account.</li>
 <li>Clone it to an appropriate folder on your computer.</li>
@@ -286,17 +286,16 @@ window.Quarto = {
 <li>Checkout your branch and add your wishes to the wish list; commit with an informative message; and push the changes to your GitHub account.</li>
 <li>Make a pull request to class notes repo from your fork at GitHub. Make sure you have clear messages to document the changes.</li>
 </ol></li>
-<li><strong>Monty Hall</strong> Consider a generalized Monty Hall experiment. Suppose that the game start with <span class="math inline">\(n\)</span> doors; after you pick one, the host opens <span class="math inline">\(m \le n - 2\)</span> doors, that show no award. Include sufficient text around the code chunks to explain them.
+<li><p><strong>Monty Hall</strong> Consider a generalized Monty Hall experiment. Suppose that the game start with <span class="math inline">\(n\)</span> doors; after you pick one, the host opens <span class="math inline">\(m \le n - 2\)</span> doors, that show no award. Include sufficient text around the code chunks to explain them.</p>
 <ol type="a">
 <li>Write a function to simulate the experiment once. The function takes two arguments <code>ndoors</code> and <code>nempty</code>, which represent the number of doors and the number of empty doors showed by the host, respectively, It returns the result of two strategies, switch and no-switch, from playing this game.</li>
 <li>Play this game with 3 doors and 1 empty a few times.</li>
 <li>Play this game with 10 doors and 8 empty a few times.</li>
 <li>Write a function to play this game <code>ntrial</code> times and return the proportion of wins for both strategies.</li>
 <li>Apply your function to play this game 1000 times, with 3 doors and 10 doors, and summarize your results.</li>
+<li>Write a function to demonstrate the Monty Hall problem through simulation. The function takes two arguments <code>ndoors</code> and <code>ntrials</code>, representing the number of doors in the experiment and the number of trials in a simulation, respectively. The function should return the proportion of wins for both the switch and no-switch strategy.</li>
+<li>Apply your function with 3 doors and 5 doors, both with 1000 trials. Summarize your results.</li>
 </ol></li>
-</ol>
-<p>Write a function to demonstrate the Monty Hall problem through simulation. The function takes two arguments <code>ndoors</code> and <code>ntrials</code>, representing the number of doors in the experiment and the number of trials in a simulation, respectively. The function should return the proportion of wins for both the switch and no-switch strategy. Apply your function with 3 doors and 5 doors, both with 1000 trials</p>
-<ol type="1">
 <li><p><strong>Approximating <span class="math inline">\(\pi\)</span></strong> Write a function to do a Monte Carlo approximation of <span class="math inline">\(\pi\)</span>. The function takes a Monte Carlo sample size <code>n</code> as input, and returns a point estimate of <span class="math inline">\(\pi\)</span> and a 95% confidence interval. Apply your function with sample size 1000, 2000, 4000, and 8000. Repeat the experiment 1000 times for each sample size and check the empirical probability that the confidence intervals cover the true value of <span class="math inline">\(\pi\)</span>. Comment on the results.</p></li>
 <li><p><strong>Google Billboard Ad</strong> Find the first 10-digit prime number occurring in consecutive digits of <span class="math inline">\(e\)</span>. This was a <a href="http://mathworld.wolfram.com/news/2004-10-13/google/">Google recruiting ad</a>.</p></li>
 <li><p><strong>Game 24</strong> The <a href="http://en.wikipedia.org/wiki/24_Game">math game 24</a> is one of the addictive games among number lovers. With four randomly selected cards form a deck of poker cards, use all four values and elementary arithmetic operations (<span class="math inline">\(+-\times /\)</span>) to come up with 24. Let <span class="math inline">\(\square\)</span> be one of the four numbers. Let <span class="math inline">\(\bigcirc\)</span> represent one of the four operators. For example, <span class="math display">\[\begin{equation*}
@@ -452,8 +451,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -564,7 +561,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
