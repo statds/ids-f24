@@ -71,15 +71,14 @@
    the proportion of wins for both strategies.
     a.  Apply your function to play this game 1000 times, with 3 doors
    and 10 doors, and summarize your results.
-   
-
-Write a function to demonstrate the Monty Hall problem through
+    a.  Write a function to demonstrate the Monty Hall problem through
    simulation. The function takes two arguments `ndoors` and
    `ntrials`, representing the number of doors in the experiment and
    the number of trials in a simulation, respectively. The function
    should return the proportion of wins for both the switch and
-   no-switch strategy. Apply your function with 3 doors and 5 doors,
-   both with 1000 trials
+   no-switch strategy. 
+    a.  Apply your function with 3 doors and 5 doors,
+   both with 1000 trials. Summarize your results.
 
 1.  **Approximating $\pi$**
    Write a function to do a Monte Carlo approximation of $\pi$. The
